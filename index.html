@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kârım Ne?</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f6f9;margin:0;padding:20px;color:#17202a}
+.container{max-width:520px;margin:auto;background:white;padding:22px;border-radius:18px;box-shadow:0 4px 18px #0001}
+h1{text-align:center;margin-top:5px}
+label{display:block;margin-top:14px;font-weight:bold}
+input{width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #ccd3da;border-radius:10px;font-size:16px}
+button{width:100%;padding:14px;margin-top:20px;border:0;border-radius:10px;background:#198754;color:white;font-size:17px;font-weight:bold}
+.result{margin-top:20px;padding:18px;background:#eef8f1;border-radius:12px}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #dce9df}
+.row:last-child{border-bottom:0}
+.big{font-size:25px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>💰 Kârım Ne?</h1>
+<p style="text-align:center">Satışından ne kadar kâr kaldığını hesapla.</p>
+
+<label>Ürün alış fiyatı (TL)</label>
+<input id="alis" type="number" step="0.01" placeholder="Örn. 250">
+
+<label>Satış fiyatı (TL)</label>
+<input id="satis" type="number" step="0.01" placeholder="Örn. 500">
+
+<label>Komisyon (%)</label>
+<input id="komisyon" type="number" step="0.01" value="10">
+
+<label>Kargo / diğer gider (TL)</label>
+<input id="gider" type="number" step="0.01" value="0">
+
+<button onclick="hesapla()">KÂRIMI HESAPLA</button>
+
+<div id="sonuc" class="result" style="display:none">
+<div class="row"><span>Alış maliyeti</span><b id="rAlis"></b></div>
+<div class="row"><span>Komisyon</span><b id="rKomisyon"></b></div>
+<div class="row"><span>Kargo / diğer gider</span><b id="rGider"></b></div>
+<div class="row"><span>Toplam maliyet</span><b id="rMaliyet"></b></div>
+<div class="row"><span>Net kâr</span><b class="big" id="rKar"></b></div>
+<div class="row"><span>Kâr marjı</span><b id="rMarj"></b></div>
+</div>
+</div>
+
+<script>
+function tl(x){return x.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+' TL';}
+function hesapla(){
+ const alis=Number(document.getElementById('alis').value)||0;
+ const satis=Number(document.getElementById('satis').value)||0;
+ const kom=Number(document.getElementById('komisyon').value)||0;
+ const gider=Number(document.getElementById('gider').value)||0;
+ const komisyonTutari=satis*kom/100;
+ const toplam=alis+komisyonTutari+gider;
+ const kar=satis-toplam;
+ const marj=satis>0?(kar/satis*100):0;
+ document.getElementById('rAlis').textContent=tl(alis);
+ document.getElementById('rKomisyon').textContent=tl(komisyonTutari);
+ document.getElementById('rGider').textContent=tl(gider);
+ document.getElementById('rMaliyet').textContent=tl(toplam);
+ document.getElementById('rKar').textContent=tl(kar);
+ document.getElementById('rMarj').textContent=marj.toFixed(2)+' %';
+ document.getElementById('sonuc').style.display='block';
+}
+</script>
+</body>
+</html>
