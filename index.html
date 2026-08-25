@@ -4,67 +4,218 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kârım Ne?</title>
+
 <style>
-body{font-family:Arial,sans-serif;background:#f3f6f9;margin:0;padding:20px;color:#17202a}
-.container{max-width:520px;margin:auto;background:white;padding:22px;border-radius:18px;box-shadow:0 4px 18px #0001}
-h1{text-align:center;margin-top:5px}
-label{display:block;margin-top:14px;font-weight:bold}
-input{width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #ccd3da;border-radius:10px;font-size:16px}
-button{width:100%;padding:14px;margin-top:20px;border:0;border-radius:10px;background:#198754;color:white;font-size:17px;font-weight:bold}
-.result{margin-top:20px;padding:18px;background:#eef8f1;border-radius:12px}
-.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #dce9df}
-.row:last-child{border-bottom:0}
-.big{font-size:25px;font-weight:bold}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    color: #333;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #667eea;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5568d9;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f5f5f5;
+}
+
+.result p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.net {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px !important;
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
+<div class="card">
+
 <h1>💰 Kârım Ne?</h1>
-<p style="text-align:center">Satışından ne kadar kâr kaldığını hesapla.</p>
 
-<label>Ürün alış fiyatı (TL)</label>
-<input id="alis" type="number" step="0.01" placeholder="Örn. 250">
+<div class="subtitle">
+Ürünün gerçek kârını saniyeler içinde hesapla
+</div>
 
-<label>Satış fiyatı (TL)</label>
-<input id="satis" type="number" step="0.01" placeholder="Örn. 500">
+<label>Alış Fiyatı (₺)</label>
+<input type="number" id="alis" placeholder="Örn: 500">
+
+<label>Satış Fiyatı (₺)</label>
+<input type="number" id="satis" placeholder="Örn: 900">
 
 <label>Komisyon (%)</label>
-<input id="komisyon" type="number" step="0.01" value="10">
+<input type="number" id="komisyon" placeholder="Örn: 10">
 
-<label>Kargo / diğer gider (TL)</label>
-<input id="gider" type="number" step="0.01" value="0">
+<label>Kargo (₺)</label>
+<input type="number" id="kargo" placeholder="Örn: 50">
 
-<button onclick="hesapla()">KÂRIMI HESAPLA</button>
+<label>Diğer Giderler (₺)</label>
+<input type="number" id="diger" placeholder="Örn: 20">
 
-<div id="sonuc" class="result" style="display:none">
-<div class="row"><span>Alış maliyeti</span><b id="rAlis"></b></div>
-<div class="row"><span>Komisyon</span><b id="rKomisyon"></b></div>
-<div class="row"><span>Kargo / diğer gider</span><b id="rGider"></b></div>
-<div class="row"><span>Toplam maliyet</span><b id="rMaliyet"></b></div>
-<div class="row"><span>Net kâr</span><b class="big" id="rKar"></b></div>
-<div class="row"><span>Kâr marjı</span><b id="rMarj"></b></div>
+<label>Satış Adedi</label>
+<input type="number" id="adet" value="1" min="1">
+
+<button onclick="hesapla()">🧮 Kârımı Hesapla</button>
+
+<div class="result" id="sonuc">
+
+<p>
+<span>Komisyon:</span>
+<strong id="komisyonSonuc">0 ₺</strong>
+</p>
+
+<p>
+<span>Toplam gider:</span>
+<strong id="giderSonuc">0 ₺</strong>
+</p>
+
+<p>
+<span>Tek ürün kârı:</span>
+<strong id="tekKar">0 ₺</strong>
+</p>
+
+<p>
+<span>Kâr oranı:</span>
+<strong id="karOrani">%0</strong>
+</p>
+
+<p class="net">
+<span>Toplam kâr:</span>
+<strong id="toplamKar">0 ₺</strong>
+</p>
+
+</div>
+
 </div>
 </div>
 
 <script>
-function tl(x){return x.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+' TL';}
-function hesapla(){
- const alis=Number(document.getElementById('alis').value)||0;
- const satis=Number(document.getElementById('satis').value)||0;
- const kom=Number(document.getElementById('komisyon').value)||0;
- const gider=Number(document.getElementById('gider').value)||0;
- const komisyonTutari=satis*kom/100;
- const toplam=alis+komisyonTutari+gider;
- const kar=satis-toplam;
- const marj=satis>0?(kar/satis*100):0;
- document.getElementById('rAlis').textContent=tl(alis);
- document.getElementById('rKomisyon').textContent=tl(komisyonTutari);
- document.getElementById('rGider').textContent=tl(gider);
- document.getElementById('rMaliyet').textContent=tl(toplam);
- document.getElementById('rKar').textContent=tl(kar);
- document.getElementById('rMarj').textContent=marj.toFixed(2)+' %';
- document.getElementById('sonuc').style.display='block';
+
+function hesapla() {
+
+    let alis = Number(document.getElementById("alis").value) || 0;
+    let satis = Number(document.getElementById("satis").value) || 0;
+    let komisyon = Number(document.getElementById("komisyon").value) || 0;
+    let kargo = Number(document.getElementById("kargo").value) || 0;
+    let diger = Number(document.getElementById("diger").value) || 0;
+    let adet = Number(document.getElementById("adet").value) || 1;
+
+    let komisyonTutari = satis * komisyon / 100;
+
+    let toplamGider = alis + komisyonTutari + kargo + diger;
+
+    let tekKar = satis - toplamGider;
+
+    let karOrani = alis > 0 ? (tekKar / alis) * 100 : 0;
+
+    let toplamKar = tekKar * adet;
+
+    document.getElementById("komisyonSonuc").innerText =
+        komisyonTutari.toFixed(2) + " ₺";
+
+    document.getElementById("giderSonuc").innerText =
+        toplamGider.toFixed(2) + " ₺";
+
+    document.getElementById("tekKar").innerText =
+        tekKar.toFixed(2) + " ₺";
+
+    document.getElementById("karOrani").innerText =
+        "%" + karOrani.toFixed(2);
+
+    document.getElementById("toplamKar").innerText =
+        toplamKar.toFixed(2) + " ₺";
+
+    let toplamKarElement = document.getElementById("toplamKar");
+
+    if (toplamKar >= 0) {
+        toplamKarElement.className = "positive";
+    } else {
+        toplamKarElement.className = "negative";
+    }
 }
+
 </script>
+
 </body>
 </html>
