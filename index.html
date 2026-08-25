@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kârım Ne?</title>
 
 <style>
@@ -15,36 +16,37 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
-    padding: 20px;
+    padding: 15px;
 }
 
 .container {
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
 }
 
 .card {
     background: white;
     border-radius: 20px;
-    padding: 25px;
+    padding: 22px;
+    margin-bottom: 18px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1 {
     text-align: center;
-    margin-top: 0;
     color: #333;
+    margin-top: 0;
 }
 
 .subtitle {
     text-align: center;
     color: #777;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-top: 15px;
+    margin-top: 14px;
     margin-bottom: 6px;
     font-weight: bold;
     color: #333;
@@ -60,24 +62,24 @@ input {
 
 button {
     width: 100%;
-    margin-top: 25px;
-    padding: 15px;
+    margin-top: 18px;
+    padding: 14px;
     border: none;
     border-radius: 12px;
     background: #667eea;
     color: white;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background: #5568d9;
+    opacity: 0.9;
 }
 
 .result {
-    margin-top: 25px;
-    padding: 20px;
+    margin-top: 20px;
+    padding: 18px;
     border-radius: 15px;
     background: #f5f5f5;
 }
@@ -89,11 +91,10 @@ button:hover {
 }
 
 .net {
-    font-size: 24px;
+    font-size: 23px;
     font-weight: bold;
-    margin-top: 15px !important;
-    padding-top: 15px;
     border-top: 2px solid #ddd;
+    padding-top: 14px;
 }
 
 .positive {
@@ -102,6 +103,51 @@ button:hover {
 
 .negative {
     color: red;
+}
+
+.summary {
+    background: #f5f5f5;
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.summary p {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.product {
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 15px;
+    margin-top: 12px;
+    background: #fafafa;
+}
+
+.product h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.product p {
+    margin: 6px 0;
+}
+
+.delete {
+    background: #e53935;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.clear {
+    background: #333;
+}
+
+.hidden {
+    display: none;
 }
 </style>
 </head>
@@ -117,6 +163,9 @@ button:hover {
 <div class="subtitle">
 Ürünün gerçek kârını saniyeler içinde hesapla
 </div>
+
+<label>Ürün Adı</label>
+<input type="text" id="urun" placeholder="Örn: Bluetooth Kulaklık">
 
 <label>Alış Fiyatı (₺)</label>
 <input type="number" id="alis" placeholder="Örn: 500">
@@ -136,41 +185,100 @@ button:hover {
 <label>Satış Adedi</label>
 <input type="number" id="adet" value="1" min="1">
 
-<button onclick="hesapla()">🧮 Kârımı Hesapla</button>
+<button onclick="hesapla()">
+🧮 Kârımı Hesapla
+</button>
 
-<div class="result" id="sonuc">
+<div class="result">
 
 <p>
 <span>Komisyon:</span>
-<strong id="komisyonSonuc">0 ₺</strong>
+<strong id="komisyonSonuc">0,00 ₺</strong>
 </p>
 
 <p>
 <span>Toplam gider:</span>
-<strong id="giderSonuc">0 ₺</strong>
+<strong id="giderSonuc">0,00 ₺</strong>
 </p>
 
 <p>
 <span>Tek ürün kârı:</span>
-<strong id="tekKar">0 ₺</strong>
+<strong id="tekKar">0,00 ₺</strong>
 </p>
 
 <p>
 <span>Kâr oranı:</span>
-<strong id="karOrani">%0</strong>
+<strong id="karOrani">%0,00</strong>
 </p>
 
 <p class="net">
 <span>Toplam kâr:</span>
-<strong id="toplamKar">0 ₺</strong>
+<strong id="toplamKar">0,00 ₺</strong>
+</p>
+
+</div>
+
+<button onclick="kaydet()">
+💾 Ürünü Kaydet
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Kâr Özeti</h2>
+
+<div class="summary">
+
+<p>
+<span>Kayıtlı ürün:</span>
+<strong id="urunSayisi">0</strong>
+</p>
+
+<p>
+<span>Toplam satış:</span>
+<strong id="toplamSatis">0,00 ₺</strong>
+</p>
+
+<p>
+<span>Toplam kâr:</span>
+<strong id="genelKar">0,00 ₺</strong>
 </p>
 
 </div>
 
 </div>
+
+
+<div class="card">
+
+<h2>📦 Kayıtlı Ürünler</h2>
+
+<div id="kayitlar">
+<p>Henüz kayıt yok.</p>
 </div>
 
+<button class="clear" onclick="tumunuSil()">
+🗑️ Tüm Kayıtları Sil
+</button>
+
+</div>
+
+</div>
+
+
 <script>
+
+let kayitlar = JSON.parse(localStorage.getItem("karimNeKayitlar")) || [];
+
+function para(sayi) {
+    return sayi.toLocaleString("tr-TR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }) + " ₺";
+}
+
 
 function hesapla() {
 
@@ -183,37 +291,229 @@ function hesapla() {
 
     let komisyonTutari = satis * komisyon / 100;
 
-    let toplamGider = alis + komisyonTutari + kargo + diger;
+    let toplamGider =
+        alis +
+        komisyonTutari +
+        kargo +
+        diger;
 
     let tekKar = satis - toplamGider;
 
-    let karOrani = alis > 0 ? (tekKar / alis) * 100 : 0;
+    let karOrani =
+        alis > 0 ? (tekKar / alis) * 100 : 0;
 
     let toplamKar = tekKar * adet;
 
     document.getElementById("komisyonSonuc").innerText =
-        komisyonTutari.toFixed(2) + " ₺";
+        para(komisyonTutari);
 
     document.getElementById("giderSonuc").innerText =
-        toplamGider.toFixed(2) + " ₺";
+        para(toplamGider);
 
     document.getElementById("tekKar").innerText =
-        tekKar.toFixed(2) + " ₺";
+        para(tekKar);
 
     document.getElementById("karOrani").innerText =
         "%" + karOrani.toFixed(2);
 
     document.getElementById("toplamKar").innerText =
-        toplamKar.toFixed(2) + " ₺";
+        para(toplamKar);
 
-    let toplamKarElement = document.getElementById("toplamKar");
+    let karElement =
+        document.getElementById("toplamKar");
 
-    if (toplamKar >= 0) {
-        toplamKarElement.className = "positive";
-    } else {
-        toplamKarElement.className = "negative";
-    }
+    karElement.className =
+        toplamKar >= 0 ? "positive" : "negative";
+
+    return {
+        urun: document.getElementById("urun").value || "İsimsiz Ürün",
+        alis,
+        satis,
+        komisyon,
+        kargo,
+        diger,
+        adet,
+        toplamSatis: satis * adet,
+        toplamKar
+    };
 }
+
+
+function kaydet() {
+
+    let veri = hesapla();
+
+    if (veri.alis <= 0 || veri.satis <= 0) {
+        alert("Lütfen alış ve satış fiyatını gir.");
+        return;
+    }
+
+    kayitlar.push(veri);
+
+    localStorage.setItem(
+        "karimNeKayitlar",
+        JSON.stringify(kayitlar)
+    );
+
+    listele();
+
+    alert("✅ Ürün başarıyla kaydedildi.");
+
+    temizleForm();
+}
+
+
+function temizleForm() {
+
+    document.getElementById("urun").value = "";
+    document.getElementById("alis").value = "";
+    document.getElementById("satis").value = "";
+    document.getElementById("komisyon").value = "";
+    document.getElementById("kargo").value = "";
+    document.getElementById("diger").value = "";
+    document.getElementById("adet").value = 1;
+}
+
+
+function listele() {
+
+    let alan = document.getElementById("kayitlar");
+
+    alan.innerHTML = "";
+
+    if (kayitlar.length === 0) {
+
+        alan.innerHTML =
+            "<p>Henüz kayıt yok.</p>";
+
+    } else {
+
+        kayitlar.forEach((urun, index) => {
+
+            let div =
+                document.createElement("div");
+
+            div.className = "product";
+
+            let karClass =
+                urun.toplamKar >= 0
+                ? "positive"
+                : "negative";
+
+            div.innerHTML = `
+
+                <h3>📦 ${urun.urun}</h3>
+
+                <p>
+                Alış:
+                <strong>${para(urun.alis)}</strong>
+                </p>
+
+                <p>
+                Satış:
+                <strong>${para(urun.satis)}</strong>
+                </p>
+
+                <p>
+                Adet:
+                <strong>${urun.adet}</strong>
+                </p>
+
+                <p>
+                Toplam satış:
+                <strong>${para(urun.toplamSatis)}</strong>
+                </p>
+
+                <p>
+                Toplam kâr:
+                <strong class="${karClass}">
+                ${para(urun.toplamKar)}
+                </strong>
+                </p>
+
+                <button
+                class="delete"
+                onclick="sil(${index})">
+                🗑️ Bu Ürünü Sil
+                </button>
+
+            `;
+
+            alan.appendChild(div);
+        });
+    }
+
+    ozetGuncelle();
+}
+
+
+function sil(index) {
+
+    if (!confirm("Bu ürünü silmek istediğine emin misin?")) {
+        return;
+    }
+
+    kayitlar.splice(index, 1);
+
+    localStorage.setItem(
+        "karimNeKayitlar",
+        JSON.stringify(kayitlar)
+    );
+
+    listele();
+}
+
+
+function tumunuSil() {
+
+    if (kayitlar.length === 0) {
+        alert("Silinecek kayıt yok.");
+        return;
+    }
+
+    if (!confirm("Bütün kayıtlar silinsin mi?")) {
+        return;
+    }
+
+    kayitlar = [];
+
+    localStorage.removeItem(
+        "karimNeKayitlar"
+    );
+
+    listele();
+}
+
+
+function ozetGuncelle() {
+
+    let toplamSatis = 0;
+    let genelKar = 0;
+
+    kayitlar.forEach(urun => {
+
+        toplamSatis += urun.toplamSatis;
+        genelKar += urun.toplamKar;
+
+    });
+
+    document.getElementById("urunSayisi")
+        .innerText = kayitlar.length;
+
+    document.getElementById("toplamSatis")
+        .innerText = para(toplamSatis);
+
+    let karElement =
+        document.getElementById("genelKar");
+
+    karElement.innerText = para(genelKar);
+
+    karElement.className =
+        genelKar >= 0 ? "positive" : "negative";
+}
+
+
+listele();
 
 </script>
 
