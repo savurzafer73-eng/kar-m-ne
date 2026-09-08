@@ -2,518 +2,2862 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kârım Ne?</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#06130c">
+<title>Batak Royale</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#031008;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
+  touch-action:none;
+}
+body{
+  display:flex;
+  justify-content:center;
+}
+button{
+  border:0;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+#app{
+  width:100%;
+  max-width:900px;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 35%,#14552e 0,#08331d 35%,#04180d 75%,#020b06 100%);
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 100vh;
-    padding: 15px;
+/* MENÜ */
+.screen{
+  position:absolute;
+  inset:0;
+  z-index:50;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+  background:rgba(2,12,7,.96);
+}
+.screen h1{
+  font-size:42px;
+  margin-bottom:8px;
+  color:#f4d56a;
+  text-shadow:0 4px 15px #000;
+}
+.subtitle{
+  color:#a9c5b2;
+  margin-bottom:30px;
+}
+.menuBtns{
+  width:min(360px,90vw);
+  display:grid;
+  gap:14px;
+}
+.menuBtn{
+  padding:17px;
+  border-radius:16px;
+  font-size:18px;
+  background:linear-gradient(135deg,#1e8b4a,#0d542b);
+  box-shadow:0 6px 15px #0008;
+}
+.menuBtn.secondary{
+  background:linear-gradient(135deg,#344d41,#1b2e24);
+}
+.menuBtn:active{
+  transform:scale(.97);
 }
 
-.container {
-    max-width: 600px;
-    margin: auto;
+#game{
+  position:absolute;
+  inset:0;
+  display:none;
 }
 
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 22px;
-    margin-bottom: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+/* ÜST BAR */
+.topbar{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:62px;
+  padding:7px 9px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(#020b07dd,#020b0790,transparent);
+  z-index:10;
+}
+.info{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+.badge{
+  background:#071d12dd;
+  border:1px solid #ffffff20;
+  padding:7px 9px;
+  border-radius:10px;
+  font-size:12px;
+}
+.badge b{
+  color:#f5d56c;
+}
+.smallBtn{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:#183b28dd;
+  font-size:18px;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-top: 0;
+/* MASA */
+.table{
+  position:absolute;
+  left:5%;
+  right:5%;
+  top:18%;
+  bottom:25%;
+  border-radius:45% / 30%;
+  background:
+    radial-gradient(ellipse at center,#16703b 0,#0b4c29 50%,#06351c 100%);
+  border:8px solid #4c2d17;
+  box-shadow:
+    inset 0 0 0 3px #986238,
+    inset 0 0 50px #00190b,
+    0 15px 35px #000b;
+}
+.center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:170px;
+  height:145px;
+}
+.trump{
+  position:absolute;
+  top:-5px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:5px 10px;
+  border-radius:12px;
+  background:#07150de8;
+  font-size:12px;
+  white-space:nowrap;
+}
+.trick{
+  position:absolute;
+  inset:15px;
+}
+.played{
+  position:absolute;
+  width:55px;
+  height:78px;
+}
+.played.p0{
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+}
+.played.p1{
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+}
+.played.p2{
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+}
+.played.p3{
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
 }
 
-.subtitle {
-    text-align: center;
-    color: #777;
-    margin-bottom: 20px;
+/* OYUNCULAR */
+.player{
+  position:absolute;
+  z-index:8;
+  text-align:center;
+  min-width:100px;
+}
+.pname{
+  display:inline-block;
+  background:#06140de8;
+  padding:6px 9px;
+  border-radius:10px;
+  font-size:12px;
+  border:1px solid #ffffff18;
+}
+.pname.active{
+  color:#f9d96a;
+  border-color:#f9d96a;
+  box-shadow:0 0 12px #f9d96a66;
+}
+.player.p0{
+  top:12%;
+  left:50%;
+  transform:translateX(-50%);
+}
+.player.p1{
+  top:47%;
+  right:1%;
+}
+.player.p2{
+  bottom:24%;
+  left:50%;
+  transform:translateX(-50%);
+}
+.player.p3{
+  top:47%;
+  left:1%;
 }
 
-label {
-    display: block;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #333;
+/* KART */
+.card{
+  position:relative;
+  width:64px;
+  height:90px;
+  border-radius:9px;
+  background:linear-gradient(145deg,#fff,#e8e8e8);
+  color:#111;
+  border:2px solid #ddd;
+  box-shadow:0 4px 8px #0008;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:5px;
+  font-weight:900;
+  font-size:20px;
+  transition:transform .12s,box-shadow .12s;
+  flex:none;
+}
+.card.red{
+  color:#d62424;
+}
+.card.black{
+  color:#111;
+}
+.card.back{
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #123e27 0,
+      #123e27 5px,
+      #0b2b1b 5px,
+      #0b2b1b 10px
+    );
+  border:2px solid #d5bd69;
+}
+.card .corner{
+  font-size:15px;
+  line-height:15px;
+}
+.card .suit{
+  font-size:26px;
+  text-align:center;
+}
+.card .bottom{
+  transform:rotate(180deg);
+  align-self:flex-end;
+}
+.card.selectable:active{
+  transform:translateY(-7px);
+}
+.card.selected{
+  transform:translateY(-13px);
+  box-shadow:0 0 0 3px #f6d66d,0 8px 18px #000;
 }
 
-input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
+/* BENİM ELİM */
+.handArea{
+  position:absolute;
+  z-index:20;
+  left:8px;
+  right:8px;
+  bottom:5px;
+  height:24%;
+  min-height:165px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.handTitle{
+  height:24px;
+  font-size:12px;
+  color:#b9d0c0;
+}
+.hand{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(7,minmax(38px,1fr));
+  grid-template-rows:repeat(2,90px);
+  gap:5px;
+  justify-items:center;
+  align-items:start;
+  max-width:560px;
+}
+.hand .card{
+  width:min(64px,12vw);
+  height:min(90px,17vw);
+  min-width:42px;
+  min-height:64px;
+  font-size:clamp(15px,4vw,20px);
+}
+.hand .card .suit{
+  font-size:clamp(18px,5vw,26px);
+}
+.hand .card .corner{
+  font-size:clamp(11px,3vw,15px);
+}
+.hand .card:nth-child(n+8){
+  grid-row:2;
+}
+.hand .card:nth-child(8){grid-column:1}
+.hand .card:nth-child(9){grid-column:2}
+.hand .card:nth-child(10){grid-column:3}
+.hand .card:nth-child(11){grid-column:4}
+.hand .card:nth-child(12){grid-column:5}
+.hand .card:nth-child(13){grid-column:6}
+
+/* PARTNER */
+.partnerHand{
+  position:absolute;
+  z-index:25;
+  top:7%;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(420px,88vw);
+  display:none;
+  grid-template-columns:repeat(7,1fr);
+  gap:3px;
+  padding:7px;
+  border-radius:12px;
+  background:#04140be8;
+  border:1px solid #f3d26766;
+}
+.partnerHand.show{
+  display:grid;
+}
+.partnerHand .card{
+  width:42px;
+  height:58px;
+  font-size:12px;
+}
+.partnerHand .card .suit{
+  font-size:17px;
+}
+.partnerHand .card .corner{
+  font-size:9px;
 }
 
-button {
-    width: 100%;
-    margin-top: 18px;
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    background: #667eea;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
+/* KONTROLLER */
+.controls{
+  position:absolute;
+  z-index:30;
+  left:8px;
+  right:8px;
+  bottom:0;
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  pointer-events:none;
+}
+.controlBtn{
+  pointer-events:auto;
+  min-width:80px;
+  padding:10px 13px;
+  border-radius:12px 12px 0 0;
+  background:#173b27;
+  border:1px solid #ffffff20;
+}
+.controlBtn.gold{
+  background:#8d6a16;
+}
+.controlBtn:disabled{
+  opacity:.35;
 }
 
-button:hover {
-    opacity: 0.9;
+/* MODAL */
+.modal{
+  position:absolute;
+  z-index:100;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:#0009;
+}
+.modal.show{
+  display:flex;
+}
+.box{
+  width:min(390px,94vw);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:20px;
+  padding:20px;
+  background:linear-gradient(145deg,#123b25,#06150c);
+  border:1px solid #ffffff20;
+  box-shadow:0 20px 60px #000;
+  text-align:center;
+}
+.box h2{
+  color:#f4d36a;
+  margin-bottom:15px;
+}
+.bidGrid,
+.suitGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.bidBtn,
+.suitBtn{
+  padding:13px 5px;
+  border-radius:11px;
+  background:#205c37;
+}
+.bidBtn.pass{
+  background:#4b2929;
+}
+.suitBtn{
+  font-size:26px;
+}
+.suitBtn.red{
+  color:#ff5555;
+}
+.modalText{
+  color:#bcd2c2;
+  margin-bottom:15px;
+  line-height:1.4;
+}
+.scoreTable{
+  width:100%;
+  border-collapse:collapse;
+  margin:12px 0 18px;
+}
+.scoreTable td,
+.scoreTable th{
+  padding:8px 4px;
+  border-bottom:1px solid #ffffff15;
+}
+.win{
+  color:#f4d36a;
+  font-size:25px;
+  margin:10px;
+}
+.status{
+  position:absolute;
+  z-index:31;
+  left:50%;
+  top:11%;
+  transform:translateX(-50%);
+  background:#06150ddd;
+  border:1px solid #ffffff20;
+  border-radius:14px;
+  padding:7px 12px;
+  font-size:12px;
+  white-space:nowrap;
+  max-width:90%;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-.result {
-    margin-top: 20px;
-    padding: 18px;
-    border-radius: 15px;
-    background: #f5f5f5;
-}
+@media(max-width:500px){
+  .screen h1{
+    font-size:32px;
+  }
 
-.result p {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-}
+  .table{
+    left:2%;
+    right:2%;
+    top:18%;
+    bottom:25%;
+  }
 
-.net {
-    font-size: 23px;
-    font-weight: bold;
-    border-top: 2px solid #ddd;
-    padding-top: 14px;
-}
+  .player.p1{
+    right:0;
+  }
 
-.positive {
-    color: green;
-}
+  .player.p3{
+    left:0;
+  }
 
-.negative {
-    color: red;
-}
+  .pname{
+    font-size:10px;
+    padding:5px 7px;
+  }
 
-.summary {
-    background: #f5f5f5;
-    border-radius: 15px;
-    padding: 15px;
-    margin-top: 15px;
-}
+  .card{
+    width:52px;
+    height:75px;
+  }
 
-.summary p {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-}
+  .handArea{
+    min-height:150px;
+  }
 
-.product {
-    border: 1px solid #ddd;
-    border-radius: 14px;
-    padding: 15px;
-    margin-top: 12px;
-    background: #fafafa;
-}
+  .hand{
+    grid-template-rows:repeat(2,76px);
+    gap:3px;
+  }
 
-.product h3 {
-    margin: 0 0 10px 0;
-    color: #333;
-}
-
-.product p {
-    margin: 6px 0;
-}
-
-.delete {
-    background: #e53935;
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 14px;
-}
-
-.clear {
-    background: #333;
-}
-
-.hidden {
-    display: none;
+  .center{
+    transform:translate(-50%,-50%) scale(.85);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div id="app">
 
-<div class="card">
+<!-- MENÜ -->
+<div id="menu" class="screen">
 
-<h1>💰 Kârım Ne?</h1>
+  <h1>♠ BATAK ROYALE</h1>
 
-<div class="subtitle">
-Ürünün gerçek kârını saniyeler içinde hesapla
-</div>
+  <div class="subtitle">
+    Mobil Batak • 2 Sıra • Sesli
+  </div>
 
-<label>Ürün Adı</label>
-<input type="text" id="urun" placeholder="Örn: Bluetooth Kulaklık">
+  <div class="menuBtns">
 
-<label>Alış Fiyatı (₺)</label>
-<input type="number" id="alis" placeholder="Örn: 500">
+    <button class="menuBtn" onclick="startGame(false)">
+      ♠ TEKLİ BATAK
+    </button>
 
-<label>Satış Fiyatı (₺)</label>
-<input type="number" id="satis" placeholder="Örn: 900">
+    <button class="menuBtn" onclick="startGame(true)">
+      ♥ EŞLİ BATAK
+    </button>
 
-<label>Komisyon (%)</label>
-<input type="number" id="komisyon" placeholder="Örn: 10">
+    <button class="menuBtn secondary" onclick="toggleMenuSound()">
+      🔊 <span id="menuSoundText">Ses Açık</span>
+    </button>
 
-<label>Kargo (₺)</label>
-<input type="number" id="kargo" placeholder="Örn: 50">
-
-<label>Diğer Giderler (₺)</label>
-<input type="number" id="diger" placeholder="Örn: 20">
-
-<label>Satış Adedi</label>
-<input type="number" id="adet" value="1" min="1">
-
-<button onclick="hesapla()">
-🧮 Kârımı Hesapla
-</button>
-
-<div class="result">
-
-<p>
-<span>Komisyon:</span>
-<strong id="komisyonSonuc">0,00 ₺</strong>
-</p>
-
-<p>
-<span>Toplam gider:</span>
-<strong id="giderSonuc">0,00 ₺</strong>
-</p>
-
-<p>
-<span>Tek ürün kârı:</span>
-<strong id="tekKar">0,00 ₺</strong>
-</p>
-
-<p>
-<span>Kâr oranı:</span>
-<strong id="karOrani">%0,00</strong>
-</p>
-
-<p class="net">
-<span>Toplam kâr:</span>
-<strong id="toplamKar">0,00 ₺</strong>
-</p>
+  </div>
 
 </div>
 
-<button onclick="kaydet()">
-💾 Ürünü Kaydet
-</button>
+<!-- OYUN -->
+<div id="game">
+
+  <div class="topbar">
+
+    <div class="info">
+
+      <div class="badge">
+        Tur <b id="roundNo">1</b>
+      </div>
+
+      <div class="badge">
+        Koz <b id="topTrump">-</b>
+      </div>
+
+      <div class="badge">
+        İhale <b id="topBid">-</b>
+      </div>
+
+    </div>
+
+    <button class="smallBtn" onclick="openPause()">
+      Ⅱ
+    </button>
+
+  </div>
+
+  <div class="status" id="status">
+    Oyun başlıyor...
+  </div>
+
+  <div class="table">
+
+    <div class="center">
+
+      <div class="trump" id="centerTrump">
+        Koz: -
+      </div>
+
+      <div class="trick" id="trick"></div>
+
+    </div>
+
+  </div>
+
+  <!-- OYUNCULAR -->
+
+  <div class="player p0">
+    <div id="name0" class="pname">
+      Rakip 1
+    </div>
+  </div>
+
+  <div class="player p1">
+    <div id="name1" class="pname">
+      Rakip 2
+    </div>
+  </div>
+
+  <div class="player p2">
+    <div id="name2" class="pname">
+      Rakip 3
+    </div>
+  </div>
+
+  <div class="player p3">
+    <div id="name3" class="pname active">
+      Sen
+    </div>
+  </div>
+
+  <!-- PARTNER ELİ -->
+
+  <div id="partnerHand" class="partnerHand"></div>
+
+  <!-- BENİM ELİM -->
+
+  <div class="handArea">
+
+    <div class="handTitle" id="handTitle">
+      Elin • 13 kart
+    </div>
+
+    <div id="myHand" class="hand"></div>
+
+  </div>
+
+  <!-- KONTROLLER -->
+
+  <div class="controls">
+
+    <button class="controlBtn" onclick="sortHand()">
+      ↕ Sırala
+    </button>
+
+    <button
+      class="controlBtn"
+      id="partnerBtn"
+      onclick="togglePartner()"
+      style="display:none">
+      👥 Eşi Göster
+    </button>
+
+    <button class="controlBtn" onclick="newRound()">
+      ⟳ Yeni El
+    </button>
+
+  </div>
 
 </div>
 
+<!-- İHALE -->
 
-<div class="card">
+<div id="bidModal" class="modal">
 
-<h2>📊 Kâr Özeti</h2>
+  <div class="box">
 
-<div class="summary">
+    <h2>İHALE</h2>
 
-<p>
-<span>Kayıtlı ürün:</span>
-<strong id="urunSayisi">0</strong>
-</p>
+    <div class="modalText" id="bidText">
+      İhale sırası sende.
+    </div>
 
-<p>
-<span>Toplam satış:</span>
-<strong id="toplamSatis">0,00 ₺</strong>
-</p>
+    <div class="bidGrid" id="bidGrid"></div>
 
-<p>
-<span>Toplam kâr:</span>
-<strong id="genelKar">0,00 ₺</strong>
-</p>
+  </div>
+
+</div>
+
+<!-- KOZ -->
+
+<div id="suitModal" class="modal">
+
+  <div class="box">
+
+    <h2>KOZ SEÇ</h2>
+
+    <div class="modalText">
+      İhaleyi kazandın. Kozunu seç.
+    </div>
+
+    <div class="suitGrid">
+
+      <button class="suitBtn red"
+              onclick="chooseTrump('♥')">
+        ♥
+      </button>
+
+      <button class="suitBtn red"
+              onclick="chooseTrump('♦')">
+        ♦
+      </button>
+
+      <button class="suitBtn"
+              onclick="chooseTrump('♣')">
+        ♣
+      </button>
+
+      <button class="suitBtn"
+              onclick="chooseTrump('♠')">
+        ♠
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SONUÇ -->
+
+<div id="resultModal" class="modal">
+
+  <div class="box">
+
+    <h2>EL BİTTİ</h2>
+
+    <div id="winnerText" class="win"></div>
+
+    <table class="scoreTable">
+
+      <thead>
+
+        <tr>
+          <th>Oyuncu</th>
+          <th>İhale</th>
+          <th>El</th>
+          <th>Puan</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="scoreBody"></tbody>
+
+    </table>
+
+    <button class="menuBtn"
+            onclick="newRound()">
+      ▶ Yeni El
+    </button>
+
+    <br><br>
+
+    <button class="menuBtn secondary"
+            onclick="backMenu()">
+      ☰ Menü
+    </button>
+
+  </div>
+
+</div>
+
+<!-- DURAKLAT -->
+
+<div id="pauseModal" class="modal">
+
+  <div class="box">
+
+    <h2>OYUN DURAKLATILDI</h2>
+
+    <button class="menuBtn"
+            onclick="closePause()">
+      ▶ Devam
+    </button>
+
+    <br>
+
+    <button class="menuBtn secondary"
+            onclick="backMenu()">
+      ☰ Menü
+    </button>
+
+    <br>
+
+    <button class="menuBtn secondary"
+            onclick="toggleGameSound()">
+      🔊 <span id="pauseSoundText">Ses Açık</span>
+    </button>
+
+  </div>
 
 </div>
 
 </div>
-
-
-<div class="card">
-
-<h2>📦 Kayıtlı Ürünler</h2>
-
-<div id="kayitlar">
-<p>Henüz kayıt yok.</p>
-</div>
-
-<button class="clear" onclick="tumunuSil()">
-🗑️ Tüm Kayıtları Sil
-</button>
-
-</div>
-
-</div>
-
 
 <script>
 
-let kayitlar = JSON.parse(localStorage.getItem("karimNeKayitlar")) || [];
+/* =====================================================
+   BATAK ROYALE
+   DÜZELTİLMİŞ SÜRÜM
+===================================================== */
 
-function para(sayi) {
-    return sayi.toLocaleString("tr-TR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }) + " ₺";
+const SUITS=["♥","♦","♣","♠"];
+
+const RANKS=[
+  {r:"2",v:2},
+  {r:"3",v:3},
+  {r:"4",v:4},
+  {r:"5",v:5},
+  {r:"6",v:6},
+  {r:"7",v:7},
+  {r:"8",v:8},
+  {r:"9",v:9},
+  {r:"10",v:10},
+  {r:"J",v:11},
+  {r:"Q",v:12},
+  {r:"K",v:13},
+  {r:"A",v:14}
+];
+
+let players=[];
+let deck=[];
+
+let modeTeam=false;
+
+let dealer=0;
+let turn=0;
+let leader=0;
+
+let trump=null;
+
+let highestBid=0;
+let bidder=-1;
+
+let bids=[null,null,null,null];
+
+/* YENİ İHALE DEĞİŞKENLERİ */
+
+let bidCount=0;
+let passesAfterBid=0;
+
+let trick=[];
+
+let tricksWon=[0,0,0,0];
+
+let scores=[0,0,0,0];
+
+let round=1;
+
+let gameStarted=false;
+let bidding=false;
+let playing=false;
+
+let partnerVisible=false;
+
+let opponentTrumpPlayed=false;
+
+let sound=true;
+let audioCtx=null;
+
+
+/* =====================================================
+   SES
+===================================================== */
+
+function audio(){
+
+  if(!sound)return null;
+
+  if(!audioCtx){
+
+    const AC=window.AudioContext ||
+             window.webkitAudioContext;
+
+    if(!AC)return null;
+
+    audioCtx=new AC();
+
+  }
+
+  if(audioCtx.state==="suspended"){
+    audioCtx.resume();
+  }
+
+  return audioCtx;
+}
+
+function tone(
+  freq,
+  duration=.08,
+  type="sine",
+  volume=.035,
+  delay=0
+){
+
+  const c=audio();
+
+  if(!c)return;
+
+  const o=c.createOscillator();
+  const g=c.createGain();
+
+  o.type=type;
+  o.frequency.value=freq;
+
+  g.gain.setValueAtTime(
+    0,
+    c.currentTime+delay
+  );
+
+  g.gain.linearRampToValueAtTime(
+    volume,
+    c.currentTime+delay+.01
+  );
+
+  g.gain.exponentialRampToValueAtTime(
+    .001,
+    c.currentTime+delay+duration
+  );
+
+  o.connect(g);
+  g.connect(c.destination);
+
+  o.start(c.currentTime+delay);
+
+  o.stop(
+    c.currentTime+delay+duration+.02
+  );
+}
+
+function cardSound(){
+
+  tone(520,.05,"triangle",.025);
+  tone(700,.07,"triangle",.02,.04);
+
+}
+
+function bidSound(){
+
+  tone(430,.08,"square",.025);
+  tone(650,.1,"square",.02,.08);
+
+}
+
+function winSound(){
+
+  tone(600,.12,"sine",.04);
+  tone(800,.12,"sine",.035,.12);
+  tone(1000,.18,"sine",.03,.24);
+
+}
+
+function loseSound(){
+
+  tone(300,.12,"sine",.035);
+  tone(220,.18,"sine",.025,.12);
+
+}
+
+function turnSound(){
+
+  tone(850,.08,"triangle",.03);
+
 }
 
 
-function hesapla() {
+/* =====================================================
+   SES AYARI
+===================================================== */
 
-    let alis = Number(document.getElementById("alis").value) || 0;
-    let satis = Number(document.getElementById("satis").value) || 0;
-    let komisyon = Number(document.getElementById("komisyon").value) || 0;
-    let kargo = Number(document.getElementById("kargo").value) || 0;
-    let diger = Number(document.getElementById("diger").value) || 0;
-    let adet = Number(document.getElementById("adet").value) || 1;
+function toggleMenuSound(){
 
-    let komisyonTutari = satis * komisyon / 100;
+  sound=!sound;
 
-    let toplamGider =
-        alis +
-        komisyonTutari +
-        kargo +
-        diger;
+  updateSoundTexts();
 
-    let tekKar = satis - toplamGider;
+  if(sound)tone(700,.1);
 
-    let karOrani =
-        alis > 0 ? (tekKar / alis) * 100 : 0;
+}
 
-    let toplamKar = tekKar * adet;
+function toggleGameSound(){
 
-    document.getElementById("komisyonSonuc").innerText =
-        para(komisyonTutari);
+  sound=!sound;
 
-    document.getElementById("giderSonuc").innerText =
-        para(toplamGider);
+  updateSoundTexts();
 
-    document.getElementById("tekKar").innerText =
-        para(tekKar);
+  if(sound)tone(700,.1);
 
-    document.getElementById("karOrani").innerText =
-        "%" + karOrani.toFixed(2);
+}
 
-    document.getElementById("toplamKar").innerText =
-        para(toplamKar);
+function updateSoundTexts(){
 
-    let karElement =
-        document.getElementById("toplamKar");
+  const txt=sound ?
+    "Ses Açık" :
+    "Ses Kapalı";
 
-    karElement.className =
-        toplamKar >= 0 ? "positive" : "negative";
+  document.getElementById(
+    "menuSoundText"
+  ).textContent=txt;
 
-    return {
-        urun: document.getElementById("urun").value || "İsimsiz Ürün",
-        alis,
-        satis,
-        komisyon,
-        kargo,
-        diger,
-        adet,
-        toplamSatis: satis * adet,
-        toplamKar
-    };
+  document.getElementById(
+    "pauseSoundText"
+  ).textContent=txt;
+
 }
 
 
-function kaydet() {
+/* =====================================================
+   DESTE
+===================================================== */
 
-    let veri = hesapla();
+function makeDeck(){
 
-    if (veri.alis <= 0 || veri.satis <= 0) {
-        alert("Lütfen alış ve satış fiyatını gir.");
-        return;
+  deck=[];
+
+  for(const s of SUITS){
+
+    for(const x of RANKS){
+
+      deck.push({
+        suit:s,
+        rank:x.r,
+        value:x.v,
+        id:s+x.r
+      });
+
     }
 
-    kayitlar.push(veri);
+  }
 
-    localStorage.setItem(
-        "karimNeKayitlar",
-        JSON.stringify(kayitlar)
+}
+
+function shuffle(a){
+
+  for(
+    let i=a.length-1;
+    i>0;
+    i--
+  ){
+
+    const j=
+      Math.floor(
+        Math.random()*(i+1)
+      );
+
+    [a[i],a[j]]=
+    [a[j],a[i]];
+
+  }
+
+}
+
+
+/* =====================================================
+   KART HTML
+===================================================== */
+
+function cardHTML(c,back=false){
+
+  if(back){
+
+    return `
+      <div class="card back"></div>
+    `;
+
+  }
+
+  const red=
+    c.suit==="♥" ||
+    c.suit==="♦";
+
+  return `
+    <div
+      class="card ${red?"red":"black"}"
+      data-id="${c.id}"
+    >
+
+      <div class="corner">
+        ${c.rank}${c.suit}
+      </div>
+
+      <div class="suit">
+        ${c.suit}
+      </div>
+
+      <div class="corner bottom">
+        ${c.rank}${c.suit}
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* =====================================================
+   OYUN BAŞLAT
+===================================================== */
+
+function startGame(team){
+
+  audio();
+
+  modeTeam=team;
+
+  gameStarted=true;
+
+  round=1;
+
+  scores=[0,0,0,0];
+
+  dealer=
+    Math.floor(
+      Math.random()*4
     );
 
-    listele();
+  document.getElementById(
+    "menu"
+  ).style.display="none";
 
-    alert("✅ Ürün başarıyla kaydedildi.");
+  document.getElementById(
+    "game"
+  ).style.display="block";
 
-    temizleForm();
-}
+  players=[
 
+    {
+      name:"Rakip 1",
+      hand:[]
+    },
 
-function temizleForm() {
+    {
+      name:team ?
+        "Eş" :
+        "Rakip 2",
+      hand:[]
+    },
 
-    document.getElementById("urun").value = "";
-    document.getElementById("alis").value = "";
-    document.getElementById("satis").value = "";
-    document.getElementById("komisyon").value = "";
-    document.getElementById("kargo").value = "";
-    document.getElementById("diger").value = "";
-    document.getElementById("adet").value = 1;
-}
+    {
+      name:team ?
+        "Rakip 2" :
+        "Rakip 3",
+      hand:[]
+    },
 
-
-function listele() {
-
-    let alan = document.getElementById("kayitlar");
-
-    alan.innerHTML = "";
-
-    if (kayitlar.length === 0) {
-
-        alan.innerHTML =
-            "<p>Henüz kayıt yok.</p>";
-
-    } else {
-
-        kayitlar.forEach((urun, index) => {
-
-            let div =
-                document.createElement("div");
-
-            div.className = "product";
-
-            let karClass =
-                urun.toplamKar >= 0
-                ? "positive"
-                : "negative";
-
-            div.innerHTML = `
-
-                <h3>📦 ${urun.urun}</h3>
-
-                <p>
-                Alış:
-                <strong>${para(urun.alis)}</strong>
-                </p>
-
-                <p>
-                Satış:
-                <strong>${para(urun.satis)}</strong>
-                </p>
-
-                <p>
-                Adet:
-                <strong>${urun.adet}</strong>
-                </p>
-
-                <p>
-                Toplam satış:
-                <strong>${para(urun.toplamSatis)}</strong>
-                </p>
-
-                <p>
-                Toplam kâr:
-                <strong class="${karClass}">
-                ${para(urun.toplamKar)}
-                </strong>
-                </p>
-
-                <button
-                class="delete"
-                onclick="sil(${index})">
-                🗑️ Bu Ürünü Sil
-                </button>
-
-            `;
-
-            alan.appendChild(div);
-        });
+    {
+      name:"Sen",
+      hand:[]
     }
 
-    ozetGuncelle();
+  ];
+
+  for(let i=0;i<4;i++){
+
+    document.getElementById(
+      "name"+i
+    ).textContent=
+      players[i].name;
+
+  }
+
+  document.getElementById(
+    "partnerBtn"
+  ).style.display=
+    team ?
+    "block" :
+    "none";
+
+  newRound();
+
 }
 
 
-function sil(index) {
+/* =====================================================
+   YENİ EL
+===================================================== */
 
-    if (!confirm("Bu ürünü silmek istediğine emin misin?")) {
-        return;
-    }
+function newRound(){
 
-    kayitlar.splice(index, 1);
+  if(!gameStarted)return;
 
-    localStorage.setItem(
-        "karimNeKayitlar",
-        JSON.stringify(kayitlar)
+  document.getElementById(
+    "resultModal"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "pauseModal"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "bidModal"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "suitModal"
+  ).classList.remove("show");
+
+  makeDeck();
+
+  shuffle(deck);
+
+  players.forEach(
+    p=>p.hand=[]
+  );
+
+  /* 52 KARTI DAĞIT */
+
+  for(let i=0;i<52;i++){
+
+    players[
+      i%4
+    ].hand.push(
+      deck[i]
     );
 
-    listele();
+  }
+
+  players.forEach(
+    p=>sortCards(p.hand)
+  );
+
+  trump=null;
+
+  highestBid=0;
+
+  bidder=-1;
+
+  bids=[
+    null,
+    null,
+    null,
+    null
+  ];
+
+  bidCount=0;
+
+  passesAfterBid=0;
+
+  tricksWon=[
+    0,0,0,0
+  ];
+
+  trick=[];
+
+  playing=false;
+
+  bidding=true;
+
+  partnerVisible=false;
+
+  opponentTrumpPlayed=false;
+
+  dealer=
+    (dealer+1)%4;
+
+  turn=
+    (dealer+1)%4;
+
+  leader=turn;
+
+  document.getElementById(
+    "roundNo"
+  ).textContent=round;
+
+  document.getElementById(
+    "topTrump"
+  ).textContent="-";
+
+  document.getElementById(
+    "topBid"
+  ).textContent="-";
+
+  document.getElementById(
+    "centerTrump"
+  ).textContent="Koz: -";
+
+  renderHand();
+
+  renderTrick();
+
+  renderPartner();
+
+  updatePlayers();
+
+  setStatus(
+    players[turn].name+
+    " ihale yapıyor"
+  );
+
+  setTimeout(
+    nextBid,
+    600
+  );
+
 }
 
 
-function tumunuSil() {
+/* =====================================================
+   SIRALAMA
+===================================================== */
 
-    if (kayitlar.length === 0) {
-        alert("Silinecek kayıt yok.");
-        return;
+function sortCards(hand){
+
+  const suitOrder={
+    "♥":0,
+    "♦":1,
+    "♣":2,
+    "♠":3
+  };
+
+  hand.sort(
+    (a,b)=>{
+
+      if(
+        suitOrder[a.suit] !==
+        suitOrder[b.suit]
+      ){
+
+        return (
+          suitOrder[a.suit]-
+          suitOrder[b.suit]
+        );
+
+      }
+
+      return b.value-a.value;
+
     }
+  );
 
-    if (!confirm("Bütün kayıtlar silinsin mi?")) {
-        return;
-    }
+}
 
-    kayitlar = [];
+function sortHand(){
 
-    localStorage.removeItem(
-        "karimNeKayitlar"
+  if(!players[3])return;
+
+  sortCards(
+    players[3].hand
+  );
+
+  renderHand();
+
+  cardSound();
+
+}
+
+
+/* =====================================================
+   İHALE
+===================================================== */
+
+function nextBid(){
+
+  if(!bidding)return;
+
+  if(turn===3){
+
+    showBidModal();
+
+  }else{
+
+    setTimeout(
+      ()=>aiBid(turn),
+      500
     );
 
-    listele();
+  }
+
 }
 
 
-function ozetGuncelle() {
+function showBidModal(){
 
-    let toplamSatis = 0;
-    let genelKar = 0;
+  const grid=
+    document.getElementById(
+      "bidGrid"
+    );
 
-    kayitlar.forEach(urun => {
+  grid.innerHTML="";
 
-        toplamSatis += urun.toplamSatis;
-        genelKar += urun.toplamKar;
+  for(let n=5;n<=13;n++){
 
-    });
+    const b=
+      document.createElement(
+        "button"
+      );
 
-    document.getElementById("urunSayisi")
-        .innerText = kayitlar.length;
+    b.className="bidBtn";
 
-    document.getElementById("toplamSatis")
-        .innerText = para(toplamSatis);
+    b.textContent=n;
 
-    let karElement =
-        document.getElementById("genelKar");
+    b.disabled=
+      n<=highestBid;
 
-    karElement.innerText = para(genelKar);
+    b.onclick=
+      ()=>humanBid(n);
 
-    karElement.className =
-        genelKar >= 0 ? "positive" : "negative";
+    grid.appendChild(b);
+
+  }
+
+  const pass=
+    document.createElement(
+      "button"
+    );
+
+  pass.className=
+    "bidBtn pass";
+
+  pass.textContent="PAS";
+
+  pass.onclick=
+    ()=>humanBid(null);
+
+  grid.appendChild(pass);
+
+  document.getElementById(
+    "bidText"
+  ).textContent=
+    highestBid ?
+    "Mevcut en yüksek ihale: "+
+    highestBid :
+    "İhaleyi 5'ten başlatabilirsin.";
+
+  document.getElementById(
+    "bidModal"
+  ).classList.add("show");
+
+  turnSound();
+
 }
 
 
-listele();
+function humanBid(value){
+
+  document.getElementById(
+    "bidModal"
+  ).classList.remove("show");
+
+  acceptBid(
+    3,
+    value
+  );
+
+}
+
+
+/*
+  DÜZELTİLEN İHALE SİSTEMİ
+
+  bidCount:
+  Kaç oyuncu gerçekten ihale
+  yaptı/pas geçti.
+
+  passesAfterBid:
+  Son tekliften sonra kaç kişi
+  pas geçti.
+*/
+
+function acceptBid(p,value){
+
+  bidCount++;
+
+  bids[p]=value;
+
+  if(
+    value!==null &&
+    value>highestBid
+  ){
+
+    highestBid=value;
+
+    bidder=p;
+
+    passesAfterBid=0;
+
+    bidSound();
+
+  }else{
+
+    passesAfterBid++;
+
+    tone(
+      280,
+      .06,
+      "triangle",
+      .02
+    );
+
+  }
+
+  /*
+    Eğer herkes pas geçtiyse
+    dealer zorunlu 5 alır.
+  */
+
+  if(
+    highestBid===0 &&
+    bidCount>=4
+  ){
+
+    finishBidding();
+
+    return;
+
+  }
+
+  /*
+    Teklif verildikten sonra
+    diğer 3 oyuncu pas geçerse
+    ihale biter.
+  */
+
+  if(
+    highestBid>0 &&
+    passesAfterBid>=3
+  ){
+
+    finishBidding();
+
+    return;
+
+  }
+
+  turn=
+    (p+1)%4;
+
+  setStatus(
+    players[turn].name+
+    " ihale yapıyor"
+  );
+
+  updatePlayers();
+
+  setTimeout(
+    nextBid,
+    450
+  );
+
+}
+
+
+/* =====================================================
+   İHALE BİTİŞİ
+===================================================== */
+
+function finishBidding(){
+
+  bidding=false;
+
+  /*
+    Herkes pas geçti.
+    Dealer 5 almak zorunda.
+  */
+
+  if(highestBid===0){
+
+    bidder=dealer;
+
+    highestBid=5;
+
+    bids[dealer]=5;
+
+  }
+
+  document.getElementById(
+    "topBid"
+  ).textContent=highestBid;
+
+  setStatus(
+    players[bidder].name+
+    " "+highestBid+
+    " aldı"
+  );
+
+  setTimeout(
+
+    ()=>{
+
+      if(bidder===3){
+
+        document.getElementById(
+          "suitModal"
+        ).classList.add("show");
+
+        turnSound();
+
+      }else{
+
+        chooseAITrump();
+
+      }
+
+    },
+
+    700
+
+  );
+
+}
+
+
+/* =====================================================
+   AI İHALE
+===================================================== */
+
+function aiBid(p){
+
+  if(!bidding)return;
+
+  const hand=
+    players[p].hand;
+
+  let strength=0;
+
+  for(const c of hand){
+
+    if(c.value>=14)
+      strength+=2;
+
+    else if(c.value>=12)
+      strength+=1;
+
+  }
+
+  const suits={};
+
+  SUITS.forEach(
+    s=>{
+      suits[s]=
+        hand.filter(
+          c=>c.suit===s
+        ).length;
+    }
+  );
+
+  const maxSuit=
+    Math.max(
+      ...Object.values(suits)
+    );
+
+  let bid=0;
+
+  if(strength>=9)
+    bid=7;
+
+  else if(strength>=7)
+    bid=6;
+
+  else if(strength>=5)
+    bid=5;
+
+  if(maxSuit>=6)
+    bid=Math.max(
+      bid,
+      6
+    );
+
+  if(maxSuit>=8)
+    bid=Math.max(
+      bid,
+      7
+    );
+
+  if(
+    bid<=highestBid
+  ){
+
+    bid=null;
+
+  }
+
+  if(
+    bid!==null &&
+    Math.random()<.12
+  ){
+
+    bid=null;
+
+  }
+
+  acceptBid(
+    p,
+    bid
+  );
+
+}
+
+
+/* =====================================================
+   KOZ
+===================================================== */
+
+function chooseTrump(s){
+
+  trump=s;
+
+  document.getElementById(
+    "suitModal"
+  ).classList.remove("show");
+
+  startPlay();
+
+}
+
+
+function chooseAITrump(){
+
+  const hand=
+    players[bidder].hand;
+
+  let best=
+    SUITS[0];
+
+  let bestScore=-999;
+
+  for(const s of SUITS){
+
+    const cs=
+      hand.filter(
+        c=>c.suit===s
+      );
+
+    let score=
+      cs.length*2;
+
+    for(const c of cs){
+
+      if(c.value>=14)
+        score+=4;
+
+      else if(c.value>=12)
+        score+=2;
+
+    }
+
+    if(score>bestScore){
+
+      bestScore=score;
+
+      best=s;
+
+    }
+
+  }
+
+  chooseTrump(best);
+
+}
+
+
+/* =====================================================
+   OYUNU BAŞLAT
+===================================================== */
+
+function startPlay(){
+
+  playing=true;
+
+  turn=
+    (dealer+1)%4;
+
+  leader=turn;
+
+  trick=[];
+
+  opponentTrumpPlayed=false;
+
+  partnerVisible=false;
+
+  document.getElementById(
+    "topTrump"
+  ).textContent=trump;
+
+  document.getElementById(
+    "centerTrump"
+  ).textContent=
+    "Koz: "+trump;
+
+  setStatus(
+    "Koz "+trump+
+    " • "+
+    players[turn].name+
+    " başlıyor"
+  );
+
+  renderHand();
+
+  renderTrick();
+
+  renderPartner();
+
+  updatePlayers();
+
+  setTimeout(
+    playTurn,
+    650
+  );
+
+}
+
+
+/* =====================================================
+   OYUNCU SIRASI
+===================================================== */
+
+function playTurn(){
+
+  if(!playing)return;
+
+  updatePlayers();
+
+  if(turn===3){
+
+    const valid=
+      validCards(3);
+
+    setStatus(
+      valid.length===1 ?
+      "Bu kartı oynamalısın" :
+      "Kartını seç"
+    );
+
+    turnSound();
+
+    renderHand();
+
+    return;
+
+  }
+
+  /*
+    EŞLİ BATAKTA
+    EŞİN KARTINI SEN SEÇERSİN.
+  */
+
+  if(
+    modeTeam &&
+    turn===1
+  ){
+
+    partnerVisible=true;
+
+    renderPartner();
+
+    setStatus(
+      "Eşinin kartını seç"
+    );
+
+    turnSound();
+
+    return;
+
+  }
+
+  partnerVisible=false;
+
+  renderPartner();
+
+  const p=turn;
+
+  const valid=
+    validCards(p);
+
+  const card=
+    aiChooseCard(
+      p,
+      valid
+    );
+
+  setTimeout(
+    ()=>playCard(
+      p,
+      card.id
+    ),
+    400
+  );
+
+}
+
+
+/* =====================================================
+   GEÇERLİ KARTLAR
+===================================================== */
+
+function validCards(p){
+
+  const hand=
+    players[p].hand;
+
+  if(trick.length===0){
+
+    return hand.slice();
+
+  }
+
+  const lead=
+    trick[0].card.suit;
+
+  const same=
+    hand.filter(
+      c=>c.suit===lead
+    );
+
+  if(same.length){
+
+    return same;
+
+  }
+
+  return hand.slice();
+
+}
+
+
+/* =====================================================
+   KART GÜCÜ
+===================================================== */
+
+function cardPower(card){
+
+  if(
+    trump &&
+    card.suit===trump
+  ){
+
+    return 100+
+      card.value;
+
+  }
+
+  return card.value;
+
+}
+
+
+/* =====================================================
+   AI KART SEÇİMİ
+===================================================== */
+
+function aiChooseCard(
+  p,
+  valid
+){
+
+  if(valid.length===1)
+    return valid[0];
+
+  if(trick.length===0){
+
+    return valid
+      .slice()
+      .sort(
+        (a,b)=>
+          b.value-a.value
+      )[0];
+
+  }
+
+  const current=
+    trick.reduce(
+      (best,x)=>{
+
+        return cardPower(
+          x.card
+        ) >
+        cardPower(
+          best.card
+        )
+        ?
+        x :
+        best;
+
+      },
+      trick[0]
+    );
+
+  const winners=
+    valid.filter(
+      c=>
+        beats(
+          c,
+          current.card,
+          leadSuit()
+        )
+    );
+
+  if(winners.length){
+
+    winners.sort(
+      (a,b)=>
+        cardPower(a)-
+        cardPower(b)
+    );
+
+    return winners[0];
+
+  }
+
+  return valid
+    .slice()
+    .sort(
+      (a,b)=>
+        cardPower(a)-
+        cardPower(b)
+    )[0];
+
+}
+
+
+/* =====================================================
+   BENİM ELİM
+===================================================== */
+
+function renderHand(){
+
+  if(!players[3])return;
+
+  const el=
+    document.getElementById(
+      "myHand"
+    );
+
+  el.innerHTML="";
+
+  players[3].hand.forEach(
+    c=>{
+
+      const node=
+        document.createElement(
+          "div"
+        );
+
+      node.innerHTML=
+        cardHTML(c);
+
+      const card=
+        node.firstElementChild;
+
+      const valid=
+        playing &&
+        turn===3 &&
+        validCards(3)
+          .some(
+            x=>x.id===c.id
+          );
+
+      if(valid){
+
+        card.classList.add(
+          "selectable"
+        );
+
+        card.onclick=
+          ()=>playCard(
+            3,
+            c.id
+          );
+
+      }else{
+
+        card.style.opacity=
+          playing &&
+          turn===3
+          ?
+          ".42"
+          :
+          "1";
+
+      }
+
+      el.appendChild(card);
+
+    }
+  );
+
+  document.getElementById(
+    "handTitle"
+  ).textContent=
+    "Elin • "+
+    players[3].hand.length+
+    " kart";
+
+}
+
+
+/* =====================================================
+   PARTNER
+===================================================== */
+
+function togglePartner(){
+
+  if(!modeTeam)return;
+
+  partnerVisible=
+    !partnerVisible;
+
+  renderPartner();
+
+}
+
+
+function renderPartner(){
+
+  const el=
+    document.getElementById(
+      "partnerHand"
+    );
+
+  /*
+    RAKİP KOZ OYNARSA
+    EŞİN ELİ KESİNLİKLE GİZLENİR.
+  */
+
+  if(
+    !modeTeam ||
+    !partnerVisible ||
+    opponentTrumpPlayed
+  ){
+
+    el.classList.remove(
+      "show"
+    );
+
+    el.innerHTML="";
+
+    return;
+
+  }
+
+  el.classList.add("show");
+
+  el.innerHTML="";
+
+  players[1].hand.forEach(
+    c=>{
+
+      const node=
+        document.createElement(
+          "div"
+        );
+
+      node.innerHTML=
+        cardHTML(c);
+
+      const card=
+        node.firstElementChild;
+
+      if(
+        turn===1 &&
+        playing
+      ){
+
+        const valid=
+          validCards(1)
+            .some(
+              x=>x.id===c.id
+            );
+
+        if(valid){
+
+          card.classList.add(
+            "selectable"
+          );
+
+          card.onclick=
+            ()=>playCard(
+              1,
+              c.id
+            );
+
+        }else{
+
+          card.style.opacity=
+            ".35";
+
+        }
+
+      }
+
+      el.appendChild(card);
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   KART OYNAMA
+===================================================== */
+
+function playCard(p,id){
+
+  if(!playing)return;
+
+  if(p!==turn)return;
+
+  const hand=
+    players[p].hand;
+
+  const card=
+    hand.find(
+      c=>c.id===id
+    );
+
+  if(!card)return;
+
+  const valid=
+    validCards(p);
+
+  if(
+    !valid.some(
+      c=>c.id===id
+    )
+  ){
+
+    setStatus(
+      "Bu renkten varsa onu oynamalısın!"
+    );
+
+    tone(
+      180,
+      .12,
+      "sawtooth",
+      .035
+    );
+
+    return;
+
+  }
+
+  hand.splice(
+    hand.indexOf(card),
+    1
+  );
+
+  trick.push({
+
+    player:p,
+
+    card:card
+
+  });
+
+  /*
+    Rakip koz attıysa
+    partner eli gizlenir.
+  */
+
+  if(
+    modeTeam &&
+    (p===0 || p===2) &&
+    trump &&
+    card.suit===trump
+  ){
+
+    opponentTrumpPlayed=true;
+
+    partnerVisible=false;
+
+    renderPartner();
+
+  }
+
+  cardSound();
+
+  renderHand();
+
+  renderPartner();
+
+  renderTrick();
+
+  if(trick.length===4){
+
+    setTimeout(
+      resolveTrick,
+      650
+    );
+
+    return;
+
+  }
+
+  turn=
+    (turn+1)%4;
+
+  setStatus(
+    players[turn].name+
+    " oynuyor"
+  );
+
+  updatePlayers();
+
+  setTimeout(
+    playTurn,
+    350
+  );
+
+}
+
+
+/* =====================================================
+   ELİ KİM KAZANDI
+===================================================== */
+
+function resolveTrick(){
+
+  let winner=
+    trick[0];
+
+  for(
+    let i=1;
+    i<trick.length;
+    i++
+  ){
+
+    if(
+      beats(
+        trick[i].card,
+        winner.card,
+        leadSuit()
+      )
+    ){
+
+      winner=
+        trick[i];
+
+    }
+
+  }
+
+  tricksWon[
+    winner.player
+  ]++;
+
+  setStatus(
+    "Eli "+
+    players[winner.player].name+
+    " aldı"
+  );
+
+  winSound();
+
+  renderTrick();
+
+  setTimeout(
+    ()=>{
+
+      trick=[];
+
+      leader=
+        winner.player;
+
+      turn=
+        winner.player;
+
+      opponentTrumpPlayed=false;
+
+      partnerVisible=false;
+
+      renderTrick();
+
+      renderPartner();
+
+      if(
+        totalPlayed()>=52
+      ){
+
+        finishRound();
+
+        return;
+
+      }
+
+      setStatus(
+        players[turn].name+
+        " başlıyor"
+      );
+
+      updatePlayers();
+
+      playTurn();
+
+    },
+    1000
+  );
+
+}
+
+
+/* =====================================================
+   KOZ KARŞILAŞTIRMA
+===================================================== */
+
+function leadSuit(){
+
+  return trick.length ?
+    trick[0].card.suit :
+    null;
+
+}
+
+
+function beats(
+  a,
+  b,
+  lead
+){
+
+  const aTrump=
+    trump &&
+    a.suit===trump;
+
+  const bTrump=
+    trump &&
+    b.suit===trump;
+
+  if(
+    aTrump &&
+    !bTrump
+  )return true;
+
+  if(
+    !aTrump &&
+    bTrump
+  )return false;
+
+  if(
+    a.suit===lead &&
+    b.suit!==lead
+  )return true;
+
+  if(
+    a.suit!==lead &&
+    b.suit===lead
+  )return false;
+
+  if(
+    a.suit===b.suit
+  ){
+
+    return a.value>b.value;
+
+  }
+
+  return false;
+
+}
+
+
+/* =====================================================
+   KAÇ KART OYNANDI
+===================================================== */
+
+function totalPlayed(){
+
+  return players.reduce(
+    (n,p)=>
+      n+
+      (13-p.hand.length),
+    0
+  );
+
+}
+
+
+/* =====================================================
+   MASADAKİ KARTLAR
+===================================================== */
+
+function renderTrick(){
+
+  const el=
+    document.getElementById(
+      "trick"
+    );
+
+  el.innerHTML="";
+
+  trick.forEach(
+    x=>{
+
+      const node=
+        document.createElement(
+          "div"
+        );
+
+      node.innerHTML=
+        cardHTML(x.card);
+
+      const card=
+        node.firstElementChild;
+
+      card.classList.add(
+        "played",
+        "p"+x.player
+      );
+
+      el.appendChild(card);
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   OYUNCU AKTİF
+===================================================== */
+
+function updatePlayers(){
+
+  for(let i=0;i<4;i++){
+
+    const e=
+      document.getElementById(
+        "name"+i
+      );
+
+    e.classList.toggle(
+      "active",
+      playing &&
+      turn===i
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PUAN
+===================================================== */
+
+function finishRound(){
+
+  playing=false;
+
+  /*
+    EŞLİ
+  */
+
+  if(modeTeam){
+
+    const teamA=
+      tricksWon[1]+
+      tricksWon[3];
+
+    const teamB=
+      tricksWon[0]+
+      tricksWon[2];
+
+    /*
+      İhaleyi alan takım:
+      Eş + Sen
+    */
+
+    if(
+      teamA>=highestBid
+    ){
+
+      scores[1]+=
+        highestBid;
+
+      scores[3]+=
+        highestBid;
+
+    }else{
+
+      scores[1]-=
+        highestBid;
+
+      scores[3]-=
+        highestBid;
+
+    }
+
+    /*
+      Rakip takım
+      aldığı el kadar puan.
+    */
+
+    scores[0]+=
+      tricksWon[0];
+
+    scores[2]+=
+      tricksWon[2];
+
+    const win=
+      teamA>=highestBid;
+
+    document.getElementById(
+      "winnerText"
+    ).textContent=
+      win ?
+      "🏆 Senin takımın eli aldı" :
+      "❌ Rakip takım eli aldı";
+
+    if(win)
+      winSound();
+    else
+      loseSound();
+
+  }
+
+  /*
+    TEKLİ
+  */
+
+  else{
+
+    for(
+      let i=0;
+      i<4;
+      i++
+    ){
+
+      const b=
+        bids[i]||0;
+
+      if(i===bidder){
+
+        if(
+          tricksWon[i]>=b
+        ){
+
+          scores[i]+=b;
+
+        }else{
+
+          scores[i]-=b;
+
+        }
+
+      }else{
+
+        scores[i]+=
+          tricksWon[i];
+
+      }
+
+    }
+
+    let best=0;
+
+    for(
+      let i=1;
+      i<4;
+      i++
+    ){
+
+      if(
+        tricksWon[i]>
+        tricksWon[best]
+      ){
+
+        best=i;
+
+      }
+
+    }
+
+    document.getElementById(
+      "winnerText"
+    ).textContent=
+      "🏆 "+
+      players[best].name+
+      " eli kazandı";
+
+    if(best===3)
+      winSound();
+    else
+      loseSound();
+
+  }
+
+  showScores();
+
+  round++;
+
+}
+
+
+/* =====================================================
+   SKOR TABLOSU
+===================================================== */
+
+function showScores(){
+
+  const body=
+    document.getElementById(
+      "scoreBody"
+    );
+
+  body.innerHTML="";
+
+  for(let i=0;i<4;i++){
+
+    const tr=
+      document.createElement(
+        "tr"
+      );
+
+    tr.innerHTML=`
+
+      <td>
+        ${players[i].name}
+      </td>
+
+      <td>
+        ${bids[i]??"-"}
+      </td>
+
+      <td>
+        ${tricksWon[i]}
+      </td>
+
+      <td>
+        <b>
+          ${scores[i]}
+        </b>
+      </td>
+
+    `;
+
+    body.appendChild(tr);
+
+  }
+
+  document.getElementById(
+    "resultModal"
+  ).classList.add("show");
+
+}
+
+
+/* =====================================================
+   DURAKLAT
+===================================================== */
+
+function openPause(){
+
+  document.getElementById(
+    "pauseModal"
+  ).classList.add("show");
+
+}
+
+function closePause(){
+
+  document.getElementById(
+    "pauseModal"
+  ).classList.remove("show");
+
+}
+
+
+/* =====================================================
+   MENÜ
+===================================================== */
+
+function backMenu(){
+
+  gameStarted=false;
+
+  playing=false;
+
+  bidding=false;
+
+  document.getElementById(
+    "game"
+  ).style.display="none";
+
+  document.getElementById(
+    "menu"
+  ).style.display="flex";
+
+  document.getElementById(
+    "resultModal"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "pauseModal"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "bidModal"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "suitModal"
+  ).classList.remove("show");
+
+}
+
+
+/* =====================================================
+   DURUM
+===================================================== */
+
+function setStatus(t){
+
+  document.getElementById(
+    "status"
+  ).textContent=t;
+
+}
+
+
+/* =====================================================
+   MOBİL KONTROLLER
+===================================================== */
+
+document.addEventListener(
+  "contextmenu",
+  e=>e.preventDefault()
+);
+
+document.addEventListener(
+  "gesturestart",
+  e=>e.preventDefault()
+);
+
+document.addEventListener(
+  "dblclick",
+  e=>e.preventDefault()
+);
+
+
+/*
+  Sesin Android'de çalışması için
+  ilk dokunuşta AudioContext açılır.
+*/
+
+document.addEventListener(
+  "pointerdown",
+  ()=>{
+    if(sound)audio();
+  },
+  {once:true}
+);
+
+
+/* BAŞLANGIÇ */
+
+updateSoundTexts();
 
 </script>
 
