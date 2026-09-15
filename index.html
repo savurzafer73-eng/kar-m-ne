@@ -1,11 +1,24 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0a3a26">
+<meta name="background-color" content="#06130d">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Batak Royale">
+<meta name="application-name" content="Batak Royale">
+<meta name="description" content="Batak Royale — Türkçe, offline oynanabilen profesyonel 4 kişilik Batak oyunu.">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>Batak Royale</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#06130d;color:#fff;font-family:system-ui,Arial,sans-serif}button{font:inherit;color:#fff;border:0;cursor:pointer;font-weight:800}.screen{display:none;position:absolute;inset:0}.screen.active{display:flex}
-#menu{align-items:center;justify-content:center;padding:18px;background:radial-gradient(circle,#1d774d,#06130d 68%)}.panel{width:min(470px,100%);padding:28px;border-radius:28px;background:#091a12f2;border:1px solid #486451;box-shadow:0 25px 80px #0009;text-align:center}.logo{font-size:40px;font-weight:1000;color:#edcf70;letter-spacing:2px}.sub{color:#a8b6ae;margin:5px 0 24px}.profile{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border-radius:17px;background:#07130e;border:1px solid #294734;margin-bottom:15px}.avatar{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#d8b65e;color:#172018;font-size:22px;font-weight:1000}.menuTitle{font-size:13px;color:#9eb0a5;margin:12px 0 8px;text-align:left}.mode,.difficulty{display:grid;gap:9px}.mode button,.difficulty button{padding:14px;border-radius:15px;background:#173b2a;border:1px solid #355b45;font-size:15px}.mode button.active{background:linear-gradient(135deg,#238f59,#105735);border-color:#8bd0a7;box-shadow:0 0 0 2px #ffffff18}.difficulty{grid-template-columns:repeat(3,1fr)}.gamesSelect{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.gamesSelect button{padding:13px 6px;border-radius:15px;background:#173b2a;border:1px solid #355b45;font-size:15px}.gamesSelect button.active{background:linear-gradient(135deg,#238f59,#105735);border-color:#8bd0a7;box-shadow:0 0 0 2px #ffffff18}.scoreBoard{position:absolute;left:50%;top:66px;transform:translateX(-50%);z-index:20;display:flex;gap:7px;padding:6px 9px;border-radius:14px;background:#07150ee8;border:1px solid #35533f;font-size:11px;font-weight:900;white-space:nowrap}.scoreBoard b{color:#edcf70}.scoreBoard .round{color:#a9b8af;font-weight:700}.roundResult{font-size:14px;color:#c8d5cd;margin:10px 0 16px}.finalScore{font-size:30px;color:#edcf70;font-weight:1000;margin:8px 0}.difficulty button{padding:13px 7px}.difficulty button.active{background:linear-gradient(135deg,#b08b38,#70521d);border-color:#efd37d;box-shadow:0 0 0 2px #ffffff18}.startBtn{width:100%;margin-top:14px;padding:17px;border-radius:16px;background:linear-gradient(135deg,#d9b450,#8d671d);color:#fff;font-size:17px;box-shadow:0 10px 25px #0005}.small{display:flex;gap:10px;margin-top:12px}.small button{flex:1;padding:11px;border-radius:12px;background:#152a20;border:1px solid #355342}.fsNote{display:none} :fullscreen .hint{display:none} :fullscreen .controls{height:72px} :fullscreen .table{height:calc(100dvh - 112px)}
+#menu{align-items:center;justify-content:center;padding:18px;background:radial-gradient(circle,#1d774d,#06130d 68%)}.panel{width:min(470px,100%);padding:28px;border-radius:28px;background:#091a12f2;border:1px solid #486451;box-shadow:0 25px 80px #0009;text-align:center}.logo{font-size:40px;font-weight:1000;color:#edcf70;letter-spacing:2px}.sub{color:#a8b6ae;margin:5px 0 24px}.profile{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border-radius:17px;background:#07130e;border:1px solid #294734;margin-bottom:15px}.avatar{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#d8b65e;color:#172018;font-size:22px;font-weight:1000}.menuTitle{font-size:13px;color:#9eb0a5;margin:12px 0 8px;text-align:left}.mode,.difficulty{display:grid;gap:9px}.mode button,.difficulty button{padding:14px;border-radius:15px;background:#173b2a;border:1px solid #355b45;font-size:15px}.mode button.active{background:linear-gradient(135deg,#238f59,#105735);border-color:#8bd0a7;box-shadow:0 0 0 2px #ffffff18}.difficulty{grid-template-columns:repeat(3,1fr)}.gamesSelect{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.gamesSelect button{padding:13px 6px;border-radius:15px;background:#173b2a;border:1px solid #355b45;font-size:15px}.gamesSelect button.active{background:linear-gradient(135deg,#238f59,#105735);border-color:#8bd0a7;box-shadow:0 0 0 2px #ffffff18}.scoreBoard{position:absolute;left:50%;top:66px;transform:translateX(-50%);z-index:20;display:flex;gap:7px;padding:6px 9px;border-radius:14px;background:#07150ee8;border:1px solid #35533f;font-size:11px;font-weight:900;white-space:nowrap}.scoreBoard b{color:#edcf70}.scoreBoard .round{color:#a9b8af;font-weight:700}.roundResult{font-size:14px;color:#c8d5cd;margin:10px 0 16px}.finalScore{font-size:30px;color:#edcf70;font-weight:1000;margin:8px 0}.difficulty button{padding:13px 7px}.difficulty button.active{background:linear-gradient(135deg,#b08b38,#70521d);border-color:#efd37d;box-shadow:0 0 0 2px #ffffff18}.startBtn{width:100%;margin-top:14px;padding:17px;border-radius:16px;background:linear-gradient(135deg,#d9b450,#8d671d);color:#fff;font-size:17px;box-shadow:0 10px 25px #0005}.small{display:flex;gap:10px;margin-top:12px}.small button{flex:1;padding:11px;border-radius:12px;background:#152a20;border:1px solid #355342}.fsNote{display:none}.profile{cursor:pointer}.profileEdit{margin-left:auto;padding:8px 10px;border-radius:10px;background:#173b2a;border:1px solid #355b45;color:#fff;font-weight:900}.nameInput{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #486451;background:#07130e;color:#fff;font-size:16px;outline:none}.nameInput:focus{border-color:#d9b450} :fullscreen .hint{display:none} :fullscreen .controls{height:72px} :fullscreen .table{height:calc(100dvh - 112px)}
 #game{flex-direction:column;background:radial-gradient(ellipse at center,#1d8050,#0a3a26 58%,#06130d)}.top{height:62px;position:relative;display:flex;align-items:center;justify-content:space-between;padding:9px 14px}.trumpBox{position:absolute;left:14px;top:8px;display:none;align-items:center;gap:7px;padding:8px 11px;border-radius:13px;background:#07150ee8;border:1px solid #35533f;font-weight:900}.trumpBox.show{display:flex}.trumpIcon{font-size:24px;line-height:1}.trumpText{font-size:11px;color:#b9c7be}.trumpName{font-size:14px;color:#edcf70}.pill,.ico{background:#07150ee8;border:1px solid #35533f;border-radius:13px;padding:9px 12px}.ico{width:40px;height:40px;padding:0}.actions{display:flex;gap:7px}.wrap{flex:1;display:grid;place-items:center;padding:4px}.table{position:relative;width:min(920px,96vw);height:min(620px,calc(100dvh - 180px));min-height:370px;border-radius:43%;border:12px solid #5b3d21;background:radial-gradient(ellipse,#2b9b62,#12583a);box-shadow:inset 0 0 0 3px #ba8a49,inset 0 0 60px #041f12,0 25px 55px #0008;overflow:visible}.table:after{content:"";position:absolute;inset:8%;border:2px solid #b9e3c533;border-radius:50%}
 .seat{position:absolute;z-index:12;padding:6px 9px;border:1px solid #526e5c;background:#07150edb;border-radius:15px;font-size:12px}.seat b{color:#e8c86b}.topSeat{top:9px;left:50%;transform:translateX(-50%)}.leftSeat{left:5px;top:50%;transform:translateY(-50%)}.rightSeat{right:5px;top:50%;transform:translateY(-50%)}.bottomSeat{bottom:9px;left:50%;transform:translateX(-50%)}
 .hand{position:absolute;left:50%;transform:translateX(-50%);width:min(880px,99vw);z-index:30;pointer-events:none}.userHand{bottom:0;height:174px;pointer-events:auto}.partnerHand{top:0;height:174px;opacity:0;transform:translateX(-50%) translateY(-14px);transition:.4s}.partnerHand.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}.card{position:absolute;width:76px;height:108px;border-radius:10px;background:linear-gradient(145deg,#fff,#e8e5de);border:1px solid #aaa;color:#111;box-shadow:0 7px 16px #0009;overflow:hidden;transition:transform .15s}.userCard,.partnerCard{cursor:pointer}.card.upper{top:0;z-index:10}.card.lower{top:54px;z-index:30}.userCard.lower{top:54px}.partnerCard.lower{top:54px}.card.selected{transform:translateY(-9px);z-index:100}.rank{position:absolute;top:5px;left:7px;font-size:21px;font-weight:1000}.suitSmall{font-size:16px}.centerSuit{position:absolute;inset:0;display:grid;place-items:center;font-size:48px}.red{color:#c82232}.face{position:absolute;inset:31px 9px 8px;border:1px solid #aaa;border-radius:8px;display:grid;place-items:center;font-size:40px;background:linear-gradient(135deg,#eee,#fff)}
@@ -13,12 +26,40 @@
 .controls{height:112px;display:flex;align-items:center;justify-content:center;gap:9px}.ctrl{padding:13px 20px;border-radius:14px;background:#07150ee8;border:1px solid #466251}.primary{background:linear-gradient(135deg,#d9b450,#8d671d)}.hint{text-align:center;color:#c7d4cc;font-size:13px;position:absolute;bottom:112px;left:50%;transform:translateX(-50%);z-index:15;white-space:nowrap}.toast{position:absolute;top:70px;left:50%;transform:translate(-50%,-14px);opacity:0;background:#06130eee;border:1px solid #54705f;border-radius:13px;padding:10px 16px;z-index:1000;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
 #modal{display:none;position:absolute;inset:0;z-index:900;background:#0009;align-items:center;justify-content:center;padding:18px}#modal.show{display:flex}.modal{width:min(430px,100%);padding:23px;border-radius:23px;background:#0b1c13;border:1px solid #46634f;text-align:center;box-shadow:0 25px 80px #000}.mt{font-size:25px;font-weight:1000;color:#e9c96d}.mx{color:#a9b8af;margin:8px 0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.grid button{padding:14px;border-radius:13px;background:#173326;border:1px solid #355441;font-size:20px}.bid{grid-template-columns:repeat(3,1fr)}.bid button{font-size:16px}
 @media(max-width:650px){.top{height:52px;padding:6px 8px}.pill{padding:7px 9px;font-size:11px}.ico{width:36px;height:36px}.logo{font-size:33px}.panel{padding:24px 17px}.table{width:calc(100vw - 10px);height:calc(100dvh - 155px);min-height:310px;border-width:8px;border-radius:34%}.card{width:59px;height:87px;border-radius:8px}.userHand,.partnerHand{height:124px;width:100vw}.card.lower{top:43px}.rank{font-size:17px;left:5px}.centerSuit{font-size:37px}.face{font-size:31px}.seat{font-size:10px;padding:5px 7px}.controls{height:100px}.hint{bottom:101px;font-size:11px}.playedCard{width:58px;height:82px}.scoreBoard{top:55px;font-size:10px;padding:5px 7px}.playedCard .pcSuit{font-size:34px}.slot0{--ox:0px;--oy:56px}.slot1{--ox:-68px;--oy:0px}.slot2{--ox:0px;--oy:-56px}.slot3{--ox:68px;--oy:0px}}
+
+/* ================= STORE / MOBILE POLISH ================= */
+html{background:#06130d;overscroll-behavior:none;-webkit-text-size-adjust:100%}
+body{min-height:100dvh;overscroll-behavior:none;touch-action:manipulation;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+button{min-height:44px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.screen{padding-bottom:env(safe-area-inset-bottom)}
+.panel{max-height:calc(100dvh - 28px);overflow:auto;scrollbar-width:none}.panel::-webkit-scrollbar{display:none}
+.startBtn,.ctrl,.mode button,.difficulty button,.gamesSelect button,.small button,.profileEdit,.ico{min-height:44px}
+.card,.playedCard{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+@media(max-width:650px){
+  #menu{padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
+  .panel{padding:18px 13px;border-radius:22px}
+  .logo{font-size:31px}
+  .sub{margin-bottom:14px;font-size:12px}
+  .profile{margin-bottom:9px;padding:9px}
+  .menuTitle{margin:8px 0 6px;font-size:12px}
+  .mode{gap:7px}.mode button{padding:11px;font-size:14px}
+  .difficulty,.gamesSelect{gap:6px}.difficulty button,.gamesSelect button{padding:10px 4px;font-size:13px}
+  .startBtn{margin-top:10px;padding:14px;font-size:16px}
+  .small{margin-top:8px}
+  #game{min-height:100dvh;padding-bottom:env(safe-area-inset-bottom)}
+  .top{padding-top:calc(6px + env(safe-area-inset-top));height:calc(52px + env(safe-area-inset-top))}
+  .controls{padding-bottom:env(safe-area-inset-bottom)}
+}
+@media(orientation:landscape) and (max-height:520px){
+  .panel{transform:scale(.88);transform-origin:center}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<section id="menu" class="screen active"><div class="panel"><div class="logo">BATAK ROYALE</div><div class="sub">Klasik batak. Yeni nesil masa.</div><div class="profile"><div class="avatar">Z</div><div><b>Zafer</b><br><small>Seviye 1 • 🪙 <span id="coins">1000</span></small></div></div><div class="menuTitle">OYUN MODU</div><div class="mode"><button id="esliMode" class="active" onclick="selectMode('esli')">👥 EŞLİ BATAK</button><button id="tekliMode" onclick="selectMode('tekli')">♠ TEKLİ BATAK</button></div><div class="menuTitle">ZORLUK SEVİYESİ</div><div class="difficulty"><button id="easyDiff" onclick="selectDiff('easy')">🟢<br>KOLAY</button><button id="mediumDiff" class="active" onclick="selectDiff('medium')">🟡<br>ORTA</button><button id="hardDiff" onclick="selectDiff('hard')">🔴<br>ZOR</button></div><div class="menuTitle">MAÇTA KAÇ OYUN?</div><div class="gamesSelect"><button id="g1" class="active" onclick="selectGames(1)">1 OYUN</button><button id="g3" onclick="selectGames(3)">3 OYUN</button><button id="g5" onclick="selectGames(5)">5 OYUN</button><button id="g7" onclick="selectGames(7)">7 OYUN</button></div><button class="startBtn" onclick="startSelectedGame()">▶ OYUNA BAŞLA</button><div class="small"><button onclick="help()">❔ Nasıl Oynanır</button><button onclick="toggleSound()">🔊 Ses: <span id="snd">Açık</span></button></div></div></section>
+<section id="menu" class="screen active"><div class="panel"><div class="logo">BATAK ROYALE</div><div class="sub">Klasik batak. Yeni nesil masa.</div><div style="font-size:10px;color:#789084;letter-spacing:1.5px;margin:-16px 0 14px">OFFLINE • 4 OYUNCU • STORE EDITION</div><div class="profile" onclick="openProfile()"><div class="avatar" id="profileAvatar">Z</div><div><b id="profileName">Zafer</b><br><small>Seviye 1 • 🪙 <span id="coins">1000</span></small></div><button class="profileEdit" onclick="event.stopPropagation();openProfile()">✏️</button></div><div class="menuTitle">OYUN MODU</div><div class="mode"><button id="esliMode" class="active" onclick="selectMode('esli')">👥 EŞLİ BATAK</button><button id="tekliMode" onclick="selectMode('tekli')">♠ TEKLİ BATAK</button></div><div class="menuTitle">ZORLUK SEVİYESİ</div><div class="difficulty"><button id="easyDiff" onclick="selectDiff('easy')">🟢<br>KOLAY</button><button id="mediumDiff" class="active" onclick="selectDiff('medium')">🟡<br>ORTA</button><button id="hardDiff" onclick="selectDiff('hard')">🔴<br>ZOR</button></div><div class="menuTitle">MAÇTA KAÇ OYUN?</div><div class="gamesSelect"><button id="g1" class="active" onclick="selectGames(1)">1 OYUN</button><button id="g3" onclick="selectGames(3)">3 OYUN</button><button id="g5" onclick="selectGames(5)">5 OYUN</button><button id="g7" onclick="selectGames(7)">7 OYUN</button></div><button class="startBtn" onclick="startSelectedGame()">▶ OYUNA BAŞLA</button><div class="small"><button onclick="help()">❔ Nasıl Oynanır</button><button onclick="toggleSound()">🔊 Ses: <span id="snd">Açık</span></button></div></div></section>
 <section id="game" class="screen"><div class="top"><div id="trumpBox" class="trumpBox"><span id="trumpIcon" class="trumpIcon">♠</span><span><span class="trumpText">KOZ</span><br><span id="trumpName" class="trumpName">—</span></span></div><div class="pill">🪙 <span id="gcoins">1000</span></div><div class="pill" id="modeText">Eşli Batak</div><div id="scoreBoard" class="scoreBoard"><span id="teamLabel">SEN + MERT</span> <b id="myScore">0</b> <span>•</span> <span id="oppLabel">RAKİP</span> <b id="oppScore">0</b> <span class="round" id="roundText">1/1</span></div><div class="actions"><button class="ico" onclick="toggleSound()">🔊</button><button class="ico" onclick="toggleFullscreen()">⛶</button><button class="ico" onclick="backMenu()">⌂</button></div></div><div class="wrap"><div class="table">
-<div class="seat topSeat">👤 <b>MERT</b> <small>(EŞİN)</small></div><div class="seat leftSeat">👤 <b>EMRE</b></div><div class="seat rightSeat">👤 <b>AHMET</b></div><div class="seat bottomSeat">🧑 <b>SEN</b></div>
+<div class="seat topSeat">👤 <b>MERT</b> <small>(EŞİN)</small></div><div class="seat leftSeat">👤 <b>EMRE</b></div><div class="seat rightSeat">👤 <b>AHMET</b></div><div class="seat bottomSeat">🧑 <b id="bottomPlayerName">SEN</b></div>
 <div id="partnerHand" class="hand partnerHand"></div><div id="played" class="played"></div><div id="userHand" class="hand userHand"></div><div id="hint" class="hint"></div>
 </div></div><div class="controls"><button id="bidBtn" class="ctrl primary" onclick="openBid()">İHALE</button><button id="trumpBtn" class="ctrl primary" style="display:none" onclick="openTrump()">KOZ SEÇ</button></div></section>
 <div id="modal"><div id="modalBox" class="modal"></div></div><div id="toast" class="toast"></div>
@@ -27,8 +68,8 @@
 const SUITS=['♠','♥','♦','♣'];const RANKS=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 const players=['SEN','AHMET','MERT','EMRE']; // masada saat yönü: SEN -> sağındaki AHMET -> karşısı MERT -> solu EMRE
 const pos={SEN:'bottom',AHMET:'right',MERT:'top',EMRE:'left'};
-let mode='esli',difficulty='medium',pendingMode='esli',gamesToPlay=1,gameNo=0,bidValue=0,myScore=0,oppScore=0,roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0},phase='menu',turnIndex=0,trump='',leadSuit='',trick=[],trickNo=0,starter='SEN',auctionTurnIndex=0,highestBid=0,highestBidder='',passedPlayers=new Set(),auctionBusy=false;
-let hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};let soundOn=localStorage.getItem('br_sound')!=='off';let coins=Number(localStorage.getItem('br_coins')||1000);let audioCtx=null;
+let mode='esli',difficulty='medium',pendingMode='esli',gamesToPlay=1,gameNo=0,bidValue=0,myScore=0,oppScore=0,roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0},phase='menu',turnIndex=0,trump='',leadSuit='',trick=[],trickNo=0,starter='SEN',auctionTurnIndex=0,highestBid=0,highestBidder='',passedPlayers=new Set(),auctionBusy=false,playedHistory=[],seenCards=new Set(),partnerControlled=true;
+let playerName=localStorage.getItem('br_playerName')||'Zafer';let hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};let soundOn=localStorage.getItem('br_sound')!=='off';let coins=Number(localStorage.getItem('br_coins')||1000);let audioCtx=null;
 const $=id=>document.getElementById(id);
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function deck(){const d=[];for(const s of SUITS)for(const r of RANKS)d.push({s,r});return shuffle(d)}
@@ -38,6 +79,35 @@ function face(r){return r==='J'?'♞':r==='Q'?'♕':'♔'}
 function cardHTML(c){const red='♥♦'.includes(c.s);const f='JQK'.includes(c.r);return `<div class="card ${red?'red':''}"><div class="rank">${c.r}<span class="suitSmall">${c.s}</span></div>${f?`<div class="face">${face(c.r)}</div>`:`<div class="centerSuit">${c.s}</div>`}</div>`}
 function renderHands(){renderHand('userHand',hands.SEN,'SEN');renderHand('partnerHand',hands.MERT,'MERT')}
 function renderHand(id,h,actor){const el=$(id);el.innerHTML='';if(actor==='MERT'&&mode!=='esli')return;const w=innerWidth<=650?59:76;const upper=h.slice(0,6),lower=h.slice(6);function add(c,i,row,count){let wrap=document.createElement('div');wrap.innerHTML=cardHTML(c);let x=wrap.firstElementChild;x.classList.add(actor==='SEN'?'userCard':'partnerCard',row===0?'upper':'lower');const ri=row===0?i:i-6;x.style.left=`calc(50% - ${(count*w)/2}px + ${ri*w}px)`;x.dataset.i=i;x.onclick=e=>{e.stopPropagation();onCardClick(actor,i)};el.appendChild(x)}upper.forEach((c,i)=>add(c,i,0,upper.length));lower.forEach((c,i)=>add(c,i+6,1,lower.length))}
+function playerShortName(){return playerName||'Oyuncu'}
+function updateProfileUI(){
+  const name=playerShortName();
+  const first=Array.from(name.trim())[0]||'O';
+  if($('profileName'))$('profileName').textContent=name;
+  if($('profileAvatar'))$('profileAvatar').textContent=first.toUpperCase();
+  if($('bottomPlayerName'))$('bottomPlayerName').textContent=name;
+  if($('coins'))$('coins').textContent=coins;
+  if($('gcoins'))$('gcoins').textContent=coins;
+  if($('snd'))$('snd').textContent=soundOn?'Açık':'Kapalı';
+}
+function openProfile(){
+  $('modalBox').innerHTML=`<div class="mt">👤 PROFİL</div><div class="mx">Oyunda görünecek adını belirle.</div><input id="nameInput" class="nameInput" maxlength="16" minlength="3" autocomplete="off" value="${escapeHTML(playerName)}"><div style="display:flex;gap:9px;margin-top:12px"><button class="ctrl" style="flex:1" onclick="$('modal').classList.remove('show')">İPTAL</button><button class="ctrl primary" style="flex:1" onclick="saveProfile()">KAYDET</button></div>`;
+  $('modal').classList.add('show');
+  setTimeout(()=>{const i=$('nameInput');if(i){i.focus();i.select()}},50);
+}
+function escapeHTML(v){return String(v).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
+function saveProfile(){
+  const input=$('nameInput');
+  if(!input)return;
+  const name=input.value.trim().replace(/\s+/g,' ');
+  if(name.length<3){toast('İsim en az 3 karakter olmalı.');input.focus();return}
+  playerName=name.slice(0,16);
+  localStorage.setItem('br_playerName',playerName);
+  updateProfileUI();
+  $('modal').classList.remove('show');
+  toast('Profil adı kaydedildi.');
+  paper('click');
+}
 function selectMode(m){pendingMode=m;$('esliMode').classList.toggle('active',m==='esli');$('tekliMode').classList.toggle('active',m==='tekli')}
 function selectDiff(d){difficulty=d;document.querySelectorAll('.difficulty button').forEach(b=>b.classList.remove('active'));$(d==='easy'?'easyDiff':d==='medium'?'mediumDiff':'hardDiff').classList.add('active')}
 function selectGames(n){gamesToPlay=n;document.querySelectorAll('.gamesSelect button').forEach(b=>b.classList.remove('active'));$('g'+n).classList.add('active')}
@@ -61,13 +131,13 @@ function requestFullscreen(){
   }catch(e){}
 }
 
-function start(m,difficultyLevel='medium',newMatch=false){mode=m;difficulty=difficultyLevel;if(newMatch){gameNo=0;myScore=0;oppScore=0}gameNo=Math.min(gameNo+1,gamesToPlay);bidValue=0;highestBid=0;highestBidder='';passedPlayers=new Set();auctionTurnIndex=0;auctionBusy=false;roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0};$('trumpBox').classList.remove('show');phase='bid';trick=[];trickNo=0;trump='';leadSuit='';starter='SEN';turnIndex=0;$('menu').classList.remove('active');$('game').classList.add('active');$('modeText').textContent=(m==='esli'?'Eşli Batak':'Tekli Batak')+' • '+({easy:'Kolay',medium:'Orta',hard:'Zor'}[difficulty]);$('gcoins').textContent=coins;updateScoreUI();const deckCards=deck();hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};players.forEach(p=>hands[p]=sortHand(deckCards.splice(0,13)));$('partnerHand').classList.remove('show');$('bidBtn').style.display='none';$('trumpBtn').style.display='none';$('hint').textContent=m==='esli'?'Gerçek ihale başladı. Sıra SEN’de.':'Gerçek ihale başladı. Sıra SEN’de.';renderHands();toast((m==='esli'?'Eşli':'Tekli')+' Batak • Oyun '+gameNo+'/'+gamesToPlay);paper('deal');setTimeout(runAuction,450)}
+function start(m,difficultyLevel='medium',newMatch=false){mode=m;difficulty=difficultyLevel;partnerControlled=true;if(newMatch){gameNo=0;myScore=0;oppScore=0}gameNo=Math.min(gameNo+1,gamesToPlay);bidValue=0;highestBid=0;highestBidder='';passedPlayers=new Set();auctionTurnIndex=0;auctionBusy=false;roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0};$('trumpBox').classList.remove('show');phase='bid';trick=[];trickNo=0;trump='';leadSuit='';starter='SEN';turnIndex=0;$('menu').classList.remove('active');$('game').classList.add('active');$('modeText').textContent=(m==='esli'?'Eşli Batak':'Tekli Batak')+' • '+({easy:'Kolay',medium:'Orta',hard:'Zor'}[difficulty]);$('gcoins').textContent=coins;updateScoreUI();const deckCards=deck();hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};playedHistory=[];seenCards=new Set();players.forEach(p=>hands[p]=sortHand(deckCards.splice(0,13)));$('partnerHand').classList.remove('show');$('bidBtn').style.display='none';$('trumpBtn').style.display='none';$('hint').textContent=m==='esli'?'Gerçek ihale başladı. Sıra SEN’de.':'Gerçek ihale başladı. Sıra SEN’de.';renderHands();toast((m==='esli'?'Eşli':'Tekli')+' Batak • Oyun '+gameNo+'/'+gamesToPlay);paper('deal');setTimeout(runAuction,450)}
 function backMenu(){phase='menu';$('game').classList.remove('active');$('menu').classList.add('active')}
 function auctionMin(){return mode==='tekli'?4:8}
 function auctionPlayer(){return players[auctionTurnIndex]}
 function openBid(){if(phase!=='bid'||auctionBusy||auctionPlayer()!=='SEN')return;const minBid=auctionMin();const low=highestBid?highestBid+1:minBid;const bids=Array.from({length:13-low+1},(_,i)=>low+i);$('modalBox').innerHTML='<div class="mt">İHALE</div><div class="mx">Sıra: <b>SEN</b><br>En yüksek ihale: <b>'+ (highestBid||'Yok') +'</b></div><div class="grid bid">'+(bids.length?bids.map(n=>`<button onclick="placeBid(${n})">${n}</button>`).join(''):'')+'<button onclick="passBid()" style="grid-column:1/-1;background:#4a2525">PAS</button></div>';$('modal').classList.add('show')}
-function placeBid(n){if(phase!=='bid'||auctionPlayer()!=='SEN'||n<=highestBid)return;highestBid=n;bidValue=n;highestBidder='SEN';passedPlayers.delete('SEN');$('modal').classList.remove('show');toast('SEN '+n+' dedi.');paper('click');advanceAuction()}
-function passBid(){if(phase!=='bid'||auctionPlayer()!=='SEN')return;passedPlayers.add('SEN');$('modal').classList.remove('show');toast('SEN pas geçti.');paper('click');advanceAuction()}
+function placeBid(n){if(phase!=='bid'||auctionPlayer()!=='SEN'||n<=highestBid)return;highestBid=n;bidValue=n;highestBidder='SEN';passedPlayers.delete('SEN');$('modal').classList.remove('show');toast(playerShortName()+' '+n+' dedi.');paper('click');advanceAuction()}
+function passBid(){if(phase!=='bid'||auctionPlayer()!=='SEN')return;passedPlayers.add('SEN');$('modal').classList.remove('show');toast(playerShortName()+' pas geçti.');paper('click');advanceAuction()}
 function estimateBid(actor){const h=hands[actor];const counts={};h.forEach(c=>counts[c.s]=(counts[c.s]||0)+1);let score=0;h.forEach(c=>{const v=rankValue(c.r);if(v>=14)score+=3;else if(v>=13)score+=1.5;if(c.s===trump)score+=1});score+=Math.max(...Object.values(counts))*0.55;let base=mode==='tekli'?4:8;let est=base+Math.floor(score/2.2);if(difficulty==='easy')est-=1;if(difficulty==='hard')est+=1;return Math.max(base,Math.min(13,est))}
 function aiAuction(actor){if(phase!=='bid'||auctionPlayer()!==actor)return;const minBid=auctionMin();const estimate=estimateBid(actor);const need=highestBid?highestBid+1:minBid;let shouldBid=estimate>=need;if(difficulty==='easy'&&Math.random()<.28)shouldBid=false;if(difficulty==='medium'&&Math.random()<.12)shouldBid=false;if(difficulty==='hard'&&estimate>=need)shouldBid=true;if(shouldBid){let n=Math.min(13,need+(difficulty==='hard'&&Math.random()<.25?1:0));highestBid=n;bidValue=n;highestBidder=actor;passedPlayers.delete(actor);toast(actor+' '+n+' dedi.');paper('click')}else{passedPlayers.add(actor);toast(actor+' pas geçti.');paper('click')}advanceAuction()}
 function runAuction(){if(phase!=='bid'||auctionBusy)return;const actor=auctionPlayer();$('hint').textContent='İhale sırası: '+actor+(highestBid?' • En yüksek: '+highestBid:'');if(actor==='SEN'){setTimeout(openBid,220);return}auctionBusy=true;setTimeout(()=>{auctionBusy=false;aiAuction(actor)},650)}
@@ -76,63 +146,72 @@ function finishAuction(){if(!highestBidder){highestBid=auctionMin();bidValue=hig
 function winBid(n){placeBid(n)}
 function openTrump(){if(phase!=='trump')return;$('modalBox').innerHTML='<div class="mt">KOZ SEÇ</div><div class="mx">Kozu seçtiğinde oyun başlayacak.</div><div class="grid">'+SUITS.map(s=>`<button onclick="chooseTrump('${s}')">${s}</button>`).join('')+'</div>';$('modal').classList.add('show')}
 function aiChooseTrump(){if(phase!=='trump'||highestBidder==='SEN')return;const h=hands[highestBidder];const counts={};SUITS.forEach(s=>counts[s]=0);h.forEach(c=>counts[c.s]++);let best=SUITS[0];for(const s of SUITS)if(counts[s]>counts[best])best=s;chooseTrump(best)}
-function chooseTrump(s){if(phase!=='trump')return;$('modal').classList.remove('show');trump=s;phase='play';starter=highestBidder||'SEN';turnIndex=players.indexOf(starter);trick=[];trickNo=0;leadSuit='';$('trumpBtn').style.display='none';$('trumpBox').classList.add('show');$('trumpIcon').textContent=s;$('trumpName').textContent=s==='♠'?'MAÇA':s==='♥'?'KUPA':s==='♦'?'KARO':'SİNEK';if(mode==='esli')$('partnerHand').classList.add('show');renderHands();updateTurnHint();toast('Koz '+s+' • Sıra '+starter+'.');paper('throw');if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'))setTimeout(()=>aiPlay(currentPlayer()),650)}
+function chooseTrump(s){if(phase!=='trump')return;$('modal').classList.remove('show');trump=s;phase='play';starter=highestBidder||'SEN';partnerControlled=!(mode==='esli'&&highestBidder==='MERT');turnIndex=players.indexOf(starter);trick=[];trickNo=0;leadSuit='';$('trumpBtn').style.display='none';$('trumpBox').classList.add('show');$('trumpIcon').textContent=s;$('trumpName').textContent=s==='♠'?'MAÇA':s==='♥'?'KUPA':s==='♦'?'KARO':'SİNEK';if(mode==='esli')$('partnerHand').classList.add('show');renderHands();updateTurnHint();toast('Koz '+s+' • Sıra '+starter+'.');paper('throw');if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'&&partnerControlled))setTimeout(()=>aiPlay(currentPlayer()),650)}
 function currentPlayer(){return players[turnIndex]}
-function updateTurnHint(){const p=currentPlayer();$('hint').textContent=mode==='esli'&&p==='MERT'?'MERT’in sırası: kartını sen seç.':p==='SEN'?'Sıra sende — istediğin kartı seç.':p+' oynuyor…'}
-function onCardClick(actor,i){if(phase!=='play')return;const p=currentPlayer();if(actor!==p)return;if(actor==='SEN'||(actor==='MERT'&&mode==='esli'))playCard(actor,i)}
+function updateTurnHint(){const p=currentPlayer();$('hint').textContent=mode==='esli'&&p==='MERT'&&partnerControlled?'MERT’in sırası: kartını sen seç.':p==='SEN'?'Sıra sende, '+playerShortName()+' — istediğin kartı seç.':p+' oynuyor…'}
+function onCardClick(actor,i){if(phase!=='play')return;const p=currentPlayer();if(actor!==p)return;if(actor==='SEN'||(actor==='MERT'&&mode==='esli'&&partnerControlled))playCard(actor,i)}
 function legalCards(actor){const h=hands[actor];if(!leadSuit)return h.map((_,i)=>i);const same=h.map((c,i)=>c.s===leadSuit?i:-1).filter(i=>i>=0);return same.length?same:h.map((_,i)=>i)}
-function playCard(actor,i){const h=hands[actor];if(!h[i])return;const legal=legalCards(actor);if(!legal.includes(i)){toast('Bu elde önce açılan türden kart atmalısın.');shakeHand(actor);return}const c=h.splice(i,1)[0];if(!leadSuit)leadSuit=c.s;trick.push({actor,c});renderHands();animatePlay(actor,c,trick.length-1);if(trick.length===4){phase='resolve';setTimeout(resolveTrick,850);return}turnIndex=(turnIndex+1)%4;updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'))setTimeout(()=>aiPlay(currentPlayer()),650)}
+function playCard(actor,i){const h=hands[actor];if(!h[i])return;const legal=legalCards(actor);if(!legal.includes(i)){toast('Bu elde önce açılan türden kart atmalısın.');shakeHand(actor);return}const c=h.splice(i,1)[0];if(!leadSuit)leadSuit=c.s;trick.push({actor,c});playedHistory.push({actor,c,lead:leadSuit,trickNo});seenCards.add(c.s+c.r);renderHands();animatePlay(actor,c,trick.length-1);if(trick.length===4){phase='resolve';setTimeout(resolveTrick,850);return}turnIndex=(turnIndex+1)%4;updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'&&partnerControlled))setTimeout(()=>aiPlay(currentPlayer()),650)}
 function teamOf(actor){if(mode!=='esli')return actor==='SEN'?'SEN':actor;return (actor==='SEN'||actor==='MERT')?'MY':'OPP'}
 function cardBeats(a,b,lead){if(!b)return true;if(a.s===trump&&b.s!==trump)return true;if(a.s!==trump&&b.s===trump)return false;if(a.s!==b.s)return a.s===lead&&b.s!==trump;if(a.s===b.s)return rankValue(a.r)>rankValue(b.r);return false}
 function currentWinner(){let best=trick[0];for(const t of trick.slice(1))if(cardBeats(t.c,best.c,leadSuit))best=t;return best}
-function unseenSuitCount(actor,s){let n=0;for(const c of hands[actor])if(c.s===s)n++;for(const t of trick)if(t.c.s===s)n++;return n}
+function seenSuitCount(s){return playedHistory.reduce((n,x)=>n+(x.c.s===s?1:0),0)}
+function remainingSuitTotal(s){return 13-seenSuitCount(s)}
+function seenRank(s,r){return seenCards.has(s+r)}
+function highestUnseen(s){return RANKS.slice().reverse().find(r=>!seenRank(s,r))||'2'}
+function suitStrength(h,s){const cards=h.filter(c=>c.s===s);let score=cards.length*1.5;for(const c of cards){if(c.r==='A')score+=5;else if(c.r==='K')score+=3;else if(c.r==='Q')score+=1.5;else if(c.r==='J')score+=.7}return score}
+function likelyVoid(actor,s){return !hands[actor].some(c=>c.s===s)}
 function cardPower(c){let v=rankValue(c.r);if(c.r==='A')v+=12;else if(c.r==='K')v+=5;else if(c.r==='Q')v+=2;return v}
 function aiPlay(actor){
   if(phase!=='play'||currentPlayer()!==actor)return;
-  const legal=legalCards(actor),h=hands[actor];
-  if(!legal.length)return;
+  const legal=legalCards(actor),h=hands[actor]; if(!legal.length)return;
   if(difficulty==='easy'){playCard(actor,legal[Math.floor(Math.random()*legal.length)]);return}
   const me=teamOf(actor), winner=trick.length?currentWinner():null;
   const partnerWinning=winner&&winner.actor!==actor&&teamOf(winner.actor)===me;
   const opponentWinning=winner&&winner.actor!==actor&&teamOf(winner.actor)!==me;
-  const canWin=winner?legal.filter(i=>cardBeats(h[i],winner.c,leadSuit)):legal.slice();
+  const canWin=winner?legal.filter(i=>cardBeats(h[i],winner.c,leadSuit)):[];
   const bidderTeam=highestBidder?teamOf(highestBidder):me;
+  const contractPressure=bidderTeam===me ? Math.max(0,bidValue-(mode==='esli'?roundTricks.SEN+roundTricks.MERT:roundTricks[actor])) : 0;
   const scored=legal.map(i=>{
-    const c=h[i],v=cardPower(c),voids=Object.keys({}).length;
+    const c=h[i],isTrump=c.s===trump,isLead=c.s===leadSuit;
+    const leftSuit=remainingSuitTotal(c.s), strength=suitStrength(h,c.s);
     let score=0;
-    const remainingSuit=unseenSuitCount(actor,c.s);
-    const isTrump=c.s===trump;
-    const isLead=c.s===leadSuit;
-    score-=v*0.42;
-    if(isTrump)score+=7;
-    if(isLead)score+=2;
+    // Genel hedef: gereksiz yüksek kart yakma, ama gerektiğinde eli kazan.
+    score-=cardPower(c)*0.38;
+    if(isTrump)score+=6;
     if(!leadSuit){
-      score-=remainingSuit*0.55;
-      if(isTrump)score-=v*0.18;
-      if(bidderTeam===me)score+=v*0.18;
-      if(difficulty==='hard'&&c.r==='A')score+=3;
+      score+=strength*0.35;
+      if(isTrump)score+=contractPressure*0.18;
+      if(c.r==='A'&&!seenRank(c.s,'A'))score+=difficulty==='hard'?7:4;
+      if(c.r==='K'&&!seenRank(c.s,'A'))score+=difficulty==='hard'?2:0;
+      // Uzun ve güçlü rengi açmak, özellikle koz dışında, değerlidir.
+      score+=Math.min(5,leftSuit*.22);
     }else if(partnerWinning){
-      score-=v*1.2;
-      if(isTrump)score-=2;
+      score-=cardPower(c)*0.75;
+      if(isTrump)score-=3;
+      if(c.s===leadSuit&&c.r!=='2')score-=1;
     }else if(opponentWinning){
       if(canWin.includes(i)){
-        const margin=cardPower(c)-(winner?cardPower(winner.c):0);
-        score+=28-Math.max(0,margin)*0.45;
-        if(isTrump&&winner.c.s!==trump)score+=5;
-      }else score-=2;
+        const margin=cardPower(c)-cardPower(winner.c);
+        score+=30-Math.max(0,margin)*0.55;
+        // Rakibin elini almak için mümkün olan en küçük kazanan kartı seç.
+        if(isTrump&&winner.c.s!==trump)score+=6;
+      }else score-=1;
     }
-    if(remainingSuit===1)score+=2;
+    // Renk bitirme bilgisi: zor seviyede rakibin o renkte kalıp kalmadığını kullan.
+    if(leadSuit && likelyVoid(winner?.actor||actor,leadSuit)) score+=1;
     if(difficulty==='hard'){
-      if(c.r==='A'&&(!leadSuit||isLead))score+=5;
-      if(c.r==='K'&&isLead)score+=2;
-      if(isTrump&&c.r==='A')score+=5;
-      if(partnerWinning&&c.s===trump)score-=4;
+      if(c.r==='A'&&!seenRank(c.s,'A'))score+=3;
+      if(c.r==='K'&&!seenRank(c.s,'A')&&!seenRank(c.s,'K'))score+=2;
+      if(isTrump&&c.r==='A'&&!seenRank(c.s,'A'))score+=4;
+      if(partnerWinning&&isTrump)score-=4;
+      if(contractPressure>=3&&canWin.includes(i))score+=3;
     }
     return {i,score};
   });
   scored.sort((a,b)=>b.score-a.score);
   let chosen=scored[0].i;
-  if(difficulty==='medium'&&Math.random()<0.12&&scored.length>1)chosen=scored[1].i;
+  if(difficulty==='medium'&&Math.random()<0.10&&scored.length>1)chosen=scored[1].i;
   if(difficulty==='hard'&&opponentWinning&&canWin.length)chosen=canWin.slice().sort((a,b)=>cardPower(h[a])-cardPower(h[b]))[0];
   if(difficulty==='hard'&&partnerWinning)chosen=legal.slice().sort((a,b)=>cardPower(h[a])-cardPower(h[b]))[0];
   playCard(actor,chosen);
@@ -159,16 +238,17 @@ function animatePlay(actor,c,index){
   $('played').appendChild(el);
   if(soundOn) paper('throw');
 }
-function resolveTrick(){const lead=leadSuit;let best=trick[0];for(const t of trick.slice(1)){if(t.c.s===trump&&best.c.s!==trump)best=t;else if(t.c.s===best.c.s&&rankValue(t.c.r)>rankValue(best.c.r))best=t;else if(best.c.s!==trump&&t.c.s===lead&&best.c.s===lead&&rankValue(t.c.r)>rankValue(best.c.r))best=t}const winner=best.actor;roundTricks[winner]++;toast('Eli kazanan: '+winner);collectTo(winner);trickNo++;setTimeout(()=>{trick=[];leadSuit='';phase='play';starter=winner;turnIndex=players.indexOf(winner);if(trickNo>=13){endRound();return}updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'))setTimeout(()=>aiPlay(currentPlayer()),650)},850)}
+function resolveTrick(){const lead=leadSuit;let best=trick[0];for(const t of trick.slice(1)){if(t.c.s===trump&&best.c.s!==trump)best=t;else if(t.c.s===best.c.s&&rankValue(t.c.r)>rankValue(best.c.r))best=t;else if(best.c.s!==trump&&t.c.s===lead&&best.c.s===lead&&rankValue(t.c.r)>rankValue(best.c.r))best=t}const winner=best.actor;roundTricks[winner]++;toast('Eli kazanan: '+winner);collectTo(winner);trickNo++;setTimeout(()=>{trick=[];leadSuit='';phase='play';starter=winner;turnIndex=players.indexOf(winner);if(trickNo>=13){endRound();return}updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'&&partnerControlled))setTimeout(()=>aiPlay(currentPlayer()),650)},850)}
 function collectTo(winner){const wx={SEN:'0px',MERT:'0px',AHMET:'300px',EMRE:'-300px'}[winner],wy={SEN:'300px',MERT:'-300px',AHMET:'0px',EMRE:'0px'}[winner];document.querySelectorAll('.playedCard').forEach(x=>{x.style.setProperty('--wx',wx);x.style.setProperty('--wy',wy);x.classList.remove('land');x.classList.add('collect')});paper('collect')}
 function endRound(){phase='done';const myTricks=mode==='esli'?roundTricks.SEN+roundTricks.MERT:roundTricks.SEN;const oppTricks=13-myTricks;const success=myTricks>=bidValue;const earned=success?bidValue*10+(myTricks-bidValue):-(bidValue*10);const oppEarned=oppTricks*10;myScore+=earned;oppScore+=oppEarned;updateScoreUI();gameNo===gamesToPlay?showMatchResult(myTricks,oppTricks,success,earned):showRoundResult(myTricks,oppTricks,success,earned)}
-function updateScoreUI(){if(!$('myScore'))return;$('myScore').textContent=myScore;$('oppScore').textContent=oppScore;$('roundText').textContent=gameNo+'/'+gamesToPlay;$('teamLabel').textContent=mode==='esli'?'SEN + MERT':'SEN';$('oppLabel').textContent=mode==='esli'?'EMRE + AHMET':'RAKİPLER'}
+function updateScoreUI(){if(!$('myScore'))return;$('myScore').textContent=myScore;$('oppScore').textContent=oppScore;$('roundText').textContent=gameNo+'/'+gamesToPlay;$('teamLabel').textContent=mode==='esli'?playerShortName()+' + MERT':playerShortName();$('oppLabel').textContent=mode==='esli'?'EMRE + AHMET':'RAKİPLER'}
 function showRoundResult(myTricks,oppTricks,success,earned){$('modalBox').innerHTML=`<div class="mt">${success?'🏆 İHALE TUTTU':'💥 BATIŞ'}</div><div class="roundResult">${bidValue} istedin • ${myTricks} el aldın<br>${success?'Kazanç: +'+earned+' puan':'Ceza: '+earned+' puan'}</div><button class="startBtn" onclick="nextRound()">▶ SONRAKİ OYUN</button>`;$('modal').classList.add('show')}
 function nextRound(){$('modal').classList.remove('show');start(mode,difficulty,false)}
-function showMatchResult(myTricks,oppTricks,success,earned){const winner=myScore>oppScore? (mode==='esli'?'SEN + MERT':'SEN'):myScore<oppScore?(mode==='esli'?'EMRE + AHMET':'RAKİPLER'):'BERABERE';$('modalBox').innerHTML=`<div class="mt">${winner==='BERABERE'?'🤝 BERABERE':'🏆 '+winner+' KAZANDI'}</div><div class="finalScore">${myScore} — ${oppScore}</div><div class="roundResult">${gamesToPlay} oyun tamamlandı.<br>Son oyunda ${myTricks} el aldın.</div><button class="startBtn" onclick="newMatchFromResult()">🔄 YENİ MAÇ</button><button class="ctrl" style="margin-top:9px;width:100%" onclick="backMenu();$('modal').classList.remove('show')">⌂ ANA MENÜ</button>`;$('modal').classList.add('show')}
+function showMatchResult(myTricks,oppTricks,success,earned){const winner=myScore>oppScore? (mode==='esli'?playerShortName()+' + MERT':playerShortName()):myScore<oppScore?(mode==='esli'?'EMRE + AHMET':'RAKİPLER'):'BERABERE';$('modalBox').innerHTML=`<div class="mt">${winner==='BERABERE'?'🤝 BERABERE':'🏆 '+winner+' KAZANDI'}</div><div class="finalScore">${myScore} — ${oppScore}</div><div class="roundResult">${gamesToPlay} oyun tamamlandı.<br>Son oyunda ${myTricks} el aldın.</div><button class="startBtn" onclick="newMatchFromResult()">🔄 YENİ MAÇ</button><button class="ctrl" style="margin-top:9px;width:100%" onclick="backMenu();$('modal').classList.remove('show')">⌂ ANA MENÜ</button>`;$('modal').classList.add('show')}
 function newMatchFromResult(){$('modal').classList.remove('show');gameNo=0;myScore=0;oppScore=0;start(mode,difficulty,true)}
 function shakeHand(actor){const id=actor==='SEN'?'userHand':'partnerHand';const e=$(id);e.animate([{transform:'translateX(-50%)'},{transform:'translateX(calc(-50% - 6px))'},{transform:'translateX(calc(-50% + 6px))'},{transform:'translateX(-50%)'}],{duration:260})}
 function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(window._toast);window._toast=setTimeout(()=>e.classList.remove('show'),1800)}
+updateProfileUI();
 function toggleSound(){soundOn=!soundOn;localStorage.setItem('br_sound',soundOn?'on':'off');$('snd').textContent=soundOn?'Açık':'Kapalı';if(soundOn)paper('click')}
 function paper(kind){
   if(!soundOn)return;
