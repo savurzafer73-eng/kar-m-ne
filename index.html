@@ -61,7 +61,7 @@ function requestFullscreen(){
   }catch(e){}
 }
 
-function start(m,difficultyLevel='medium',newMatch=false){mode=m;difficulty=difficultyLevel;if(newMatch){gameNo=0;myScore=0;oppScore=0}gameNo=Math.min(gameNo+1,gamesToPlay);bidValue=0;highestBid=0;highestBidder='';passedPlayers=new Set();auctionTurnIndex=0;auctionBusy=false;roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0};$('trumpBox').classList.remove('show');phase='bid';trick=[];trickNo=0;trump='';leadSuit='';starter='SEN';turnIndex=0;$('menu').classList.remove('active');$('game').classList.add('active');$('modeText').textContent=(m==='esli'?'Eşli Batak':'Tekli Batak')+' • '+({easy:'Kolay',medium:'Orta',hard:'Zor'}[difficulty]);$('gcoins').textContent=coins;updateScoreUI();const deckCards=deck();hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};players.forEach(p=>hands[p]=sortHand(deckCards.splice(0,13)));$('partnerHand').classList.remove('show');$('bidBtn').style.display='block';$('trumpBtn').style.display='none';$('hint').textContent=m==='esli'?'Gerçek ihale başladı. Sıra SEN’de.':'Gerçek ihale başladı. Sıra SEN’de.';renderHands();toast((m==='esli'?'Eşli':'Tekli')+' Batak • Oyun '+gameNo+'/'+gamesToPlay);paper('deal');setTimeout(runAuction,450)}
+function start(m,difficultyLevel='medium',newMatch=false){mode=m;difficulty=difficultyLevel;if(newMatch){gameNo=0;myScore=0;oppScore=0}gameNo=Math.min(gameNo+1,gamesToPlay);bidValue=0;highestBid=0;highestBidder='';passedPlayers=new Set();auctionTurnIndex=0;auctionBusy=false;roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0};$('trumpBox').classList.remove('show');phase='bid';trick=[];trickNo=0;trump='';leadSuit='';starter='SEN';turnIndex=0;$('menu').classList.remove('active');$('game').classList.add('active');$('modeText').textContent=(m==='esli'?'Eşli Batak':'Tekli Batak')+' • '+({easy:'Kolay',medium:'Orta',hard:'Zor'}[difficulty]);$('gcoins').textContent=coins;updateScoreUI();const deckCards=deck();hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};players.forEach(p=>hands[p]=sortHand(deckCards.splice(0,13)));$('partnerHand').classList.remove('show');$('bidBtn').style.display='none';$('trumpBtn').style.display='none';$('hint').textContent=m==='esli'?'Gerçek ihale başladı. Sıra SEN’de.':'Gerçek ihale başladı. Sıra SEN’de.';renderHands();toast((m==='esli'?'Eşli':'Tekli')+' Batak • Oyun '+gameNo+'/'+gamesToPlay);paper('deal');setTimeout(runAuction,450)}
 function backMenu(){phase='menu';$('game').classList.remove('active');$('menu').classList.add('active')}
 function auctionMin(){return mode==='tekli'?4:8}
 function auctionPlayer(){return players[auctionTurnIndex]}
@@ -70,19 +70,73 @@ function placeBid(n){if(phase!=='bid'||auctionPlayer()!=='SEN'||n<=highestBid)re
 function passBid(){if(phase!=='bid'||auctionPlayer()!=='SEN')return;passedPlayers.add('SEN');$('modal').classList.remove('show');toast('SEN pas geçti.');paper('click');advanceAuction()}
 function estimateBid(actor){const h=hands[actor];const counts={};h.forEach(c=>counts[c.s]=(counts[c.s]||0)+1);let score=0;h.forEach(c=>{const v=rankValue(c.r);if(v>=14)score+=3;else if(v>=13)score+=1.5;if(c.s===trump)score+=1});score+=Math.max(...Object.values(counts))*0.55;let base=mode==='tekli'?4:8;let est=base+Math.floor(score/2.2);if(difficulty==='easy')est-=1;if(difficulty==='hard')est+=1;return Math.max(base,Math.min(13,est))}
 function aiAuction(actor){if(phase!=='bid'||auctionPlayer()!==actor)return;const minBid=auctionMin();const estimate=estimateBid(actor);const need=highestBid?highestBid+1:minBid;let shouldBid=estimate>=need;if(difficulty==='easy'&&Math.random()<.28)shouldBid=false;if(difficulty==='medium'&&Math.random()<.12)shouldBid=false;if(difficulty==='hard'&&estimate>=need)shouldBid=true;if(shouldBid){let n=Math.min(13,need+(difficulty==='hard'&&Math.random()<.25?1:0));highestBid=n;bidValue=n;highestBidder=actor;passedPlayers.delete(actor);toast(actor+' '+n+' dedi.');paper('click')}else{passedPlayers.add(actor);toast(actor+' pas geçti.');paper('click')}advanceAuction()}
-function runAuction(){if(phase!=='bid'||auctionBusy)return;const actor=auctionPlayer();$('hint').textContent='İhale sırası: '+actor+(highestBid?' • En yüksek: '+highestBid:'');if(actor==='SEN'){return}auctionBusy=true;setTimeout(()=>{auctionBusy=false;aiAuction(actor)},650)}
+function runAuction(){if(phase!=='bid'||auctionBusy)return;const actor=auctionPlayer();$('hint').textContent='İhale sırası: '+actor+(highestBid?' • En yüksek: '+highestBid:'');if(actor==='SEN'){setTimeout(openBid,220);return}auctionBusy=true;setTimeout(()=>{auctionBusy=false;aiAuction(actor)},650)}
 function advanceAuction(){if(phase!=='bid')return;const active=players.filter(p=>!passedPlayers.has(p));if(highestBidder&&active.length<=1){finishAuction();return}if(!highestBidder&&passedPlayers.size>=3){finishAuction();return}let guard=0;do{auctionTurnIndex=(auctionTurnIndex+1)%4;guard++}while(passedPlayers.has(players[auctionTurnIndex])&&guard<5);runAuction()}
-function finishAuction(){if(!highestBidder){highestBid=auctionMin();bidValue=highestBid;highestBidder='SEN';toast('Herkes pas geçti. SEN zorunlu ihaleyi aldı.')}bidValue=highestBid;phase='trump';$('bidBtn').style.display='none';$('trumpBtn').style.display=highestBidder==='SEN'?'block':'none';$('hint').textContent=highestBidder==='SEN'?'İhaleyi aldın. KOZ SEÇ butonuna bas.':highestBidder+' ihaleyi '+highestBid+' ile aldı. Kozunu seçiyor…';toast(highestBidder+' ihaleyi '+highestBid+' ile aldı.');if(highestBidder==='SEN'){paper('click')}else setTimeout(aiChooseTrump,700)}
+function finishAuction(){if(!highestBidder){highestBid=auctionMin();bidValue=highestBid;highestBidder='SEN';toast('Herkes pas geçti. SEN zorunlu ihaleyi aldı.')}bidValue=highestBid;phase='trump';$('bidBtn').style.display='none';$('trumpBtn').style.display='none';$('hint').textContent=highestBidder==='SEN'?'İhaleyi aldın. Kozunu seç.':highestBidder+' ihaleyi '+highestBid+' ile aldı. Kozunu seçiyor…';toast(highestBidder+' ihaleyi '+highestBid+' ile aldı.');if(highestBidder==='SEN'){paper('click');setTimeout(openTrump,220)}else setTimeout(aiChooseTrump,700)}
 function winBid(n){placeBid(n)}
 function openTrump(){if(phase!=='trump')return;$('modalBox').innerHTML='<div class="mt">KOZ SEÇ</div><div class="mx">Kozu seçtiğinde oyun başlayacak.</div><div class="grid">'+SUITS.map(s=>`<button onclick="chooseTrump('${s}')">${s}</button>`).join('')+'</div>';$('modal').classList.add('show')}
 function aiChooseTrump(){if(phase!=='trump'||highestBidder==='SEN')return;const h=hands[highestBidder];const counts={};SUITS.forEach(s=>counts[s]=0);h.forEach(c=>counts[c.s]++);let best=SUITS[0];for(const s of SUITS)if(counts[s]>counts[best])best=s;chooseTrump(best)}
-function chooseTrump(s){$('modal').classList.remove('show');trump=s;phase='play';starter=highestBidder||'SEN';turnIndex=players.indexOf(starter);trick=[];trickNo=0;leadSuit='';$('trumpBtn').style.display='none';$('trumpBox').classList.add('show');$('trumpIcon').textContent=s;$('trumpName').textContent=s==='♠'?'MAÇA':s==='♥'?'KUPA':s==='♦'?'KARO':'SİNEK';if(mode==='esli')$('partnerHand').classList.add('show');renderHands();updateTurnHint();toast('Koz '+s+' • Sıra '+starter+'.');paper('throw');if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'))setTimeout(()=>aiPlay(currentPlayer()),650)}
+function chooseTrump(s){if(phase!=='trump')return;$('modal').classList.remove('show');trump=s;phase='play';starter=highestBidder||'SEN';turnIndex=players.indexOf(starter);trick=[];trickNo=0;leadSuit='';$('trumpBtn').style.display='none';$('trumpBox').classList.add('show');$('trumpIcon').textContent=s;$('trumpName').textContent=s==='♠'?'MAÇA':s==='♥'?'KUPA':s==='♦'?'KARO':'SİNEK';if(mode==='esli')$('partnerHand').classList.add('show');renderHands();updateTurnHint();toast('Koz '+s+' • Sıra '+starter+'.');paper('throw');if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'))setTimeout(()=>aiPlay(currentPlayer()),650)}
 function currentPlayer(){return players[turnIndex]}
 function updateTurnHint(){const p=currentPlayer();$('hint').textContent=mode==='esli'&&p==='MERT'?'MERT’in sırası: kartını sen seç.':p==='SEN'?'Sıra sende — istediğin kartı seç.':p+' oynuyor…'}
 function onCardClick(actor,i){if(phase!=='play')return;const p=currentPlayer();if(actor!==p)return;if(actor==='SEN'||(actor==='MERT'&&mode==='esli'))playCard(actor,i)}
 function legalCards(actor){const h=hands[actor];if(!leadSuit)return h.map((_,i)=>i);const same=h.map((c,i)=>c.s===leadSuit?i:-1).filter(i=>i>=0);return same.length?same:h.map((_,i)=>i)}
 function playCard(actor,i){const h=hands[actor];if(!h[i])return;const legal=legalCards(actor);if(!legal.includes(i)){toast('Bu elde önce açılan türden kart atmalısın.');shakeHand(actor);return}const c=h.splice(i,1)[0];if(!leadSuit)leadSuit=c.s;trick.push({actor,c});renderHands();animatePlay(actor,c,trick.length-1);if(trick.length===4){phase='resolve';setTimeout(resolveTrick,850);return}turnIndex=(turnIndex+1)%4;updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'))setTimeout(()=>aiPlay(currentPlayer()),650)}
-function aiPlay(actor){if(phase!=='play'||currentPlayer()!==actor)return;const legal=legalCards(actor);let chosen;const h=hands[actor];if(difficulty==='easy'){chosen=legal[Math.floor(Math.random()*legal.length)];}else if(difficulty==='medium'){const pool=legal.slice().sort((a,b)=>rankValue(h[a].r)-rankValue(h[b].r));chosen=Math.random()<.72?pool[0]:pool[Math.floor(Math.random()*pool.length)];}else{let scored=legal.map(i=>{const c=h[i];let score=rankValue(c.r);if(c.s===trump)score+=9;if(c.s===leadSuit)score+=4;if(!leadSuit&&c.s===trump)score+=6;return {i,score}});if(leadSuit){const winning=trick.filter(t=>t.c.s===trump||t.c.s===leadSuit).sort((a,b)=>rankValue(b.c.r)-rankValue(a.c.r))[0];if(winning&&winning.actor!==actor)scored.forEach(x=>{if(h[x.i].s===winning.c.s&&rankValue(h[x.i].r)>rankValue(winning.c.r))x.score+=12})}scored.sort((a,b)=>b.score-a.score);chosen=scored[0].i;}playCard(actor,chosen)}
+function teamOf(actor){if(mode!=='esli')return actor==='SEN'?'SEN':actor;return (actor==='SEN'||actor==='MERT')?'MY':'OPP'}
+function cardBeats(a,b,lead){if(!b)return true;if(a.s===trump&&b.s!==trump)return true;if(a.s!==trump&&b.s===trump)return false;if(a.s!==b.s)return a.s===lead&&b.s!==trump;if(a.s===b.s)return rankValue(a.r)>rankValue(b.r);return false}
+function currentWinner(){let best=trick[0];for(const t of trick.slice(1))if(cardBeats(t.c,best.c,leadSuit))best=t;return best}
+function unseenSuitCount(actor,s){let n=0;for(const c of hands[actor])if(c.s===s)n++;for(const t of trick)if(t.c.s===s)n++;return n}
+function cardPower(c){let v=rankValue(c.r);if(c.r==='A')v+=12;else if(c.r==='K')v+=5;else if(c.r==='Q')v+=2;return v}
+function aiPlay(actor){
+  if(phase!=='play'||currentPlayer()!==actor)return;
+  const legal=legalCards(actor),h=hands[actor];
+  if(!legal.length)return;
+  if(difficulty==='easy'){playCard(actor,legal[Math.floor(Math.random()*legal.length)]);return}
+  const me=teamOf(actor), winner=trick.length?currentWinner():null;
+  const partnerWinning=winner&&winner.actor!==actor&&teamOf(winner.actor)===me;
+  const opponentWinning=winner&&winner.actor!==actor&&teamOf(winner.actor)!==me;
+  const canWin=winner?legal.filter(i=>cardBeats(h[i],winner.c,leadSuit)):legal.slice();
+  const bidderTeam=highestBidder?teamOf(highestBidder):me;
+  const scored=legal.map(i=>{
+    const c=h[i],v=cardPower(c),voids=Object.keys({}).length;
+    let score=0;
+    const remainingSuit=unseenSuitCount(actor,c.s);
+    const isTrump=c.s===trump;
+    const isLead=c.s===leadSuit;
+    score-=v*0.42;
+    if(isTrump)score+=7;
+    if(isLead)score+=2;
+    if(!leadSuit){
+      score-=remainingSuit*0.55;
+      if(isTrump)score-=v*0.18;
+      if(bidderTeam===me)score+=v*0.18;
+      if(difficulty==='hard'&&c.r==='A')score+=3;
+    }else if(partnerWinning){
+      score-=v*1.2;
+      if(isTrump)score-=2;
+    }else if(opponentWinning){
+      if(canWin.includes(i)){
+        const margin=cardPower(c)-(winner?cardPower(winner.c):0);
+        score+=28-Math.max(0,margin)*0.45;
+        if(isTrump&&winner.c.s!==trump)score+=5;
+      }else score-=2;
+    }
+    if(remainingSuit===1)score+=2;
+    if(difficulty==='hard'){
+      if(c.r==='A'&&(!leadSuit||isLead))score+=5;
+      if(c.r==='K'&&isLead)score+=2;
+      if(isTrump&&c.r==='A')score+=5;
+      if(partnerWinning&&c.s===trump)score-=4;
+    }
+    return {i,score};
+  });
+  scored.sort((a,b)=>b.score-a.score);
+  let chosen=scored[0].i;
+  if(difficulty==='medium'&&Math.random()<0.12&&scored.length>1)chosen=scored[1].i;
+  if(difficulty==='hard'&&opponentWinning&&canWin.length)chosen=canWin.slice().sort((a,b)=>cardPower(h[a])-cardPower(h[b]))[0];
+  if(difficulty==='hard'&&partnerWinning)chosen=legal.slice().sort((a,b)=>cardPower(h[a])-cardPower(h[b]))[0];
+  playCard(actor,chosen);
+}
 function animatePlay(actor,c,index){
   const el=document.createElement('div');
   const side={SEN:'fromBottom',MERT:'fromTop',EMRE:'fromLeft',AHMET:'fromRight'}[actor];
