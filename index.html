@@ -1,397 +1,1809 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#0a3a26">
-<meta name="background-color" content="#06130d">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Batak Royale">
-<meta name="application-name" content="Batak Royale">
-<meta name="description" content="Batak Royale — Türkçe, offline oynanabilen profesyonel 4 kişilik Batak oyunu.">
-<meta name="format-detection" content="telephone=no">
-<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<title>Batak Royale</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mina Video AI V4.1 - Mystery Nacht</title>
+
 <style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#06130d;color:#fff;font-family:system-ui,Arial,sans-serif}button{font:inherit;color:#fff;border:0;cursor:pointer;font-weight:800}.screen{display:none;position:absolute;inset:0}.screen.active{display:flex}
-#menu{align-items:center;justify-content:center;padding:18px;background:radial-gradient(circle,#1d774d,#06130d 68%)}.panel{width:min(470px,100%);padding:28px;border-radius:28px;background:#091a12f2;border:1px solid #486451;box-shadow:0 25px 80px #0009;text-align:center}.logo{font-size:40px;font-weight:1000;color:#edcf70;letter-spacing:2px}.sub{color:#a8b6ae;margin:5px 0 24px}.profile{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border-radius:17px;background:#07130e;border:1px solid #294734;margin-bottom:15px}.avatar{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#d8b65e;color:#172018;font-size:22px;font-weight:1000}.menuTitle{font-size:13px;color:#9eb0a5;margin:12px 0 8px;text-align:left}.mode,.difficulty{display:grid;gap:9px}.mode button,.difficulty button{padding:14px;border-radius:15px;background:#173b2a;border:1px solid #355b45;font-size:15px}.mode button.active{background:linear-gradient(135deg,#238f59,#105735);border-color:#8bd0a7;box-shadow:0 0 0 2px #ffffff18}.difficulty{grid-template-columns:repeat(3,1fr)}.gamesSelect{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.gamesSelect button{padding:13px 6px;border-radius:15px;background:#173b2a;border:1px solid #355b45;font-size:15px}.gamesSelect button.active{background:linear-gradient(135deg,#238f59,#105735);border-color:#8bd0a7;box-shadow:0 0 0 2px #ffffff18}.scoreBoard{position:absolute;left:50%;top:66px;transform:translateX(-50%);z-index:20;display:flex;gap:7px;padding:6px 9px;border-radius:14px;background:#07150ee8;border:1px solid #35533f;font-size:11px;font-weight:900;white-space:nowrap}.scoreBoard b{color:#edcf70}.scoreBoard .round{color:#a9b8af;font-weight:700}.roundResult{font-size:14px;color:#c8d5cd;margin:10px 0 16px}.finalScore{font-size:30px;color:#edcf70;font-weight:1000;margin:8px 0}.difficulty button{padding:13px 7px}.difficulty button.active{background:linear-gradient(135deg,#b08b38,#70521d);border-color:#efd37d;box-shadow:0 0 0 2px #ffffff18}.startBtn{width:100%;margin-top:14px;padding:17px;border-radius:16px;background:linear-gradient(135deg,#d9b450,#8d671d);color:#fff;font-size:17px;box-shadow:0 10px 25px #0005}.small{display:flex;gap:10px;margin-top:12px}.small button{flex:1;padding:11px;border-radius:12px;background:#152a20;border:1px solid #355342}.fsNote{display:none}.profile{cursor:pointer}.profileEdit{margin-left:auto;padding:8px 10px;border-radius:10px;background:#173b2a;border:1px solid #355b45;color:#fff;font-weight:900}.nameInput{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #486451;background:#07130e;color:#fff;font-size:16px;outline:none}.nameInput:focus{border-color:#d9b450} :fullscreen .hint{display:none} :fullscreen .controls{height:72px} :fullscreen .table{height:calc(100dvh - 112px)}
-#game{flex-direction:column;background:radial-gradient(ellipse at center,#1d8050,#0a3a26 58%,#06130d)}.top{height:62px;position:relative;display:flex;align-items:center;justify-content:space-between;padding:9px 14px}.trumpBox{position:absolute;left:14px;top:8px;display:none;align-items:center;gap:7px;padding:8px 11px;border-radius:13px;background:#07150ee8;border:1px solid #35533f;font-weight:900}.trumpBox.show{display:flex}.trumpIcon{font-size:24px;line-height:1}.trumpText{font-size:11px;color:#b9c7be}.trumpName{font-size:14px;color:#edcf70}.pill,.ico{background:#07150ee8;border:1px solid #35533f;border-radius:13px;padding:9px 12px}.ico{width:40px;height:40px;padding:0}.actions{display:flex;gap:7px}.wrap{flex:1;display:grid;place-items:center;padding:4px}.table{position:relative;width:min(920px,96vw);height:min(620px,calc(100dvh - 180px));min-height:370px;border-radius:43%;border:12px solid #5b3d21;background:radial-gradient(ellipse,#2b9b62,#12583a);box-shadow:inset 0 0 0 3px #ba8a49,inset 0 0 60px #041f12,0 25px 55px #0008;overflow:visible}.table:after{content:"";position:absolute;inset:8%;border:2px solid #b9e3c533;border-radius:50%}
-.seat{position:absolute;z-index:12;padding:6px 9px;border:1px solid #526e5c;background:#07150edb;border-radius:15px;font-size:12px}.seat b{color:#e8c86b}.topSeat{top:9px;left:50%;transform:translateX(-50%)}.leftSeat{left:5px;top:50%;transform:translateY(-50%)}.rightSeat{right:5px;top:50%;transform:translateY(-50%)}.bottomSeat{bottom:9px;left:50%;transform:translateX(-50%)}
-.hand{position:absolute;left:50%;transform:translateX(-50%);width:min(880px,99vw);z-index:30;pointer-events:none}.userHand{bottom:0;height:174px;pointer-events:auto}.partnerHand{top:0;height:174px;opacity:0;transform:translateX(-50%) translateY(-14px);transition:.4s}.partnerHand.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}.card{position:absolute;width:76px;height:108px;border-radius:11px;background:linear-gradient(145deg,#fffdf8 0%,#f7f3ea 52%,#e8e1d4 100%);border:1px solid #b8b09f;color:#111;box-shadow:0 8px 18px #000b,0 1px 0 #fff inset;overflow:hidden;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}.card:before{content:'';position:absolute;inset:3px;border:1px solid #ded6c6;border-radius:8px;pointer-events:none}.card:after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,#ffffff55 0%,transparent 28%,transparent 72%,#00000008 100%);pointer-events:none}.userCard,.partnerCard{cursor:pointer}.card.upper{top:0;z-index:10}.card.lower{top:54px;z-index:30}.userCard.lower{top:54px}.partnerCard.lower{top:54px}.card.selected{transform:translateY(-11px) scale(1.025);z-index:100;box-shadow:0 14px 24px #000c,0 0 0 2px #d9b35a88}.rank{position:absolute;top:6px;left:7px;font-size:22px;line-height:.9;font-weight:1000;letter-spacing:-1px;z-index:3;text-shadow:0 1px 0 #fff}.suitSmall{font-size:15px;margin-left:1px}.centerSuit{position:absolute;inset:0;display:grid;place-items:center;font-size:49px;text-shadow:0 2px 3px #0002;z-index:2}.red{color:#bd1f32}.face{position:absolute;inset:30px 8px 8px;border:2px solid #9b8252;border-radius:8px;display:grid;place-items:center;font-size:40px;background:linear-gradient(135deg,#f4ead5,#fffdf5 45%,#e7d4ae);box-shadow:inset 0 0 0 2px #fff8,inset 0 0 12px #7a5a2425;z-index:2}.cornerBottom{position:absolute;right:7px;bottom:5px;font-size:20px;line-height:.9;font-weight:1000;text-align:right;transform:rotate(180deg);z-index:3}.cornerBottom span{display:block;font-size:14px}.pips{position:absolute;inset:28px 11px 9px;z-index:2}.pip{position:absolute;transform:translate(-50%,-50%);font-size:22px;line-height:1;text-shadow:0 1px 2px #0002}
-.played{position:absolute;inset:-32px;z-index:80;pointer-events:none}.playedCard{position:absolute;left:50%;top:50%;width:67px;height:95px;border-radius:9px;background:#fff;color:#111;box-shadow:0 9px 22px #000a;opacity:0;display:grid;place-items:center;font-weight:1000;will-change:transform,opacity}.playedCard .pcRank{position:absolute;top:4px;left:6px;font-size:17px}.playedCard .pcSuit{font-size:40px}.playedCard.red{color:#c82232}.playedCard.fromBottom{--sx:0px;--sy:270px;--ox:0px;--oy:92px}.playedCard.fromTop{--sx:0px;--sy:-270px;--ox:0px;--oy:-92px}.playedCard.fromLeft{--sx:-360px;--sy:0px;--ox:-112px;--oy:0px}.playedCard.fromRight{--sx:360px;--sy:0px;--ox:112px;--oy:0px}.playedCard.land{animation:throw .55s cubic-bezier(.2,.8,.2,1) forwards}.playedCard.collect{animation:collect .72s cubic-bezier(.2,.8,.2,1) forwards!important}.slot0{--ox:0px;--oy:72px}.slot1{--ox:-84px;--oy:-2px}.slot2{--ox:0px;--oy:-72px}.slot3{--ox:84px;--oy:-2px}@keyframes throw{from{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) rotate(0) scale(1)}to{opacity:1;transform:translate(calc(-50% + var(--ox)),calc(-50% + var(--oy))) rotate(0) scale(1)}}@keyframes collect{to{opacity:0;transform:translate(calc(-50% + var(--wx)),calc(-50% + var(--wy))) scale(.78) rotate(0deg)}}
-.controls{height:112px;display:flex;align-items:center;justify-content:center;gap:9px}.ctrl{padding:13px 20px;border-radius:14px;background:#07150ee8;border:1px solid #466251}.primary{background:linear-gradient(135deg,#d9b450,#8d671d)}.hint{text-align:center;color:#c7d4cc;font-size:13px;position:absolute;bottom:112px;left:50%;transform:translateX(-50%);z-index:15;white-space:nowrap}.toast{position:absolute;top:70px;left:50%;transform:translate(-50%,-14px);opacity:0;background:#06130eee;border:1px solid #54705f;border-radius:13px;padding:10px 16px;z-index:1000;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
-#modal{display:none;position:absolute;inset:0;z-index:900;background:#0009;align-items:center;justify-content:center;padding:18px}#modal.show{display:flex}.modal{width:min(430px,100%);padding:23px;border-radius:23px;background:#0b1c13;border:1px solid #46634f;text-align:center;box-shadow:0 25px 80px #000}.mt{font-size:25px;font-weight:1000;color:#e9c96d}.mx{color:#a9b8af;margin:8px 0 18px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.grid button{padding:14px;border-radius:13px;background:#173326;border:1px solid #355441;font-size:20px}.bid{grid-template-columns:repeat(3,1fr)}.bid button{font-size:16px}
-@media(max-width:650px){.top{height:52px;padding:6px 8px}.pill{padding:7px 9px;font-size:11px}.ico{width:36px;height:36px}.logo{font-size:33px}.panel{padding:24px 17px}.table{width:calc(100vw - 10px);height:calc(100dvh - 155px);min-height:310px;border-width:8px;border-radius:34%}.card{width:59px;height:87px;border-radius:8px}.userHand,.partnerHand{height:124px;width:100vw}.card.lower{top:43px}.rank{font-size:17px;left:5px}.centerSuit{font-size:37px}.face{font-size:31px}.seat{font-size:10px;padding:5px 7px}.controls{height:100px}.hint{bottom:101px;font-size:11px}.playedCard{width:58px;height:82px}.scoreBoard{top:55px;font-size:10px;padding:5px 7px}.playedCard .pcSuit{font-size:34px}.slot0{--ox:0px;--oy:56px}.slot1{--ox:-68px;--oy:0px}.slot2{--ox:0px;--oy:-56px}.slot3{--ox:68px;--oy:0px}}
-
-/* ================= STORE / MOBILE POLISH ================= */
-html{background:#06130d;overscroll-behavior:none;-webkit-text-size-adjust:100%}
-body{min-height:100dvh;overscroll-behavior:none;touch-action:manipulation;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-button{min-height:44px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.screen{padding-bottom:env(safe-area-inset-bottom)}
-.panel{max-height:calc(100dvh - 28px);overflow:auto;scrollbar-width:none}.panel::-webkit-scrollbar{display:none}
-.startBtn,.ctrl,.mode button,.difficulty button,.gamesSelect button,.small button,.profileEdit,.ico{min-height:44px}
-.card,.playedCard{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-@media(max-width:650px){
-  #menu{padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
-  .panel{padding:18px 13px;border-radius:22px}
-  .logo{font-size:31px}
-  .sub{margin-bottom:14px;font-size:12px}
-  .profile{margin-bottom:9px;padding:9px}
-  .menuTitle{margin:8px 0 6px;font-size:12px}
-  .mode{gap:7px}.mode button{padding:11px;font-size:14px}
-  .difficulty,.gamesSelect{gap:6px}.difficulty button,.gamesSelect button{padding:10px 4px;font-size:13px}
-  .startBtn{margin-top:10px;padding:14px;font-size:16px}
-  .small{margin-top:8px}
-  #game{min-height:100dvh;padding-bottom:env(safe-area-inset-bottom)}
-  .top{padding-top:calc(6px + env(safe-area-inset-top));height:calc(52px + env(safe-area-inset-top))}
-  .controls{padding-bottom:env(safe-area-inset-bottom)}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#080b12;
+  color:#eee;
+  font-family:Arial,sans-serif;
 }
-@media(orientation:landscape) and (max-height:520px){
-  .panel{transform:scale(.88);transform-origin:center}
+header{
+  background:linear-gradient(135deg,#111827,#1e293b);
+  padding:18px;
+  text-align:center;
+  border-bottom:1px solid #334155;
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+header h1{margin:0;color:#8b5cf6}
+header p{margin:7px 0 0;color:#94a3b8}
 
-/* PRO CARD V2 */
-.card{width:82px;height:116px;border-radius:11px;background:linear-gradient(145deg,#fffefa,#f1ece2);border:1px solid #777064;box-shadow:0 8px 18px rgba(0,0,0,.48),inset 0 0 0 2px #fff,inset 0 0 0 4px rgba(80,60,35,.08);color:#171717;overflow:hidden;position:absolute}
-.card:before{content:"";position:absolute;inset:5px;border:1px solid rgba(80,65,45,.5);border-radius:7px;pointer-events:none}
-.rank{position:absolute;top:7px;left:8px;z-index:5;text-align:center;font:900 21px/18px Georgia,serif}.suitSmall{display:block;font-size:14px;line-height:14px}
-.cornerBottom{position:absolute;right:8px;bottom:6px;z-index:5;transform:rotate(180deg);text-align:center;font:900 20px/17px Georgia,serif}.cornerBottom span{display:block;font-size:14px}
-.card.red{color:#b21f2d}.centerSuit{position:absolute;inset:0;display:grid;place-items:center;font:60px/1 Georgia,serif}.pips{position:absolute;inset:28px 12px 9px;z-index:2}.pip{position:absolute;transform:translate(-50%,-50%);font:22px/1 Georgia,serif}
-.face{position:absolute;inset:27px 8px 7px;border:2px solid #716653;border-radius:7px;overflow:hidden;background:linear-gradient(90deg,#f4dddd 0 50%,#dfe6ee 50%)}.face svg{width:100%;height:100%;display:block}
-.card.selected{transform:translateY(-13px) scale(1.025)!important;z-index:100;box-shadow:0 15px 25px rgba(0,0,0,.6),0 0 0 2px #e0b84d,inset 0 0 0 2px #fff}
-.userCard:hover,.partnerCard:hover{transform:translateY(-8px) scale(1.02);z-index:90}.userCard.lower:hover,.partnerCard.lower:hover{transform:translateY(-9px) scale(1.02);z-index:90}
-.card.upper{top:0}.card.lower{top:58px}
-.userHand,.partnerHand{height:184px}
-@media(max-width:650px){.card{width:62px;height:91px;border-radius:8px}.card:before{inset:4px}.rank{top:5px;left:5px;font-size:17px;line-height:15px}.suitSmall{font-size:11px;line-height:11px}.cornerBottom{right:5px;bottom:5px;font-size:16px;line-height:14px}.cornerBottom span{font-size:11px}.centerSuit{font-size:43px}.pips{inset:23px 8px 7px}.pip{font-size:17px}.face{inset:22px 6px 6px}.userHand,.partnerHand{height:137px}.card.lower{top:46px}}
-
-/* === PROFESSIONAL CASINO TABLE V3 === */
-#game{background:radial-gradient(circle at 50% 42%,#19653f 0%,#0b3927 48%,#061e16 100%);position:relative;overflow:hidden}
-#game:before{content:"";position:absolute;inset:12px;border:18px solid #3a2415;border-radius:38px;box-shadow:inset 0 0 0 4px #9a6a35,inset 0 0 0 8px #20140d,0 12px 35px rgba(0,0,0,.55);pointer-events:none;z-index:0}
-#game:after{content:"♠   ♥   ♦   ♣";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 34px Georgia,serif;letter-spacing:18px;color:rgba(255,255,255,.055);pointer-events:none;z-index:0;white-space:nowrap}
-#table{position:relative;z-index:2;background:radial-gradient(ellipse at center,rgba(35,125,78,.72),rgba(8,61,39,.9) 72%);border:2px solid rgba(212,177,92,.65);box-shadow:inset 0 0 45px rgba(0,0,0,.45),0 10px 30px rgba(0,0,0,.4)}
-.seat{filter:drop-shadow(0 4px 5px rgba(0,0,0,.55))}
-#center{background:radial-gradient(circle,rgba(255,255,255,.07),transparent 66%);border:1px solid rgba(218,185,106,.18);box-shadow:0 0 28px rgba(0,0,0,.18)}
-#played .card{box-shadow:0 12px 22px rgba(0,0,0,.62),inset 0 0 0 2px rgba(255,255,255,.9)}
-
-
-#scoreContent{display:flex;align-items:center;gap:6px}
-#scoreContent span{display:inline-flex;gap:3px;align-items:center}
-.scoreSep{color:#789084!important}
-@media(max-width:650px){
-  #scoreContent{gap:4px;font-size:9px}
-  #scoreContent span{gap:2px}
+.container{
+  max-width:1250px;
+  margin:auto;
+  padding:15px;
 }
 
-/* EŞLİ: 2 sıra, 6+7. Tekli de aynı güvenli rendererı kullanır. */
-.userHand{bottom:88px;height:194px;pointer-events:auto}
-.partnerHand{top:6px;height:194px}
-.card.upper,.card.lower,.userCard.lower,.partnerCard.lower{top:auto}
-@media(max-width:650px){
- .userHand{bottom:82px;height:190px;width:100vw}
- .partnerHand{top:5px;height:190px;width:100vw}
+.panel{
+  background:#111827;
+  border:1px solid #273449;
+  border-radius:14px;
+  padding:15px;
+  margin-bottom:15px;
+}
+
+h2{
+  margin-top:0;
+  color:#a78bfa;
+}
+
+label{
+  display:block;
+  margin-top:10px;
+  margin-bottom:5px;
+  color:#cbd5e1;
+  font-weight:bold;
+}
+
+input,select,textarea,button{
+  width:100%;
+  border-radius:9px;
+  border:1px solid #334155;
+  padding:11px;
+  background:#0f172a;
+  color:#fff;
+  font-size:15px;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+button{
+  cursor:pointer;
+  background:#4c1d95;
+  border-color:#6d28d9;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+button:hover{
+  background:#6d28d9;
+}
+
+button.green{background:#166534;border-color:#22c55e}
+button.blue{background:#075985;border-color:#0ea5e9}
+button.red{background:#991b1b;border-color:#ef4444}
+button.orange{background:#92400e;border-color:#f59e0b}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+@media(max-width:800px){
+  .grid,.grid3{grid-template-columns:1fr}
+}
+
+.character{
+  border:1px solid #334155;
+  border-radius:12px;
+  padding:12px;
+  margin-top:10px;
+  background:#0b1220;
+}
+
+.character-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#c4b5fd;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.scene{
+  border:1px solid #334155;
+  border-radius:14px;
+  padding:14px;
+  margin-top:12px;
+  background:#0b1220;
+}
+
+.scene h3{
+  color:#c4b5fd;
+  margin-top:0;
+}
+
+.scene img{
+  width:100%;
+  max-height:320px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#020617;
+  display:block;
+  margin-top:10px;
+}
+
+.scene-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+@media(max-width:700px){
+  .scene-buttons{grid-template-columns:1fr}
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:7px;
+  background:#1e293b;
+  color:#93c5fd;
+  margin:3px;
+  font-size:12px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+@media(max-width:800px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+
+.stat{
+  background:#0b1220;
+  border:1px solid #334155;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:20px;
+  color:#a78bfa;
+}
+
+#canvas{
+  width:100%;
+  max-width:960px;
+  display:block;
+  margin:auto;
+  background:#000;
+  border-radius:10px;
+}
+
+.hidden{display:none}
+
+.prompt-box{
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:9px;
+  padding:10px;
+  white-space:pre-wrap;
+  color:#cbd5e1;
+  font-size:13px;
+}
+
+.small{
+  font-size:12px;
+  color:#94a3b8;
 }
 </style>
 </head>
+
 <body>
-<section id="menu" class="screen active"><div class="panel"><div class="logo">BATAK ROYALE</div><div class="sub">Klasik batak. Yeni nesil masa.</div><div style="font-size:10px;color:#789084;letter-spacing:1.5px;margin:-16px 0 14px">OFFLINE • 4 OYUNCU • STORE EDITION</div><div class="profile" onclick="openProfile()"><div class="avatar" id="profileAvatar">Z</div><div><b id="profileName">Zafer</b><br><small>Seviye 1 • 🪙 <span id="coins">1000</span></small></div><button class="profileEdit" onclick="event.stopPropagation();openProfile()">✏️</button></div><div class="menuTitle">OYUN MODU</div><div class="mode"><button id="esliMode" class="active" onclick="selectMode('esli')">👥 EŞLİ BATAK</button><button id="tekliMode" onclick="selectMode('tekli')">♠ TEKLİ BATAK</button></div><div class="menuTitle">ZORLUK SEVİYESİ</div><div class="difficulty"><button id="easyDiff" onclick="selectDiff('easy')">🟢<br>KOLAY</button><button id="mediumDiff" class="active" onclick="selectDiff('medium')">🟡<br>ORTA</button><button id="hardDiff" onclick="selectDiff('hard')">🔴<br>ZOR</button></div><div class="menuTitle">MAÇTA KAÇ OYUN?</div><div class="gamesSelect"><button id="g1" class="active" onclick="selectGames(1)">1 OYUN</button><button id="g3" onclick="selectGames(3)">3 OYUN</button><button id="g5" onclick="selectGames(5)">5 OYUN</button><button id="g7" onclick="selectGames(7)">7 OYUN</button></div><button class="startBtn" onclick="startSelectedGame()">▶ OYUNA BAŞLA</button><div class="small"><button onclick="help()">❔ Nasıl Oynanır</button><button onclick="toggleSound()">🔊 Ses: <span id="snd">Açık</span></button></div></div></section>
-<section id="game" class="screen"><div class="top"><div id="trumpBox" class="trumpBox"><span id="trumpIcon" class="trumpIcon">♠</span><span><span class="trumpText">KOZ</span><br><span id="trumpName" class="trumpName">—</span></span></div><div class="pill">🪙 <span id="gcoins">1000</span></div><div class="pill" id="modeText">Eşli Batak</div><div id="scoreBoard" class="scoreBoard"><span id="scoreContent"></span><span class="round" id="roundText">1/1</span></div><div class="actions"><button class="ico" onclick="toggleSound()">🔊</button><button class="ico" onclick="toggleFullscreen()">⛶</button><button class="ico" onclick="backMenu()">⌂</button></div></div><div class="wrap"><div class="table">
-<div class="seat topSeat">👤 <b>MERT</b> <small>(EŞİN)</small></div><div class="seat leftSeat">👤 <b>EMRE</b></div><div class="seat rightSeat">👤 <b>AHMET</b></div><div class="seat bottomSeat">🧑 <b id="bottomPlayerName">SEN</b></div>
-<div id="partnerHand" class="hand partnerHand"></div><div id="played" class="played"></div><div id="userHand" class="hand userHand"></div><div id="hint" class="hint"></div>
-</div></div><div class="controls"><button id="bidBtn" class="ctrl primary" onclick="openBid()">İHALE</button><button id="trumpBtn" class="ctrl primary" style="display:none" onclick="openTrump()">KOZ SEÇ</button></div></section>
-<div id="modal"><div id="modalBox" class="modal"></div></div><div id="toast" class="toast"></div>
+
+<header>
+  <h1>🎬 Mina Video AI V4.1</h1>
+  <p>Mystery Nacht — Karakter Sistemi</p>
+</header>
+
+<div class="container">
+
+<!-- FİLM AYARLARI -->
+<div class="panel">
+<h2>🎥 Film Ayarları</h2>
+
+<div class="grid">
+
+<div>
+<label>Film Adı</label>
+<input id="filmName" value="Das Haus am Waldrand">
+</div>
+
+<div>
+<label>Dil</label>
+<select id="language">
+<option value="de-DE">Deutsch</option>
+<option value="tr-TR">Türkçe</option>
+<option value="en-US">English</option>
+</select>
+</div>
+
+<div>
+<label>Film Süresi</label>
+<select id="filmDuration">
+<option value="1">1 dakika</option>
+<option value="3">3 dakika</option>
+<option value="5" selected>5 dakika</option>
+<option value="10">10 dakika</option>
+<option value="15">15 dakika</option>
+<option value="20">20 dakika</option>
+</select>
+</div>
+
+<div>
+<label>Ortalama Sahne Süresi</label>
+<select id="sceneDuration">
+<option value="5">5 saniye</option>
+<option value="8">8 saniye</option>
+<option value="10" selected>10 saniye</option>
+<option value="15">15 saniye</option>
+<option value="20">20 saniye</option>
+</select>
+</div>
+
+</div>
+
+<button class="green" onclick="createScenes()">🎬 SAHNELERİ OLUŞTUR</button>
+</div>
+
+
+<!-- KARAKTER SİSTEMİ -->
+<div class="panel">
+
+<h2>👤 Character Bible — Karakter Sistemi</h2>
+
+<p class="small">
+Buradaki karakter bilgileri bütün sahnelerin görsel promptlarına otomatik eklenir.
+Böylece aynı karakterin görünümünü sahneler boyunca mümkün olduğunca sabit tutabiliriz.
+</p>
+
+<div id="characters"></div>
+
+<button class="blue" onclick="addCharacter()">➕ YENİ KARAKTER EKLE</button>
+
+<button onclick="generateCharacterBible()">
+📖 CHARACTER BIBLE OLUŞTUR
+</button>
+
+<div id="characterBibleBox" class="prompt-box" style="margin-top:10px">
+Henüz Character Bible oluşturulmadı.
+</div>
+
+</div>
+
+
+<!-- İSTATİSTİK -->
+<div class="panel">
+
+<h2>📊 Film Durumu</h2>
+
+<div class="stats">
+
+<div class="stat">
+<b id="statScenes">0</b>
+Sahne
+</div>
+
+<div class="stat">
+<b id="statTarget">0:00</b>
+Hedef
+</div>
+
+<div class="stat">
+<b id="statActual">0:00</b>
+Gerçek Süre
+</div>
+
+<div class="stat">
+<b id="statImages">0</b>
+Görsel
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SAHNELER -->
+<div class="panel">
+
+<h2>🎬 Sahne Listesi</h2>
+
+<div id="scenes"></div>
+
+</div>
+
+
+<!-- OYNATICI -->
+<div class="panel">
+
+<h2>▶️ Film Önizleme</h2>
+
+<canvas id="canvas" width="1280" height="720"></canvas>
+
+<div class="grid3">
+
+<button class="blue" onclick="playCurrentScene()">
+▶️ BU SAHNE
+</button>
+
+<button onclick="playFilm()">
+▶️ FİLMİ ÖNİZLE
+</button>
+
+<button class="orange" onclick="stopPlayback()">
+⏹ DURDUR
+</button>
+
+</div>
+
+</div>
+
+
+<!-- KAYDET -->
+<div class="panel">
+
+<h2>💾 Proje</h2>
+
+<div class="grid3">
+
+<button onclick="saveProject()">💾 KAYDET</button>
+
+<button onclick="loadProject()">📂 YÜKLE</button>
+
+<button class="red" onclick="resetProject()">🗑️ SIFIRLA</button>
+
+</div>
+
+</div>
+
+
+<!-- WEBM -->
+<div class="panel">
+
+<h2>🎥 WEBM Video</h2>
+
+<p class="small">
+Video oluşturma sırasında sahne süresi, yüklenen sesin gerçek süresi kullanılır.
+Altyazı sahnenin tamamında görünür.
+</p>
+
+<button class="green" onclick="renderWebM()">
+🎥 WEBM VİDEO OLUŞTUR
+</button>
+
+<div id="downloadBox" style="margin-top:12px"></div>
+
+</div>
+
+</div>
+
+
 <script>
-'use strict';
-const SUITS=['♠','♥','♦','♣'];const RANKS=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-const players=['SEN','AHMET','MERT','EMRE']; // masada saat yönü: SEN -> sağındaki AHMET -> karşısı MERT -> solu EMRE
-const pos={SEN:'bottom',AHMET:'right',MERT:'top',EMRE:'left'};
-let mode='esli',difficulty='medium',pendingMode='esli',gamesToPlay=1,gameNo=0,bidValue=0,myScore=0,oppScore=0,playerScores={SEN:0,AHMET:0,MERT:0,EMRE:0},playerBids={SEN:0,AHMET:0,MERT:0,EMRE:0},roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0},phase='menu',turnIndex=0,trump='',leadSuit='',trick=[],trickNo=0,starter='SEN',auctionTurnIndex=0,highestBid=0,highestBidder='',passedPlayers=new Set(),auctionBusy=false,playedHistory=[],seenCards=new Set(),partnerControlled=true;
-let playerName=localStorage.getItem('br_playerName')||'Zafer';let hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};let soundOn=localStorage.getItem('br_sound')!=='off';let coins=Number(localStorage.getItem('br_coins')||1000);let audioCtx=null;
-const $=id=>document.getElementById(id);
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function deck(){const d=[];for(const s of SUITS)for(const r of RANKS)d.push({s,r});return shuffle(d)}
-function rankValue(r){return RANKS.indexOf(r)+2}
-function sortHand(h){const so={'♠':0,'♥':1,'♦':2,'♣':3};return h.sort((a,b)=>so[a.s]-so[b.s]||rankValue(b.r)-rankValue(a.r))}
-function courtSVG(r,red){const a=red?'#b21f2d':'#18283e',g='#c7a24a',k='#e5b28a';return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="92" height="92" rx="5" fill="#f1eadc" stroke="${a}" stroke-width="3"/><path d="M28 28L35 15 43 25 50 12 58 25 67 15 73 28Z" fill="${g}" stroke="#76591f" stroke-width="2"/><ellipse cx="50" cy="41" rx="14" ry="15" fill="${k}" stroke="#54372b" stroke-width="2"/><path d="M36 41Q39 23 50 23Q61 23 64 41Q57 32 50 35Q43 32 36 41Z" fill="${a}"/><circle cx="45" cy="41" r="2"/><circle cx="55" cy="41" r="2"/><path d="M46 49Q50 52 54 49" fill="none" stroke="#713f37" stroke-width="1.5"/><path d="M38 57Q50 51 62 57L69 87H31Z" fill="${a}" stroke="#54372b" stroke-width="2"/><path d="M38 59L26 73 34 78 44 66M62 59L74 73 66 78 56 66" fill="${g}" stroke="#76591f" stroke-width="2"/><path d="M50 58V87" stroke="${g}" stroke-width="3"/><g transform="rotate(180 50 50)"><path d="M28 28L35 15 43 25 50 12 58 25 67 15 73 28Z" fill="${g}" stroke="#76591f" stroke-width="2"/><ellipse cx="50" cy="41" rx="14" ry="15" fill="${k}" stroke="#54372b" stroke-width="2"/><path d="M36 41Q39 23 50 23Q61 23 64 41Q57 32 50 35Q43 32 36 41Z" fill="${a}"/><path d="M38 57Q50 51 62 57L69 87H31Z" fill="${a}" stroke="#54372b" stroke-width="2"/></g></svg>`}
-function cardHTML(c){const red='♥♦'.includes(c.s);if('JQK'.includes(c.r))return `<div class="card ${red?'red':''}"><div class="rank">${c.r}<span class="suitSmall">${c.s}</span></div><div class="face">${courtSVG(c.r,red)}</div><div class="cornerBottom">${c.r}<span>${c.s}</span></div></div>`;if(c.r==='A')return `<div class="card ${red?'red':''}"><div class="rank">A<span class="suitSmall">${c.s}</span></div><div class="centerSuit">${c.s}</div><div class="cornerBottom">A<span>${c.s}</span></div></div>`;const map={2:['tl','br'],3:['tl','mid','br'],4:['tl','tr','bl','br'],5:['tl','tr','mid','bl','br'],6:['tl','tr','l2','r2','bl','br'],7:['tl','tr','l2','mid','r2','bl','br'],8:['tl','tr','l2','r2','l1','r1','bl','br'],9:['tl','tr','l1','r1','mid','l2','r2','bl','br'],10:['tl','tr','l1','r1','l2','r2','bl','br','b1','b2']};const pos={tl:'left:20%;top:15%',tr:'left:80%;top:15%',l1:'left:20%;top:31%',r1:'left:80%;top:31%',l2:'left:20%;top:50%',r2:'left:80%;top:50%',mid:'left:50%;top:50%',b1:'left:35%;top:70%',b2:'left:65%;top:70%',bl:'left:20%;top:85%',br:'left:80%;top:85%'};return `<div class="card ${red?'red':''}"><div class="rank">${c.r}<span class="suitSmall">${c.s}</span></div><div class="pips">${(map[Number(c.r)]||[]).map(x=>`<span class="pip" style="${pos[x]}">${c.s}</span>`).join('')}</div><div class="cornerBottom">${c.r}<span>${c.s}</span></div></div>`}
-function renderHands(){renderHand('userHand',hands.SEN,'SEN');renderHand('partnerHand',hands.MERT,'MERT')}
-function renderHand(id,h,actor){
-  const el=$(id); el.innerHTML='';
-  if(actor==='MERT' && mode!=='esli') return;
-  const mobile=innerWidth<=650;
-  const w=mobile?60:76, hgt=mobile?88:108, gap=mobile?-7:-6, rowGap=mobile?7:8;
-  const rows=[6,7]; let idx=0;
-  rows.forEach((count,row)=>{
-    const total=count*w+(count-1)*gap;
-    const startX=Math.max(0,(el.clientWidth-total)/2);
-    for(let col=0;col<count;col++){
-      const c=h[idx], i=idx++; if(!c) continue;
-      const wrap=document.createElement('div'); wrap.innerHTML=cardHTML(c);
-      const x=wrap.firstElementChild;
-      x.classList.add(actor==='SEN'?'userCard':'partnerCard',row===0?'upper':'lower');
-      x.style.left=(startX+col*(w+gap))+'px';
-      x.style.top=(row*(hgt+rowGap))+'px';
-      x.dataset.i=i; x.onclick=e=>{e.stopPropagation();onCardClick(actor,i)};
-      el.appendChild(x);
+
+/* =========================================================
+   MINA VIDEO AI V4.1
+   ========================================================= */
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let scenes = [];
+let characters = [];
+let currentScene = 0;
+let playing = false;
+let audioPlayer = null;
+let animationFrame = null;
+
+
+/* =========================================================
+   DEFAULT KARAKTER
+   ========================================================= */
+
+function defaultCharacters(){
+
+  characters = [
+    {
+      id:Date.now(),
+      name:"Anna",
+      age:"29",
+      gender:"Frau",
+      hair:"lange dunkelbraune Haare",
+      eyes:"grüne Augen",
+      clothing:"dunkle Jacke, schwarze Hose und braune Stiefel",
+      face:"schmales Gesicht, natürliche Gesichtszüge",
+      body:"schlanke Statur",
+      style:"realistisch, filmisch, natürliche Haut"
     }
-  });
-}
-function playerShortName(){return playerName||'Oyuncu'}
-function updateProfileUI(){
-  const name=playerShortName();
-  const first=Array.from(name.trim())[0]||'O';
-  if($('profileName'))$('profileName').textContent=name;
-  if($('profileAvatar'))$('profileAvatar').textContent=first.toUpperCase();
-  if($('bottomPlayerName'))$('bottomPlayerName').textContent=name;
-  if($('coins'))$('coins').textContent=coins;
-  if($('gcoins'))$('gcoins').textContent=coins;
-  if($('snd'))$('snd').textContent=soundOn?'Açık':'Kapalı';
-}
-function openProfile(){
-  $('modalBox').innerHTML=`<div class="mt">👤 PROFİL</div><div class="mx">Oyunda görünecek adını belirle.</div><input id="nameInput" class="nameInput" maxlength="16" minlength="3" autocomplete="off" value="${escapeHTML(playerName)}"><div style="display:flex;gap:9px;margin-top:12px"><button class="ctrl" style="flex:1" onclick="$('modal').classList.remove('show')">İPTAL</button><button class="ctrl primary" style="flex:1" onclick="saveProfile()">KAYDET</button></div>`;
-  $('modal').classList.add('show');
-  setTimeout(()=>{const i=$('nameInput');if(i){i.focus();i.select()}},50);
-}
-function escapeHTML(v){return String(v).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
-function saveProfile(){
-  const input=$('nameInput');
-  if(!input)return;
-  const name=input.value.trim().replace(/\s+/g,' ');
-  if(name.length<3){toast('İsim en az 3 karakter olmalı.');input.focus();return}
-  playerName=name.slice(0,16);
-  localStorage.setItem('br_playerName',playerName);
-  updateProfileUI();
-  $('modal').classList.remove('show');
-  toast('Profil adı kaydedildi.');
-  paper('click');
-}
-function selectMode(m){pendingMode=m;$('esliMode').classList.toggle('active',m==='esli');$('tekliMode').classList.toggle('active',m==='tekli')}
-function selectDiff(d){difficulty=d;document.querySelectorAll('.difficulty button').forEach(b=>b.classList.remove('active'));$(d==='easy'?'easyDiff':d==='medium'?'mediumDiff':'hardDiff').classList.add('active')}
-function selectGames(n){gamesToPlay=n;document.querySelectorAll('.gamesSelect button').forEach(b=>b.classList.remove('active'));$('g'+n).classList.add('active')}
-async function toggleFullscreen(){
-  try{
-    if(document.fullscreenElement){
-      await document.exitFullscreen();
-    }else{
-      const el=document.documentElement;
-      if(el.requestFullscreen) await el.requestFullscreen();
-      else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-    }
-  }catch(e){}
-}
-function startSelectedGame(){gameNo=0;myScore=0;oppScore=0;playerScores={SEN:0,AHMET:0,MERT:0,EMRE:0};playerBids={SEN:0,AHMET:0,MERT:0,EMRE:0};start(pendingMode,difficulty,true);requestFullscreen()}
-function requestFullscreen(){
-  const el=document.documentElement;
-  try{
-    if(!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen().catch(()=>{});
-    else if(!document.fullscreenElement && el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-  }catch(e){}
+  ];
+
+  renderCharacters();
 }
 
-function start(m,difficultyLevel='medium',newMatch=false){mode=m;difficulty=difficultyLevel;partnerControlled=true;if(newMatch){gameNo=0;myScore=0;oppScore=0;playerScores={SEN:0,AHMET:0,MERT:0,EMRE:0};playerBids={SEN:0,AHMET:0,MERT:0,EMRE:0}}gameNo=Math.min(gameNo+1,gamesToPlay);bidValue=0;highestBid=0;highestBidder='';passedPlayers=new Set();auctionTurnIndex=0;auctionBusy=false;roundTricks={SEN:0,AHMET:0,MERT:0,EMRE:0};$('trumpBox').classList.remove('show');phase='bid';trick=[];trickNo=0;trump='';leadSuit='';starter='SEN';turnIndex=0;$('menu').classList.remove('active');$('game').classList.add('active');$('modeText').textContent=(m==='esli'?'Eşli Batak':'Tekli Batak')+' • '+({easy:'Kolay',medium:'Orta',hard:'Zor'}[difficulty]);$('gcoins').textContent=coins;updateScoreUI();const deckCards=deck();hands={SEN:[],AHMET:[],MERT:[],EMRE:[]};playedHistory=[];seenCards=new Set();players.forEach(p=>hands[p]=sortHand(deckCards.splice(0,13)));$('partnerHand').classList.remove('show');$('bidBtn').style.display='none';$('trumpBtn').style.display='none';$('hint').textContent=m==='esli'?'Gerçek ihale başladı. Sıra SEN’de.':'Gerçek ihale başladı. Sıra SEN’de.';renderHands();toast((m==='esli'?'Eşli':'Tekli')+' Batak • Oyun '+gameNo+'/'+gamesToPlay);paper('deal');setTimeout(runAuction,450)}
-function backMenu(){phase='menu';$('game').classList.remove('active');$('menu').classList.add('active')}
-function auctionMin(){return mode==='tekli'?4:8}
-function auctionPlayer(){return players[auctionTurnIndex]}
-function openBid(){if(phase!=='bid'||auctionBusy||auctionPlayer()!=='SEN')return;const minBid=auctionMin();const low=highestBid?highestBid+1:minBid;const bids=Array.from({length:13-low+1},(_,i)=>low+i);$('modalBox').innerHTML='<div class="mt">İHALE</div><div class="mx">Sıra: <b>SEN</b><br>En yüksek ihale: <b>'+ (highestBid||'Yok') +'</b></div><div class="grid bid">'+(bids.length?bids.map(n=>`<button onclick="placeBid(${n})">${n}</button>`).join(''):'')+'<button onclick="passBid()" style="grid-column:1/-1;background:#4a2525">PAS</button></div>';$('modal').classList.add('show')}
-function placeBid(n){if(phase!=='bid'||auctionPlayer()!=='SEN'||n<=highestBid)return;highestBid=n;bidValue=n;highestBidder='SEN';playerBids.SEN=n;passedPlayers.delete('SEN');$('modal').classList.remove('show');toast(playerShortName()+' '+n+' dedi.');paper('click');advanceAuction()}
-function passBid(){if(phase!=='bid'||auctionPlayer()!=='SEN')return;passedPlayers.add('SEN');playerBids.SEN=0;$('modal').classList.remove('show');toast(playerShortName()+' pas geçti.');paper('click');advanceAuction()}
-function estimateBid(actor){const h=hands[actor];const counts={};h.forEach(c=>counts[c.s]=(counts[c.s]||0)+1);const strongest=Math.max(...Object.values(counts),0);let score=strongest*1.35;h.forEach(c=>{const v=rankValue(c.r);if(v>=14)score+=2.8;else if(v===13)score+=1.7;else if(v===12)score+=.8});let est=Math.floor((mode==='esli'?7.5:3.5)+(score/3.2));if(difficulty==='easy')est=Math.min(est,mode==='esli'?10:8);if(difficulty==='hard')est=Math.min(13,est+1);const base=mode==='tekli'?4:8;return Math.max(base,Math.min(13,est))}
-function aiAuction(actor){if(phase!=='bid'||auctionPlayer()!==actor)return;const minBid=auctionMin();const estimate=estimateBid(actor);const need=highestBid?highestBid+1:minBid;const canBid=Math.max(minBid,Math.min(13,estimate));if(canBid>=need){const n=need;highestBid=n;bidValue=n;highestBidder=actor;playerBids[actor]=n;passedPlayers.delete(actor);toast(actor+' '+n+' dedi.');paper('click')}else{passedPlayers.add(actor);playerBids[actor]=0;toast(actor+' pas geçti.');paper('click')}advanceAuction()}
-function runAuction(){if(phase!=='bid'||auctionBusy)return;const actor=auctionPlayer();$('hint').textContent='İhale sırası: '+actor+(highestBid?' • En yüksek: '+highestBid:'');if(actor==='SEN'){setTimeout(openBid,220);return}auctionBusy=true;setTimeout(()=>{auctionBusy=false;aiAuction(actor)},650)}
-function advanceAuction(){if(phase!=='bid')return;const active=players.filter(p=>!passedPlayers.has(p));if(highestBidder&&active.length<=1){finishAuction();return}if(!highestBidder&&passedPlayers.size>=3){finishAuction();return}let guard=0;do{auctionTurnIndex=(auctionTurnIndex+1)%4;guard++}while(passedPlayers.has(players[auctionTurnIndex])&&guard<5);runAuction()}
-function finishAuction(){if(!highestBidder){highestBid=auctionMin();bidValue=highestBid;highestBidder='SEN';playerBids.SEN=highestBid;toast('Herkes pas geçti. SEN zorunlu ihaleyi aldı.')}bidValue=highestBid;phase='trump';$('bidBtn').style.display='none';$('trumpBtn').style.display='none';$('hint').textContent=highestBidder==='SEN'?'İhaleyi aldın. Kozunu seç.':highestBidder+' ihaleyi '+highestBid+' ile aldı. Kozunu seçiyor…';toast(highestBidder+' ihaleyi '+highestBid+' ile aldı.');if(highestBidder==='SEN'){paper('click');setTimeout(openTrump,220)}else setTimeout(aiChooseTrump,700)}
-function winBid(n){placeBid(n)}
-function openTrump(){if(phase!=='trump')return;$('modalBox').innerHTML='<div class="mt">KOZ SEÇ</div><div class="mx">Kozu seçtiğinde oyun başlayacak.</div><div class="grid">'+SUITS.map(s=>`<button onclick="chooseTrump('${s}')">${s}</button>`).join('')+'</div>';$('modal').classList.add('show')}
-function aiChooseTrump(){if(phase!=='trump'||highestBidder==='SEN')return;const h=hands[highestBidder];const counts={};SUITS.forEach(s=>counts[s]=0);h.forEach(c=>counts[c.s]++);let best=SUITS[0];for(const s of SUITS)if(counts[s]>counts[best])best=s;chooseTrump(best)}
-function chooseTrump(s){if(phase!=='trump')return;$('modal').classList.remove('show');trump=s;phase='play';starter=highestBidder||'SEN';partnerControlled=(mode==='esli');turnIndex=players.indexOf(starter);trick=[];trickNo=0;leadSuit='';$('trumpBtn').style.display='none';$('trumpBox').classList.add('show');$('trumpIcon').textContent=s;$('trumpName').textContent=s==='♠'?'MAÇA':s==='♥'?'KUPA':s==='♦'?'KARO':'SİNEK';if(mode==='esli')$('partnerHand').classList.add('show');renderHands();updateTurnHint();toast('Koz '+s+' • Sıra '+starter+'.');paper('throw');if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'&&partnerControlled))setTimeout(()=>aiPlay(currentPlayer()),650)}
-function currentPlayer(){return players[turnIndex]}
-function updateTurnHint(){const p=currentPlayer();$('hint').textContent=mode==='esli'&&p==='MERT'&&partnerControlled?'MERT’in sırası: kartını sen seç.':p==='SEN'?'Sıra sende, '+playerShortName()+' — istediğin kartı seç.':p+' oynuyor…'}
-function onCardClick(actor,i){if(phase!=='play')return;const p=currentPlayer();if(actor!==p)return;if(actor==='SEN'||(actor==='MERT'&&mode==='esli'&&partnerControlled))playCard(actor,i)}
-function legalCards(actor){const h=hands[actor];if(!leadSuit)return h.map((_,i)=>i);const same=h.map((c,i)=>c.s===leadSuit?i:-1).filter(i=>i>=0);return same.length?same:h.map((_,i)=>i)}
-function playCard(actor,i){const h=hands[actor];if(!h[i])return;const legal=legalCards(actor);if(!legal.includes(i)){toast('Bu elde önce açılan türden kart atmalısın.');shakeHand(actor);return}const c=h.splice(i,1)[0];if(!leadSuit)leadSuit=c.s;trick.push({actor,c});playedHistory.push({actor,c,lead:leadSuit,trickNo});seenCards.add(c.s+c.r);renderHands();animatePlay(actor,c,trick.length-1);if(trick.length===4){phase='resolve';setTimeout(resolveTrick,850);return}turnIndex=(turnIndex+1)%4;updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'&&partnerControlled))setTimeout(()=>aiPlay(currentPlayer()),650)}
-function teamOf(actor){if(mode!=='esli')return actor==='SEN'?'SEN':actor;return (actor==='SEN'||actor==='MERT')?'MY':'OPP'}
-function cardBeats(a,b,lead){if(!b)return true;if(a.s===trump&&b.s!==trump)return true;if(a.s!==trump&&b.s===trump)return false;if(a.s!==b.s)return a.s===lead&&b.s!==trump;if(a.s===b.s)return rankValue(a.r)>rankValue(b.r);return false}
-function currentWinner(){let best=trick[0];for(const t of trick.slice(1))if(cardBeats(t.c,best.c,leadSuit))best=t;return best}
-function seenSuitCount(s){return playedHistory.reduce((n,x)=>n+(x.c.s===s?1:0),0)}
-function remainingSuitTotal(s){return 13-seenSuitCount(s)}
-function seenRank(s,r){return seenCards.has(s+r)}
-function highestUnseen(s){return RANKS.slice().reverse().find(r=>!seenRank(s,r))||'2'}
-function suitStrength(h,s){const cards=h.filter(c=>c.s===s);let score=cards.length*1.5;for(const c of cards){if(c.r==='A')score+=5;else if(c.r==='K')score+=3;else if(c.r==='Q')score+=1.5;else if(c.r==='J')score+=.7}return score}
-function likelyVoid(actor,s){return !hands[actor].some(c=>c.s===s)}
-function cardPower(c){let v=rankValue(c.r);if(c.r==='A')v+=12;else if(c.r==='K')v+=5;else if(c.r==='Q')v+=2;return v}
-function aiPlay(actor){
-  if(phase!=='play'||currentPlayer()!==actor)return;
-  const legal=legalCards(actor),h=hands[actor]; if(!legal.length)return;
-  if(difficulty==='easy'){playCard(actor,legal[Math.floor(Math.random()*legal.length)]);return}
-  const me=teamOf(actor), winner=trick.length?currentWinner():null;
-  const partnerWinning=winner&&winner.actor!==actor&&teamOf(winner.actor)===me;
-  const opponentWinning=winner&&winner.actor!==actor&&teamOf(winner.actor)!==me;
-  const canWin=winner?legal.filter(i=>cardBeats(h[i],winner.c,leadSuit)):[];
-  const bidderTeam=highestBidder?teamOf(highestBidder):me;
-  const contractPressure=bidderTeam===me ? Math.max(0,bidValue-(mode==='esli'?roundTricks.SEN+roundTricks.MERT:roundTricks[actor])) : 0;
-  const scored=legal.map(i=>{
-    const c=h[i],isTrump=c.s===trump,isLead=c.s===leadSuit;
-    const leftSuit=remainingSuitTotal(c.s), strength=suitStrength(h,c.s);
-    let score=0;
-    // Genel hedef: gereksiz yüksek kart yakma, ama gerektiğinde eli kazan.
-    score-=cardPower(c)*0.38;
-    if(isTrump)score+=6;
-    if(!leadSuit){
-      score+=strength*0.35;
-      if(isTrump)score+=contractPressure*0.18;
-      if(c.r==='A'&&!seenRank(c.s,'A'))score+=difficulty==='hard'?7:4;
-      if(c.r==='K'&&!seenRank(c.s,'A'))score+=difficulty==='hard'?2:0;
-      // Uzun ve güçlü rengi açmak, özellikle koz dışında, değerlidir.
-      score+=Math.min(5,leftSuit*.22);
-    }else if(partnerWinning){
-      score-=cardPower(c)*0.75;
-      if(isTrump)score-=3;
-      if(c.s===leadSuit&&c.r!=='2')score-=1;
-    }else if(opponentWinning){
-      if(canWin.includes(i)){
-        const margin=cardPower(c)-cardPower(winner.c);
-        score+=30-Math.max(0,margin)*0.55;
-        // Rakibin elini almak için mümkün olan en küçük kazanan kartı seç.
-        if(isTrump&&winner.c.s!==trump)score+=6;
-      }else score-=1;
-    }
-    // Renk bitirme bilgisi: zor seviyede rakibin o renkte kalıp kalmadığını kullan.
-    if(leadSuit && likelyVoid(winner?.actor||actor,leadSuit)) score+=1;
-    if(difficulty==='hard'){
-      if(c.r==='A'&&!seenRank(c.s,'A'))score+=3;
-      if(c.r==='K'&&!seenRank(c.s,'A')&&!seenRank(c.s,'K'))score+=2;
-      if(isTrump&&c.r==='A'&&!seenRank(c.s,'A'))score+=4;
-      if(partnerWinning&&isTrump)score-=4;
-      if(contractPressure>=3&&canWin.includes(i))score+=3;
-    }
-    return {i,score};
+
+/* =========================================================
+   KARAKTER EKLE
+   ========================================================= */
+
+function addCharacter(){
+
+  characters.push({
+    id:Date.now()+Math.random(),
+    name:"Neue Figur",
+    age:"30",
+    gender:"Person",
+    hair:"dunkle Haare",
+    eyes:"braune Augen",
+    clothing:"dunkle Kleidung",
+    face:"natürliche Gesichtszüge",
+    body:"normale Statur",
+    style:"realistisch, filmisch"
   });
-  scored.sort((a,b)=>b.score-a.score);
-  let chosen=scored[0].i;
-  if(difficulty==='medium'&&Math.random()<0.10&&scored.length>1)chosen=scored[1].i;
-  if(difficulty==='hard'&&opponentWinning&&canWin.length)chosen=canWin.slice().sort((a,b)=>cardPower(h[a])-cardPower(h[b]))[0];
-  if(difficulty==='hard'&&partnerWinning)chosen=legal.slice().sort((a,b)=>cardPower(h[a])-cardPower(h[b]))[0];
-  playCard(actor,chosen);
+
+  renderCharacters();
 }
-function animatePlay(actor,c,index){
-  const el=document.createElement('div');
-  const side={SEN:'fromBottom',MERT:'fromTop',EMRE:'fromLeft',AHMET:'fromRight'}[actor];
-  const table=$('.table'), mobile=innerWidth<=650;
-  const tw=table?table.clientWidth:innerWidth, th=table?table.clientHeight:innerHeight;
-  const cw=mobile?58:67, ch=mobile?82:95;
-  /* Kartlar artık oyuncunun önünde değil, masanın ortasına güçlü bir şekilde gelir. */
-  const gap=mobile?31:38;
-  const slots={
-    SEN:[0,gap],
-    AHMET:[gap,0],
-    MERT:[0,-gap],
-    EMRE:[-gap,0]
+
+
+/* =========================================================
+   KARAKTERLARI GÖSTER
+   ========================================================= */
+
+function renderCharacters(){
+
+  const box=document.getElementById("characters");
+
+  box.innerHTML="";
+
+  characters.forEach((c,index)=>{
+
+    const div=document.createElement("div");
+
+    div.className="character";
+
+    div.innerHTML=`
+
+      <div class="character-title">
+        <span>👤 Charakter ${index+1}</span>
+        <button class="red" style="width:auto;padding:7px 12px"
+          onclick="removeCharacter(${index})">
+          🗑️
+        </button>
+      </div>
+
+      <div class="grid">
+
+        <div>
+          <label>Name</label>
+          <input value="${esc(c.name)}"
+            onchange="updateCharacter(${index},'name',this.value)">
+        </div>
+
+        <div>
+          <label>Yaş</label>
+          <input value="${esc(c.age)}"
+            onchange="updateCharacter(${index},'age',this.value)">
+        </div>
+
+        <div>
+          <label>Cinsiyet</label>
+          <input value="${esc(c.gender)}"
+            onchange="updateCharacter(${index},'gender',this.value)">
+        </div>
+
+        <div>
+          <label>Saç</label>
+          <input value="${esc(c.hair)}"
+            onchange="updateCharacter(${index},'hair',this.value)">
+        </div>
+
+        <div>
+          <label>Göz</label>
+          <input value="${esc(c.eyes)}"
+            onchange="updateCharacter(${index},'eyes',this.value)">
+        </div>
+
+        <div>
+          <label>Kıyafet</label>
+          <input value="${esc(c.clothing)}"
+            onchange="updateCharacter(${index},'clothing',this.value)">
+        </div>
+
+        <div>
+          <label>Yüz</label>
+          <input value="${esc(c.face)}"
+            onchange="updateCharacter(${index},'face',this.value)">
+        </div>
+
+        <div>
+          <label>Vücut</label>
+          <input value="${esc(c.body)}"
+            onchange="updateCharacter(${index},'body',this.value)">
+        </div>
+
+      </div>
+
+      <label>Görsel Stil</label>
+
+      <input value="${esc(c.style)}"
+        onchange="updateCharacter(${index},'style',this.value)">
+
+    `;
+
+    box.appendChild(div);
+
+  });
+}
+
+
+function esc(value){
+
+  return String(value||"")
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+}
+
+
+function updateCharacter(index,key,value){
+
+  characters[index][key]=value;
+
+  generateCharacterBible();
+
+  updateScenePrompts();
+}
+
+
+function removeCharacter(index){
+
+  characters.splice(index,1);
+
+  renderCharacters();
+
+  generateCharacterBible();
+
+  updateScenePrompts();
+}
+
+
+/* =========================================================
+   CHARACTER BIBLE
+   ========================================================= */
+
+function generateCharacterBible(){
+
+  if(!characters.length){
+
+    document.getElementById("characterBibleBox").textContent=
+      "Karakter bulunmuyor.";
+
+    return "";
+  }
+
+  let text="CHARACTER BIBLE\n\n";
+
+  characters.forEach((c,i)=>{
+
+    text+=
+`CHARACTER ${i+1}
+Name: ${c.name}
+Age: ${c.age}
+Gender: ${c.gender}
+Hair: ${c.hair}
+Eyes: ${c.eyes}
+Clothing: ${c.clothing}
+Face: ${c.face}
+Body: ${c.body}
+Visual Style: ${c.style}
+
+`;
+
+  });
+
+  document.getElementById("characterBibleBox").textContent=text;
+
+  return text;
+}
+
+
+/* =========================================================
+   KARAKTER PROMPTU
+   ========================================================= */
+
+function getCharacterPrompt(){
+
+  if(!characters.length) return "";
+
+  let text="\n\nCHARACTER CONSISTENCY:\n";
+
+  characters.forEach(c=>{
+
+    text+=
+`${c.name}: ${c.age} years old, ${c.gender}, ${c.hair}, ${c.eyes}, ${c.clothing}, ${c.face}, ${c.body}, ${c.style}. Keep the character's face, hairstyle, eyes, clothing and physical appearance consistent across all scenes.\n`;
+
+  });
+
+  return text;
+}
+
+
+/* =========================================================
+   DEFAULT SAHNELER
+   ========================================================= */
+
+const DEFAULT_SCENES=[
+
+["Die Ankunft","Es war 23:47 Uhr. Anna stand allein vor dem alten Haus am Waldrand. Niemand wusste, dass sie hier war."],
+["Der Weg zum Haus","Der schmale Weg führte tief in den Wald. Hinter Anna wurde es immer stiller."],
+["Das alte Haus","Das Haus war größer, als Anna erwartet hatte. Die Fenster waren dunkel und leer."],
+["Das Fenster","Anna sah nach oben. Plötzlich ging im oberen Fenster ein schwaches Licht an."],
+["Niemand sollte hier sein","Anna wusste, dass das Haus seit Jahren leer stand. Trotzdem brannte dort oben ein Licht."],
+["Die Eingangstür","Langsam ging Anna zur Eingangstür. Jeder ihrer Schritte klang im stillen Wald viel zu laut."],
+["Die Türklinke","Ihre Hand zitterte, als sie die alte Türklinke berührte."],
+["Die Tür öffnet sich","Bevor Anna die Tür öffnen konnte, bewegte sie sich ganz von allein."],
+["Der Flur","Hinter der Tür lag ein langer, dunkler Flur. Irgendwo im Haus tropfte Wasser."],
+["Der erste Schritt","Anna machte einen Schritt hinein. Hinter ihr fiel die Tür langsam ins Schloss."],
+["Das Geräusch","Dann hörte sie ein Geräusch aus dem oberen Stockwerk."],
+["Die Schritte","Es waren Schritte. Langsam. Schwer. Und sie kamen näher."],
+["Die Treppe","Anna blickte zur Treppe. Niemand war zu sehen."],
+["Das obere Stockwerk","Trotz ihrer Angst ging Anna langsam die Treppe hinauf."],
+["Der lange Gang","Oben führte ein langer Gang zu mehreren verschlossenen Türen."],
+["Die erste Tür","Hinter der ersten Tür war nichts zu hören."],
+["Die zweite Tür","Hinter der zweiten Tür hörte Anna plötzlich ein leises Kratzen."],
+["Das Kratzen","Das Geräusch wurde lauter. Anna legte ihr Ohr an die Tür."],
+["Die Stimme","Dann hörte sie eine Stimme. Eine Stimme, die ihren Namen flüsterte."],
+["Anna","Anna erstarrte. Niemand außer ihr kannte ihren Namen."],
+["Die offene Tür","Plötzlich öffnete sich die Tür einen Spalt."],
+["Der leere Raum","Der Raum dahinter war leer. Nur ein alter Spiegel stand an der Wand."],
+["Der Spiegel","Anna ging näher an den Spiegel heran. Ihr eigenes Spiegelbild sah sie an."],
+["Die Bewegung","Doch dann bewegte sich etwas hinter ihrer Schulter."],
+["Der Schatten","Anna drehte sich um. Hinter ihr war niemand."],
+["Noch einmal","Sie sah wieder in den Spiegel. Jetzt stand dort eine dunkle Gestalt direkt hinter ihr."],
+["Die Gestalt","Anna konnte sich nicht bewegen. Die Gestalt im Spiegel kam näher."],
+["Das Licht","Plötzlich ging das Licht im ganzen Haus aus."],
+["Die Schritte hinter ihr","Im Dunkeln hörte Anna wieder Schritte. Dieses Mal direkt hinter ihr."],
+["Das Geheimnis","Anna drehte sich langsam um. Und in diesem Moment verstand sie, warum niemand dieses Haus betreten durfte."]
+
+];
+
+
+/* =========================================================
+   SAHNE OLUŞTUR
+   ========================================================= */
+
+function createScenes(){
+
+  const minutes=parseInt(
+    document.getElementById("filmDuration").value
+  );
+
+  const avg=parseInt(
+    document.getElementById("sceneDuration").value
+  );
+
+  const total=minutes*60;
+
+  const count=Math.ceil(total/avg);
+
+  scenes=[];
+
+  for(let i=0;i<count;i++){
+
+    const base=DEFAULT_SCENES[i%DEFAULT_SCENES.length];
+
+    scenes.push({
+
+      id:Date.now()+i,
+
+      title:base[0],
+
+      narration:base[1],
+
+      duration:avg,
+
+      audioDuration:0,
+
+      audioUrl:null,
+
+      audioName:"",
+
+      image:null,
+
+      imageName:"",
+
+      motion:"zoom",
+
+      prompt:""
+
+    });
+
+  }
+
+  updateScenePrompts();
+
+  renderScenes();
+
+  updateStats();
+
+}
+
+
+/* =========================================================
+   PROMPT GÜNCELLE
+   ========================================================= */
+
+function updateScenePrompts(){
+
+  const bible=getCharacterPrompt();
+
+  scenes.forEach((s,index)=>{
+
+    s.prompt=
+`Cinematic mystery thriller scene, scene ${index+1}.
+Location: old abandoned house near a dark forest at night.
+Scene title: ${s.title}.
+Visual situation: ${s.narration}
+Dark atmospheric lighting, realistic cinematic photography, dramatic shadows, detailed environment, film still, 16:9.${bible}`;
+
+  });
+
+  const active=document.querySelector(".scene");
+
+  if(active) renderScenes();
+
+}
+
+
+/* =========================================================
+   SAHNELERİ RENDER
+   ========================================================= */
+
+function renderScenes(){
+
+  const box=document.getElementById("scenes");
+
+  box.innerHTML="";
+
+  scenes.forEach((s,index)=>{
+
+    const div=document.createElement("div");
+
+    div.className="scene";
+
+    div.innerHTML=`
+
+      <h3>🎬 Sahne ${index+1}: ${esc(s.title)}</h3>
+
+      <div>
+        <span class="badge">
+          ⏱️ ${formatTime(s.duration)}
+        </span>
+
+        <span class="badge">
+          🎙️ ${s.audioDuration ? "Ses: "+formatTime(s.audioDuration) : "Ses yok"}
+        </span>
+
+        <span class="badge">
+          🖼️ ${s.image ? "Görsel hazır" : "Görsel yok"}
+        </span>
+      </div>
+
+      <label>Sahne Başlığı</label>
+
+      <input value="${esc(s.title)}"
+        onchange="updateScene(${index},'title',this.value)">
+
+      <label>Anlatım / Altyazı</label>
+
+      <textarea
+        onchange="updateScene(${index},'narration',this.value)"
+      >${esc(s.narration)}</textarea>
+
+      <label>🎥 Kamera Hareketi</label>
+
+      <select onchange="updateScene(${index},'motion',this.value)">
+
+        <option value="zoom" ${s.motion==="zoom"?"selected":""}>
+          🔍 Zoom
+        </option>
+
+        <option value="pan" ${s.motion==="pan"?"selected":""}>
+          ↔️ Pan
+        </option>
+
+        <option value="static" ${s.motion==="static"?"selected":""}>
+          🖼️ Sabit
+        </option>
+
+      </select>
+
+      <label>🖼️ Görsel</label>
+
+      <input type="file"
+        accept="image/*"
+        onchange="loadImage(event,${index})">
+
+      ${
+        s.image
+        ?
+        `<img src="${s.image}" alt="Sahne görseli">`
+        :
+        `<div class="prompt-box">Bu sahneye henüz görsel yüklenmedi.</div>`
+      }
+
+      <label>🔊 ElevenLabs Ses</label>
+
+      <input type="file"
+        accept="audio/*"
+        onchange="loadAudio(event,${index})">
+
+      ${
+        s.audioName
+        ?
+        `<div class="badge">🔊 ${esc(s.audioName)}</div>`
+        :
+        ""
+      }
+
+      <label>🤖 Görsel Prompt</label>
+
+      <div class="prompt-box">${esc(s.prompt)}</div>
+
+      <div class="scene-buttons">
+
+        <button class="blue"
+          onclick="playScene(${index})">
+          ▶️ Sahneyi Oynat
+        </button>
+
+        <button
+          onclick="copyPrompt(${index})">
+          📋 Prompt
+        </button>
+
+        <button class="red"
+          onclick="clearSceneMedia(${index})">
+          🗑️ Medyayı Sil
+        </button>
+
+      </div>
+
+    `;
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================================================
+   SAHNE GÜNCELLE
+   ========================================================= */
+
+function updateScene(index,key,value){
+
+  scenes[index][key]=value;
+
+  if(key==="narration" || key==="title"){
+    scenes[index].prompt=
+`Cinematic mystery thriller scene.
+Scene title: ${scenes[index].title}.
+Visual situation: ${scenes[index].narration}
+Dark atmospheric lighting, realistic cinematic photography, dramatic shadows, detailed environment, film still, 16:9.${getCharacterPrompt()}`;
+  }
+
+  renderScenes();
+
+  updateStats();
+}
+
+
+/* =========================================================
+   GÖRSEL YÜKLE
+   ========================================================= */
+
+function loadImage(event,index){
+
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+
+    const img=new Image();
+
+    img.onload=function(){
+
+      scenes[index].image=img.src;
+      scenes[index].imageName=file.name;
+
+      renderScenes();
+
+      updateStats();
+
+    };
+
+    img.src=e.target.result;
+
   };
-  const target=slots[actor]||[0,0];
-  el.className='playedCard '+side+' land'+('♥♦'.includes(c.s)?' red':'');
-  el.style.setProperty('--ox',target[0]+'px');
-  el.style.setProperty('--oy',target[1]+'px');
-  el.innerHTML=`<span class="pcRank">${c.r}</span><span class="pcSuit">${c.s}</span>`;
-  $('played').appendChild(el);
-  if(soundOn) paper('throw');
+
+  reader.readAsDataURL(file);
+
 }
-function resolveTrick(){const lead=leadSuit;let best=trick[0];for(const t of trick.slice(1)){if(t.c.s===trump&&best.c.s!==trump)best=t;else if(t.c.s===best.c.s&&rankValue(t.c.r)>rankValue(best.c.r))best=t;else if(best.c.s!==trump&&t.c.s===lead&&best.c.s===lead&&rankValue(t.c.r)>rankValue(best.c.r))best=t}const winner=best.actor;roundTricks[winner]++;toast('Eli kazanan: '+winner);collectTo(winner);trickNo++;setTimeout(()=>{trick=[];leadSuit='';phase='play';starter=winner;turnIndex=players.indexOf(winner);if(trickNo>=13){endRound();return}updateTurnHint();if(currentPlayer()!=='SEN'&&!(mode==='esli'&&currentPlayer()==='MERT'&&partnerControlled))setTimeout(()=>aiPlay(currentPlayer()),650)},850)}
-function collectTo(winner){const wx={SEN:'0px',MERT:'0px',AHMET:'300px',EMRE:'-300px'}[winner],wy={SEN:'300px',MERT:'-300px',AHMET:'0px',EMRE:'0px'}[winner];document.querySelectorAll('.playedCard').forEach(x=>{x.style.setProperty('--wx',wx);x.style.setProperty('--wy',wy);x.classList.remove('land');x.classList.add('collect')});paper('collect')}
-function calculatePlayerRoundScores(){
-  const roundScores={SEN:0,AHMET:0,MERT:0,EMRE:0};
-  players.forEach(p=>{
-    const tricks=roundTricks[p]||0;
-    const bid=playerBids[p]||0;
-    if(p===highestBidder){
-      roundScores[p]=tricks>=bid ? bid*10+(tricks-bid) : -(bid*10);
-    }else{
-      roundScores[p]=tricks*10;
+
+
+/* =========================================================
+   SES YÜKLE
+   ========================================================= */
+
+function loadAudio(event,index){
+
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  const url=URL.createObjectURL(file);
+
+  const audio=new Audio();
+
+  audio.preload="metadata";
+
+  audio.onloadedmetadata=function(){
+
+    const duration=audio.duration;
+
+    scenes[index].audioUrl=url;
+
+    scenes[index].audioName=file.name;
+
+    scenes[index].audioDuration=duration;
+
+    scenes[index].duration=duration;
+
+    renderScenes();
+
+    updateStats();
+
+  };
+
+  audio.src=url;
+
+}
+
+
+/* =========================================================
+   MEDYA SİL
+   ========================================================= */
+
+function clearSceneMedia(index){
+
+  if(scenes[index].audioUrl){
+
+    try{
+      URL.revokeObjectURL(scenes[index].audioUrl);
+    }catch(e){}
+
+  }
+
+  scenes[index].audioUrl=null;
+  scenes[index].audioName="";
+  scenes[index].audioDuration=0;
+  scenes[index].image=null;
+  scenes[index].imageName="";
+
+  renderScenes();
+
+  updateStats();
+
+}
+
+
+/* =========================================================
+   PROMPT KOPYALA
+   ========================================================= */
+
+function copyPrompt(index){
+
+  const text=scenes[index].prompt;
+
+  if(navigator.clipboard){
+
+    navigator.clipboard.writeText(text)
+      .then(()=>alert("Prompt kopyalandı."));
+
+  }else{
+
+    prompt("Prompt:",text);
+
+  }
+
+}
+
+
+/* =========================================================
+   CANVAS GÖRSEL
+   ========================================================= */
+
+function drawScene(scene,progress){
+
+  ctx.fillStyle="#020617";
+
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  if(scene.image){
+
+    const img=new Image();
+
+    img.src=scene.image;
+
+    if(img.complete){
+
+      const scale=Math.max(
+        canvas.width/img.width,
+        canvas.height/img.height
+      );
+
+      const w=img.width*scale;
+      const h=img.height*scale;
+
+      let x=(canvas.width-w)/2;
+      let y=(canvas.height-h)/2;
+
+      if(scene.motion==="zoom"){
+
+        const zoom=1+progress*0.08;
+
+        const zw=w*zoom;
+        const zh=h*zoom;
+
+        x=(canvas.width-zw)/2;
+        y=(canvas.height-zh)/2;
+
+        ctx.drawImage(img,x,y,zw,zh);
+
+      }else if(scene.motion==="pan"){
+
+        x=(canvas.width-w)/2+(progress-0.5)*120;
+
+        ctx.drawImage(img,x,y,w,h);
+
+      }else{
+
+        ctx.drawImage(img,x,y,w,h);
+
+      }
+
     }
-    playerScores[p]=(playerScores[p]||0)+roundScores[p];
+
+  }else{
+
+    const gradient=ctx.createLinearGradient(
+      0,0,0,canvas.height
+    );
+
+    gradient.addColorStop(0,"#111827");
+    gradient.addColorStop(1,"#020617");
+
+    ctx.fillStyle=gradient;
+
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#64748b";
+
+    ctx.font="32px Arial";
+
+    ctx.textAlign="center";
+
+    ctx.fillText(
+      "GÖRSEL YÜKLENMEDİ",
+      canvas.width/2,
+      canvas.height/2
+    );
+
+  }
+
+
+  /* karartma */
+
+  const overlay=ctx.createLinearGradient(
+    0,0,0,canvas.height
+  );
+
+  overlay.addColorStop(0,"rgba(0,0,0,0.15)");
+  overlay.addColorStop(0.65,"rgba(0,0,0,0.25)");
+  overlay.addColorStop(1,"rgba(0,0,0,0.72)");
+
+  ctx.fillStyle=overlay;
+
+  ctx.fillRect(
+    0,0,canvas.width,canvas.height
+  );
+
+
+  /* BAŞLIK */
+
+  ctx.fillStyle="#ffffff";
+
+  ctx.font="bold 32px Arial";
+
+  ctx.textAlign="left";
+
+  ctx.fillText(
+    scene.title,
+    55,
+    65
+  );
+
+
+  /* ALTYAZI */
+
+  if(scene.narration){
+
+    const maxWidth=1080;
+
+    const words=scene.narration.split(" ");
+
+    let lines=[];
+    let line="";
+
+    ctx.font="bold 29px Arial";
+
+    words.forEach(word=>{
+
+      const test=line
+        ? line+" "+word
+        : word;
+
+      if(ctx.measureText(test).width>maxWidth){
+
+        lines.push(line);
+
+        line=word;
+
+      }else{
+
+        line=test;
+
+      }
+
+    });
+
+    if(line)lines.push(line);
+
+    const lineHeight=38;
+
+    const boxHeight=
+      lines.length*lineHeight+35;
+
+    const boxY=
+      canvas.height-boxHeight-40;
+
+    ctx.fillStyle="rgba(0,0,0,0.72)";
+
+    ctx.fillRect(
+      40,
+      boxY,
+      canvas.width-80,
+      boxHeight
+    );
+
+    ctx.fillStyle="#ffffff";
+
+    ctx.textAlign="center";
+
+    lines.forEach((line,i)=>{
+
+      ctx.fillText(
+        line,
+        canvas.width/2,
+        boxY+35+i*lineHeight
+      );
+
+    });
+
+  }
+
+}
+
+
+/* =========================================================
+   TEK SAHNE OYNAT
+   ========================================================= */
+
+function playCurrentScene(){
+
+  playScene(currentScene);
+
+}
+
+
+function playScene(index){
+
+  stopPlayback();
+
+  currentScene=index;
+
+  const scene=scenes[index];
+
+  if(!scene)return;
+
+  playing=true;
+
+  let start=performance.now();
+
+  const duration=Math.max(
+    0.5,
+    scene.duration
+  )*1000;
+
+  if(scene.audioUrl){
+
+    audioPlayer=new Audio(scene.audioUrl);
+
+    audioPlayer.currentTime=0;
+
+    audioPlayer.play().catch(()=>{});
+
+  }
+
+  function frame(now){
+
+    if(!playing)return;
+
+    const elapsed=now-start;
+
+    const progress=Math.min(
+      1,
+      elapsed/duration
+    );
+
+    drawScene(scene,progress);
+
+    if(progress<1){
+
+      animationFrame=
+        requestAnimationFrame(frame);
+
+    }else{
+
+      stopPlayback();
+
+    }
+
+  }
+
+  animationFrame=
+    requestAnimationFrame(frame);
+
+}
+
+
+/* =========================================================
+   FİLM OYNAT
+   ========================================================= */
+
+async function playFilm(){
+
+  stopPlayback();
+
+  playing=true;
+
+  for(let i=0;i<scenes.length;i++){
+
+    if(!playing)break;
+
+    currentScene=i;
+
+    const scene=scenes[i];
+
+    await playScenePromise(scene);
+
+  }
+
+  playing=false;
+
+}
+
+
+function playScenePromise(scene){
+
+  return new Promise(resolve=>{
+
+    const start=performance.now();
+
+    const duration=
+      Math.max(0.5,scene.duration)*1000;
+
+    if(scene.audioUrl){
+
+      audioPlayer=new Audio(scene.audioUrl);
+
+      audioPlayer.currentTime=0;
+
+      audioPlayer.play().catch(()=>{});
+
+    }
+
+    function frame(now){
+
+      if(!playing){
+
+        resolve();
+
+        return;
+
+      }
+
+      const progress=
+        Math.min(1,(now-start)/duration);
+
+      drawScene(scene,progress);
+
+      if(progress>=1){
+
+        resolve();
+
+        return;
+
+      }
+
+      animationFrame=
+        requestAnimationFrame(frame);
+
+    }
+
+    animationFrame=
+      requestAnimationFrame(frame);
+
   });
-  return roundScores;
-}
-function endRound(){
-  phase='done';
-  const myTricks=mode==='esli'?roundTricks.SEN+roundTricks.MERT:roundTricks.SEN;
-  const oppTricks=13-myTricks;
-  const success=myTricks>=bidValue;
-  const earned=success?bidValue*10+(myTricks-bidValue):-(bidValue*10);
-  calculatePlayerRoundScores();
-  myScore=mode==='esli'?playerScores.SEN+playerScores.MERT:playerScores.SEN;
-  oppScore=mode==='esli'?playerScores.EMRE+playerScores.AHMET:playerScores.AHMET+playerScores.MERT+playerScores.EMRE;
-  updateScoreUI();
-  gameNo===gamesToPlay?showMatchResult(myTricks,oppTricks,success,earned):showRoundResult(myTricks,oppTricks,success,earned);
-}
-function updateScoreUI(){
-  if(!$('scoreBoard'))return;
-  $('roundText').textContent=gameNo+'/'+gamesToPlay;
-  if(mode==='tekli'){
-    $('scoreContent').innerHTML=players.map(p=>`<span>${p==='SEN'?playerShortName():p} <b>${playerScores[p]||0}</b></span>`).join('<span class="scoreSep">•</span>');
-  }else{
-    $('scoreContent').innerHTML=`<span>${playerShortName()} + MERT <b>${myScore}</b></span><span class="scoreSep">•</span><span>EMRE + AHMET <b>${oppScore}</b></span>`;
-  }
-}
-function showRoundResult(myTricks,oppTricks,success,earned){
-  const detail=mode==='tekli'
-    ?players.map(p=>`${p==='SEN'?playerShortName():p}: ${playerScores[p]||0} puan`).join('<br>')
-    :`${playerShortName()} + MERT: ${myScore} • EMRE + AHMET: ${oppScore}`;
-  $('modalBox').innerHTML=`<div class="mt">${success?'🏆 İHALE TUTTU':'💥 BATIŞ'}</div><div class="roundResult">${bidValue} istedin • ${myTricks} el aldın<br>${success?'Kazanç: +'+earned+' puan':'Ceza: '+earned+' puan'}<br><br>${detail}</div><button class="startBtn" onclick="nextRound()">▶ SONRAKİ OYUN</button>`;
-  $('modal').classList.add('show');
-}
-function nextRound(){$('modal').classList.remove('show');start(mode,difficulty,false)}
-function showMatchResult(myTricks,oppTricks,success,earned){
-  if(mode==='tekli'){
-    const ranking=players.slice().sort((a,b)=>(playerScores[b]||0)-(playerScores[a]||0));
-    const winner=ranking[0],topScore=playerScores[winner]||0;
-    const tied=players.filter(p=>(playerScores[p]||0)===topScore).length>1;
-    const rows=ranking.map((p,i)=>`<div>${i+1}. ${p==='SEN'?playerShortName():p} <b>${playerScores[p]||0}</b></div>`).join('');
-    $('modalBox').innerHTML=`<div class="mt">${tied?'🤝 BERABERE':'🏆 '+(winner==='SEN'?playerShortName():winner)+' KAZANDI'}</div><div class="finalScore">${topScore}</div><div class="roundResult">${gamesToPlay} oyun tamamlandı.<br><br>${rows}</div><button class="startBtn" onclick="newMatchFromResult()">🔄 YENİ MAÇ</button><button class="ctrl" style="margin-top:9px;width:100%" onclick="backMenu();$('modal').classList.remove('show')">⌂ ANA MENÜ</button>`;
-  }else{
-    const winner=myScore>oppScore?playerShortName()+' + MERT':myScore<oppScore?'EMRE + AHMET':'BERABERE';
-    $('modalBox').innerHTML=`<div class="mt">${winner==='BERABERE'?'🤝 BERABERE':'🏆 '+winner+' KAZANDI'}</div><div class="finalScore">${myScore} — ${oppScore}</div><div class="roundResult">${gamesToPlay} oyun tamamlandı.<br>Son oyunda ${myTricks} el aldın.</div><button class="startBtn" onclick="newMatchFromResult()">🔄 YENİ MAÇ</button><button class="ctrl" style="margin-top:9px;width:100%" onclick="backMenu();$('modal').classList.remove('show')">⌂ ANA MENÜ</button>`;
-  }
-  $('modal').classList.add('show');
-}
-function newMatchFromResult(){$('modal').classList.remove('show');gameNo=0;myScore=0;oppScore=0;playerScores={SEN:0,AHMET:0,MERT:0,EMRE:0};playerBids={SEN:0,AHMET:0,MERT:0,EMRE:0};start(mode,difficulty,true)}
 
-function shakeHand(actor){const id=actor==='SEN'?'userHand':'partnerHand';const e=$(id);e.animate([{transform:'translateX(-50%)'},{transform:'translateX(calc(-50% - 6px))'},{transform:'translateX(calc(-50% + 6px))'},{transform:'translateX(-50%)'}],{duration:260})}
-function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(window._toast);window._toast=setTimeout(()=>e.classList.remove('show'),1800)}
-updateProfileUI();
-updateScoreUI();
-function toggleSound(){soundOn=!soundOn;localStorage.setItem('br_sound',soundOn?'on':'off');$('snd').textContent=soundOn?'Açık':'Kapalı';if(soundOn)paper('click')}
-function paper(kind){
-  if(!soundOn)return;
+}
+
+
+/* =========================================================
+   DURDUR
+   ========================================================= */
+
+function stopPlayback(){
+
+  playing=false;
+
+  if(animationFrame){
+
+    cancelAnimationFrame(animationFrame);
+
+    animationFrame=null;
+
+  }
+
+  if(audioPlayer){
+
+    try{
+
+      audioPlayer.pause();
+      audioPlayer.currentTime=0;
+
+    }catch(e){}
+
+    audioPlayer=null;
+
+  }
+
+}
+
+
+/* =========================================================
+   WEBM
+   ========================================================= */
+
+async function renderWebM(){
+
+  if(!scenes.length){
+
+    alert("Önce sahneleri oluştur.");
+
+    return;
+
+  }
+
+  stopPlayback();
+
+  const stream=
+    canvas.captureStream(30);
+
+  let recorder;
+
   try{
-    audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();
-    if(audioCtx.state==='suspended')audioCtx.resume();
-    const now=audioCtx.currentTime;
-    const noise=(duration,volume,filterFreq)=>{
-      const len=Math.max(1,Math.floor(audioCtx.sampleRate*duration));
-      const buf=audioCtx.createBuffer(1,len,audioCtx.sampleRate);
-      const data=buf.getChannelData(0);
-      for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*(1-i/len);
-      const src=audioCtx.createBufferSource(),filter=audioCtx.createBiquadFilter(),gain=audioCtx.createGain();
-      src.buffer=buf;filter.type='bandpass';filter.frequency.value=filterFreq;filter.Q.value=.7;
-      gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(volume,now+.006);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
-      src.connect(filter).connect(gain).connect(audioCtx.destination);src.start(now);src.stop(now+duration+.01);
-    };
-    const thump=(freq,volume,dur)=>{
-      const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.setValueAtTime(freq,now);o.frequency.exponentialRampToValueAtTime(freq*.48,now+dur);
-      g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(volume,now+.004);g.gain.exponentialRampToValueAtTime(.0001,now+dur);
-      o.connect(g).connect(audioCtx.destination);o.start(now);o.stop(now+dur+.01);
-    };
-    if(kind==='throw'){ noise(.095,.16,1800); thump(105,.075,.075); }
-    else if(kind==='collect'){ noise(.13,.11,1350); thump(80,.045,.10); }
-    else if(kind==='deal'){ noise(.28,.12,2300); setTimeout(()=>{if(soundOn)noise(.18,.08,1900)},75); }
-    else { thump(190,.055,.07); }
-  }catch(e){}
+
+    recorder=new MediaRecorder(
+      stream,
+      {
+        mimeType:"video/webm;codecs=vp8",
+        videoBitsPerSecond:3500000
+      }
+    );
+
+  }catch(e){
+
+    recorder=new MediaRecorder(stream);
+
+  }
+
+  const chunks=[];
+
+  recorder.ondataavailable=e=>{
+
+    if(e.data.size>0)
+      chunks.push(e.data);
+
+  };
+
+  recorder.onstop=()=>{
+
+    const blob=new Blob(
+      chunks,
+      {type:"video/webm"}
+    );
+
+    const url=
+      URL.createObjectURL(blob);
+
+    document.getElementById("downloadBox").innerHTML=`
+
+      <a href="${url}"
+         download="${safeFileName(
+           document.getElementById("filmName").value
+         )}.webm"
+         style="
+         display:block;
+         padding:15px;
+         background:#166534;
+         color:white;
+         text-decoration:none;
+         border-radius:10px;
+         text-align:center;
+         font-weight:bold;
+         ">
+         ⬇️ WEBM VİDEOYU İNDİR
+      </a>
+
+    `;
+
+  };
+
+  recorder.start();
+
+  playing=true;
+
+  for(let i=0;i<scenes.length;i++){
+
+    if(!playing)break;
+
+    currentScene=i;
+
+    const scene=scenes[i];
+
+    await renderSceneForRecording(scene);
+
+  }
+
+  playing=false;
+
+  recorder.stop();
+
 }
 
-function help(){alert('Tekli: yalnızca kendi elini görürsün; diğer oyuncular gizli ellerinden otomatik oynar. Eşli: MERT tam karşındadır ve eli görünür; MERT’in sırası geldiğinde kartını sen seçersin. Kart atma sırası başlayan oyuncudan sağa doğrudur: SEN → AHMET → MERT → EMRE. El içinde açılan türe uymak zorunludur; yoksa başka kart atabilirsin. İhaleyi tutturursan 10x ihale + fazla eller kadar puan, tutturamazsan 10x ihale ceza alırsın. Maç uzunluğunu ana menüden seçebilirsin.')}
-$('snd').textContent=soundOn?'Açık':'Kapalı';$('coins').textContent=coins;
-$('modal').addEventListener('click',e=>{if(e.target.id==='modal'&&phase==='menu')$('modal').classList.remove('show')});
+
+/* =========================================================
+   WEBM SAHNE
+   ========================================================= */
+
+function renderSceneForRecording(scene){
+
+  return new Promise(resolve=>{
+
+    const start=performance.now();
+
+    const duration=
+      Math.max(0.5,scene.duration)*1000;
+
+    let audio=null;
+
+    if(scene.audioUrl){
+
+      audio=new Audio(scene.audioUrl);
+
+      audio.preload="auto";
+
+      audio.currentTime=0;
+
+      audio.play().catch(()=>{});
+
+    }
+
+    function frame(now){
+
+      if(!playing){
+
+        resolve();
+
+        return;
+
+      }
+
+      const progress=
+        Math.min(1,(now-start)/duration);
+
+      drawScene(scene,progress);
+
+      if(progress>=1){
+
+        if(audio){
+
+          try{
+            audio.pause();
+          }catch(e){}
+        }
+
+        resolve();
+
+        return;
+
+      }
+
+      requestAnimationFrame(frame);
+
+    }
+
+    requestAnimationFrame(frame);
+
+  });
+
+}
+
+
+/* =========================================================
+   İSTATİSTİK
+   ========================================================= */
+
+function updateStats(){
+
+  const target=
+    parseInt(document.getElementById("filmDuration").value)
+    *60;
+
+  const actual=
+    scenes.reduce(
+      (sum,s)=>sum+(Number(s.duration)||0),
+      0
+    );
+
+  const images=
+    scenes.filter(s=>s.image).length;
+
+  document.getElementById("statScenes")
+    .textContent=scenes.length;
+
+  document.getElementById("statTarget")
+    .textContent=formatTime(target);
+
+  document.getElementById("statActual")
+    .textContent=formatTime(actual);
+
+  document.getElementById("statImages")
+    .textContent=images;
+
+}
+
+
+function formatTime(seconds){
+
+  seconds=Math.round(seconds||0);
+
+  const m=Math.floor(seconds/60);
+
+  const s=seconds%60;
+
+  return m+":"+
+    String(s).padStart(2,"0");
+
+}
+
+
+/* =========================================================
+   DOSYA ADI
+   ========================================================= */
+
+function safeFileName(name){
+
+  return String(name||"mina-film")
+    .replace(/[\\/:*?"<>|]+/g,"_")
+    .replace(/\s+/g,"_");
+
+}
+
+
+/* =========================================================
+   KAYDET
+   ========================================================= */
+
+function saveProject(){
+
+  const data={
+
+    filmName:
+      document.getElementById("filmName").value,
+
+    language:
+      document.getElementById("language").value,
+
+    filmDuration:
+      document.getElementById("filmDuration").value,
+
+    sceneDuration:
+      document.getElementById("sceneDuration").value,
+
+    characters:characters,
+
+    scenes:scenes.map(s=>({
+
+      title:s.title,
+      narration:s.narration,
+      duration:s.duration,
+      audioDuration:s.audioDuration,
+      audioName:s.audioName,
+      image:s.image,
+      imageName:s.imageName,
+      motion:s.motion,
+      prompt:s.prompt
+
+    }))
+
+  };
+
+  try{
+
+    localStorage.setItem(
+      "minaVideoAI_V41",
+      JSON.stringify(data)
+    );
+
+    alert(
+      "Proje kaydedildi.\n\n" +
+      "Not: Büyük ses dosyaları ve görseller " +
+      "tarayıcı depolama sınırlarına takılabilir."
+    );
+
+  }catch(e){
+
+    alert(
+      "Kaydetme sınırına ulaşıldı. " +
+      "Büyük görsel/ses dosyalarını azalt."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   YÜKLE
+   ========================================================= */
+
+function loadProject(){
+
+  const raw=
+    localStorage.getItem("minaVideoAI_V41");
+
+  if(!raw){
+
+    alert("Kayıtlı proje bulunamadı.");
+
+    return;
+
+  }
+
+  try{
+
+    const data=JSON.parse(raw);
+
+    document.getElementById("filmName").value=
+      data.filmName||"";
+
+    document.getElementById("language").value=
+      data.language||"de-DE";
+
+    document.getElementById("filmDuration").value=
+      data.filmDuration||5;
+
+    document.getElementById("sceneDuration").value=
+      data.sceneDuration||10;
+
+    characters=data.characters||[];
+
+    scenes=data.scenes||[];
+
+    renderCharacters();
+
+    renderScenes();
+
+    generateCharacterBible();
+
+    updateStats();
+
+    alert("Proje yüklendi.");
+
+  }catch(e){
+
+    alert("Proje yüklenemedi.");
+
+  }
+
+}
+
+
+/* =========================================================
+   SIFIRLA
+   ========================================================= */
+
+function resetProject(){
+
+  if(!confirm(
+    "Bütün proje verileri silinsin mi?"
+  ))return;
+
+  stopPlayback();
+
+  scenes=[];
+
+  defaultCharacters();
+
+  document.getElementById("scenes").innerHTML="";
+
+  document.getElementById("characterBibleBox")
+    .textContent=
+    "Henüz Character Bible oluşturulmadı.";
+
+  updateStats();
+
+}
+
+
+/* =========================================================
+   BAŞLANGIÇ
+   ========================================================= */
+
+defaultCharacters();
+
+generateCharacterBible();
+
+createScenes();
+
 </script>
-</body></html>
+
+</body>
+</html>
