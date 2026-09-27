@@ -2,8 +2,8 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mina Video AI V36 — GeldStory Studio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mina Video AI V37 - Scene Test</title>
 
 <style>
 *{
@@ -12,33 +12,28 @@
 
 body{
     margin:0;
-    background:#080b10;
-    color:#f1f5f9;
+    background:#070b12;
+    color:#fff;
     font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
-    background:linear-gradient(135deg,#111827,#030712);
+    background:#111827;
     border-bottom:1px solid #263244;
     padding:20px;
     position:sticky;
     top:0;
-    z-index:100;
-}
-
-.header-inner{
-    max-width:1200px;
-    margin:auto;
+    z-index:10;
 }
 
 h1{
-    margin:0 0 6px;
-    font-size:28px;
+    margin:0;
+    font-size:25px;
 }
 
-.subtitle{
+.headerText{
     color:#94a3b8;
-    font-size:14px;
+    margin-top:6px;
 }
 
 .container{
@@ -47,123 +42,88 @@ h1{
     padding:20px;
 }
 
-.panel{
+.box{
     background:#111827;
     border:1px solid #263244;
-    border-radius:16px;
+    border-radius:15px;
     padding:18px;
     margin-bottom:18px;
 }
 
-label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
 textarea{
     width:100%;
-    min-height:230px;
-    resize:vertical;
-    background:#05070b;
-    color:#e5e7eb;
-    border:1px solid #334155;
-    border-radius:12px;
-    padding:14px;
-    font-size:15px;
-    line-height:1.6;
-    outline:none;
-}
-
-textarea:focus{
-    border-color:#64748b;
-}
-
-.controls{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-top:14px;
-}
-
-select,
-input{
-    width:100%;
-    background:#05070b;
+    background:#05080d;
     color:#fff;
     border:1px solid #334155;
     border-radius:10px;
-    padding:11px;
+    padding:14px;
+    font-size:15px;
+    line-height:1.5;
+    resize:vertical;
+    outline:none;
+}
+
+#story{
+    min-height:220px;
 }
 
 button{
     border:0;
-    border-radius:10px;
+    border-radius:9px;
     padding:12px 16px;
-    cursor:pointer;
-    font-weight:bold;
-    color:white;
+    margin-top:12px;
+    margin-right:8px;
     background:#2563eb;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 button:hover{
-    filter:brightness(1.12);
+    opacity:.85;
 }
 
-button.secondary{
-    background:#334155;
-}
-
-button.success{
+.green{
     background:#059669;
 }
 
-button.warning{
+.orange{
     background:#d97706;
 }
 
-button.danger{
-    background:#dc2626;
+.gray{
+    background:#475569;
 }
 
 button:disabled{
-    opacity:.45;
+    opacity:.4;
     cursor:not-allowed;
 }
 
-.main-buttons{
+.controls{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-top:15px;
+    margin-top:12px;
 }
 
-.status{
+select{
+    background:#05080d;
+    color:white;
+    border:1px solid #334155;
+    border-radius:8px;
+    padding:10px;
+}
+
+#status{
     margin-top:15px;
     padding:12px;
-    border-radius:10px;
-    background:#05070b;
+    background:#05080d;
+    border-radius:9px;
     color:#94a3b8;
-    min-height:42px;
 }
 
-.progress-wrap{
-    margin-top:12px;
-    height:10px;
-    background:#020617;
-    border-radius:20px;
-    overflow:hidden;
-    display:none;
-}
-
-.progress{
-    height:100%;
-    width:0%;
-    background:#22c55e;
-    transition:.2s;
-}
-
-.scene-grid{
+#scenes{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:18px;
@@ -171,150 +131,86 @@ button:disabled{
 
 .scene{
     background:#0b1220;
-    border:1px solid #263244;
-    border-radius:16px;
+    border:1px solid #334155;
+    border-radius:14px;
     overflow:hidden;
 }
 
-.scene-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.sceneHeader{
     padding:12px 14px;
-    background:#111827;
-    border-bottom:1px solid #263244;
-}
-
-.scene-number{
+    background:#172033;
     font-weight:bold;
+    border-bottom:1px solid #334155;
 }
 
-.scene-status{
-    font-size:12px;
-    color:#94a3b8;
-}
-
-.scene-body{
+.sceneContent{
     padding:14px;
 }
 
-.scene-image{
+.sceneImage{
     width:100%;
     aspect-ratio:16/9;
     background:#020617;
     border-radius:10px;
-    overflow:hidden;
-    margin-bottom:12px;
     display:flex;
     align-items:center;
     justify-content:center;
+    overflow:hidden;
+    margin-bottom:14px;
 }
 
-.scene-image img{
+.sceneImage img{
     width:100%;
     height:100%;
     object-fit:cover;
-    display:block;
 }
 
 .placeholder{
     color:#64748b;
     text-align:center;
-    padding:20px;
 }
 
-.scene-text{
-    width:100%;
-    min-height:130px;
-    margin-bottom:12px;
-    font-size:14px;
+.sceneLabel{
+    color:#93c5fd;
+    font-weight:bold;
+    font-size:13px;
+    margin:12px 0 6px;
 }
 
-.prompt-box{
-    position:relative;
+.sceneText{
+    min-height:120px;
 }
 
 .prompt{
-    width:100%;
-    min-height:190px;
-    background:#05070b;
-    color:#cbd5e1;
-    border:1px solid #334155;
-    border-radius:10px;
-    padding:12px;
-    resize:vertical;
+    min-height:210px;
     font-size:13px;
-    line-height:1.5;
 }
 
-.prompt-buttons{
+.sceneButtons{
     display:flex;
-    gap:8px;
-    margin-top:8px;
     flex-wrap:wrap;
 }
 
-.prompt-buttons button{
-    padding:8px 11px;
-    font-size:12px;
-}
-
-.scene-actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-top:12px;
-}
-
-.scene-actions button{
+.sceneButtons button{
     flex:1;
-    min-width:120px;
+    min-width:130px;
 }
 
 .error{
-    color:#fca5a5;
-    background:#3f0d0d;
-    border:1px solid #7f1d1d;
-    padding:10px;
-    border-radius:8px;
     margin-top:10px;
-    font-size:13px;
+    padding:10px;
+    background:#3f1010;
+    border:1px solid #7f1d1d;
+    border-radius:8px;
+    color:#fca5a5;
 }
 
-.ok{
-    color:#86efac;
-}
-
-.info{
-    color:#93c5fd;
-}
-
-.empty{
-    text-align:center;
-    padding:50px 20px;
-    color:#64748b;
-    border:1px dashed #334155;
-    border-radius:14px;
-}
-
-.small{
-    color:#64748b;
-    font-size:12px;
-    margin-top:7px;
+.success{
+    color:#86efac !important;
 }
 
 @media(max-width:800px){
-    .controls{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .scene-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:500px){
-    .controls{
+    #scenes{
         grid-template-columns:1fr;
     }
 }
@@ -324,130 +220,74 @@ button:disabled{
 <body>
 
 <header>
-<div class="header-inner">
-    <h1>🎬 Mina Video AI V36</h1>
-    <div class="subtitle">
-        GeldStory Studio — Sahne + Prompt + Görsel
+    <h1>🎬 Mina Video AI V37</h1>
+    <div class="headerText">
+        GeldStory — Sahne + Prompt + Görsel Test
     </div>
-</div>
 </header>
 
 <div class="container">
 
-<div class="panel">
+<div class="box">
 
-    <label>📖 Almanca Hikâyeni Buraya Yapıştır</label>
+    <h2>1️⃣ Hikâyeni Gir</h2>
 
-    <textarea id="story" placeholder="Örneğin:
-
-Im Jahr 1980 hatte ein junger Mann namens Thomas nur 50 Euro in seiner Tasche.
-Er arbeitete jeden Tag in einem kleinen Laden.
-Viele Menschen glaubten nicht an seine Idee.
-Doch Thomas gab nicht auf...
-"></textarea>
+    <textarea id="story"></textarea>
 
     <div class="controls">
 
-        <div>
-            <label>🎬 Sahne Sayısı</label>
+        <label>
+            Sahne:
             <select id="sceneCount">
-                <option value="6">6 Sahne</option>
-                <option value="8" selected>8 Sahne</option>
-                <option value="10">10 Sahne</option>
-                <option value="12">12 Sahne</option>
+                <option value="6">6</option>
+                <option value="8" selected>8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
             </select>
-        </div>
+        </label>
 
-        <div>
-            <label>📐 Format</label>
+        <label>
+            Format:
             <select id="format">
-                <option value="16:9">16:9 YouTube</option>
-                <option value="9:16">9:16 Shorts</option>
-                <option value="1:1">1:1 Kare</option>
+                <option value="16:9">16:9</option>
+                <option value="9:16">9:16</option>
+                <option value="1:1">1:1</option>
             </select>
-        </div>
-
-        <div>
-            <label>🎨 Görsel Stil</label>
-            <select id="style">
-                <option value="cinematic documentary" selected>
-                    Cinematic Documentary
-                </option>
-                <option value="realistic business documentary">
-                    Business Documentary
-                </option>
-                <option value="dark cinematic documentary">
-                    Dark Documentary
-                </option>
-                <option value="luxury cinematic">
-                    Luxury Cinematic
-                </option>
-            </select>
-        </div>
-
-        <div>
-            <label>🌍 Görsel Kalitesi</label>
-            <select id="quality">
-                <option value="highly detailed photorealistic" selected>
-                    Photorealistic
-                </option>
-                <option value="ultra realistic cinematic">
-                    Ultra Realistic
-                </option>
-                <option value="professional film still">
-                    Film Still
-                </option>
-            </select>
-        </div>
+        </label>
 
     </div>
 
-    <div class="main-buttons">
+    <button onclick="createScenes()">
+        🎬 2 — SAHNELERİ OLUŞTUR
+    </button>
 
-        <button id="createBtn" onclick="createScenes()">
-            🎬 SAHNELERİ OLUŞTUR
-        </button>
+    <button
+        id="allButton"
+        class="green"
+        onclick="generateAll()"
+        disabled>
+        🖼️ 3 — TÜM GÖRSELLERİ ÜRET
+    </button>
 
-        <button class="success" id="allImagesBtn"
-                onclick="generateAllImages()" disabled>
-            🖼️ TÜM GÖRSELLERİ ÜRET
-        </button>
+    <button
+        class="gray"
+        onclick="clearEverything()">
+        🗑️ TEMİZLE
+    </button>
 
-        <button class="secondary"
-                onclick="clearAll()">
-            🗑️ TEMİZLE
-        </button>
-
-    </div>
-
-    <div id="status" class="status">
-        Hazır. Önce Almanca hikâyeni yapıştır.
-    </div>
-
-    <div class="progress-wrap" id="progressWrap">
-        <div class="progress" id="progress"></div>
+    <div id="status">
+        Hazır.
     </div>
 
 </div>
 
 
-<div class="panel">
+<div class="box">
 
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
-        <div>
-            <h2 style="margin:0">🎞️ SAHNELER</h2>
-            <div class="small">
-                Her sahnenin kendi metni ve kendi görsel prompt'u vardır.
-            </div>
-        </div>
+    <h2>🎞️ SAHNELER</h2>
 
-        <div id="sceneInfo" class="small">
-            0 sahne
-        </div>
-    </div>
-
-    <div id="scenes" style="margin-top:18px;">
-        <div class="empty">
+    <div id="scenes">
+        <div class="placeholder">
             Henüz sahne oluşturulmadı.
         </div>
     </div>
@@ -459,597 +299,221 @@ Doch Thomas gab nicht auf...
 
 <script>
 
-let scenes = [];
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+var scenes = [];
 
 
-/* =========================================================
-   ELEMENTLER
-========================================================= */
+/* =====================================================
+   ÖRNEK HİKÂYE
+===================================================== */
 
-const storyEl = document.getElementById("story");
-const sceneCountEl = document.getElementById("sceneCount");
-const formatEl = document.getElementById("format");
-const styleEl = document.getElementById("style");
-const qualityEl = document.getElementById("quality");
-
-const statusEl = document.getElementById("status");
-const scenesEl = document.getElementById("scenes");
-const sceneInfoEl = document.getElementById("sceneInfo");
-
-const allImagesBtn = document.getElementById("allImagesBtn");
-
-const progressWrap = document.getElementById("progressWrap");
-const progressEl = document.getElementById("progress");
+document.getElementById("story").value =
+"Im Jahr 1985 hatte ein junger Mann namens Thomas nur wenige Euro in seiner Tasche. " +
+"Er arbeitete jeden Tag in einem kleinen Geschäft und träumte davon, eines Tages sein eigenes Unternehmen zu gründen. " +
+"Viele Menschen glaubten nicht an seine Idee. Trotzdem sparte Thomas jeden Monat einen kleinen Teil seines Gehalts. " +
+"Nach mehreren Jahren wagte er den ersten Schritt und eröffnete ein kleines Geschäft in einer unscheinbaren Straße. " +
+"Die ersten Monate waren schwierig. Es kamen nur wenige Kunden und Thomas musste jeden Tag länger arbeiten. " +
+"Doch er gab nicht auf. Er veränderte seine Strategie und hörte seinen Kunden genau zu. " +
+"Langsam wuchs das Geschäft und immer mehr Menschen wurden auf das Unternehmen aufmerksam. " +
+"Nach vielen Jahren war aus dem kleinen Geschäft ein erfolgreiches Unternehmen geworden. " +
+"Thomas hatte seinen Traum nicht aufgegeben.";
 
 
-/* =========================================================
-   DURUM
-========================================================= */
+/* =====================================================
+   STATUS
+===================================================== */
 
-function setStatus(text, type=""){
-    statusEl.innerHTML = text;
+function status(text,success){
 
-    if(type === "error"){
-        statusEl.style.color = "#fca5a5";
+    var el=document.getElementById("status");
+
+    el.innerHTML=text;
+
+    if(success){
+        el.className="success";
+    }else{
+        el.className="";
     }
-    else if(type === "success"){
-        statusEl.style.color = "#86efac";
-    }
-    else{
-        statusEl.style.color = "#94a3b8";
-    }
+
 }
 
 
-/* =========================================================
-   FORMAT
-========================================================= */
+/* =====================================================
+   CÜMLELER
+===================================================== */
 
-function getDimensions(){
+function getSentences(text){
 
-    const f = formatEl.value;
-
-    if(f === "9:16"){
-        return {
-            width:720,
-            height:1280
-        };
-    }
-
-    if(f === "1:1"){
-        return {
-            width:1024,
-            height:1024
-        };
-    }
-
-    return {
-        width:1280,
-        height:720
-    };
-}
-
-
-/* =========================================================
-   HİKÂYEYİ TEMİZLE
-========================================================= */
-
-function cleanStory(text){
-
-    return text
-        .replace(/\r/g,"")
-        .replace(/[ \t]+/g," ")
-        .replace(/\n{3,}/g,"\n\n")
+    text=text
+        .replace(/\r/g," ")
+        .replace(/\n/g," ")
+        .replace(/\s+/g," ")
         .trim();
+
+    if(!text){
+        return [];
+    }
+
+    var parts=text.match(/[^.!?]+[.!?]+|[^.!?]+$/g);
+
+    if(!parts){
+        return [text];
+    }
+
+    return parts
+        .map(function(x){
+            return x.trim();
+        })
+        .filter(function(x){
+            return x.length>0;
+        });
+
 }
 
 
-/* =========================================================
-   CÜMLELERE AYIR
-========================================================= */
+/* =====================================================
+   SAHNELERE BÖL
+===================================================== */
 
-function splitSentences(text){
+function makeParts(text,count){
 
-    return text
-        .replace(/\n+/g," ")
-        .split(/(?<=[.!?])\s+/)
-        .map(x => x.trim())
-        .filter(x => x.length > 0);
+    var sentences=getSentences(text);
 
-}
+    var result=[];
 
-
-/* =========================================================
-   KELİME PARÇALAMA
-========================================================= */
-
-function splitWords(text, count){
-
-    const words = text
-        .split(/\s+/)
-        .filter(Boolean);
-
-    const result = [];
-
-    if(words.length === 0){
+    if(sentences.length===0){
         return result;
     }
 
-    const chunkSize = Math.ceil(words.length / count);
+    var per=Math.ceil(sentences.length/count);
 
-    for(let i=0;i<count;i++){
+    for(var i=0;i<count;i++){
 
-        const part = words.slice(
-            i * chunkSize,
-            (i + 1) * chunkSize
-        );
+        var start=i*per;
 
-        if(part.length){
-            result.push(part.join(" "));
+        var end=start+per;
+
+        var piece=sentences.slice(start,end);
+
+        if(piece.length>0){
+            result.push(piece.join(" "));
         }
+
     }
 
-    return result;
-}
 
+    /*
+       Eğer cümle sayısı azsa,
+       kalan sahneleri kelimelere böl.
+    */
 
-/* =========================================================
-   SAHNELERİ DAĞIT
-========================================================= */
+    if(result.length<count){
 
-function divideStory(text,count){
+        var words=text.split(/\s+/);
 
-    const sentences = splitSentences(text);
+        var total=count;
 
-    let parts = [];
+        result=[];
 
-    if(sentences.length >= count){
+        var size=Math.ceil(words.length/total);
 
-        const base = Math.floor(sentences.length / count);
-        const extra = sentences.length % count;
+        for(var j=0;j<total;j++){
 
-        let index = 0;
-
-        for(let i=0;i<count;i++){
-
-            const take = base + (i < extra ? 1 : 0);
-
-            parts.push(
-                sentences
-                    .slice(index,index+take)
-                    .join(" ")
+            var part=words.slice(
+                j*size,
+                (j+1)*size
             );
 
-            index += take;
+            if(part.length){
+                result.push(part.join(" "));
+            }
+
         }
 
     }
+
+
+    /*
+       Her durumda istenen sahne sayısını tamamla.
+    */
+
+    while(result.length<count){
+
+        result.push(
+            result[result.length-1] || text
+        );
+
+    }
+
+    return result.slice(0,count);
+
+}
+
+
+/* =====================================================
+   PROMPT
+===================================================== */
+
+function makePrompt(sceneText,index,total){
+
+    var position="";
+
+    if(index===0){
+        position="opening scene, establishing shot";
+    }
+    else if(index===total-1){
+        position="final scene, successful and emotional conclusion";
+    }
+    else if(index<total/2){
+        position="early story development";
+    }
     else{
-
-        parts = splitWords(text,count);
-
+        position="turning point and progress";
     }
 
-    while(parts.length < count){
 
-        parts.push(
-            parts.length ?
-            parts[parts.length-1] :
-            text
-        );
+    return (
+        "Cinematic photorealistic German business documentary scene. " +
 
-    }
+        "Story moment: " +
+        sceneText +
 
-    return parts.slice(0,count);
-}
+        ". " +
 
+        "Visualize this exact story moment with realistic characters " +
+        "and believable real-world surroundings. " +
 
-/* =========================================================
-   SAHNENİN KONUSUNU ÇIKAR
-========================================================= */
+        "Consistent main character throughout the entire story. " +
 
-function detectTopic(text){
+        position + ". " +
 
-    const lower = text.toLowerCase();
+        "The character is actively doing something related to the story, " +
+        "not simply posing. " +
 
-    let topic = "successful entrepreneur";
-
-    if(
-        lower.includes("unternehmen") ||
-        lower.includes("firma") ||
-        lower.includes("geschäft") ||
-        lower.includes("startup")
-    ){
-        topic = "German entrepreneur and growing business";
-    }
-
-    if(
-        lower.includes("million") ||
-        lower.includes("milliard") ||
-        lower.includes("reich") ||
-        lower.includes("vermögen")
-    ){
-        topic = "wealth creation and entrepreneurial success";
-    }
-
-    if(
-        lower.includes("restaurant") ||
-        lower.includes("café") ||
-        lower.includes("essen")
-    ){
-        topic = "restaurant entrepreneur";
-    }
-
-    if(
-        lower.includes("technologie") ||
-        lower.includes("software") ||
-        lower.includes("computer")
-    ){
-        topic = "technology entrepreneur";
-    }
-
-    if(
-        lower.includes("sport") ||
-        lower.includes("fußball") ||
-        lower.includes("football")
-    ){
-        topic = "sports success story";
-    }
-
-    return topic;
-}
-
-
-/* =========================================================
-   SAHNE TİPİ
-========================================================= */
-
-function getSceneType(index,total){
-
-    const ratio = index / Math.max(1,total-1);
-
-    if(index === 0){
-        return {
-            name:"Opening",
-            camera:"wide cinematic establishing shot"
-        };
-    }
-
-    if(ratio < 0.25){
-        return {
-            name:"Beginning",
-            camera:"medium cinematic shot"
-        };
-    }
-
-    if(ratio < 0.55){
-        return {
-            name:"Struggle",
-            camera:"dramatic medium close-up"
-        };
-    }
-
-    if(ratio < 0.8){
-        return {
-            name:"Turning Point",
-            camera:"dynamic cinematic shot"
-        };
-    }
-
-    if(index === total-1){
-        return {
-            name:"Success",
-            camera:"epic cinematic wide shot"
-        };
-    }
-
-    return {
-        name:"Development",
-        camera:"cinematic tracking shot"
-    };
-}
-
-
-/* =========================================================
-   GÖRSEL PROMPT OLUŞTUR
-========================================================= */
-
-function createPrompt(sceneText,index,total){
-
-    const topic = detectTopic(sceneText);
-
-    const sceneType = getSceneType(index,total);
-
-    const style = styleEl.value;
-    const quality = qualityEl.value;
-
-    const location =
-        "realistic German or European urban environment";
-
-    const character =
-        "consistent main character throughout the story, natural realistic appearance";
-
-    const prompt =
-`Professional ${style} scene for a German success-story documentary.
-
-SCENE:
-${sceneText}
-
-STORY CONTEXT:
-${topic}
-
-VISUAL DESCRIPTION:
-Show the events of this scene visually and realistically. The main character should be clearly visible when appropriate. Preserve the same character appearance, age, hairstyle, clothing style and overall identity across all scenes.
-
-SETTING:
-${location}, believable real-world environment, realistic architecture and authentic details.
-
-ACTION:
-The characters are actively doing something related to the scene instead of simply posing for the camera.
-
-CAMERA:
-${sceneType.camera}, cinematic composition, natural perspective, foreground and background depth, subtle depth of field.
-
-LIGHTING:
-Natural cinematic lighting, realistic shadows, professional film lighting, believable highlights.
-
-MOOD:
-${sceneType.name}, emotionally engaging but realistic, documentary atmosphere.
-
-QUALITY:
-${quality}, highly detailed, realistic skin texture, realistic hands, realistic clothing, natural facial expressions, physically accurate environment.
-
-VISUAL STYLE:
-High-end German television documentary, cinematic film still, photorealistic, realistic colors, professional cinematography.
-
-COMPOSITION:
-Strong storytelling composition, clear focal subject, visually interesting background, no unnecessary empty space.
-
-FORMAT:
-${formatEl.value}.
-
-NEGATIVE:
-cartoon, anime, illustration, painting, 3D render, CGI look, plastic skin, blurry image, low quality, distorted face, deformed body, extra arms, extra legs, extra fingers, missing fingers, duplicate people, bad anatomy, watermark, logo, subtitles, captions, text, letters, artificial looking face.`;
-
-
-    return prompt.trim();
-}
-
-
-/* =========================================================
-   SAHNE OLUŞTUR
-========================================================= */
-
-function createScenes(){
-
-    const story = cleanStory(storyEl.value);
-
-    if(!story){
-
-        setStatus(
-            "❌ Önce hikâyeyi yaz veya yapıştır.",
-            "error"
-        );
-
-        return;
-    }
-
-    const count = Number(sceneCountEl.value);
-
-    setStatus(
-        "⏳ Hikâye sahnelere ayrılıyor ve her sahne için prompt oluşturuluyor..."
-    );
-
-    scenes = [];
-
-    const parts = divideStory(story,count);
-
-    for(let i=0;i<count;i++){
-
-        const text = parts[i] || "";
-
-        scenes.push({
-
-            id:i+1,
-
-            text:text,
-
-            prompt:createPrompt(
-                text,
-                i,
-                count
-            ),
-
-            image:null,
-
-            imageUrl:null,
-
-            loading:false,
-
-            error:null
-
-        });
-
-    }
-
-    renderScenes();
-
-    allImagesBtn.disabled = false;
-
-    setStatus(
-        `✅ ${scenes.length} sahne oluşturuldu. Her sahnenin görsel prompt'u hazır.`,
-        "success"
+        "Professional cinematic camera composition, natural perspective, " +
+        "realistic facial expression, realistic hands, realistic clothing, " +
+        "natural skin texture, realistic architecture, detailed background, " +
+        "natural cinematic lighting, realistic shadows, shallow depth of field, " +
+        "35mm documentary photography, high-end German television documentary, " +
+        "dramatic but realistic atmosphere, highly detailed, photorealistic, " +
+        "professional film still, no text, no subtitles, no watermark, " +
+        "no logo, no cartoon, no anime, no illustration, no CGI, no distorted face, " +
+        "no extra fingers, no extra limbs, no duplicate people."
     );
 
 }
 
 
-/* =========================================================
-   SAHNELERİ GÖSTER
-========================================================= */
+/* =====================================================
+   ESCAPE
+===================================================== */
 
-function renderScenes(){
+function escapeHTML(text){
 
-    sceneInfoEl.textContent =
-        scenes.length + " sahne";
-
-    if(!scenes.length){
-
-        scenesEl.innerHTML = `
-            <div class="empty">
-                Henüz sahne oluşturulmadı.
-            </div>
-        `;
-
-        return;
-    }
-
-    const html = scenes.map((scene,index)=>{
-
-        return `
-
-        <div class="scene">
-
-            <div class="scene-head">
-
-                <div class="scene-number">
-                    🎬 SAHNE ${scene.id}
-                </div>
-
-                <div class="scene-status" id="sceneStatus-${scene.id}">
-                    ${scene.image ? "✅ Görsel hazır" : "⏳ Görsel bekliyor"}
-                </div>
-
-            </div>
-
-            <div class="scene-body">
-
-                <div class="scene-image" id="imageBox-${scene.id}">
-
-                    ${
-                        scene.imageUrl
-
-                        ?
-
-                        `<img
-                            src="${scene.imageUrl}"
-                            alt="Scene ${scene.id}"
-                        >`
-
-                        :
-
-                        `<div class="placeholder">
-                            🖼️<br>
-                            Görsel henüz üretilmedi
-                        </div>`
-                    }
-
-                </div>
-
-
-                <label>
-                    📝 Sahne Metni
-                </label>
-
-                <textarea
-                    class="scene-text"
-                    id="sceneText-${scene.id}"
-                    onchange="updateSceneText(${scene.id},this.value)"
-                >${escapeHtml(scene.text)}</textarea>
-
-
-                <label>
-                    🎨 GÖRSEL PROMPT
-                </label>
-
-                <div class="prompt-box">
-
-                    <textarea
-                        class="prompt"
-                        id="prompt-${scene.id}"
-                        onchange="updatePrompt(${scene.id},this.value)"
-                    >${escapeHtml(scene.prompt)}</textarea>
-
-                    <div class="prompt-buttons">
-
-                        <button
-                            class="secondary"
-                            onclick="copyPrompt(${scene.id})">
-                            📋 Promptu Kopyala
-                        </button>
-
-                        <button
-                            class="warning"
-                            onclick="regeneratePrompt(${scene.id})">
-                            🔄 Promptu Yenile
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                ${
-                    scene.error
-                    ?
-                    `<div class="error">
-                        ❌ ${escapeHtml(scene.error)}
-                    </div>`
-                    :
-                    ""
-                }
-
-
-                <div class="scene-actions">
-
-                    <button
-                        class="success"
-                        onclick="generateImage(${scene.id})"
-                        ${scene.loading ? "disabled" : ""}>
-                        ${
-                            scene.loading
-                            ?
-                            "⏳ Üretiliyor..."
-                            :
-                            "🖼️ GÖRSEL ÜRET"
-                        }
-                    </button>
-
-                    ${
-                        scene.imageUrl
-                        ?
-                        `<button
-                            class="secondary"
-                            onclick="openImage(${scene.id})">
-                            🔍 Görseli Aç
-                        </button>`
-                        :
-                        ""
-                    }
-
-                </div>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
-
-    scenesEl.innerHTML =
-        `<div class="scene-grid">${html}</div>`;
-
-}
-
-
-/* =========================================================
-   HTML ESCAPE
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(value)
+    return String(text)
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -1059,68 +523,329 @@ function escapeHtml(value){
 }
 
 
-/* =========================================================
-   SAHNE METNİ GÜNCELLE
-========================================================= */
+/* =====================================================
+   SAHNELERİ OLUŞTUR
+===================================================== */
 
-function updateSceneText(id,value){
+function createScenes(){
 
-    const scene = scenes.find(x=>x.id===id);
+    var story=
+        document.getElementById("story").value.trim();
 
-    if(!scene) return;
+    if(!story){
 
-    scene.text = value;
+        status("❌ Hikâye boş.",false);
+
+        return;
+    }
+
+
+    var count=
+        parseInt(
+            document.getElementById("sceneCount").value,
+            10
+        );
+
+
+    status(
+        "⏳ Sahneler oluşturuluyor..."
+    );
+
+
+    var parts=
+        makeParts(
+            story,
+            count
+        );
+
+
+    scenes=[];
+
+
+    for(var i=0;i<count;i++){
+
+        scenes.push({
+
+            id:i+1,
+
+            text:parts[i] || story,
+
+            prompt:makePrompt(
+                parts[i] || story,
+                i,
+                count
+            ),
+
+            image:null,
+
+            error:""
+
+        });
+
+    }
+
+
+    renderScenes();
+
+
+    document.getElementById("allButton").disabled=false;
+
+
+    status(
+        "✅ "+scenes.length+
+        " sahne oluşturuldu. "+
+        "Her sahnenin prompt'u hazır.",
+        true
+    );
 
 }
 
 
-/* =========================================================
-   PROMPT GÜNCELLE
-========================================================= */
+/* =====================================================
+   SAHNELERİ GÖSTER
+===================================================== */
 
-function updatePrompt(id,value){
+function renderScenes(){
 
-    const scene = scenes.find(x=>x.id===id);
+    var container=
+        document.getElementById("scenes");
 
-    if(!scene) return;
 
-    scene.prompt = value;
+    if(!scenes.length){
+
+        container.innerHTML=
+            '<div class="placeholder">Henüz sahne yok.</div>';
+
+        return;
+    }
+
+
+    var html="";
+
+
+    for(var i=0;i<scenes.length;i++){
+
+        var s=scenes[i];
+
+
+        html+=
+        '<div class="scene">'+
+
+            '<div class="sceneHeader">'+
+                '🎬 SAHNE '+s.id+
+            '</div>'+
+
+            '<div class="sceneContent">'+
+
+
+                '<div class="sceneImage" id="image-'+s.id+'">'+
+
+                    (
+                        s.image
+
+                        ?
+
+                        '<img src="'+
+                        s.image+
+                        '" alt="Sahne '+s.id+'">'
+
+                        :
+
+                        '<div class="placeholder">'+
+                        '🖼️<br>Görsel henüz üretilmedi'+
+                        '</div>'
+                    )
+
+                +'</div>'+
+
+
+                '<div class="sceneLabel">'+
+                    '📝 SAHNE METNİ'+
+                '</div>'+
+
+                '<textarea '+
+                    'class="sceneText" '+
+                    'id="text-'+s.id+'" '+
+                    'onchange="changeText('+s.id+',this.value)">'+
+                    escapeHTML(s.text)+
+                '</textarea>'+
+
+
+                '<div class="sceneLabel">'+
+                    '🎨 GÖRSEL PROMPT'+
+                '</div>'+
+
+                '<textarea '+
+                    'class="prompt" '+
+                    'id="prompt-'+s.id+'" '+
+                    'onchange="changePrompt('+s.id+',this.value)">'+
+                    escapeHTML(s.prompt)+
+                '</textarea>'+
+
+
+                (
+                    s.error
+
+                    ?
+
+                    '<div class="error">'+
+                    escapeHTML(s.error)+
+                    '</div>'
+
+                    :
+
+                    ''
+                )+
+
+
+                '<div class="sceneButtons">'+
+
+                    '<button '+
+                        'class="green" '+
+                        'onclick="generateImage('+s.id+')">'+
+                        '🖼️ GÖRSEL ÜRET'+
+                    '</button>'+
+
+                    '<button '+
+                        'class="orange" '+
+                        'onclick="copyPrompt('+s.id+')">'+
+                        '📋 PROMPT KOPYALA'+
+                    '</button>'+
+
+                    '<button '+
+                        'class="gray" '+
+                        'onclick="newPrompt('+s.id+')">'+
+                        '🔄 PROMPT YENİLE'+
+                    '</button>'+
+
+                '</div>'+
+
+            '</div>'+
+
+        '</div>';
+
+    }
+
+
+    container.innerHTML=html;
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   METİN DEĞİŞTİR
+===================================================== */
+
+function changeText(id,value){
+
+    var s=findScene(id);
+
+    if(s){
+        s.text=value;
+    }
+
+}
+
+
+/* =====================================================
+   PROMPT DEĞİŞTİR
+===================================================== */
+
+function changePrompt(id,value){
+
+    var s=findScene(id);
+
+    if(s){
+        s.prompt=value;
+    }
+
+}
+
+
+/* =====================================================
+   SAHNE BUL
+===================================================== */
+
+function findScene(id){
+
+    for(var i=0;i<scenes.length;i++){
+
+        if(scenes[i].id===id){
+            return scenes[i];
+        }
+
+    }
+
+    return null;
+
+}
+
+
+/* =====================================================
+   PROMPT YENİLE
+===================================================== */
+
+function newPrompt(id){
+
+    var s=findScene(id);
+
+    if(!s){
+        return;
+    }
+
+    s.prompt=
+        makePrompt(
+            s.text,
+            id-1,
+            scenes.length
+        );
+
+    renderScenes();
+
+    status(
+        "✅ Sahne "+id+" prompt'u yenilendi.",
+        true
+    );
+
+}
+
+
+/* =====================================================
    PROMPT KOPYALA
-========================================================= */
+===================================================== */
 
-async function copyPrompt(id){
+function copyPrompt(id){
 
-    const scene = scenes.find(x=>x.id===id);
+    var s=findScene(id);
 
-    if(!scene) return;
+    if(!s){
+        return;
+    }
+
+
+    var area=
+        document.getElementById(
+            "prompt-"+id
+        );
+
+
+    area.select();
+
 
     try{
 
-        await navigator.clipboard.writeText(scene.prompt);
+        document.execCommand("copy");
 
-        setStatus(
-            `✅ Sahne ${id} prompt'u panoya kopyalandı.`,
-            "success"
+        status(
+            "✅ Sahne "+id+" prompt'u kopyalandı.",
+            true
         );
 
     }
     catch(e){
 
-        const area =
-            document.getElementById(`prompt-${id}`);
-
-        area.select();
-
-        document.execCommand("copy");
-
-        setStatus(
-            `✅ Sahne ${id} prompt'u kopyalandı.`,
-            "success"
+        status(
+            "Prompt seçildi. CTRL+C ile kopyalayabilirsin."
         );
 
     }
@@ -1128,289 +853,279 @@ async function copyPrompt(id){
 }
 
 
-/* =========================================================
-   PROMPT YENİLE
-========================================================= */
+/* =====================================================
+   GÖRSEL BOYUT
+===================================================== */
 
-function regeneratePrompt(id){
+function dimensions(){
 
-    const scene = scenes.find(x=>x.id===id);
+    var format=
+        document.getElementById("format").value;
 
-    if(!scene) return;
 
-    scene.prompt = createPrompt(
-        scene.text,
-        id-1,
-        scenes.length
-    );
+    if(format==="9:16"){
 
-    renderScenes();
+        return {
+            width:720,
+            height:1280
+        };
 
-    setStatus(
-        `✅ Sahne ${id} prompt'u yeniden oluşturuldu.`,
-        "success"
-    );
+    }
+
+
+    if(format==="1:1"){
+
+        return {
+            width:1024,
+            height:1024
+        };
+
+    }
+
+
+    return {
+        width:1280,
+        height:720
+    };
 
 }
 
 
-/* =========================================================
-   POLLINATIONS URL
-========================================================= */
+/* =====================================================
+   GÖRSEL URL
+===================================================== */
 
-function buildImageUrl(prompt,seed){
+function imageURL(prompt,seed){
 
-    const dimensions = getDimensions();
+    var d=dimensions();
 
-    const encoded =
-        encodeURIComponent(prompt);
 
     return (
         "https://image.pollinations.ai/prompt/" +
-        encoded +
-        "?width=" + dimensions.width +
-        "&height=" + dimensions.height +
-        "&seed=" + seed +
+
+        encodeURIComponent(prompt) +
+
+        "?width="+d.width+
+        "&height="+d.height+
+        "&seed="+seed+
         "&nologo=true"
     );
 
 }
 
 
-/* =========================================================
-   GÖRSELİ GERÇEKTEN YÜKLE
-========================================================= */
+/* =====================================================
+   GÖRSEL ÜRET
+===================================================== */
 
-function loadImage(url){
+function generateImage(id){
 
-    return new Promise((resolve,reject)=>{
+    var s=findScene(id);
 
-        const img = new Image();
-
-        img.onload = ()=>resolve(img);
-
-        img.onerror = ()=>{
-            reject(
-                new Error(
-                    "Görsel sunucusundan cevap alınamadı."
-                )
-            );
-        };
-
-        img.src = url;
-
-    });
-
-}
+    if(!s){
+        return;
+    }
 
 
-/* =========================================================
-   TEK SAHNE GÖRSEL
-========================================================= */
+    if(!s.prompt || s.prompt.length<20){
 
-async function generateImage(id){
-
-    const scene = scenes.find(x=>x.id===id);
-
-    if(!scene) return;
-
-    if(!scene.prompt || scene.prompt.trim().length < 50){
-
-        scene.error =
-            "Görsel prompt'u boş veya çok kısa.";
+        s.error=
+            "Prompt boş. Önce prompt oluştur.";
 
         renderScenes();
 
         return;
     }
 
-    scene.loading = true;
-    scene.error = null;
+
+    s.error="";
 
     renderScenes();
 
-    setStatus(
-        `🖼️ Sahne ${id} görseli üretiliyor...`
+
+    status(
+        "⏳ Sahne "+id+" görseli hazırlanıyor..."
     );
 
-    try{
 
-        const seed =
-            Math.floor(
-                Math.random()*999999999
-            );
-
-        const url =
-            buildImageUrl(
-                scene.prompt,
-                seed
-            );
-
-        await loadImage(url);
-
-        scene.imageUrl = url;
-
-        scene.image = true;
-
-        scene.loading = false;
-
-        setStatus(
-            `✅ Sahne ${id} görseli hazır.`,
-            "success"
+    var url=
+        imageURL(
+            s.prompt,
+            Math.floor(Math.random()*1000000000)
         );
 
-    }
-    catch(error){
 
-        scene.loading = false;
+    var img=new Image();
 
-        scene.error =
-            "Görsel üretilemedi. İnternet bağlantısını kontrol et veya tekrar dene.";
 
-        setStatus(
-            `❌ Sahne ${id} görseli üretilemedi.`,
-            "error"
+    img.onload=function(){
+
+        s.image=url;
+
+        renderScenes();
+
+        status(
+            "✅ Sahne "+id+" görseli hazır.",
+            true
         );
 
-    }
+    };
 
-    renderScenes();
+
+    img.onerror=function(){
+
+        s.error=
+            "Görsel sunucusundan görüntü alınamadı. " +
+            "İnternet bağlantısını veya görsel servisinin erişimini kontrol et.";
+
+        renderScenes();
+
+        status(
+            "❌ Sahne "+id+" görseli alınamadı.",
+            false
+        );
+
+    };
+
+
+    img.src=url;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TÜM GÖRSELLER
-========================================================= */
+===================================================== */
 
-async function generateAllImages(){
+async function generateAll(){
 
     if(!scenes.length){
 
-        setStatus(
-            "❌ Önce sahneleri oluştur.",
-            "error"
+        status(
+            "❌ Önce sahneleri oluştur."
         );
 
         return;
     }
 
-    allImagesBtn.disabled = true;
 
-    progressWrap.style.display = "block";
+    var button=
+        document.getElementById("allButton");
 
-    let completed = 0;
 
-    for(const scene of scenes){
+    button.disabled=true;
 
-        setStatus(
-            `🖼️ ${scene.id}/${scenes.length} görsel üretiliyor...`
+
+    for(var i=0;i<scenes.length;i++){
+
+        var id=scenes[i].id;
+
+
+        status(
+            "🖼️ "+id+
+            "/"+scenes.length+
+            " görsel hazırlanıyor..."
         );
 
-        await generateImage(scene.id);
 
-        completed++;
-
-        progressEl.style.width =
-            ((completed/scenes.length)*100) + "%";
-
-        await sleep(500);
+        await generateOneAndWait(id);
 
     }
 
-    allImagesBtn.disabled = false;
 
-    setStatus(
-        "🎉 Tüm sahne görsellerinin üretim işlemi tamamlandı.",
-        "success"
+    button.disabled=false;
+
+
+    status(
+        "🎉 Tüm görsel işlemleri tamamlandı.",
+        true
     );
 
 }
 
 
-/* =========================================================
-   GÖRSELİ AÇ
-========================================================= */
+/* =====================================================
+   BEKLEYEREK GÖRSEL ÜRET
+===================================================== */
 
-function openImage(id){
+function generateOneAndWait(id){
 
-    const scene =
-        scenes.find(x=>x.id===id);
+    return new Promise(function(resolve){
 
-    if(!scene || !scene.imageUrl) return;
+        var s=findScene(id);
 
-    window.open(
-        scene.imageUrl,
-        "_blank"
-    );
+        if(!s){
+
+            resolve();
+
+            return;
+        }
+
+
+        var url=
+            imageURL(
+                s.prompt,
+                Math.floor(
+                    Math.random()*1000000000
+                )
+            );
+
+
+        var img=new Image();
+
+
+        img.onload=function(){
+
+            s.image=url;
+
+            renderScenes();
+
+            resolve();
+
+        };
+
+
+        img.onerror=function(){
+
+            s.error=
+                "Bu sahnenin görseli alınamadı.";
+
+            renderScenes();
+
+            resolve();
+
+        };
+
+
+        img.src=url;
+
+    });
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TEMİZLE
-========================================================= */
+===================================================== */
 
-function clearAll(){
+function clearEverything(){
 
-    if(!confirm(
-        "Tüm sahneler ve hikâye temizlensin mi?"
-    )){
-        return;
-    }
+    scenes=[];
 
-    scenes = [];
+    document.getElementById("scenes").innerHTML=
+        '<div class="placeholder">'+
+        'Henüz sahne oluşturulmadı.'+
+        '</div>';
 
-    storyEl.value = "";
 
-    renderScenes();
+    document.getElementById("allButton").disabled=true;
 
-    allImagesBtn.disabled = true;
 
-    progressWrap.style.display = "none";
-
-    progressEl.style.width = "0%";
-
-    setStatus(
-        "Temizlendi. Yeni hikâyeyi yapıştırabilirsin."
+    status(
+        "Temizlendi. Yeni hikâye girebilirsin."
     );
 
 }
-
-
-/* =========================================================
-   SLEEP
-========================================================= */
-
-function sleep(ms){
-
-    return new Promise(
-        resolve => setTimeout(resolve,ms)
-    );
-
-}
-
-
-/* =========================================================
-   OTOMATİK TEST HİKÂYESİ
-========================================================= */
-
-storyEl.value =
-`Im Jahr 1985 hatte ein junger Mann namens Thomas nur wenige Euro in seiner Tasche. Er arbeitete jeden Tag in einem kleinen Geschäft und träumte davon, eines Tages sein eigenes Unternehmen zu gründen.
-
-Viele Menschen glaubten nicht an seine Idee. Trotzdem sparte Thomas jeden Monat einen kleinen Teil seines Gehalts und lernte nachts alles über Unternehmen und Verkauf.
-
-Nach mehreren Jahren wagte er den ersten Schritt. Er eröffnete ein kleines Geschäft in einer unscheinbaren Straße.
-
-Die ersten Monate waren schwierig. Es kamen nur wenige Kunden und Thomas musste jeden Tag länger arbeiten.
-
-Doch er gab nicht auf. Er veränderte seine Strategie, hörte seinen Kunden zu und verbesserte sein Angebot.
-
-Langsam wuchs das Geschäft. Immer mehr Menschen wurden auf das Unternehmen aufmerksam und die ersten Mitarbeiter wurden eingestellt.
-
-Nach vielen Jahren war aus dem kleinen Geschäft ein erfolgreiches Unternehmen geworden. Thomas hatte seinen Traum nicht aufgegeben und bewiesen, dass Geduld und Ausdauer einen Unterschied machen können.
-
-Heute erinnert sich Thomas noch immer an die Zeit, als er nur wenige Euro in seiner Tasche hatte.`;
 
 </script>
 
