@@ -1,67 +1,62 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mina Video AI V32 — GeldStory Studio</title>
+<title>Mina Video AI V33 - GeldStory Studio</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  background:#0b0d10;
-  color:#f1f1f1;
+  background:#090b0f;
+  color:#f4f4f4;
   font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
-  background:linear-gradient(135deg,#11151b,#1b2028);
-  border-bottom:1px solid #303640;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:99;
+  padding:14px 18px;
+  background:#11151b;
+  border-bottom:1px solid #2d333d;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.logoTitle{
-  font-size:24px;
+.title{
+  font-size:23px;
   font-weight:bold;
 }
 
-.logoSub{
-  color:#9da5b1;
+.sub{
+  color:#8e98a5;
   font-size:12px;
   margin-top:4px;
 }
 
-.gsMark{
-  width:52px;
-  height:52px;
-  border:2px solid #ddd;
+.gs{
+  width:50px;
+  height:50px;
+  border:2px solid #fff;
   border-radius:50%;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   font-weight:bold;
-  font-size:18px;
-  background:#090b0e;
 }
 
-.container{
-  max-width:1200px;
+.wrap{
+  max-width:1250px;
   margin:auto;
   padding:18px;
 }
 
 .card{
-  background:#13171d;
+  background:#12161c;
   border:1px solid #292f38;
   border-radius:14px;
   padding:16px;
@@ -69,152 +64,138 @@ header{
 }
 
 h2{
-  margin:0 0 12px;
   font-size:18px;
-}
-
-label{
-  display:block;
-  color:#aeb6c1;
-  font-size:13px;
-  margin-bottom:6px;
+  margin:0 0 13px;
 }
 
 textarea,
-input,
-select{
+select,
+input{
   width:100%;
-  background:#090b0f;
-  color:white;
+  background:#080a0e;
   border:1px solid #343b46;
+  color:#fff;
   border-radius:9px;
   padding:10px;
   outline:none;
 }
 
 textarea{
-  min-height:180px;
+  min-height:150px;
   resize:vertical;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
 }
 
 button{
   border:0;
   border-radius:9px;
   padding:11px 14px;
-  cursor:pointer;
-  background:#252c36;
-  color:white;
-  font-weight:bold;
   margin:4px;
+  background:#272e38;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 button:hover{
   filter:brightness(1.15);
 }
 
-.primary{
-  background:#e5e5e5;
-  color:#111;
-}
+.primary{background:#ddd;color:#111}
+.green{background:#187848}
+.blue{background:#315f9d}
+.orange{background:#956128}
+.red{background:#8d3030}
 
-.green{
-  background:#1d7f4e;
-}
-
-.red{
-  background:#8b3030;
-}
-
-.blue{
-  background:#315c96;
-}
-
-.orange{
-  background:#936126;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
 
 .scene{
-  border:1px solid #303742;
-  border-radius:13px;
-  padding:14px;
   margin-top:14px;
-  background:#0e1217;
+  padding:14px;
+  border-radius:13px;
+  background:#0d1116;
+  border:1px solid #303742;
 }
 
-.sceneHead{
+.sceneTop{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:10px;
 }
 
-.sceneNumber{
+.sceneTitle{
   font-weight:bold;
-  font-size:16px;
 }
 
 .status{
+  color:#8e99a7;
   font-size:12px;
-  color:#8d98a7;
 }
 
 .sceneGrid{
   display:grid;
-  grid-template-columns:280px 1fr;
+  grid-template-columns:300px 1fr;
   gap:14px;
 }
 
-.sceneImg{
+.sceneImage{
   width:100%;
   aspect-ratio:16/9;
   object-fit:cover;
-  border-radius:9px;
   background:#050608;
-  border:1px solid #303742;
+  border-radius:9px;
+  border:1px solid #333a45;
 }
 
 .prompt{
-  min-height:110px;
+  min-height:120px;
   font-size:12px;
 }
 
 .sceneControls{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
   margin-top:10px;
 }
 
 .audioBox{
-  margin-top:10px;
-  border:1px dashed #39424e;
-  border-radius:8px;
-  padding:9px;
+  margin-top:12px;
+  border:1px dashed #3b444f;
+  border-radius:9px;
+  padding:10px;
 }
 
 audio{
   width:100%;
-  margin-top:6px;
+  margin-top:7px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:6px;
+  background:#252b34;
+  font-size:11px;
+  margin-top:5px;
 }
 
 .progress{
   height:14px;
-  background:#090b0f;
-  border-radius:10px;
+  background:#07090c;
+  border-radius:20px;
   overflow:hidden;
   margin-top:10px;
 }
 
 .progressBar{
-  width:0%;
+  width:0;
   height:100%;
-  background:#ddd;
+  background:#eee;
   transition:width .2s;
 }
 
@@ -222,66 +203,58 @@ audio{
   background:#050608;
   border:1px solid #292f38;
   border-radius:9px;
-  padding:10px;
-  max-height:180px;
+  min-height:120px;
+  max-height:220px;
   overflow:auto;
-  font-size:12px;
+  padding:10px;
   white-space:pre-wrap;
   color:#b9c1cb;
+  font-size:12px;
 }
 
-.previewWrap{
+.preview{
   background:#000;
   border-radius:12px;
   overflow:hidden;
-  position:relative;
 }
 
 canvas{
   width:100%;
   display:block;
-  background:#000;
 }
 
 .download{
   display:none;
-  text-align:center;
-  padding:15px;
   margin-top:12px;
+  padding:15px;
+  text-align:center;
+  background:#187848;
   border-radius:10px;
-  background:#1d7f4e;
 }
 
 .download a{
-  color:white;
-  text-decoration:none;
+  color:#fff;
   font-weight:bold;
+  text-decoration:none;
 }
 
 .small{
-  font-size:11px;
-  color:#8f99a6;
+  color:#89939f;
+  font-size:12px;
 }
 
-.badge{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:6px;
-  background:#222933;
-  margin:2px;
-  font-size:11px;
-}
-
-@media(max-width:800px){
+@media(max-width:850px){
   .grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
   }
 
   .sceneGrid{
     grid-template-columns:1fr;
   }
+}
 
-  .sceneControls{
+@media(max-width:550px){
+  .grid{
     grid-template-columns:1fr;
   }
 }
@@ -292,203 +265,241 @@ canvas{
 
 <header>
   <div>
-    <div class="logoTitle">Mina Video AI V32</div>
-    <div class="logoSub">GeldStory Studio • Free Browser Video Creator</div>
+    <div class="title">Mina Video AI V33</div>
+    <div class="sub">GeldStory Studio • Otomatik Sahne + Ses + Görsel + Video</div>
   </div>
-
-  <div class="gsMark">GS</div>
+  <div class="gs">GS</div>
 </header>
 
-<div class="container">
+<div class="wrap">
 
-  <!-- STORY -->
-  <div class="card">
+<!-- HİKAYE -->
 
-    <h2>📝 Hikâyen</h2>
+<div class="card">
 
-    <textarea id="story"
-      placeholder="Almanca hikâyeni buraya yapıştır...
+<h2>📝 1. Hikâyeni Gir</h2>
+
+<textarea id="story"
+placeholder="Almanca hikâyeni buraya yapıştır...
 
 Örnek:
-Colonel Sanders wurde in schwierigen Zeiten geboren. Er verlor seinen Vater früh und musste schon als Kind arbeiten. Jahre später begann er ein kleines Restaurant aufzubauen..."></textarea>
+Colonel Sanders hatte kein einfaches Leben. Er verlor seinen Vater früh und musste schon als Kind arbeiten. Viele Jahre später begann er, sein eigenes Restaurant aufzubauen..."></textarea>
 
-    <div style="margin-top:12px">
+<br>
 
-      <button class="primary" onclick="splitStory()">
-        ✂️ Hikâyeyi Sahnelere Böl
-      </button>
+<button class="primary" onclick="createScenes()">
+✂️ SAHNELERİ OLUŞTUR
+</button>
 
-      <button class="blue" onclick="generateAllPrompts()">
-        🎨 Tüm Promptları Oluştur
-      </button>
+</div>
 
-      <button class="green" onclick="generateAllImages()">
-        🖼️ Tüm Görselleri Üret
-      </button>
 
-    </div>
+<!-- AYARLAR -->
 
-  </div>
+<div class="card">
 
-  <!-- SETTINGS -->
-  <div class="card">
+<h2>⚙️ 2. Video Ayarları</h2>
 
-    <h2>⚙️ Video Ayarları</h2>
+<div class="grid">
 
-    <div class="grid">
+<div>
+<label>Sahne Sayısı</label>
+<select id="sceneCount">
+<option>6</option>
+<option selected>8</option>
+<option>10</option>
+<option>12</option>
+</select>
+</div>
 
-      <div>
-        <label>Sahne Sayısı</label>
-        <select id="sceneCount">
-          <option value="6">6</option>
-          <option value="8" selected>8</option>
-          <option value="10">10</option>
-          <option value="12">12</option>
-        </select>
-      </div>
+<div>
+<label>Video Formatı</label>
+<select id="format">
+<option value="16:9">16:9 YouTube</option>
+<option value="9:16">9:16 Shorts</option>
+<option value="1:1">1:1</option>
+</select>
+</div>
 
-      <div>
-        <label>Format</label>
-        <select id="format">
-          <option value="16:9">16:9 YouTube</option>
-          <option value="9:16">9:16 Shorts</option>
-          <option value="1:1">1:1</option>
-        </select>
-      </div>
+<div>
+<label>Ses Dili</label>
+<select id="voiceLanguage">
+<option value="de-DE" selected>Deutsch</option>
+<option value="tr-TR">Türkçe</option>
+<option value="en-US">English</option>
+</select>
+</div>
 
-      <div>
-        <label>Varsayılan Sahne Süresi</label>
-        <select id="defaultDuration">
-          <option value="10">10 sn</option>
-          <option value="15">15 sn</option>
-          <option value="20" selected>20 sn</option>
-          <option value="30">30 sn</option>
-          <option value="40">40 sn</option>
-          <option value="50">50 sn</option>
-          <option value="60">60 sn</option>
-        </select>
-      </div>
+<div>
+<label>Görsel Kalitesi</label>
+<select id="quality">
+<option value="1280">HD</option>
+<option value="1600" selected>High</option>
+</select>
+</div>
 
-      <div>
-        <label>Görsel Kalitesi</label>
-        <select id="quality">
-          <option value="1280">HD 1280</option>
-          <option value="1600" selected>High 1600</option>
-        </select>
-      </div>
+</div>
 
-    </div>
+<div class="small" style="margin-top:10px">
+⚠️ Sahne süresi sabit değildir. Seslendirme tamamlandıktan sonra her sahnenin süresi otomatik olarak gerçek ses süresine ayarlanır.
+</div>
 
-  </div>
+</div>
 
-  <!-- AUDIO -->
-  <div class="card">
 
-    <h2>🎙️ Ses Sistemi</h2>
+<!-- SES SİSTEMİ -->
 
-    <p class="small">
-      Chrome güvenliği nedeniyle tarayıcı konuşmasını videoya gerçek ses olarak
-      almak için önce aşağıdaki düğmeye bas.
-    </p>
+<div class="card">
 
-    <button class="orange" onclick="prepareAudioCapture()">
-      🎙️ Ses Sistemini Hazırla
-    </button>
+<h2>🎙️ 3. Ses Sistemi</h2>
 
-    <button class="red" onclick="stopAudioCapture()">
-      ⛔ Ses Sistemini Durdur
-    </button>
+<div class="small">
+Chrome'da konuşma sesini videoya alabilmek için önce bir kez
+<strong>Ses Sistemini Hazırla</strong> düğmesine bas.
+Açılan paylaşım penceresinde bu sekmeyi seç ve <strong>Sekme sesi</strong> seçeneğini aç.
+</div>
 
-    <div id="audioStatus" class="badge">
-      Ses sistemi hazırlanmadı
-    </div>
+<br>
 
-  </div>
+<button class="orange" onclick="prepareAudio()">
+🎙️ SES SİSTEMİNİ HAZIRLA
+</button>
 
-  <!-- LOGO -->
-  <div class="card">
+<button class="red" onclick="stopAudio()">
+⛔ SES SİSTEMİNİ DURDUR
+</button>
 
-    <h2>🎨 GeldStory Video Amblemi</h2>
+<div id="audioState" class="badge">
+Ses sistemi hazır değil
+</div>
 
-    <input id="logoFile"
-      type="file"
-      accept="image/png,image/jpeg,image/webp,image/svg+xml"
-      onchange="loadLogo(event)">
+<br>
 
-    <div style="margin-top:8px">
+<button class="green" onclick="speakAllScenes()">
+🎙️ TÜM SAHNELERİ SESLENDİR
+</button>
 
-      <label>Logo Boyutu</label>
-      <input id="logoSize"
-        type="range"
-        min="8"
-        max="30"
-        value="16">
+<div id="voiceProgress" class="status">
+Henüz seslendirme başlamadı.
+</div>
 
-      <label>Logo Opaklığı</label>
-      <input id="logoOpacity"
-        type="range"
-        min="20"
-        max="100"
-        value="90">
+</div>
 
-    </div>
 
-    <div id="logoStatus" class="small">
-      Varsayılan GS amblemi kullanılacak.
-    </div>
+<!-- GÖRSEL -->
 
-  </div>
+<div class="card">
 
-  <!-- SCENES -->
-  <div class="card">
+<h2>🖼️ 4. Görseller</h2>
 
-    <h2>🎬 Sahneler</h2>
+<div class="small">
+Her sahne için otomatik olarak ayrı, ayrıntılı sinematik görsel promptu oluşturulur.
+</div>
 
-    <div id="scenes"></div>
+<br>
 
-  </div>
+<button class="blue" onclick="generateAllPrompts()">
+🎨 TÜM PROMPTLARI OLUŞTUR
+</button>
 
-  <!-- PREVIEW -->
-  <div class="card">
+<button class="green" onclick="generateAllImages()">
+🖼️ TÜM GÖRSELLERİ ÜRET
+</button>
 
-    <h2>▶️ Video Önizleme</h2>
+</div>
 
-    <div class="previewWrap">
-      <canvas id="canvas" width="1280" height="720"></canvas>
-    </div>
 
-    <div style="margin-top:10px">
+<!-- LOGO -->
 
-      <button class="blue" onclick="previewVideo()">
-        ▶️ Önizlemeyi Başlat
-      </button>
+<div class="card">
 
-      <button class="green" onclick="renderVideo()">
-        🎬 WEBM VİDEO OLUŞTUR
-      </button>
+<h2>🎨 GeldStory Amblemi</h2>
 
-    </div>
+<input
+id="logoInput"
+type="file"
+accept="image/png,image/jpeg,image/webp,image/svg+xml"
+onchange="loadLogo(event)"
+>
 
-    <div class="progress">
-      <div id="progressBar" class="progressBar"></div>
-    </div>
+<br><br>
 
-    <div id="renderStatus" class="status" style="margin-top:8px">
-      Hazır.
-    </div>
+<div class="grid">
 
-    <div id="downloadBox" class="download"></div>
+<div>
+<label>Logo Boyutu</label>
+<input id="logoSize" type="range" min="8" max="30" value="16">
+</div>
 
-  </div>
+<div>
+<label>Logo Opaklığı</label>
+<input id="logoOpacity" type="range" min="20" max="100" value="90">
+</div>
 
-  <!-- LOG -->
-  <div class="card">
+</div>
 
-    <h2>📋 Sistem Günlüğü</h2>
+<div id="logoState" class="small">
+Varsayılan GS logosu kullanılacak.
+</div>
 
-    <div id="log" class="log"></div>
+</div>
 
-  </div>
+
+<!-- SAHNELER -->
+
+<div class="card">
+
+<h2>🎬 5. Sahneler</h2>
+
+<div id="scenes">
+Henüz sahne oluşturulmadı.
+</div>
+
+</div>
+
+
+<!-- ÖNİZLEME -->
+
+<div class="card">
+
+<h2>▶️ 6. Önizleme ve Video</h2>
+
+<div class="preview">
+<canvas id="canvas"></canvas>
+</div>
+
+<br>
+
+<button class="blue" onclick="previewVideo()">
+▶️ ÖNİZLEME
+</button>
+
+<button class="green" onclick="renderVideo()">
+🎬 VİDEO OLUŞTUR
+</button>
+
+<div class="progress">
+<div id="progressBar" class="progressBar"></div>
+</div>
+
+<div id="renderState" class="status">
+Hazır.
+</div>
+
+<div id="download" class="download"></div>
+
+</div>
+
+
+<!-- LOG -->
+
+<div class="card">
+
+<h2>📋 Sistem Günlüğü</h2>
+
+<div id="log" class="log"></div>
+
+</div>
 
 </div>
 
@@ -499,524 +510,387 @@ Colonel Sanders wurde in schwierigen Zeiten geboren. Er verlor seinen Vater frü
    GLOBAL
 ========================================================= */
 
-const scenes = [];
+const scenes=[];
 
-let logoImage = null;
+let audioStream=null;
 
-let audioCaptureStream = null;
+let audioReady=false;
 
-let audioCaptureReady = false;
+let logoImage=null;
 
-let previewTimer = null;
+const canvas=document.getElementById("canvas");
 
-const canvas = document.getElementById("canvas");
-
-const ctx = canvas.getContext("2d");
+const ctx=canvas.getContext("2d");
 
 
 /* =========================================================
    LOG
 ========================================================= */
 
-function log(message){
+function log(t){
 
-  const box = document.getElementById("log");
+const box=document.getElementById("log");
 
-  const time = new Date().toLocaleTimeString();
+box.textContent+="["+new Date().toLocaleTimeString()+"] "+t+"\n";
 
-  box.textContent += "[" + time + "] " + message + "\\n";
-
-  box.scrollTop = box.scrollHeight;
+box.scrollTop=box.scrollHeight;
 
 }
 
 
 /* =========================================================
-   FORMAT
+   HELPERS
 ========================================================= */
 
-function setCanvasFormat(){
-
-  const format = document.getElementById("format").value;
-
-  if(format === "16:9"){
-    canvas.width = 1280;
-    canvas.height = 720;
-  }
-
-  if(format === "9:16"){
-    canvas.width = 720;
-    canvas.height = 1280;
-  }
-
-  if(format === "1:1"){
-    canvas.width = 900;
-    canvas.height = 900;
-  }
+function sleep(ms){
+return new Promise(r=>setTimeout(r,ms));
 }
 
+function nextFrame(){
+return new Promise(r=>requestAnimationFrame(r));
+}
 
-/* =========================================================
-   STORY SPLIT
-========================================================= */
+function esc(s){
 
-function splitStory(){
-
-  const story = document.getElementById("story").value.trim();
-
-  if(!story){
-    alert("Önce hikâyeyi yaz.");
-    return;
-  }
-
-  const count = Number(
-    document.getElementById("sceneCount").value
-  );
-
-  const duration = Number(
-    document.getElementById("defaultDuration").value
-  );
-
-  const paragraphs = story
-    .split(/\n+/)
-    .map(x => x.trim())
-    .filter(Boolean);
-
-  let pieces = [];
-
-  if(paragraphs.length >= count){
-
-    pieces = paragraphs.slice(0,count);
-
-    if(paragraphs.length > count){
-
-      const rest = paragraphs.slice(count);
-
-      const extra = Math.ceil(rest.length / count);
-
-      for(let i=0;i<count;i++){
-
-        if(rest[i]){
-          pieces[i] += " " + rest[i];
-        }
-
-      }
-
-    }
-
-  }else{
-
-    const sentences = story
-      .split(/(?<=[.!?])\s+/)
-      .filter(Boolean);
-
-    for(let i=0;i<count;i++){
-
-      const start = Math.floor(
-        i * sentences.length / count
-      );
-
-      const end = Math.floor(
-        (i+1) * sentences.length / count
-      );
-
-      pieces.push(
-        sentences.slice(start,end).join(" ")
-      );
-
-    }
-
-  }
-
-  scenes.length = 0;
-
-  pieces.forEach((text,index)=>{
-
-    scenes.push({
-      id:index+1,
-      text:text || "Diese Szene erzählt die Geschichte weiter.",
-      prompt:"",
-      image:null,
-      imageURL:"",
-      duration:duration,
-      motion:["zoomIn","zoomOut","panLeft","panRight","static"][index%5],
-      audioBlob:null,
-      audioURL:"",
-      audioDuration:0,
-      status:"Hazır"
-    });
-
-  });
-
-  setCanvasFormat();
-
-  renderSceneCards();
-
-  log("Hikâye " + scenes.length + " sahneye bölündü.");
-
-  generateAllPrompts();
+return String(s||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;");
 
 }
 
 
 /* =========================================================
-   PROMPT GENERATOR
+   CANVAS
 ========================================================= */
 
-function extractKeywords(text){
+function setCanvas(){
 
-  const stop = new Set([
-    "und","oder","der","die","das","den","dem","ein","eine",
-    "einer","einem","einen","ist","war","waren","wurde",
-    "werden","mit","von","für","auf","aus","als","auch",
-    "sich","nicht","aber","dass","wie","sein","seine",
-    "seinen","hat","haben","hatte","ihre","seiner",
-    "the","and","was","were","with","from","this","that",
-    "to","of","in","on","a","an","is","are","it"
-  ]);
+const f=document.getElementById("format").value;
 
-  return text
-    .replace(/[.,!?;:()[\]"']/g," ")
-    .split(/\s+/)
-    .filter(x => x.length > 3)
-    .filter(x => !stop.has(x.toLowerCase()))
-    .slice(0,12)
-    .join(", ");
+if(f==="16:9"){
+canvas.width=1280;
+canvas.height=720;
+}
+
+if(f==="9:16"){
+canvas.width=720;
+canvas.height=1280;
+}
+
+if(f==="1:1"){
+canvas.width=900;
+canvas.height=900;
+}
+
 }
 
 
-function detectEra(text){
+/* =========================================================
+   STORY
+========================================================= */
 
-  const t = text.toLowerCase();
+function createScenes(){
 
-  if(/1940|1950|1960|1970|1980/.test(t))
-    return "mid 20th century";
+const story=document.getElementById("story").value.trim();
 
-  if(/1900|1910|1920|1930/.test(t))
-    return "early 20th century";
+if(!story){
+alert("Önce hikâyeyi yaz.");
+return;
+}
 
-  if(/2000|2010|2020|heute|heutzutage/.test(t))
-    return "modern day";
+const count=Number(document.getElementById("sceneCount").value);
 
-  return "timeless realistic contemporary period";
+let sentences=story
+.split(/(?<=[.!?])\s+/)
+.map(x=>x.trim())
+.filter(Boolean);
+
+if(sentences.length<2){
+
+sentences=story
+.split(/\n+/)
+.map(x=>x.trim())
+.filter(Boolean);
+
+}
+
+scenes.length=0;
+
+for(let i=0;i<count;i++){
+
+const start=Math.floor(i*sentences.length/count);
+
+const end=Math.max(
+start+1,
+Math.floor((i+1)*sentences.length/count)
+);
+
+let text=sentences.slice(start,end).join(" ");
+
+if(!text){
+
+text=sentences[sentences.length-1]||story;
+
+}
+
+scenes.push({
+
+id:i+1,
+
+text:text,
+
+prompt:"",
+
+image:null,
+
+imageURL:"",
+
+audioBlob:null,
+
+audioURL:"",
+
+audioDuration:0,
+
+duration:0,
+
+motion:["zoomIn","zoomOut","panLeft","panRight","static"][i%5],
+
+status:"Hazır"
+
+});
+
+}
+
+setCanvas();
+
+generateAllPrompts();
+
+renderScenes();
+
+log("✓ "+scenes.length+" sahne oluşturuldu.");
+
 }
 
 
-function detectLocation(text){
-
-  const locations = [
-    "Deutschland",
-    "Berlin",
-    "Hamburg",
-    "München",
-    "Amerika",
-    "USA",
-    "New York",
-    "Kentucky",
-    "London",
-    "Paris",
-    "Japan",
-    "China",
-    "Türkei",
-    "Mersin"
-  ];
-
-  for(const location of locations){
-
-    if(text.toLowerCase().includes(location.toLowerCase())){
-      return location;
-    }
-
-  }
-
-  return "a realistic European or American city";
-}
-
+/* =========================================================
+   PROMPT
+========================================================= */
 
 function buildPrompt(scene,index){
 
-  const keywords = extractKeywords(scene.text);
+const text=scene.text;
 
-  const era = detectEra(scene.text);
+let era="modern realistic period";
 
-  const location = detectLocation(scene.text);
+if(/1940|1950|1960|1970/.test(text))
+era="mid 20th century";
 
-  return `
-Cinematic photorealistic documentary scene for a German business success story,
-${era},
-location: ${location},
-subject and action based directly on this scene:
-"${scene.text}",
-important visual keywords:
-${keywords},
+if(/1900|1910|1920|1930/.test(text))
+era="early 20th century";
 
-realistic human characters,
-consistent character appearance,
-authentic clothing for the period,
-natural facial expressions,
-realistic environment,
-subtle emotional storytelling,
-professional documentary photography,
-cinematic composition,
-dramatic but realistic lighting,
-natural shadows,
-high detail,
-photorealistic skin,
-realistic architecture,
-realistic objects,
-shallow depth of field,
-35mm cinematic photography,
-premium documentary look,
-no illustration,
-no cartoon,
-no anime,
-no text,
-no captions,
-no watermark,
-no logo,
-16:9 composition
-`.replace(/\s+/g," ").trim();
+if(/2000|2010|2020|heute|heutzutage/i.test(text))
+era="modern day";
+
+return (
+
+"Cinematic photorealistic documentary scene, "+
+era+", based directly on this story moment: "+
+text+
+", realistic people, realistic facial expressions, "+
+"authentic clothing and environment, "+
+"professional business documentary photography, "+
+"dramatic natural cinematic lighting, "+
+"realistic shadows, realistic architecture, "+
+"high detail, photorealistic skin, "+
+"35mm film look, shallow depth of field, "+
+"strong storytelling composition, "+
+"premium German documentary visual style, "+
+"no cartoon, no anime, no illustration, "+
+"no text, no letters, no logo, no watermark"
+
+);
 
 }
 
 
 function generateAllPrompts(){
 
-  if(!scenes.length){
-    log("Önce hikâyeyi sahnelere böl.");
-    return;
-  }
+if(!scenes.length){
+alert("Önce sahneleri oluştur.");
+return;
+}
 
-  scenes.forEach((scene,index)=>{
+scenes.forEach((s,i)=>{
+s.prompt=buildPrompt(s,i);
+});
 
-    scene.prompt = buildPrompt(scene,index);
+renderScenes();
 
-  });
-
-  renderSceneCards();
-
-  log("✓ " + scenes.length + " sahne için otomatik görsel promptları oluşturuldu.");
+log("✓ "+scenes.length+" ayrı görsel promptu oluşturuldu.");
 
 }
 
 
 /* =========================================================
-   SCENE CARDS
+   RENDER SCENE CARDS
 ========================================================= */
 
-function renderSceneCards(){
+function renderScenes(){
 
-  const container = document.getElementById("scenes");
+const box=document.getElementById("scenes");
 
-  container.innerHTML = "";
+box.innerHTML="";
 
-  scenes.forEach((scene,index)=>{
+scenes.forEach((s,i)=>{
 
-    const div = document.createElement("div");
+const div=document.createElement("div");
 
-    div.className = "scene";
+div.className="scene";
 
-    div.innerHTML = `
+div.innerHTML=`
 
-      <div class="sceneHead">
+<div class="sceneTop">
 
-        <div class="sceneNumber">
-          🎬 SAHNE ${scene.id}
-        </div>
+<div class="sceneTitle">
+🎬 SAHNE ${i+1}
+</div>
 
-        <div id="sceneStatus${index}" class="status">
-          ${scene.status}
-        </div>
+<div id="status${i}" class="status">
+${esc(s.status)}
+</div>
 
-      </div>
+</div>
 
-      <div class="sceneGrid">
+<div class="sceneGrid">
 
-        <div>
+<div>
 
-          <img
-            id="sceneImg${index}"
-            class="sceneImg"
-            src="${scene.imageURL || ""}"
-          >
+<img
+id="img${i}"
+class="sceneImage"
+src="${s.imageURL||""}"
+>
 
-          <div style="margin-top:8px">
+<br><br>
 
-            <input
-              type="file"
-              accept="image/*"
-              onchange="uploadSceneImage(event,${index})"
-            >
+<input
+type="file"
+accept="image/*"
+onchange="uploadImage(event,${i})"
+>
 
-          </div>
-
-        </div>
-
-        <div>
-
-          <label>🎙️ Sahne Metni</label>
-
-          <textarea
-            id="sceneText${index}"
-            onchange="updateSceneText(${index},this.value)"
-          >${escapeHTML(scene.text)}</textarea>
-
-          <label style="margin-top:8px">
-            🎨 Görsel Promptu
-          </label>
-
-          <textarea
-            class="prompt"
-            id="prompt${index}"
-            onchange="updatePrompt(${index},this.value)"
-          >${escapeHTML(scene.prompt)}</textarea>
-
-          <div class="sceneControls">
-
-            <div>
-
-              <label>Süre</label>
-
-              <select
-                onchange="updateDuration(${index},this.value)"
-              >
-
-                ${durationOptions(scene.duration)}
-
-              </select>
-
-            </div>
-
-            <div>
-
-              <label>Hareket</label>
-
-              <select
-                onchange="updateMotion(${index},this.value)"
-              >
-
-                <option value="zoomIn" ${scene.motion==="zoomIn"?"selected":""}>Zoom In</option>
-                <option value="zoomOut" ${scene.motion==="zoomOut"?"selected":""}>Zoom Out</option>
-                <option value="panLeft" ${scene.motion==="panLeft"?"selected":""}>Pan Left</option>
-                <option value="panRight" ${scene.motion==="panRight"?"selected":""}>Pan Right</option>
-                <option value="static" ${scene.motion==="static"?"selected":""}>Static</option>
-
-              </select>
-
-            </div>
-
-            <div>
-
-              <label>İşlem</label>
-
-              <button
-                class="blue"
-                onclick="generateSceneImage(${index})"
-              >
-                🖼️ Görsel Üret
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="audioBox">
-
-            <b>🎙️ Sahne Sesi</b>
-
-            <div id="audioInfo${index}" class="small">
-              ${scene.audioBlob ? "Ses hazır ✓" : "Henüz ses yok"}
-            </div>
-
-            ${
-              scene.audioURL
-              ?
-              `<audio controls src="${scene.audioURL}"></audio>`
-              :
-              ""
-            }
-
-            <button
-              class="orange"
-              onclick="recordSceneVoice(${index})"
-            >
-              🎙️ Bu Sahneyi Seslendir
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-    `;
-
-    container.appendChild(div);
-
-  });
-
-}
+</div>
 
 
-function durationOptions(value){
+<div>
 
-  const vals = [10,15,20,30,40,50,60];
+<label>📝 Sahne Metni</label>
 
-  return vals.map(v =>
-    `<option value="${v}" ${Number(value)===v?"selected":""}>${v} sn</option>`
-  ).join("");
-
-}
+<textarea
+onchange="updateText(${i},this.value)"
+>${esc(s.text)}</textarea>
 
 
-function escapeHTML(str){
+<label style="margin-top:8px">
+🎨 Görsel Prompt
+</label>
 
-  return String(str || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;");
+<textarea
+class="prompt"
+onchange="updatePrompt(${i},this.value)"
+>${esc(s.prompt)}</textarea>
+
+
+<div class="sceneControls">
+
+<div>
+
+<label>Hareket</label>
+
+<select onchange="updateMotion(${i},this.value)">
+
+<option value="zoomIn" ${s.motion==="zoomIn"?"selected":""}>Zoom In</option>
+
+<option value="zoomOut" ${s.motion==="zoomOut"?"selected":""}>Zoom Out</option>
+
+<option value="panLeft" ${s.motion==="panLeft"?"selected":""}>Pan Left</option>
+
+<option value="panRight" ${s.motion==="panRight"?"selected":""}>Pan Right</option>
+
+<option value="static" ${s.motion==="static"?"selected":""}>Static</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Ses Durumu</label>
+
+<div class="badge" id="duration${i}">
+
+${s.audioDuration
+?s.audioDuration.toFixed(2)+" sn"
+:"Ses bekleniyor"}
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="audioBox">
+
+<strong>🎙️ Sahne Sesi</strong>
+
+<div id="audioInfo${i}" class="small">
+
+${s.audioURL?"✓ Ses hazır":"Henüz ses yok"}
+
+</div>
+
+${s.audioURL
+?`<audio controls src="${s.audioURL}"></audio>`
+:""}
+
+</div>
+
+</div>
+
+</div>
+`;
+
+box.appendChild(div);
+
+});
 
 }
 
 
 /* =========================================================
-   SCENE UPDATES
+   UPDATE
 ========================================================= */
 
-function updateSceneText(index,value){
+function updateText(i,v){
 
-  scenes[index].text = value;
+scenes[i].text=v;
 
-  scenes[index].prompt = buildPrompt(
-    scenes[index],
-    index
-  );
+scenes[i].prompt=buildPrompt(scenes[i],i);
 
-  const p = document.getElementById("prompt"+index);
-
-  if(p) p.value = scenes[index].prompt;
+renderScenes();
 
 }
 
-
-function updatePrompt(index,value){
-
-  scenes[index].prompt = value;
-
+function updatePrompt(i,v){
+scenes[i].prompt=v;
 }
 
-
-function updateDuration(index,value){
-
-  scenes[index].duration = Number(value);
-
-}
-
-
-function updateMotion(index,value){
-
-  scenes[index].motion = value;
-
+function updateMotion(i,v){
+scenes[i].motion=v;
 }
 
 
@@ -1024,31 +898,31 @@ function updateMotion(index,value){
    IMAGE UPLOAD
 ========================================================= */
 
-function uploadSceneImage(event,index){
+function uploadImage(e,i){
 
-  const file = event.target.files[0];
+const file=e.target.files[0];
 
-  if(!file) return;
+if(!file)return;
 
-  const url = URL.createObjectURL(file);
+const url=URL.createObjectURL(file);
 
-  scenes[index].imageURL = url;
+const img=new Image();
 
-  const img = document.getElementById("sceneImg"+index);
+img.onload=()=>{
 
-  img.src = url;
+scenes[i].image=img;
 
-  const image = new Image();
+scenes[i].imageURL=url;
 
-  image.onload = ()=>{
+scenes[i].status="✓ Özel görsel hazır";
 
-    scenes[index].image = image;
+renderScenes();
 
-    log("✓ Sahne " + (index+1) + " özel görseli yüklendi.");
+log("✓ Sahne "+(i+1)+" görseli yüklendi.");
 
-  };
+};
 
-  image.src = url;
+img.src=url;
 
 }
 
@@ -1057,732 +931,733 @@ function uploadSceneImage(event,index){
    POLLINATIONS IMAGE
 ========================================================= */
 
-async function generateSceneImage(index){
+async function generateImage(i){
 
-  const scene = scenes[index];
+const s=scenes[i];
 
-  if(!scene.prompt){
+if(!s.prompt){
+s.prompt=buildPrompt(s,i);
+}
 
-    scene.prompt = buildPrompt(scene,index);
+setStatus(i,"🖼️ Görsel üretiliyor...");
 
-    const p = document.getElementById("prompt"+index);
+try{
 
-    if(p) p.value = scene.prompt;
+const quality=Number(document.getElementById("quality").value);
 
-  }
+let w=quality;
+let h=Math.round(quality*9/16);
 
-  setSceneStatus(index,"🖼️ Görsel üretiliyor...");
+const f=document.getElementById("format").value;
 
-  log("Sahne " + (index+1) + " görsel üretimi başladı.");
+if(f==="9:16"){
+h=quality;
+w=Math.round(quality*9/16);
+}
 
-  try{
+if(f==="1:1"){
+w=quality;
+h=quality;
+}
 
-    const quality = Number(
-      document.getElementById("quality").value
-    );
+const seed=
+Date.now()+
+i*99991;
 
-    const format = document.getElementById("format").value;
+const url=
+"https://image.pollinations.ai/prompt/"+
+encodeURIComponent(s.prompt)+
+"?width="+w+
+"&height="+h+
+"&seed="+seed+
+"&nologo=true";
 
-    let width = quality;
-    let height = Math.round(width * 9 / 16);
+const img=new Image();
 
-    if(format === "9:16"){
-      height = quality;
-      width = Math.round(height * 9 / 16);
-    }
+img.crossOrigin="anonymous";
 
-    if(format === "1:1"){
-      height = quality;
-      width = quality;
-    }
+await new Promise((resolve,reject)=>{
 
-    const seed =
-      Date.now() +
-      index * 10007;
+img.onload=resolve;
+img.onerror=reject;
+img.src=url;
 
-    const url =
-      "https://image.pollinations.ai/prompt/" +
-      encodeURIComponent(scene.prompt) +
-      "?width=" + width +
-      "&height=" + height +
-      "&seed=" + seed +
-      "&nologo=true";
+});
 
-    const img = new Image();
+s.image=img;
+s.imageURL=url;
+s.status="✓ Görsel hazır";
 
-    img.crossOrigin = "anonymous";
+renderScenes();
 
-    await new Promise((resolve,reject)=>{
+log("✓ Sahne "+(i+1)+" görseli hazır.");
 
-      img.onload = resolve;
+}catch(e){
 
-      img.onerror = reject;
+s.status="❌ Görsel hatası";
 
-      img.src = url;
+renderScenes();
 
-    });
+log("❌ Sahne "+(i+1)+" görsel üretilemedi.");
 
-    scene.image = img;
-
-    scene.imageURL = url;
-
-    const imageElement =
-      document.getElementById("sceneImg"+index);
-
-    if(imageElement){
-      imageElement.src = url;
-    }
-
-    setSceneStatus(index,"✓ Görsel hazır");
-
-    log("✓ Sahne " + (index+1) + " görseli hazır.");
-
-  }catch(error){
-
-    console.error(error);
-
-    setSceneStatus(
-      index,
-      "❌ Görsel üretilemedi"
-    );
-
-    log(
-      "❌ Sahne " +
-      (index+1) +
-      " görsel hatası: " +
-      error.message
-    );
-
-  }
+}
 
 }
 
 
 async function generateAllImages(){
 
-  if(!scenes.length){
+if(!scenes.length){
+alert("Önce sahneleri oluştur.");
+return;
+}
 
-    alert("Önce hikâyeyi sahnelere böl.");
+generateAllPrompts();
 
-    return;
+for(let i=0;i<scenes.length;i++){
 
-  }
+await generateImage(i);
 
-  generateAllPrompts();
+await sleep(600);
 
-  for(let i=0;i<scenes.length;i++){
+}
 
-    await generateSceneImage(i);
-
-    await sleep(800);
-
-  }
-
-  log("✓ Tüm sahne görselleri tamamlandı.");
+log("✓ TÜM SAHNELERİN GÖRSELLERİ HAZIR.");
 
 }
 
 
 /* =========================================================
-   AUDIO CAPTURE
+   AUDIO SYSTEM
 ========================================================= */
 
-async function prepareAudioCapture(){
+async function prepareAudio(){
 
-  if(!navigator.mediaDevices ||
-     !navigator.mediaDevices.getDisplayMedia){
+if(!navigator.mediaDevices ||
+!navigator.mediaDevices.getDisplayMedia){
 
-    alert(
-      "Bu Chrome sürümünde ekran/sekme ses yakalama desteklenmiyor."
-    );
+alert("Bu Chrome sürümü sekme ses yakalamayı desteklemiyor.");
+return;
+}
 
-    return;
+try{
 
-  }
+document.getElementById("audioState").textContent=
+"Paylaşım seçiliyor...";
 
-  try{
+audioStream=
+await navigator.mediaDevices.getDisplayMedia({
 
-    document.getElementById("audioStatus").textContent =
-      "Paylaşım seçiliyor...";
+video:true,
+audio:true
 
-    log("Ses yakalama başlatılıyor.");
+});
 
-    audioCaptureStream =
-      await navigator.mediaDevices.getDisplayMedia({
+const tracks=audioStream.getAudioTracks();
 
-        video:true,
+if(!tracks.length){
 
-        audio:true
+alert(
+"SEKME SESİ ALINAMADI.\n\n"+
+"Paylaşım penceresinde:\n"+
+"1. Bu sekmeyi seç\n"+
+"2. Sekme sesini paylaş seçeneğini aç"
+);
 
-      });
+document.getElementById("audioState").textContent=
+"❌ Sekme sesi yok";
 
-    const audioTracks =
-      audioCaptureStream.getAudioTracks();
+return;
 
-    if(!audioTracks.length){
+}
 
-      alert(
-        "Ses track'i alınamadı. Paylaşım penceresinde 'Sekme sesi' seçeneğini işaretle."
-      );
+audioReady=true;
 
-      document.getElementById("audioStatus").textContent =
-        "❌ Sekme sesi alınamadı";
+document.getElementById("audioState").textContent=
+"✓ SES SİSTEMİ HAZIR";
 
-      return;
+log("✓ Ses sistemi hazır.");
 
-    }
+}catch(e){
 
-    audioCaptureReady = true;
+log("❌ Ses sistemi: "+e.message);
 
-    document.getElementById("audioStatus").textContent =
-      "✓ Ses sistemi hazır";
-
-    log("✓ Sekme ses yakalama sistemi hazır.");
-
-    audioCaptureStream
-      .getVideoTracks()
-      .forEach(track=>{
-
-        track.onended = ()=>{
-
-          audioCaptureReady = false;
-
-          document.getElementById("audioStatus").textContent =
-            "Paylaşım durdu";
-
-        };
-
-      });
-
-  }catch(error){
-
-    console.error(error);
-
-    document.getElementById("audioStatus").textContent =
-      "❌ Ses sistemi başarısız";
-
-    log("❌ Ses sistemi: " + error.message);
-
-  }
+}
 
 }
 
 
-function stopAudioCapture(){
+function stopAudio(){
 
-  if(audioCaptureStream){
+if(audioStream){
 
-    audioCaptureStream
-      .getTracks()
-      .forEach(track=>track.stop());
+audioStream.getTracks().forEach(t=>t.stop());
 
-  }
+}
 
-  audioCaptureStream = null;
+audioStream=null;
 
-  audioCaptureReady = false;
+audioReady=false;
 
-  document.getElementById("audioStatus").textContent =
-    "Ses sistemi durduruldu";
-
-  log("Ses yakalama durduruldu.");
+document.getElementById("audioState").textContent=
+"Ses sistemi durduruldu";
 
 }
 
 
 /* =========================================================
-   RECORD SCENE VOICE
+   RECORD ONE SCENE
 ========================================================= */
 
-async function recordSceneVoice(index){
+async function recordScene(i){
 
-  if(!audioCaptureReady ||
-     !audioCaptureStream){
+const s=scenes[i];
 
-    alert(
-      "Önce '🎙️ Ses Sistemini Hazırla' düğmesine bas ve bu sekmenin sesini paylaş."
-    );
+if(!audioReady||!audioStream){
 
-    return;
-
-  }
-
-  const scene = scenes[index];
-
-  setSceneStatus(
-    index,
-    "🎙️ Ses kaydediliyor..."
-  );
-
-  log("Sahne " + (index+1) + " ses kaydı başladı.");
-
-  const audioTracks =
-    audioCaptureStream.getAudioTracks();
-
-  if(!audioTracks.length){
-
-    alert("Aktif ses track'i bulunamadı.");
-
-    return;
-
-  }
-
-  const audioOnlyStream =
-    new MediaStream(audioTracks);
-
-  let mimeType = "";
-
-  if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus")){
-    mimeType = "audio/webm;codecs=opus";
-  }
-  else if(MediaRecorder.isTypeSupported("audio/webm")){
-    mimeType = "audio/webm";
-  }
-
-  let recorder;
-
-  try{
-
-    recorder = new MediaRecorder(
-      audioOnlyStream,
-      mimeType ? {mimeType} : undefined
-    );
-
-  }catch(error){
-
-    alert(
-      "Ses MediaRecorder oluşturulamadı: " +
-      error.message
-    );
-
-    return;
-
-  }
-
-  const chunks = [];
-
-  recorder.ondataavailable = event=>{
-
-    if(event.data && event.data.size > 0){
-      chunks.push(event.data);
-    }
-
-  };
-
-  const stopped =
-    new Promise(resolve=>{
-
-      recorder.onstop = resolve;
-
-    });
-
-  recorder.start(100);
-
-  await sleep(400);
-
-  /* =====================================================
-     SPEECH SYNTHESIS
-  ===================================================== */
-
-  const utterance =
-    new SpeechSynthesisUtterance(scene.text);
-
-  utterance.lang =
-    document.getElementById("voiceLang")
-      ?.value || "de-DE";
-
-  utterance.rate = 0.88;
-
-  utterance.pitch = 1;
-
-  const voices =
-    speechSynthesis.getVoices();
-
-  const germanVoice =
-    voices.find(v =>
-      v.lang &&
-      v.lang.toLowerCase().startsWith("de")
-    );
-
-  if(germanVoice){
-
-    utterance.voice = germanVoice;
-
-  }
-
-  let finished = false;
-
-  utterance.onend = ()=>{
-
-    if(finished) return;
-
-    finished = true;
-
-    setTimeout(()=>{
-
-      try{
-        recorder.stop();
-      }catch(e){}
-
-    },500);
-
-  };
-
-  utterance.onerror = ()=>{
-
-    if(finished) return;
-
-    finished = true;
-
-    try{
-      recorder.stop();
-    }catch(e){}
-
-  };
-
-  speechSynthesis.cancel();
-
-  speechSynthesis.speak(utterance);
-
-  await stopped;
-
-  await sleep(300);
-
-  const blob =
-    new Blob(
-      chunks,
-      {
-        type:
-          mimeType ||
-          "audio/webm"
-      }
-    );
-
-  if(blob.size < 1000){
-
-    setSceneStatus(
-      index,
-      "❌ Ses kaydı boş"
-    );
-
-    log(
-      "❌ Sahne " +
-      (index+1) +
-      " ses kaydı boş geldi."
-    );
-
-    return;
-
-  }
-
-  scene.audioBlob = blob;
-
-  if(scene.audioURL){
-    URL.revokeObjectURL(scene.audioURL);
-  }
-
-  scene.audioURL =
-    URL.createObjectURL(blob);
-
-  const duration =
-    await getAudioDuration(
-      scene.audioURL
-    );
-
-  scene.audioDuration =
-    duration > 0
-    ? duration
-    : scene.duration;
-
-  /*
-    Gerçek ses süresi sahne süresinin
-    alt sınırını belirler.
-  */
-
-  scene.duration =
-    Math.max(
-      2,
-      Math.ceil(scene.audioDuration)
-    );
-
-  renderSceneCards();
-
-  setSceneStatus(
-    index,
-    "✓ Ses hazır"
-  );
-
-  log(
-    "✓ Sahne " +
-    (index+1) +
-    " ses kaydı hazır: " +
-    scene.audioDuration.toFixed(1) +
-    " sn"
-  );
+throw new Error("Ses sistemi hazır değil.");
 
 }
 
+const tracks=audioStream.getAudioTracks();
+
+if(!tracks.length){
+
+throw new Error("Ses track bulunamadı.");
+
+}
+
+const stream=new MediaStream(tracks);
+
+let mime="";
+
+if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus")){
+mime="audio/webm;codecs=opus";
+}
+else if(MediaRecorder.isTypeSupported("audio/webm")){
+mime="audio/webm";
+}
+
+const recorder=
+new MediaRecorder(
+stream,
+mime?{mimeType:mime}:undefined
+);
+
+const chunks=[];
+
+recorder.ondataavailable=e=>{
+
+if(e.data&&e.data.size){
+chunks.push(e.data);
+}
+
+};
+
+const stopped=
+new Promise(resolve=>{
+recorder.onstop=resolve;
+});
+
+recorder.start(100);
+
+await sleep(300);
+
+
+/* =====================================================
+   SPEECH
+===================================================== */
+
+const utterance=
+new SpeechSynthesisUtterance(s.text);
+
+utterance.lang=
+document.getElementById("voiceLanguage").value;
+
+utterance.rate=0.88;
+utterance.pitch=1;
+
+const voices=
+speechSynthesis.getVoices();
+
+let wanted=
+voices.find(v=>
+v.lang &&
+v.lang.toLowerCase()===
+utterance.lang.toLowerCase()
+);
+
+if(!wanted){
+
+wanted=
+voices.find(v=>
+v.lang &&
+v.lang.toLowerCase().startsWith(
+utterance.lang.substring(0,2).toLowerCase()
+)
+);
+
+}
+
+if(wanted){
+utterance.voice=wanted;
+}
+
+
+/* =====================================================
+   END
+===================================================== */
+
+let ended=false;
+
+const stopRecorder=()=>{
+
+if(ended)return;
+
+ended=true;
+
+setTimeout(()=>{
+
+try{
+recorder.stop();
+}catch(e){}
+
+},500);
+
+};
+
+utterance.onend=stopRecorder;
+
+utterance.onerror=stopRecorder;
+
+speechSynthesis.cancel();
+
+speechSynthesis.speak(utterance);
+
+await stopped;
+
+await sleep(300);
+
+const blob=
+new Blob(
+chunks,
+{
+type:mime||"audio/webm"
+}
+);
+
+if(blob.size<1000){
+
+throw new Error("Ses kaydı boş.");
+
+}
+
+if(s.audioURL){
+
+try{
+URL.revokeObjectURL(s.audioURL);
+}catch(e){}
+
+}
+
+s.audioBlob=blob;
+
+s.audioURL=
+URL.createObjectURL(blob);
+
+const realDuration=
+await getAudioDuration(s.audioURL);
+
+if(realDuration<=0){
+
+throw new Error("Ses süresi okunamadı.");
+
+}
+
+/*
+   EN ÖNEMLİ KURAL:
+   SAHNE SÜRESİ = SES SÜRESİ
+*/
+
+s.audioDuration=realDuration;
+
+s.duration=realDuration;
+
+s.status=
+"✓ Ses hazır • "+
+realDuration.toFixed(2)+
+" sn";
+
+}
+
+
+/* =========================================================
+   ALL SCENES ONE BUTTON
+========================================================= */
+
+async function speakAllScenes(){
+
+if(!scenes.length){
+
+alert("Önce sahneleri oluştur.");
+
+return;
+
+}
+
+if(!audioReady){
+
+alert(
+"Önce 'SES SİSTEMİNİ HAZIRLA' düğmesine bas."
+);
+
+return;
+
+}
+
+/*
+   Konuşma motorunu temizle
+*/
+
+speechSynthesis.cancel();
+
+for(let i=0;i<scenes.length;i++){
+
+const percent=
+Math.round(
+(i/scenes.length)*100
+);
+
+document.getElementById(
+"voiceProgress"
+).textContent=
+"🎙️ Sahne "+
+(i+1)+
+"/"+
+scenes.length+
+" seslendiriliyor... "+
+percent+
+"%";
+
+setStatus(
+i,
+"🎙️ Seslendiriliyor..."
+);
+
+try{
+
+await recordScene(i);
+
+renderScenes();
+
+log(
+"✓ Sahne "+
+(i+1)+
+"/"+
+scenes.length+
+" tamamlandı • "+
+scenes[i].duration.toFixed(2)+
+" saniye"
+);
+
+}catch(e){
+
+setStatus(
+i,
+"❌ Ses hatası"
+);
+
+log(
+"❌ Sahne "+
+(i+1)+
+": "+
+e.message
+);
+
+/*
+   Bir sahne hata verirse
+   tüm sistemi durdurmuyoruz.
+*/
+
+}
+
+await sleep(500);
+
+}
+
+document.getElementById(
+"voiceProgress"
+).textContent=
+"✓ TÜM SAHNELER SESLENDİRİLDİ";
+
+log(
+"🎙️ TÜM SAHNELERİN SESLENDİRMESİ TAMAMLANDI."
+);
+
+}
+
+
+/* =========================================================
+   AUDIO DURATION
+========================================================= */
 
 function getAudioDuration(url){
 
-  return new Promise(resolve=>{
+return new Promise(resolve=>{
 
-    const audio =
-      document.createElement("audio");
+const audio=new Audio();
 
-    audio.preload = "metadata";
+audio.preload="metadata";
 
-    audio.onloadedmetadata = ()=>{
+audio.onloadedmetadata=()=>{
 
-      resolve(
-        isFinite(audio.duration)
-        ? audio.duration
-        : 0
-      );
+if(isFinite(audio.duration)){
+resolve(audio.duration);
+}else{
+resolve(0);
+}
 
-    };
+};
 
-    audio.onerror = ()=>{
-      resolve(0);
-    };
+audio.onerror=()=>{
+resolve(0);
+};
 
-    audio.src = url;
+audio.src=url;
 
-  });
+});
 
 }
 
 
 /* =========================================================
-   PREVIEW DRAW
+   STATUS
 ========================================================= */
 
-function drawCoverImage(img,progress,motion){
+function setStatus(i,t){
 
-  const W = canvas.width;
+if(scenes[i]){
+scenes[i].status=t;
+}
 
-  const H = canvas.height;
+const el=document.getElementById("status"+i);
 
-  if(!img){
-
-    ctx.fillStyle="#111";
-
-    ctx.fillRect(0,0,W,H);
-
-    ctx.fillStyle="#aaa";
-
-    ctx.font="28px Arial";
-
-    ctx.textAlign="center";
-
-    ctx.fillText(
-      "Görsel yok",
-      W/2,
-      H/2
-    );
-
-    return;
-
-  }
-
-  const iw = img.naturalWidth || img.width;
-
-  const ih = img.naturalHeight || img.height;
-
-  let scale =
-    Math.max(W/iw,H/ih);
-
-  let drawW = iw*scale;
-
-  let drawH = ih*scale;
-
-  let x = (W-drawW)/2;
-
-  let y = (H-drawH)/2;
-
-  if(motion === "zoomIn"){
-
-    const s =
-      1 + progress*0.10;
-
-    drawW *= s;
-
-    drawH *= s;
-
-    x = (W-drawW)/2;
-
-    y = (H-drawH)/2;
-
-  }
-
-  if(motion === "zoomOut"){
-
-    const s =
-      1.10 - progress*0.10;
-
-    drawW *= s;
-
-    drawH *= s;
-
-    x = (W-drawW)/2;
-
-    y = (H-drawH)/2;
-
-  }
-
-  if(motion === "panLeft"){
-
-    x -= progress * W * 0.10;
-
-  }
-
-  if(motion === "panRight"){
-
-    x += progress * W * 0.10;
-
-  }
-
-  ctx.drawImage(
-    img,
-    x,
-    y,
-    drawW,
-    drawH
-  );
+if(el){
+el.textContent=t;
+}
 
 }
 
+
+/* =========================================================
+   DRAW IMAGE
+========================================================= */
+
+function drawImage(scene,p){
+
+const W=canvas.width;
+const H=canvas.height;
+
+ctx.fillStyle="#000";
+ctx.fillRect(0,0,W,H);
+
+if(!scene.image){
+
+ctx.fillStyle="#222";
+ctx.fillRect(0,0,W,H);
+
+ctx.fillStyle="#fff";
+ctx.font="bold 30px Arial";
+ctx.textAlign="center";
+
+ctx.fillText(
+"Görsel yok",
+W/2,
+H/2
+);
+
+return;
+
+}
+
+const img=scene.image;
+
+const iw=img.naturalWidth||img.width;
+const ih=img.naturalHeight||img.height;
+
+let scale=Math.max(W/iw,H/ih);
+
+let dw=iw*scale;
+let dh=ih*scale;
+
+let x=(W-dw)/2;
+let y=(H-dh)/2;
+
+if(scene.motion==="zoomIn"){
+
+const z=1+p*.10;
+
+dw*=z;
+dh*=z;
+
+x=(W-dw)/2;
+y=(H-dh)/2;
+
+}
+
+if(scene.motion==="zoomOut"){
+
+const z=1.10-p*.10;
+
+dw*=z;
+dh*=z;
+
+x=(W-dw)/2;
+y=(H-dh)/2;
+
+}
+
+if(scene.motion==="panLeft"){
+x-=p*W*.10;
+}
+
+if(scene.motion==="panRight"){
+x+=p*W*.10;
+}
+
+ctx.drawImage(
+img,
+x,
+y,
+dw,
+dh
+);
+
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
 
 function drawOverlay(){
 
-  const W = canvas.width;
+const W=canvas.width;
+const H=canvas.height;
 
-  const H = canvas.height;
+const g=
+ctx.createLinearGradient(
+0,
+H*.45,
+0,
+H
+);
 
-  const gradient =
-    ctx.createLinearGradient(
-      0,
-      H*0.55,
-      0,
-      H
-    );
+g.addColorStop(
+0,
+"rgba(0,0,0,0)"
+);
 
-  gradient.addColorStop(
-    0,
-    "rgba(0,0,0,0)"
-  );
+g.addColorStop(
+1,
+"rgba(0,0,0,.88)"
+);
 
-  gradient.addColorStop(
-    1,
-    "rgba(0,0,0,.85)"
-  );
+ctx.fillStyle=g;
 
-  ctx.fillStyle = gradient;
-
-  ctx.fillRect(
-    0,
-    H*0.45,
-    W,
-    H*0.55
-  );
+ctx.fillRect(
+0,
+H*.45,
+W,
+H*.55
+);
 
 }
 
 
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
 function drawSubtitle(text){
 
-  if(!text) return;
+const W=canvas.width;
+const H=canvas.height;
 
-  const W = canvas.width;
+const size=Math.max(
+22,
+Math.round(W*.027)
+);
 
-  const H = canvas.height;
+ctx.font=
+"bold "+
+size+
+"px Arial";
 
-  const maxWidth =
-    W * 0.86;
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
-  const fontSize =
-    Math.max(
-      22,
-      Math.round(W*0.026)
-    );
+const max=W*.84;
 
-  ctx.font =
-    "bold " +
-    fontSize +
-    "px Arial";
+const words=text.split(/\s+/);
 
-  ctx.textAlign="center";
+const lines=[];
 
-  ctx.textBaseline="middle";
+let line="";
 
-  const words =
-    text.split(/\s+/);
+for(const word of words){
 
-  const lines=[];
+const test=
+line
+?line+" "+word
+:word;
 
-  let line="";
+if(ctx.measureText(test).width>max){
 
-  words.forEach(word=>{
+lines.push(line);
+line=word;
 
-    const test =
-      line
-      ? line+" "+word
-      : word;
+}else{
 
-    if(
-      ctx.measureText(test).width >
-      maxWidth
-    ){
+line=test;
 
-      lines.push(line);
+}
 
-      line=word;
+}
 
-    }else{
+if(line){
+lines.push(line);
+}
 
-      line=test;
+const lh=size*1.25;
 
-    }
+let y=
+H-
+lines.length*lh-
+H*.08;
 
-  });
+for(const l of lines){
 
-  if(line){
-    lines.push(line);
-  }
+ctx.lineWidth=8;
+ctx.strokeStyle="rgba(0,0,0,.95)";
 
-  const lineHeight =
-    fontSize*1.25;
+ctx.strokeText(
+l,
+W/2,
+y
+);
 
-  const total =
-    lines.length*lineHeight;
+ctx.fillStyle="#fff";
 
-  let y =
-    H - total - H*0.08;
+ctx.fillText(
+l,
+W/2,
+y
+);
 
-  lines.forEach(l=>{
+y+=lh;
 
-    ctx.lineWidth=8;
-
-    ctx.strokeStyle=
-      "rgba(0,0,0,.9)";
-
-    ctx.strokeText(
-      l,
-      W/2,
-      y
-    );
-
-    ctx.fillStyle="#fff";
-
-    ctx.fillText(
-      l,
-      W/2,
-      y
-    );
-
-    y += lineHeight;
-
-  });
+}
 
 }
 
@@ -1791,146 +1666,102 @@ function drawSubtitle(text){
    LOGO
 ========================================================= */
 
-function drawGeldStoryLogo(){
+function drawLogo(){
 
-  const W = canvas.width;
+const W=canvas.width;
 
-  const sizePercent =
-    Number(
-      document.getElementById("logoSize").value
-    ) / 100;
+const size=
+W*
+(Number(
+document.getElementById("logoSize").value
+)/100);
 
-  const opacity =
-    Number(
-      document.getElementById("logoOpacity").value
-    ) / 100;
+const opacity=
+Number(
+document.getElementById("logoOpacity").value
+)/100;
 
-  const size =
-    W * sizePercent;
+const x=
+W-size-W*.025;
 
-  const x =
-    W - size - W*0.025;
+const y=W*.025;
 
-  const y =
-    W*0.025;
+ctx.save();
 
-  ctx.save();
+ctx.globalAlpha=opacity;
 
-  ctx.globalAlpha=opacity;
+if(logoImage){
 
-  if(logoImage){
+ctx.drawImage(
+logoImage,
+x,
+y,
+size,
+size
+);
 
-    ctx.drawImage(
-      logoImage,
-      x,
-      y,
-      size,
-      size
-    );
+}else{
 
-  }else{
+ctx.beginPath();
 
-    ctx.beginPath();
+ctx.arc(
+x+size/2,
+y+size/2,
+size/2,
+0,
+Math.PI*2
+);
 
-    ctx.arc(
-      x+size/2,
-      y+size/2,
-      size/2,
-      0,
-      Math.PI*2
-    );
+ctx.fillStyle="rgba(0,0,0,.7)";
+ctx.fill();
 
-    ctx.fillStyle=
-      "rgba(0,0,0,.75)";
+ctx.strokeStyle="#fff";
+ctx.lineWidth=Math.max(2,size*.04);
+ctx.stroke();
 
-    ctx.fill();
+ctx.fillStyle="#fff";
 
-    ctx.lineWidth=
-      Math.max(2,size*0.04);
+ctx.font=
+"bold "+
+Math.round(size*.27)+
+"px Arial";
 
-    ctx.strokeStyle="#fff";
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
-    ctx.stroke();
-
-    ctx.fillStyle="#fff";
-
-    ctx.font=
-      "bold " +
-      Math.round(size*0.27) +
-      "px Arial";
-
-    ctx.textAlign="center";
-
-    ctx.textBaseline="middle";
-
-    ctx.fillText(
-      "GS",
-      x+size/2,
-      y+size/2
-    );
-
-  }
-
-  ctx.restore();
+ctx.fillText(
+"GS",
+x+size/2,
+y+size/2
+);
 
 }
 
-
-function loadLogo(event){
-
-  const file =
-    event.target.files[0];
-
-  if(!file) return;
-
-  const img =
-    new Image();
-
-  img.onload=()=>{
-
-    logoImage=img;
-
-    document.getElementById(
-      "logoStatus"
-    ).textContent =
-      "✓ Özel GeldStory amblemi hazır.";
-
-    log("✓ Özel logo yüklendi.");
-
-  };
-
-  img.src =
-    URL.createObjectURL(file);
+ctx.restore();
 
 }
 
 
 /* =========================================================
-   DRAW FRAME
+   FRAME
 ========================================================= */
 
-function drawFrame(scene,progress){
+function drawFrame(scene,p){
 
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
 
-  drawCoverImage(
-    scene.image,
-    progress,
-    scene.motion
-  );
+drawImage(scene,p);
 
-  drawOverlay();
+drawOverlay();
 
-  drawSubtitle(
-    scene.text
-  );
+drawSubtitle(scene.text);
 
-  drawGeldStoryLogo();
+drawLogo();
 
 }
 
@@ -1941,492 +1772,503 @@ function drawFrame(scene,progress){
 
 async function previewVideo(){
 
-  if(!scenes.length){
+if(!scenes.length){
 
-    alert("Önce sahneleri oluştur.");
+alert("Önce sahneleri oluştur.");
 
-    return;
+return;
 
-  }
+}
 
-  if(previewTimer){
-    cancelAnimationFrame(previewTimer);
-  }
+setCanvas();
 
-  setCanvasFormat();
+let index=0;
 
-  let sceneIndex=0;
+let start=performance.now();
 
-  let sceneStart=
-    performance.now();
+function loop(now){
 
-  function loop(now){
+if(index>=scenes.length){
 
-    if(sceneIndex >= scenes.length){
+return;
 
-      drawFrame(
-        scenes[scenes.length-1],
-        1
-      );
+}
 
-      return;
+const s=scenes[index];
 
-    }
+const duration=
+Math.max(
+1,
+s.duration||3
+);
 
-    const scene =
-      scenes[sceneIndex];
+const elapsed=
+(now-start)/1000;
 
-    const duration =
-      scene.duration * 1000;
+const p=
+Math.min(
+1,
+elapsed/duration
+);
 
-    const elapsed =
-      now - sceneStart;
+drawFrame(s,p);
 
-    let p =
-      Math.min(
-        1,
-        elapsed/duration
-      );
+document.getElementById(
+"renderState"
+).textContent=
+"Önizleme: Sahne "+
+(index+1)+
+"/"+
+scenes.length+
+" • "+
+elapsed.toFixed(1)+
+"/"+
+duration.toFixed(1)+
+" sn";
 
-    drawFrame(
-      scene,
-      p
-    );
+if(elapsed>=duration){
 
-    document.getElementById(
-      "renderStatus"
-    ).textContent =
-      "Önizleme: Sahne " +
-      (sceneIndex+1) +
-      "/" +
-      scenes.length;
+index++;
 
-    if(elapsed >= duration){
+start=now;
 
-      sceneIndex++;
+}
 
-      sceneStart=now;
+requestAnimationFrame(loop);
 
-    }
+}
 
-    previewTimer =
-      requestAnimationFrame(loop);
-
-  }
-
-  previewTimer =
-    requestAnimationFrame(loop);
+requestAnimationFrame(loop);
 
 }
 
 
 /* =========================================================
-   RENDER VIDEO
+   RENDER VALIDATION
+========================================================= */
+
+function validateScenes(){
+
+const missingImage=[];
+
+const missingAudio=[];
+
+scenes.forEach((s,i)=>{
+
+if(!s.image){
+missingImage.push(i+1);
+}
+
+if(!s.audioBlob){
+missingAudio.push(i+1);
+}
+
+});
+
+if(missingImage.length){
+
+alert(
+"Şu sahnelerde görsel yok:\n"+
+missingImage.join(", ")+
+"\n\nÖnce TÜM GÖRSELLERİ ÜRET."
+);
+
+return false;
+
+}
+
+if(missingAudio.length){
+
+alert(
+"Şu sahnelerde ses yok:\n"+
+missingAudio.join(", ")+
+"\n\nÖnce TÜM SAHNELERİ SESLENDİR."
+);
+
+return false;
+
+}
+
+return true;
+
+}
+
+
+/* =========================================================
+   VIDEO RENDER
 ========================================================= */
 
 async function renderVideo(){
 
-  if(!scenes.length){
+if(!scenes.length){
 
-    alert("Önce sahneleri oluştur.");
+alert("Önce sahneleri oluştur.");
 
-    return;
+return;
 
-  }
+}
 
-  setCanvasFormat();
+if(!validateScenes()){
 
-  const videoStream =
-    canvas.captureStream(30);
+return;
 
-  /*
-    Sesleri Web Audio üzerinden
-    video stream'e bağlayacağız.
-  */
+}
 
-  const audioContext =
-    new (
-      window.AudioContext ||
-      window.webkitAudioContext
-    )();
+setCanvas();
 
-  const destination =
-    audioContext.createMediaStreamDestination();
+const stream=
+canvas.captureStream(30);
 
-  const combined =
-    new MediaStream();
+const audioContext=
+new(
+window.AudioContext||
+window.webkitAudioContext
+)();
 
-  videoStream
-    .getVideoTracks()
-    .forEach(track =>
-      combined.addTrack(track)
-    );
+const destination=
+audioContext.createMediaStreamDestination();
 
-  destination.stream
-    .getAudioTracks()
-    .forEach(track =>
-      combined.addTrack(track)
-    );
+const combined=
+new MediaStream();
 
-  let mimeType =
-    "video/webm;codecs=vp9,opus";
+stream.getVideoTracks()
+.forEach(t=>combined.addTrack(t));
 
-  if(!MediaRecorder.isTypeSupported(mimeType)){
+destination.stream
+.getAudioTracks()
+.forEach(t=>combined.addTrack(t));
 
-    mimeType =
-      "video/webm;codecs=vp8,opus";
 
-  }
+let mime="video/webm;codecs=vp9,opus";
 
-  if(!MediaRecorder.isTypeSupported(mimeType)){
+if(!MediaRecorder.isTypeSupported(mime)){
 
-    mimeType="video/webm";
+mime="video/webm;codecs=vp8,opus";
 
-  }
+}
 
-  let recorder;
+if(!MediaRecorder.isTypeSupported(mime)){
 
-  try{
+mime="video/webm";
 
-    recorder =
-      new MediaRecorder(
-        combined,
-        {
-          mimeType,
-          videoBitsPerSecond:5000000,
-          audioBitsPerSecond:128000
-        }
-      );
+}
 
-  }catch(error){
 
-    alert(
-      "Video kaydedici oluşturulamadı: " +
-      error.message
-    );
+let recorder;
 
-    return;
+try{
 
-  }
+recorder=
+new MediaRecorder(
+combined,
+{
+mimeType:mime,
+videoBitsPerSecond:5000000,
+audioBitsPerSecond:128000
+}
+);
 
-  const chunks=[];
+}catch(e){
 
-  recorder.ondataavailable =
-    event=>{
+alert(
+"Video kaydedici başlatılamadı:\n"+
+e.message
+);
 
-      if(
-        event.data &&
-        event.data.size > 0
-      ){
-        chunks.push(event.data);
-      }
+return;
 
-    };
+}
 
-  const finished =
-    new Promise(resolve=>{
 
-      recorder.onstop=resolve;
+const chunks=[];
 
-    });
+recorder.ondataavailable=e=>{
 
-  recorder.start(250);
+if(e.data&&e.data.size){
+chunks.push(e.data);
+}
 
-  log("🎬 WebM render başladı.");
+};
 
-  let totalDuration =
-    scenes.reduce(
-      (sum,s)=>sum+s.duration,
-      0
-    );
+const stopped=
+new Promise(resolve=>{
+recorder.onstop=resolve;
+});
 
-  let elapsedTotal=0;
 
-  for(let i=0;i<scenes.length;i++){
+recorder.start(250);
 
-    const scene =
-      scenes[i];
+const total=
+scenes.reduce(
+(a,s)=>a+s.duration,
+0
+);
 
-    setSceneStatus(
-      i,
-      "🎬 Render ediliyor..."
-    );
+let completed=0;
 
-    document.getElementById(
-      "renderStatus"
-    ).textContent =
-      "Render: Sahne " +
-      (i+1) +
-      "/" +
-      scenes.length;
 
-    /*
-      Audio varsa Web Audio'ya bağla.
-    */
+for(let i=0;i<scenes.length;i++){
 
-    let audioElement=null;
+const s=scenes[i];
 
-    let audioSource=null;
+setStatus(
+i,
+"🎬 Videoya ekleniyor..."
+);
 
-    if(scene.audioURL){
+document.getElementById(
+"renderState"
+).textContent=
+"🎬 Sahne "+
+(i+1)+
+"/"+
+scenes.length+
+" render ediliyor";
 
-      try{
 
-        audioElement =
-          new Audio();
+/*
+   SESİ SAHNE BAŞLANGICINDA BAŞLAT
+*/
 
-        audioElement.src =
-          scene.audioURL;
+let audio=null;
+let source=null;
 
-        audioElement.preload="auto";
+try{
 
-        audioElement.crossOrigin="anonymous";
+audio=new Audio();
 
-        await audioElement.play().catch(()=>{});
+audio.src=s.audioURL;
 
-        audioSource =
-          audioContext.createMediaElementSource(
-            audioElement
-          );
+audio.preload="auto";
 
-        audioSource.connect(
-          destination
-        );
+source=
+audioContext.createMediaElementSource(audio);
 
-      }catch(error){
+source.connect(destination);
 
-        log(
-          "⚠️ Sahne " +
-          (i+1) +
-          " ses bağlantısı başarısız: " +
-          error.message
-        );
+source.connect(audioContext.destination);
 
-      }
+await audioContext.resume();
 
-    }
+audio.currentTime=0;
 
-    /*
-      Ses yoksa bile sahne render edilir.
-    */
+await audio.play();
 
-    const start =
-      performance.now();
+}catch(e){
 
-    const durationMs =
-      scene.duration * 1000;
+log(
+"⚠️ Sahne "+
+(i+1)+
+" ses oynatma hatası: "+
+e.message
+);
 
-    while(true){
+}
 
-      const now =
-        performance.now();
 
-      const elapsed =
-        now-start;
+/*
+   SAHNE SÜRESİ = GERÇEK SES SÜRESİ
+*/
 
-      const p =
-        Math.min(
-          1,
-          elapsed/durationMs
-        );
+const duration=
+s.audioDuration;
 
-      drawFrame(
-        scene,
-        p
-      );
+const start=
+performance.now();
 
-      elapsedTotal =
-        scenes
-          .slice(0,i)
-          .reduce(
-            (sum,s)=>sum+s.duration,
-            0
-          ) +
-        elapsed/1000;
+while(true){
 
-      const percent =
-        Math.min(
-          100,
-          elapsedTotal /
-          totalDuration *
-          100
-        );
+const elapsed=
+(performance.now()-start)/1000;
 
-      document.getElementById(
-        "progressBar"
-      ).style.width =
-        percent + "%";
+const p=
+Math.min(
+1,
+elapsed/duration
+);
 
-      if(elapsed >= durationMs){
+drawFrame(s,p);
 
-        break;
+const current=
+completed+elapsed;
 
-      }
+const percent=
+Math.min(
+100,
+current/total*100
+);
 
-      await nextFrame();
+document.getElementById(
+"progressBar"
+).style.width=
+percent+"%";
 
-    }
+if(elapsed>=duration){
 
-    if(audioElement){
+break;
 
-      audioElement.pause();
+}
 
-      audioElement.currentTime=0;
+await nextFrame();
 
-    }
+}
 
-    if(audioSource){
 
-      try{
-        audioSource.disconnect();
-      }catch(e){}
+/*
+   SESİ DURDUR
+*/
 
-    }
+if(audio){
 
-    setSceneStatus(
-      i,
-      "✓ Render tamam"
-    );
+audio.pause();
 
-  }
+audio.currentTime=0;
 
-  /*
-    Son frame'i biraz beklet.
-  */
+}
 
-  await sleep(500);
+if(source){
 
-  recorder.stop();
+try{
+source.disconnect();
+}catch(e){}
 
-  await finished;
+}
 
-  try{
-    audioContext.close();
-  }catch(e){}
+completed+=duration;
 
-  const blob =
-    new Blob(
-      chunks,
-      {
-        type:"video/webm"
-      }
-    );
+setStatus(
+i,
+"✓ Tamamlandı"
+);
 
-  if(blob.size < 10000){
+}
 
-    alert(
-      "Video dosyası oluşmadı veya boş."
-    );
 
-    log(
-      "❌ WebM boş geldi."
-    );
+drawFrame(
+scenes[scenes.length-1],
+1
+);
 
-    return;
+await sleep(500);
 
-  }
+recorder.stop();
 
-  const url =
-    URL.createObjectURL(blob);
+await stopped;
 
-  const sizeMB =
-    blob.size / 1024 / 1024;
+try{
+audioContext.close();
+}catch(e){}
 
-  const box =
-    document.getElementById(
-      "downloadBox"
-    );
 
-  box.style.display="block";
+const blob=
+new Blob(
+chunks,
+{
+type:"video/webm"
+}
+);
 
-  box.innerHTML = `
-    <a
-      href="${url}"
-      download="GeldStory_V32.webm"
-    >
-      ⬇️ GeldStory_V32.webm İNDİR
-      (${sizeMB.toFixed(2)} MB)
-    </a>
-  `;
+if(blob.size<10000){
 
-  document.getElementById(
-    "renderStatus"
-  ).textContent =
-    "✓ VIDEO TAMAMLANDI";
+alert(
+"Video oluşmadı veya dosya boş."
+);
 
-  document.getElementById(
-    "progressBar"
-  ).style.width="100%";
+return;
 
-  log(
-    "✓ Video başarıyla oluşturuldu: " +
-    sizeMB.toFixed(2) +
-    " MB"
-  );
+}
+
+const url=
+URL.createObjectURL(blob);
+
+const mb=
+blob.size/1024/1024;
+
+const box=
+document.getElementById("download");
+
+box.style.display="block";
+
+box.innerHTML=
+`
+<a
+href="${url}"
+download="GeldStory_V33.webm"
+>
+⬇️ GELDSTORY V33 WEBM İNDİR
+<br>
+${mb.toFixed(2)} MB
+</a>
+`;
+
+document.getElementById(
+"progressBar"
+).style.width="100%";
+
+document.getElementById(
+"renderState"
+).textContent=
+"✓ VİDEO TAMAMLANDI";
+
+log(
+"🎬 VİDEO TAMAMLANDI • "+
+mb.toFixed(2)+
+" MB • "+
+total.toFixed(2)+
+" saniye"
+);
 
 }
 
 
 /* =========================================================
-   HELPERS
+   LOGO
 ========================================================= */
 
-function setSceneStatus(index,text){
+function loadLogo(e){
 
-  scenes[index].status=text;
+const file=e.target.files[0];
 
-  const el =
-    document.getElementById(
-      "sceneStatus"+index
-    );
+if(!file)return;
 
-  if(el){
-    el.textContent=text;
-  }
+const img=new Image();
 
-}
+img.onload=()=>{
 
+logoImage=img;
 
-function sleep(ms){
+document.getElementById(
+"logoState"
+).textContent=
+"✓ Özel GeldStory amblemi hazır.";
 
-  return new Promise(
-    resolve =>
-      setTimeout(resolve,ms)
-  );
+log("✓ Logo yüklendi.");
 
-}
+};
 
-
-function nextFrame(){
-
-  return new Promise(
-    resolve =>
-      requestAnimationFrame(resolve)
-  );
+img.src=
+URL.createObjectURL(file);
 
 }
 
 
 /* =========================================================
-   DEFAULT
+   INITIAL
 ========================================================= */
 
-setCanvasFormat();
+setCanvas();
+
+log("Mina Video AI V33 hazır.");
 
 log(
-  "Mina Video AI V32 hazır."
+"ÖNEMLİ: Sahne süresi = o sahnenin gerçek seslendirme süresi."
 );
 
 log(
-  "1) Hikâyeyi gir → 2) Sahnelere böl → 3) Promptları oluştur → 4) Görselleri üret."
-);
-
-log(
-  "Ses için önce 'Ses Sistemini Hazırla' düğmesine bas."
+"Tek tuşla tüm sahneler: 🎙️ TÜM SAHNELERİ SESLENDİR."
 );
 
 </script>
 
 </body>
 </html>
-```
