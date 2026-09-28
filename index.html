@@ -3,37 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mina Video AI V46.1 — GeldStory Studio</title>
+<title>Mina Video AI V46.2 — GeldStory Studio</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  background:#0b0d10;
+  background:#090b0f;
   color:#eee;
   font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
-  background:#11151b;
-  border-bottom:1px solid #252b34;
-  padding:18px;
+  background:#11151c;
+  border-bottom:1px solid #282e38;
+  padding:20px;
   text-align:center;
 }
 
 header h1{
   margin:0;
-  font-size:24px;
-  color:#fff;
+  font-size:25px;
 }
 
 header p{
+  color:#929baa;
   margin:7px 0 0;
-  color:#8e98a8;
-  font-size:13px;
 }
 
 .container{
@@ -42,8 +38,8 @@ header p{
 }
 
 .card{
-  background:#11151b;
-  border:1px solid #252b34;
+  background:#11151c;
+  border:1px solid #282e38;
   border-radius:14px;
   padding:18px;
   margin-bottom:18px;
@@ -51,25 +47,51 @@ header p{
 
 h2{
   margin:0 0 14px;
-  font-size:18px;
+  font-size:19px;
 }
 
 textarea{
   width:100%;
-  min-height:230px;
-  resize:vertical;
-  background:#090b0e;
-  border:1px solid #303743;
+  min-height:240px;
+  background:#07090c;
   color:#fff;
+  border:1px solid #303743;
   border-radius:10px;
   padding:15px;
+  resize:vertical;
   font-size:16px;
   line-height:1.65;
-  outline:none;
 }
 
-textarea:focus{
-  border-color:#6c7cff;
+button{
+  border:0;
+  border-radius:9px;
+  padding:12px 17px;
+  color:white;
+  background:#29313d;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  filter:brightness(1.15);
+}
+
+button.primary{
+  background:#5967ff;
+}
+
+button.green{
+  background:#13864b;
+}
+
+button.red{
+  background:#a72c3b;
+}
+
+button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
 }
 
 .row{
@@ -79,77 +101,40 @@ textarea:focus{
   margin-top:12px;
 }
 
-button{
-  border:0;
-  border-radius:9px;
-  padding:12px 17px;
-  background:#242b36;
-  color:#fff;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-button:hover{
-  filter:brightness(1.15);
-}
-
-button.primary{
-  background:#5d68ff;
-}
-
-button.green{
-  background:#16834a;
-}
-
-button.red{
-  background:#a52b38;
-}
-
-button:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
 .status{
   margin-top:12px;
-  padding:12px;
-  background:#090b0e;
+  background:#080a0d;
+  border:1px solid #282e38;
   border-radius:9px;
-  color:#9ca7b7;
+  padding:12px;
+  color:#aab3c0;
   font-size:13px;
-  border:1px solid #252b34;
+  line-height:1.5;
 }
+
+.success{color:#42d48a}
+.error{color:#ff6878}
+.warning{color:#e8bd55}
 
 #sceneList{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:13px;
 }
 
 .scene{
-  background:#0a0d11;
-  border:1px solid #29303a;
+  background:#080b0f;
+  border:1px solid #29313b;
   border-radius:12px;
   overflow:hidden;
 }
 
 .sceneHead{
+  background:#151a22;
   padding:12px 14px;
-  background:#151a21;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
-}
-
-.sceneNumber{
-  font-weight:bold;
-  color:#fff;
-}
-
-.sceneDuration{
-  color:#8e98a8;
-  font-size:12px;
 }
 
 .sceneBody{
@@ -158,14 +143,14 @@ button:disabled{
 
 .sceneText{
   width:100%;
-  min-height:100px;
-  background:#080a0d;
-  color:#eee;
+  min-height:105px;
+  background:#06080b;
+  color:white;
   border:1px solid #303743;
   border-radius:8px;
   padding:11px;
-  line-height:1.5;
   resize:vertical;
+  line-height:1.55;
 }
 
 .sceneActions{
@@ -173,6 +158,21 @@ button:disabled{
   flex-wrap:wrap;
   gap:8px;
   margin-top:10px;
+}
+
+.sceneMeta{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:9px;
+}
+
+.badge{
+  background:#252c37;
+  color:#adb6c4;
+  border-radius:20px;
+  padding:4px 8px;
+  font-size:11px;
 }
 
 .audioBox{
@@ -186,30 +186,10 @@ button:disabled{
   width:100%;
 }
 
-.badge{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:20px;
-  background:#252c38;
-  color:#aeb8c8;
-  font-size:11px;
-}
-
-.success{
-  color:#45d38a;
-}
-
-.warning{
-  color:#e7bd55;
-}
-
-.error{
-  color:#ff6978;
-}
-
 #progress{
+  width:100%;
   height:8px;
-  background:#202631;
+  background:#222933;
   border-radius:10px;
   overflow:hidden;
   margin-top:12px;
@@ -218,32 +198,14 @@ button:disabled{
 #progressBar{
   width:0%;
   height:100%;
-  background:#6672ff;
+  background:#6270ff;
   transition:.2s;
 }
 
 .small{
   font-size:12px;
   color:#7f8998;
-  line-height:1.5;
-}
-
-.sceneMeta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:9px;
-}
-
-input[type=file]{
-  width:100%;
-  color:#aaa;
-}
-
-.divider{
-  height:1px;
-  background:#252b34;
-  margin:18px 0;
+  line-height:1.55;
 }
 </style>
 </head>
@@ -251,45 +213,38 @@ input[type=file]{
 <body>
 
 <header>
-  <h1>🎬 Mina Video AI V46.1</h1>
-  <p>GeldStory Studio — Sahne + Ses Merkezi</p>
+  <h1>🎬 Mina Video AI V46.2</h1>
+  <p>GeldStory Studio — Scene + WAV TTS</p>
 </header>
 
 <div class="container">
 
   <div class="card">
 
-    <h2>📖 Hikâyeni Gir</h2>
+    <h2>📖 1. Hikâyeyi Gir</h2>
 
-    <textarea
-      id="storyInput"
-      placeholder="Almanca hikâyeni buraya yapıştır...
-
-Örnek:
-Harland Sanders wurde 1890 geboren. Schon als Kind musste er lernen, Verantwortung zu übernehmen. Später verlor er mehrere Arbeitsplätze. Doch er gab niemals auf. Mit 65 Jahren begann seine größte Reise..."
-    ></textarea>
+    <textarea id="storyInput"
+      placeholder="Almanca gerçek hikâyeni buraya yapıştır..."></textarea>
 
     <div class="row">
 
       <button
-        class="primary"
         id="splitBtn"
-        type="button"
-      >
+        class="primary"
+        type="button">
         ✂️ SAHNELERE BÖL
       </button>
 
       <button
-        type="button"
         id="clearBtn"
-      >
+        type="button">
         🗑️ TEMİZLE
       </button>
 
     </div>
 
-    <div class="status" id="mainStatus">
-      Sistem hazır. Hikâyeyi girip <b>SAHNELERE BÖL</b> butonuna bas.
+    <div id="mainStatus" class="status">
+      Sistem hazır.
     </div>
 
   </div>
@@ -297,27 +252,26 @@ Harland Sanders wurde 1890 geboren. Schon als Kind musste er lernen, Verantwortu
 
   <div class="card">
 
-    <h2>🎙️ Seslendirme</h2>
+    <h2>🎙️ 2. Almanca Seslendirme</h2>
 
     <div class="small">
-      Piper TTS yalnızca seslendirme düğmesine basıldığında yüklenir.
-      Böylece TTS yüklenmese bile sahne bölme sistemi çalışmaya devam eder.
+      Seslendirme yalnızca düğmeye basıldığında yüklenir.
+      Mikrofon kullanılmaz. Amaç doğrudan WAV oluşturmaktır.
     </div>
 
     <div class="row">
 
       <button
-        class="green"
         id="voiceAllBtn"
-        type="button"
-      >
+        class="green"
+        type="button">
         🎙️ TÜM SAHNELERİ SESLENDİR VE KAYDET
       </button>
 
     </div>
 
     <div id="ttsStatus" class="status">
-      Henüz seslendirme başlatılmadı.
+      TTS henüz başlatılmadı.
     </div>
 
     <div id="progress">
@@ -329,13 +283,13 @@ Harland Sanders wurde 1890 geboren. Schon als Kind musste er lernen, Verantwortu
 
   <div class="card">
 
-    <h2>🎬 SAHNELER</h2>
+    <h2>🎬 3. SAHNELER</h2>
 
     <div id="sceneInfo" class="status">
       Henüz sahne oluşturulmadı.
     </div>
 
-    <div style="height:12px"></div>
+    <br>
 
     <div id="sceneList"></div>
 
@@ -346,48 +300,54 @@ Harland Sanders wurde 1890 geboren. Schon als Kind musste er lernen, Verantwortu
 
 <script>
 
-/* =========================================================
-   MINA VIDEO AI V46.1
-   CORE SYSTEM
-   TTS'DEN TAMAMEN BAĞIMSIZ
-========================================================= */
-
 "use strict";
 
-
 /* =========================================================
-   GLOBAL STATE
+   GLOBAL
 ========================================================= */
 
 let scenes = [];
-
-let piperModule = null;
-
+let piper = null;
 let piperLoading = false;
-
-let currentAudioUrls = [];
 
 
 /* =========================================================
    DOM
 ========================================================= */
 
-const storyInput = document.getElementById("storyInput");
-const splitBtn = document.getElementById("splitBtn");
-const clearBtn = document.getElementById("clearBtn");
-const sceneList = document.getElementById("sceneList");
-const sceneInfo = document.getElementById("sceneInfo");
-const mainStatus = document.getElementById("mainStatus");
-const ttsStatus = document.getElementById("ttsStatus");
-const voiceAllBtn = document.getElementById("voiceAllBtn");
-const progressBar = document.getElementById("progressBar");
+const storyInput =
+  document.getElementById("storyInput");
+
+const splitBtn =
+  document.getElementById("splitBtn");
+
+const clearBtn =
+  document.getElementById("clearBtn");
+
+const voiceAllBtn =
+  document.getElementById("voiceAllBtn");
+
+const sceneList =
+  document.getElementById("sceneList");
+
+const sceneInfo =
+  document.getElementById("sceneInfo");
+
+const mainStatus =
+  document.getElementById("mainStatus");
+
+const ttsStatus =
+  document.getElementById("ttsStatus");
+
+const progressBar =
+  document.getElementById("progressBar");
 
 
 /* =========================================================
-   NORMALIZE TEXT
+   TEXT NORMALIZE
 ========================================================= */
 
-function normalizeStory(text){
+function normalizeText(text){
 
   return String(text || "")
     .replace(/\r\n/g,"\n")
@@ -406,7 +366,7 @@ function normalizeStory(text){
 
 function splitSentences(text){
 
-  text = normalizeStory(text);
+  text = normalizeText(text);
 
   if(!text){
     return [];
@@ -422,19 +382,8 @@ function splitSentences(text){
 
     current += ch;
 
-    const next = text[i+1] || "";
-
-    /*
-      Cümle sonları:
-
-      .
-      !
-      ?
-      …
-
-      Ancak sonraki karakter boşluk veya metin sonu
-      olmalı.
-    */
+    const next =
+      text[i+1] || "";
 
     if(
       /[.!?…]/.test(ch) &&
@@ -444,7 +393,8 @@ function splitSentences(text){
       )
     ){
 
-      const sentence = current.trim();
+      const sentence =
+        current.trim();
 
       if(sentence){
         result.push(sentence);
@@ -456,106 +406,73 @@ function splitSentences(text){
 
   }
 
-
   if(current.trim()){
-
     result.push(
       current.trim()
     );
-
   }
-
 
   return result;
-
-}
-
-
-/* =========================================================
-   ABNORMAL CASE FIX
-========================================================= */
-
-function repairSentenceFragments(sentences){
-
-  if(!Array.isArray(sentences)){
-    return [];
-  }
-
-  const output = [];
-
-  for(const sentence of sentences){
-
-    const s = String(sentence || "").trim();
-
-    if(!s){
-      continue;
-    }
-
-    output.push(s);
-
-  }
-
-  return output;
 
 }
 
 
 /* =========================================================
    CREATE SCENES
-   HER SAHNE = 2 CÜMLE
 ========================================================= */
 
-function createScenesFromStory(text){
+function createScenes(text){
 
   const sentences =
-    repairSentenceFragments(
-      splitSentences(text)
-    );
+    splitSentences(text);
 
   const result = [];
 
+  for(
+    let i=0;
+    i<sentences.length;
+    i+=2
+  ){
 
-  for(let i=0;i<sentences.length;i+=2){
-
-    const first =
+    const a =
       sentences[i] || "";
 
-    const second =
+    const b =
       sentences[i+1] || "";
 
-
     const sceneText =
-      [first,second]
-        .filter(Boolean)
-        .join(" ")
-        .trim();
+      [a,b]
+      .filter(Boolean)
+      .join(" ")
+      .trim();
 
-
-    if(sceneText){
-
-      result.push({
-
-        id:result.length + 1,
-
-        text:sceneText,
-
-        sentenceCount:
-          [first,second]
-            .filter(Boolean)
-            .length,
-
-        audioBlob:null,
-
-        audioUrl:null,
-
-        duration:0
-
-      });
-
+    if(!sceneText){
+      continue;
     }
 
-  }
+    result.push({
 
+      id:
+        result.length + 1,
+
+      text:
+        sceneText,
+
+      sentenceCount:
+        [a,b].filter(Boolean).length,
+
+      audioBlob:
+        null,
+
+      audioUrl:
+        null,
+
+      duration:
+        0
+
+    });
+
+  }
 
   return result;
 
@@ -563,43 +480,32 @@ function createScenesFromStory(text){
 
 
 /* =========================================================
-   MAIN SPLIT FUNCTION
+   SPLIT STORY
 ========================================================= */
 
 function splitStory(){
 
-  try{
+  const text =
+    storyInput.value.trim();
 
-    const text =
-      storyInput.value.trim();
-
-
-    if(!text){
-
-      mainStatus.innerHTML =
-        '<span class="warning">⚠️ Önce hikâyeyi gir.</span>';
-
-      return;
-
-    }
-
+  if(!text){
 
     mainStatus.innerHTML =
-      "⏳ Hikâye analiz ediliyor...";
+      '<span class="warning">⚠️ Önce hikâyeyi gir.</span>';
 
+    return;
 
-    /*
-      Çok önemli:
-      TTS burada çağrılmıyor.
-      Sadece JavaScript çalışıyor.
-    */
+  }
+
+  try{
+
+    mainStatus.innerHTML =
+      "⏳ Hikâye cümlelere ayrılıyor...";
 
     scenes =
-      createScenesFromStory(text);
-
+      createScenes(text);
 
     renderScenes();
-
 
     if(!scenes.length){
 
@@ -610,31 +516,28 @@ function splitStory(){
 
     }
 
-
-    const sentenceTotal =
+    const totalSentences =
       scenes.reduce(
-        (sum,s) =>
-          sum + s.sentenceCount,
+        (n,s)=>
+          n+s.sentenceCount,
         0
       );
-
 
     mainStatus.innerHTML =
       `<span class="success">
         ✅ ${scenes.length} sahne oluşturuldu.
       </span>
       <br>
-      Toplam ${sentenceTotal} cümle işlendi.`;
+      ${totalSentences} cümle işlendi.`;
 
-
-  }catch(error){
+  }
+  catch(error){
 
     console.error(error);
 
     mainStatus.innerHTML =
       `<span class="error">
-        ❌ Sahne oluşturma hatası:
-        ${escapeHtml(error.message)}
+        ❌ ${escapeHTML(error.message)}
       </span>`;
 
   }
@@ -643,30 +546,21 @@ function splitStory(){
 
 
 /* =========================================================
-   RENDER SCENES
+   RENDER
 ========================================================= */
 
 function renderScenes(){
 
   sceneList.innerHTML = "";
 
-
-  if(!scenes.length){
-
-    sceneInfo.textContent =
-      "Henüz sahne yok.";
-
-    return;
-
-  }
-
-
   sceneInfo.innerHTML =
-    `🎬 <b>${scenes.length}</b> sahne hazır.`;
+    scenes.length
+      ? `🎬 <b>${scenes.length}</b> sahne hazır.`
+      : "Henüz sahne oluşturulmadı.";
 
 
   scenes.forEach(
-    (scene,index) => {
+    (scene,index)=>{
 
       const box =
         document.createElement("div");
@@ -675,23 +569,17 @@ function renderScenes(){
         "scene";
 
 
-      const header =
+      const head =
         document.createElement("div");
 
-      header.className =
+      head.className =
         "sceneHead";
 
-
-      header.innerHTML = `
-        <div>
-          <span class="sceneNumber">
-            SAHNE ${index+1}
-          </span>
-        </div>
-
-        <div class="sceneDuration">
+      head.innerHTML = `
+        <b>SAHNE ${index+1}</b>
+        <span class="badge">
           ${scene.sentenceCount} cümle
-        </div>
+        </span>
       `;
 
 
@@ -702,23 +590,21 @@ function renderScenes(){
         "sceneBody";
 
 
-      const textarea =
+      const text =
         document.createElement("textarea");
 
-      textarea.className =
+      text.className =
         "sceneText";
 
-      textarea.value =
+      text.value =
         scene.text;
 
 
-      textarea.addEventListener(
+      text.addEventListener(
         "input",
-        function(){
-
+        ()=>{
           scene.text =
-            textarea.value;
-
+            text.value;
         }
       );
 
@@ -729,15 +615,36 @@ function renderScenes(){
       meta.className =
         "sceneMeta";
 
-      meta.innerHTML = `
-        <span class="badge">
-          ${scene.sentenceCount} cümle
-        </span>
 
-        <span class="badge sceneAudioStatus">
-          🔇 Ses yok
-        </span>
-      `;
+      const sentenceBadge =
+        document.createElement("span");
+
+      sentenceBadge.className =
+        "badge";
+
+      sentenceBadge.textContent =
+        scene.sentenceCount === 2
+          ? "✓ 2 cümle"
+          : "1 cümle";
+
+
+      const audioBadge =
+        document.createElement("span");
+
+      audioBadge.className =
+        "badge";
+
+      audioBadge.textContent =
+        "🔇 Ses yok";
+
+
+      meta.appendChild(
+        sentenceBadge
+      );
+
+      meta.appendChild(
+        audioBadge
+      );
 
 
       const actions =
@@ -747,96 +654,80 @@ function renderScenes(){
         "sceneActions";
 
 
-      const voiceBtn =
+      const voice =
         document.createElement("button");
 
-      voiceBtn.type =
-        "button";
-
-      voiceBtn.className =
+      voice.className =
         "green";
 
-      voiceBtn.textContent =
+      voice.type =
+        "button";
+
+      voice.textContent =
         "🎙️ SESLENDİR VE KAYDET";
 
 
-      voiceBtn.addEventListener(
-        "click",
-        async function(){
-
-          await generateSceneVoice(
-            index
-          );
-
-        }
-      );
+      voice.onclick =
+        ()=>generateVoice(index);
 
 
-      const playBtn =
+      const play =
         document.createElement("button");
 
-      playBtn.type =
+      play.type =
         "button";
 
-      playBtn.textContent =
+      play.textContent =
         "▶️ SESİ ÇAL";
 
-      playBtn.addEventListener(
-        "click",
-        function(){
 
-          if(scene.audioUrl){
+      play.onclick =
+        ()=>{
 
-            const audio =
-              new Audio(
-                scene.audioUrl
-              );
-
-            audio.play();
-
-          }else{
+          if(!scene.audioUrl){
 
             alert(
-              "Bu sahnenin henüz sesi yok."
+              "Önce sahneyi seslendir."
             );
+
+            return;
 
           }
 
-        }
-      );
+          const audio =
+            new Audio(
+              scene.audioUrl
+            );
+
+          audio.play();
+
+        };
 
 
-      const downloadBtn =
+      const download =
         document.createElement("button");
 
-      downloadBtn.type =
+      download.type =
         "button";
 
-      downloadBtn.textContent =
+      download.textContent =
         "⬇️ WAV";
 
-      downloadBtn.addEventListener(
-        "click",
-        function(){
 
-          downloadSceneAudio(
-            scene
-          );
-
-        }
-      );
+      download.onclick =
+        ()=>downloadWav(scene);
 
 
       actions.appendChild(
-        voiceBtn
+        voice
       );
 
       actions.appendChild(
-        playBtn
+        play
       );
 
       actions.appendChild(
-        downloadBtn
+        download
       );
 
 
@@ -848,7 +739,7 @@ function renderScenes(){
 
 
       body.appendChild(
-        textarea
+        text
       );
 
       body.appendChild(
@@ -865,7 +756,7 @@ function renderScenes(){
 
 
       box.appendChild(
-        header
+        head
       );
 
       box.appendChild(
@@ -878,18 +769,11 @@ function renderScenes(){
       );
 
 
-      scene._elements = {
-
-        box,
+      scene.ui = {
 
         audioBox,
 
-        meta,
-
-        audioStatus:
-          meta.querySelector(
-            ".sceneAudioStatus"
-          )
+        audioBadge
 
       };
 
@@ -900,118 +784,126 @@ function renderScenes(){
 
 
 /* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================================================
-   DYNAMIC PIPER LOADER
+   PIPER LOAD
 ========================================================= */
 
 async function loadPiper(){
 
-  if(piperModule){
-
-    return piperModule;
-
+  if(piper){
+    return piper;
   }
-
 
   if(piperLoading){
 
     while(piperLoading){
 
-      await new Promise(
-        resolve =>
-          setTimeout(
-            resolve,
-            100
-          )
-      );
+      await sleep(100);
 
     }
 
-    return piperModule;
+    if(piper){
+      return piper;
+    }
 
   }
 
-
-  piperLoading = true;
+  piperLoading =
+    true;
 
 
   try{
 
     ttsStatus.innerHTML =
-      "⏳ Piper TTS yükleniyor...";
+      "⏳ TTS motoru yükleniyor...";
 
 
     /*
-      ÖNEMLİ:
-
-      Burada static import YOK.
-
-      Böylece Piper yüklenemezse
-      sahne sistemi çökmüyor.
+      Piper web paketini dinamik yükle.
     */
 
-    piperModule =
+    const mod =
       await import(
-        "https://cdn.jsdelivr.net/npm/@mintplex-labs/piper-tts-web/+esm"
+        "https://cdn.jsdelivr.net/npm/@mintplex-labs/piper-tts-web@1.1.0/+esm"
       );
 
 
     if(
-      !piperModule ||
-      typeof piperModule.predict !== "function"
+      !mod ||
+      typeof mod.predict !== "function"
     ){
 
       throw new Error(
-        "Piper predict API bulunamadı."
+        "Piper predict fonksiyonu bulunamadı."
+      );
+
+    }
+
+
+    /*
+      Piper nesnesini hazırlıyoruz.
+    */
+
+    piper =
+      mod;
+
+
+    /*
+      ONNX Runtime'ın kendi modülü
+      bazı sürümlerde wasm yolunu otomatik
+      cdnjs üzerinden arıyor.
+
+      Burada sayfanın temel çalışma koşullarını
+      kontrol ediyoruz.
+    */
+
+    if(
+      typeof WebAssembly ===
+      "undefined"
+    ){
+
+      throw new Error(
+        "Tarayıcı WebAssembly desteklemiyor."
       );
 
     }
 
 
     ttsStatus.innerHTML =
-      '<span class="success">✅ Piper TTS hazır.</span>';
+      `<span class="success">
+        ✅ TTS motoru yüklendi.
+      </span>`;
 
 
-    return piperModule;
+    return piper;
 
-
-  }catch(error){
+  }
+  catch(error){
 
     console.error(
-      "Piper yükleme hatası:",
+      "Piper:",
       error
     );
 
 
+    piper =
+      null;
+
+
     ttsStatus.innerHTML =
       `<span class="error">
-        ❌ Piper TTS yüklenemedi.
+        ❌ TTS motoru yüklenemedi.
         <br><br>
-        ${escapeHtml(error.message)}
+        ${escapeHTML(error.message)}
       </span>`;
 
 
     throw error;
 
+  }
+  finally{
 
-  }finally{
-
-    piperLoading = false;
+    piperLoading =
+      false;
 
   }
 
@@ -1019,44 +911,46 @@ async function loadPiper(){
 
 
 /* =========================================================
-   GENERATE ONE SCENE VOICE
+   GENERATE VOICE
 ========================================================= */
 
-async function generateSceneVoice(index){
+async function generateVoice(index){
 
   const scene =
     scenes[index];
 
-
   if(!scene){
-
     return;
-
   }
 
 
   try{
 
-    ttsStatus.innerHTML =
-      `⏳ Sahne ${index+1} seslendiriliyor...`;
-
-
     const tts =
       await loadPiper();
 
 
+    ttsStatus.innerHTML =
+      `🎙️ Sahne ${index+1} hazırlanıyor...`;
+
+
     /*
-      Almanca Piper sesi.
-      Önce voices() ile mevcut sesleri
-      kontrol etmeye çalışıyoruz.
+      Almanca ses.
+
+      Önce doğrudan Thorsten deneniyor.
     */
 
     let voiceId =
       "de_DE-thorsten-medium";
 
 
+    /*
+      Mevcut sesleri kontrol et.
+    */
+
     if(
-      typeof tts.voices === "function"
+      typeof tts.voices ===
+      "function"
     ){
 
       try{
@@ -1064,28 +958,23 @@ async function generateSceneVoice(index){
         const voices =
           await tts.voices();
 
+
         console.log(
           "Piper voices:",
           voices
         );
 
 
-        /*
-          Almanca bir ses mevcutsa
-          onu otomatik bul.
-        */
-
-        const keys =
+        const names =
           Object.keys(
             voices || {}
           );
 
 
         const german =
-          keys.find(
-            key =>
-              key.toLowerCase()
-                .startsWith("de_de")
+          names.find(
+            x =>
+              /^de_DE/i.test(x)
           );
 
 
@@ -1096,10 +985,11 @@ async function generateSceneVoice(index){
 
         }
 
-      }catch(e){
+      }
+      catch(e){
 
         console.warn(
-          "Ses listesi alınamadı:",
+          "Voice listesi alınamadı:",
           e
         );
 
@@ -1108,32 +998,32 @@ async function generateSceneVoice(index){
     }
 
 
-    ttsStatus.innerHTML =
-      `🎙️ Sahne ${index+1} oluşturuluyor...`;
-
+    /*
+      GERÇEK TTS
+    */
 
     const wav =
       await tts.predict({
 
-        text:scene.text,
+        text:
+          scene.text,
 
-        voiceId:voiceId
+        voiceId:
+          voiceId
 
       });
 
 
-    if(!(wav instanceof Blob)){
+    if(
+      !(wav instanceof Blob)
+    ){
 
       throw new Error(
-        "TTS WAV verisi alınamadı."
+        "Piper WAV Blob döndürmedi."
       );
 
     }
 
-
-    /*
-      Önceki URL'yi temizle
-    */
 
     if(scene.audioUrl){
 
@@ -1147,16 +1037,11 @@ async function generateSceneVoice(index){
     scene.audioBlob =
       wav;
 
-
     scene.audioUrl =
       URL.createObjectURL(
         wav
       );
 
-
-    /*
-      WAV süresini ölç
-    */
 
     scene.duration =
       await getAudioDuration(
@@ -1164,27 +1049,37 @@ async function generateSceneVoice(index){
       );
 
 
-    updateSceneAudioUI(
+    updateAudioUI(
       scene
     );
 
 
     ttsStatus.innerHTML =
       `<span class="success">
-        ✅ Sahne ${index+1} hazır.
+        ✅ Sahne ${index+1} seslendirildi.
         Süre: ${formatTime(scene.duration)}
       </span>`;
 
 
-  }catch(error){
+  }
+  catch(error){
 
-    console.error(error);
+    console.error(
+      "TTS ERROR:",
+      error
+    );
 
 
     ttsStatus.innerHTML =
       `<span class="error">
         ❌ Sahne ${index+1} seslendirme hatası:
-        ${escapeHtml(error.message)}
+        <br><br>
+        ${escapeHTML(error.message)}
+        <br><br>
+        <small>
+        Bu hata WAV oluşturulmadan önce ONNX/WASM
+        motorunda oluştu.
+        </small>
       </span>`;
 
   }
@@ -1193,150 +1088,15 @@ async function generateSceneVoice(index){
 
 
 /* =========================================================
-   AUDIO DURATION
+   ALL VOICES
 ========================================================= */
 
-function getAudioDuration(url){
-
-  return new Promise(
-    resolve => {
-
-      const audio =
-        new Audio();
-
-      audio.preload =
-        "metadata";
-
-
-      audio.onloadedmetadata =
-        function(){
-
-          const duration =
-            Number(
-              audio.duration
-            );
-
-
-          resolve(
-            Number.isFinite(duration)
-              ? duration
-              : 0
-          );
-
-        };
-
-
-      audio.onerror =
-        function(){
-
-          resolve(0);
-
-        };
-
-
-      audio.src =
-        url;
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   UPDATE AUDIO UI
-========================================================= */
-
-function updateSceneAudioUI(scene){
-
-  if(
-    !scene ||
-    !scene._elements
-  ){
-
-    return;
-
-  }
-
-
-  scene._elements.audioBox
-    .innerHTML = "";
-
-
-  const audio =
-    document.createElement("audio");
-
-  audio.controls =
-    true;
-
-  audio.src =
-    scene.audioUrl;
-
-
-  scene._elements.audioBox
-    .appendChild(audio);
-
-
-  scene._elements.audioStatus
-    .className =
-      "badge success";
-
-
-  scene._elements.audioStatus
-    .textContent =
-      `🔊 ${formatTime(scene.duration)}`;
-
-}
-
-
-/* =========================================================
-   DOWNLOAD WAV
-========================================================= */
-
-function downloadSceneAudio(scene){
-
-  if(
-    !scene ||
-    !scene.audioBlob
-  ){
-
-    alert(
-      "Önce bu sahneyi seslendir."
-    );
-
-    return;
-
-  }
-
-
-  const a =
-    document.createElement("a");
-
-  a.href =
-    scene.audioUrl;
-
-  a.download =
-    `GeldStory_Sahne_${scene.id}.wav`;
-
-  document.body.appendChild(a);
-
-  a.click();
-
-  a.remove();
-
-}
-
-
-/* =========================================================
-   ALL SCENES VOICE
-========================================================= */
-
-async function generateAllVoices(){
+async function generateAll(){
 
   if(!scenes.length){
 
     alert(
-      "Önce hikâyeyi sahnelere böl."
+      "Önce SAHNELERE BÖL."
     );
 
     return;
@@ -1359,17 +1119,13 @@ async function generateAllVoices(){
       i++
     ){
 
-      const percent =
-        Math.round(
-          (i / scenes.length) * 100
-        );
-
-
       progressBar.style.width =
-        percent + "%";
+        (
+          (i / scenes.length) * 100
+        ) + "%";
 
 
-      await generateSceneVoice(
+      await generateVoice(
         i
       );
 
@@ -1382,15 +1138,11 @@ async function generateAllVoices(){
 
     ttsStatus.innerHTML =
       `<span class="success">
-        🎉 Tüm ${scenes.length} sahne seslendirildi.
+        🎉 ${scenes.length} sahnenin seslendirmesi tamamlandı.
       </span>`;
 
-
-  }catch(error){
-
-    console.error(error);
-
-  }finally{
+  }
+  finally{
 
     voiceAllBtn.disabled =
       false;
@@ -1404,24 +1156,217 @@ async function generateAllVoices(){
 
 
 /* =========================================================
-   FORMAT TIME
+   AUDIO UI
 ========================================================= */
+
+function updateAudioUI(scene){
+
+  if(
+    !scene.ui
+  ){
+    return;
+  }
+
+
+  scene.ui.audioBox
+    .innerHTML = "";
+
+
+  const audio =
+    document.createElement("audio");
+
+  audio.controls =
+    true;
+
+  audio.src =
+    scene.audioUrl;
+
+
+  scene.ui.audioBox
+    .appendChild(
+      audio
+    );
+
+
+  scene.ui.audioBadge
+    .textContent =
+      "🔊 " +
+      formatTime(
+        scene.duration
+      );
+
+}
+
+
+/* =========================================================
+   AUDIO DURATION
+========================================================= */
+
+function getAudioDuration(url){
+
+  return new Promise(
+    resolve=>{
+
+      const audio =
+        new Audio();
+
+
+      audio.preload =
+        "metadata";
+
+
+      audio.onloadedmetadata =
+        ()=>{
+
+          const d =
+            Number(
+              audio.duration
+            );
+
+          resolve(
+            Number.isFinite(d)
+              ? d
+              : 0
+          );
+
+        };
+
+
+      audio.onerror =
+        ()=>resolve(0);
+
+
+      audio.src =
+        url;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   DOWNLOAD WAV
+========================================================= */
+
+function downloadWav(scene){
+
+  if(
+    !scene.audioBlob ||
+    !scene.audioUrl
+  ){
+
+    alert(
+      "Önce seslendirme oluştur."
+    );
+
+    return;
+
+  }
+
+
+  const a =
+    document.createElement("a");
+
+  a.href =
+    scene.audioUrl;
+
+  a.download =
+    "GeldStory_Sahne_" +
+    scene.id +
+    ".wav";
+
+
+  document.body.appendChild(
+    a
+  );
+
+  a.click();
+
+  a.remove();
+
+}
+
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+function clearAll(){
+
+  scenes.forEach(
+    scene=>{
+
+      if(scene.audioUrl){
+
+        URL.revokeObjectURL(
+          scene.audioUrl
+        );
+
+      }
+
+    }
+  );
+
+
+  scenes =
+    [];
+
+
+  storyInput.value =
+    "";
+
+
+  sceneList.innerHTML =
+    "";
+
+
+  sceneInfo.textContent =
+    "Henüz sahne oluşturulmadı.";
+
+
+  mainStatus.textContent =
+    "Sistem hazır.";
+
+
+  ttsStatus.textContent =
+    "TTS henüz başlatılmadı.";
+
+
+  progressBar.style.width =
+    "0%";
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function sleep(ms){
+
+  return new Promise(
+    r=>setTimeout(r,ms)
+  );
+
+}
+
 
 function formatTime(seconds){
 
   if(
     !Number.isFinite(seconds)
   ){
-
     return "00:00";
-
   }
 
 
   const total =
-    Math.max(
-      0,
-      Math.round(seconds)
+    Math.round(
+      Math.max(
+        0,
+        seconds
+      )
     );
 
 
@@ -1446,37 +1391,14 @@ function formatTime(seconds){
 }
 
 
-/* =========================================================
-   CLEAR
-========================================================= */
+function escapeHTML(value){
 
-function clearAll(){
-
-  storyInput.value =
-    "";
-
-  scenes =
-    [];
-
-
-  sceneList.innerHTML =
-    "";
-
-
-  sceneInfo.textContent =
-    "Henüz sahne oluşturulmadı.";
-
-
-  mainStatus.innerHTML =
-    "Sistem hazır. Hikâyeyi girip SAHNELERE BÖL butonuna bas.";
-
-
-  ttsStatus.innerHTML =
-    "Henüz seslendirme başlatılmadı.";
-
-
-  progressBar.style.width =
-    "0%";
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
@@ -1499,45 +1421,7 @@ clearBtn.addEventListener(
 
 voiceAllBtn.addEventListener(
   "click",
-  generateAllVoices
-);
-
-
-/* =========================================================
-   GLOBAL ERROR PROTECTION
-========================================================= */
-
-window.addEventListener(
-  "error",
-  function(event){
-
-    console.error(
-      "Mina Error:",
-      event.error || event.message
-    );
-
-    /*
-      Burada sahne sistemi kapatılmıyor.
-    */
-
-  }
-);
-
-
-/* =========================================================
-   PROMISE ERROR PROTECTION
-========================================================= */
-
-window.addEventListener(
-  "unhandledrejection",
-  function(event){
-
-    console.error(
-      "Mina Promise Error:",
-      event.reason
-    );
-
-  }
+  generateAll
 );
 
 
@@ -1546,7 +1430,7 @@ window.addEventListener(
 ========================================================= */
 
 console.log(
-  "Mina Video AI V46.1 hazır."
+  "Mina Video AI V46.2 hazır."
 );
 
 </script>
