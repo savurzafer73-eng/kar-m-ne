@@ -24,11 +24,10 @@ audio{width:100%;margin-top:8px}.status{white-space:pre-wrap;background:#090c11;
 </style>
 </head>
 <body>
-<header><h1>🎬 Mina Video AI V45.4 — GeldStory Studio</h1><div class="sub">Tarayıcı içinde çalışan sahne + görsel + ses + WebM video stüdyosu. API anahtarı gerekmez.</div></header>
+<header><h1>🎬 Mina Video AI V45.4 — GeldStory Studio</h1><div class="sub">Tarayıcı içinde çalışan sahne + görsel + ses + WebM video stüdyosu. API anahtarı gerekmez. Tarayıcı TTS + mikrofon kaydı desteklenir.</div></header>
 <div class="wrap">
 <section class="toolbar">
 <label>Format <select id="format"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select></label>
-<label>Sahne sayısı <select id="count"><option>5</option><option>10</option><option selected>20</option></select></label>
 <button onclick="loadStory()">J.K. Rowling hikâyesini yükle</button>
 <button onclick="clearAll()">Temizle</button>
 <button onclick="exportProject()">Proje JSON indir</button>
@@ -37,12 +36,21 @@ audio{width:100%;margin-top:8px}.status{white-space:pre-wrap;background:#090c11;
 </section>
 
 <section class="card">
-<h2 style="margin-top:0">1) Hikâye / Sahne üretimi</h2>
-<p class="small">Hazır hikâyeyi yükleyebilir veya aşağıdaki alanlardan sahneleri düzenleyebilirsin. Her sahne kendi sesini ve görselini taşır.</p>
+<h2 style="margin-top:0">1) Hikâyeni yükle — SINIRSIZ SAHNE</h2>
+<p class="small">İstediğin kadar uzun hikâye yapıştır. Mina metni otomatik olarak sahnelere böler. Sahne sayısında sınır yoktur. Boş satırlar yeni sahne oluşturur; çok uzun paragraflar da otomatik bölünür.</p>
 <div class="row">
-<div><label>Video başlığı</label><input id="title" value="J.K. Rowling – Vom Tiefpunkt zur Bestsellerautorin"></div>
-<div><label>Seslendirme dili</label><select id="lang"><option value="de-DE">Deutsch</option><option value="tr-TR">Türkçe</option><option value="en-US">English</option></select></div>
+<div><label>Video başlığı</label><input id="title" value="GeldStory – Neue Geschichte"></div>
+<div><label>Seslendirme dili</label><select id="lang"><option value="de-DE">Deutsch</option><option value="tr-TR">Türkçe</option><option value="en-US">English</option><option value="es-ES">Español</option><option value="fr-FR">Français</option></select></div>
+<div class="full"><label>📖 HİKÂYENİ BURAYA YAPIŞTIR</label>
+<textarea id="storyInput" style="min-height:260px" placeholder="Hikâyeni buraya yapıştır..."></textarea></div>
+<div class="full" style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="primary" onclick="importStory()">✂️ HİKÂYEYİ SINIRSIZ SAHNELERE BÖL</button>
+<button onclick="addScene()">➕ SAHNE EKLE</button>
+<button onclick="speakAll()">🔊 TÜM METNİ SESLENDİR</button>
+<button onclick="stopSpeaking()">⏹ SESİ DURDUR</button>
 </div>
+</div>
+<div id="storyInfo" class="status" style="margin-top:10px">Henüz hikâye yüklenmedi.</div>
 </section>
 
 <div id="scenes" class="grid"></div>
@@ -111,7 +119,7 @@ function renderSceneCards(){
         <label>🔊 Sahne sesi — MP3/WAV/OGG/M4A veya kayıt</label>
         <input class="audioInput" type="file" accept="audio/*">
         <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-          <button class="record">🎙️ Kaydet</button><button class="stopRec hide">⏹ Kaydı durdur</button>
+          <button class="makeVoice">🔊 Ses oluştur</button><button class="record">🎙️ Kayıt ekle</button><button class="stopRec hide">⏹ Kaydı durdur</button>
         </div>
         <audio class="audio" controls></audio>
       </div>
@@ -121,6 +129,7 @@ function renderSceneCards(){
     const speech=el.querySelector(".speech"),dur=el.querySelector(".duration"),prompt=el.querySelector(".prompt"),motion=el.querySelector(".motion");
     speech.oninput=()=>s.text=speech.value;dur.oninput=()=>s.duration=Math.max(1,+dur.value||1);prompt.oninput=()=>s.prompt=prompt.value;motion.oninput=()=>s.motion=motion.value;
     const imgIn=el.querySelector(".imageInput"),img=el.querySelector(".previewImg"),audioIn=el.querySelector(".audioInput"),audio=el.querySelector(".audio");
+    el.querySelector(".makeVoice").onclick=()=>speakText(s.text);
     imgIn.onchange=()=>{const f=imgIn.files[0];if(!f)return;s.image=f;img.src=URL.createObjectURL(f);img.classList.remove("hide");el.querySelector(".previewText").classList.add("hide");$("imageMeta-"+i).textContent="Görsel: hazır";};
     audioIn.onchange=()=>{const f=audioIn.files[0];if(!f)return;s.audio=f;s.audioName=f.name;audio.src=URL.createObjectURL(f);$("audioMeta-"+i).textContent="Ses: "+f.name;audio.onloadedmetadata=()=>{if(isFinite(audio.duration)&&audio.duration>0){s.audioDuration=audio.duration;dur.value=Math.max(1,Math.round(audio.duration*10)/10);s.duration=audio.duration;}}};
     setupRecorder(el,s,i);
@@ -148,7 +157,7 @@ function setupRecorder(el,s,i){
   sb.onclick=()=>{if(rec&&rec.state!=="inactive")rec.stop();rb.classList.remove("hide");sb.classList.add("hide")};
 }
 function loadStory(){buildScenes(STORY);$("status").textContent="20 sahne hazır. Her sahne için görsel ve ses ekleyebilirsin."}
-function clearAll(){if(!confirm("Tüm sahneler temizlensin mi?"))return;buildScenes(Array.from({length:+$("count").value},(_,i)=>["","", "",5]));}
+function clearAll(){if(!confirm("Tüm sahneler temizlensin mi?"))return;buildScenes([]);document.getElementById("storyInput").value="";document.getElementById("storyInfo").textContent="Temizlendi.";}
 $("count").onchange=()=>{const n=+$("count").value;const d=STORY.slice(0,n);while(d.length<n)d.push(["","","",5]);buildScenes(d);};
 
 function fitCanvas(){
