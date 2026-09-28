@@ -1,1838 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mina Video AI V45.4</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mina Video AI V45.4 — GeldStory Studio</title>
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- background:#08090d;
- color:#fff;
- font-family:Arial,Helvetica,sans-serif;
-}
-header{
- padding:18px;
- background:linear-gradient(135deg,#10131c,#191d29);
- border-bottom:1px solid #303543;
- position:sticky;
- top:0;
- z-index:20;
-}
-.logo{
- font-size:25px;
- font-weight:800;
-}
-.logo span{color:#9d7cff}
-.version{
- font-size:12px;
- color:#9ca3af;
- margin-top:4px;
-}
-main{
- max-width:1200px;
- margin:auto;
- padding:20px;
-}
-.panel{
- background:#11141c;
- border:1px solid #292e3a;
- border-radius:16px;
- padding:18px;
- margin-bottom:18px;
- box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-h2{
- margin-top:0;
- font-size:18px;
-}
-textarea{
- width:100%;
- min-height:190px;
- background:#090b10;
- color:#fff;
- border:1px solid #333947;
- border-radius:12px;
- padding:15px;
- resize:vertical;
- font-size:15px;
- line-height:1.6;
-}
-.controls{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
- gap:10px;
- margin-top:12px;
-}
-select,input,button{
- width:100%;
- padding:11px;
- border-radius:9px;
- border:1px solid #353b49;
- background:#0b0e14;
- color:#fff;
-}
-button{
- cursor:pointer;
- font-weight:700;
-}
-button:hover{
- filter:brightness(1.15);
-}
-.primary{
- background:#6d4aff;
- border-color:#8064ff;
-}
-.success{
- background:#157347;
- border-color:#1d915d;
-}
-.danger{
- background:#7f1d1d;
- border-color:#a52b2b;
-}
-.secondary{
- background:#202633;
-}
-.progress{
- height:12px;
- background:#252a35;
- border-radius:20px;
- overflow:hidden;
- margin-top:10px;
-}
-.progressBar{
- height:100%;
- width:0%;
- background:linear-gradient(90deg,#7657ff,#c084fc);
- transition:.2s;
-}
-.status{
- margin-top:10px;
- color:#b8c0d0;
- min-height:20px;
-}
-.scene{
- background:#0c0f15;
- border:1px solid #292f3b;
- border-radius:14px;
- padding:14px;
- margin-bottom:12px;
-}
-.sceneHead{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
- margin-bottom:10px;
-}
-.badge{
- background:#29214d;
- color:#c8b8ff;
- padding:5px 9px;
- border-radius:20px;
- font-size:12px;
-}
-.sceneGrid{
- display:grid;
- grid-template-columns:240px 1fr;
- gap:15px;
-}
-.preview{
- width:100%;
- aspect-ratio:16/9;
- background:#050608;
- border-radius:10px;
- overflow:hidden;
- position:relative;
-}
-.preview canvas{
- width:100%;
- height:100%;
- display:block;
-}
-.scene textarea{
- min-height:90px;
-}
-.file{
- font-size:12px;
-}
-.small{
- color:#9ca3af;
- font-size:12px;
-}
-.actions{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
- gap:10px;
-}
-video{
- width:100%;
- background:#000;
- border-radius:14px;
- margin-top:12px;
-}
-.hidden{display:none!important}
-.warning{
- padding:12px;
- border-radius:10px;
- background:#332b12;
- color:#f5d77a;
- border:1px solid #66551f;
- margin-bottom:12px;
-}
+:root{--bg:#0b0d12;--panel:#141821;--panel2:#1b202b;--text:#f3f5f7;--muted:#9ca6b5;--accent:#d9dce2;--danger:#ff6b6b;--ok:#65d69b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#080a0f,#111620);color:var(--text);font-family:Arial,sans-serif}
+header{padding:18px 22px;border-bottom:1px solid #29303b;position:sticky;top:0;background:#0b0d12ee;backdrop-filter:blur(12px);z-index:10}
+h1{margin:0;font-size:22px}.sub{color:var(--muted);font-size:13px;margin-top:5px}
+.wrap{max-width:1250px;margin:auto;padding:18px}.toolbar,.card{background:var(--panel);border:1px solid #29303b;border-radius:14px;padding:15px;margin-bottom:14px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.toolbar label{color:var(--muted);font-size:13px}
+button,input,select,textarea{font:inherit}button{border:1px solid #3b4350;background:#202632;color:white;border-radius:9px;padding:9px 12px;cursor:pointer}button:hover{background:#2a313e}button.primary{background:#eee;color:#111;border-color:#fff;font-weight:700}button.danger{border-color:#73383d;color:#ffb4b4}
+input[type=text],select,textarea{width:100%;background:#0e1219;color:#fff;border:1px solid #333b48;border-radius:8px;padding:9px}
+textarea{min-height:100px;resize:vertical}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px}
+.scene{background:var(--panel);border:1px solid #2b3340;border-radius:14px;padding:14px;position:relative}.scene h3{margin:0 0 10px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}
+.preview{height:190px;background:#090c11;border:1px dashed #3b4350;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:10px 0}.preview img{width:100%;height:100%;object-fit:cover}.meta{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:12px}.pill{padding:4px 7px;border:1px solid #343c49;border-radius:99px}
+audio{width:100%;margin-top:8px}.status{white-space:pre-wrap;background:#090c11;border:1px solid #2d3440;border-radius:10px;padding:12px;min-height:60px;color:#cbd2dc}
+.progress{height:10px;background:#252b35;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:#eee;transition:width .2s}
+.small{font-size:12px;color:var(--muted)}.hide{display:none!important}
+#renderCanvas{display:none}
+@media(max-width:650px){.row{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
+<header><h1>🎬 Mina Video AI V45.4 — GeldStory Studio</h1><div class="sub">Tarayıcı içinde çalışan sahne + görsel + ses + WebM video stüdyosu. API anahtarı gerekmez.</div></header>
+<div class="wrap">
+<section class="toolbar">
+<label>Format <select id="format"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select></label>
+<label>Sahne sayısı <select id="count"><option>5</option><option>10</option><option selected>20</option></select></label>
+<button onclick="loadStory()">J.K. Rowling hikâyesini yükle</button>
+<button onclick="clearAll()">Temizle</button>
+<button onclick="exportProject()">Proje JSON indir</button>
+<button onclick="document.getElementById('projectFile').click()">Proje JSON yükle</button>
+<input id="projectFile" class="hide" type="file" accept=".json">
+</section>
 
-<header>
- <div class="logo">🎬 Mina Video AI</div>
- <div class="version">V45.4 — Text → Animated Video Studio</div>
-</header>
-
-<main>
-
-<div class="panel">
- <h2>📝 1. Hikâyeni Gir</h2>
-
- <textarea id="story"
- placeholder="Almanca hikâyeni buraya yapıştır...
-
-Örnek:
-Harland Sanders war bereits 65 Jahre alt, als viele Menschen dachten, dass seine Karriere vorbei war. Doch er gab nicht auf..."></textarea>
-
- <div class="controls">
-
-  <div>
-   <label>Görüntü Oranı</label>
-   <select id="ratio">
-    <option value="16:9">16:9 YouTube</option>
-    <option value="9:16">9:16 Shorts</option>
-    <option value="1:1">1:1</option>
-   </select>
-  </div>
-
-  <div>
-   <label>Sahne Sayısı</label>
-   <select id="sceneCount">
-    <option value="6">6</option>
-    <option value="8">8</option>
-    <option value="10">10</option>
-    <option value="12">12</option>
-    <option value="20" selected>20</option>
-    <option value="30">30</option>
-   </select>
-  </div>
-
-  <div>
-   <label>Animasyon</label>
-   <select id="animation">
-    <option value="cinematic">Sinematik</option>
-    <option value="zoom">Zoom</option>
-    <option value="pan">Pan</option>
-    <option value="drift">Slow Drift</option>
-    <option value="random">Karışık</option>
-   </select>
-  </div>
-
- </div>
-
- <div class="actions" style="margin-top:12px">
-  <button class="primary" id="makeScenes">🎬 SAHNELERİ OLUŞTUR</button>
-  <button class="secondary" id="demoStory">✨ Örnek Hikâye</button>
- </div>
-
- <div class="status" id="status"></div>
+<section class="card">
+<h2 style="margin-top:0">1) Hikâye / Sahne üretimi</h2>
+<p class="small">Hazır hikâyeyi yükleyebilir veya aşağıdaki alanlardan sahneleri düzenleyebilirsin. Her sahne kendi sesini ve görselini taşır.</p>
+<div class="row">
+<div><label>Video başlığı</label><input id="title" value="J.K. Rowling – Vom Tiefpunkt zur Bestsellerautorin"></div>
+<div><label>Seslendirme dili</label><select id="lang"><option value="de-DE">Deutsch</option><option value="tr-TR">Türkçe</option><option value="en-US">English</option></select></div>
 </div>
+</section>
 
+<div id="scenes" class="grid"></div>
 
-<div class="panel" id="scenesPanel">
- <h2>🎞️ 2. Sahne Editörü</h2>
-
- <div class="warning">
- Görselleri ve sesleri sahnelere yükleyebilirsin. Görsel yüklemezsen Mina otomatik sinematik animasyon arka planı oluşturur.
- </div>
-
- <div id="scenes"></div>
+<section class="card">
+<h2 style="margin-top:0">2) Render</h2>
+<div class="toolbar" style="padding:0;border:0;background:none">
+<button class="primary" id="renderBtn">🎬 VİDEOYU OLUŞTUR</button>
+<button id="stopBtn">⏹ Durdur</button>
+<label>FPS <select id="fps"><option>24</option><option selected>30</option><option>60</option></select></label>
 </div>
-
-
-<div class="panel">
- <h2>🎥 3. Video Render</h2>
-
- <div class="actions">
-
-  <button class="primary" id="previewBtn">
-   ▶️ ÖNİZLEME
-  </button>
-
-  <button class="success" id="renderBtn">
-   🎬 VİDEOYU OLUŞTUR
-  </button>
-
-  <button class="danger" id="stopBtn">
-   ⛔ DURDUR
-  </button>
-
- </div>
-
- <div class="progress">
-  <div class="progressBar" id="progressBar"></div>
- </div>
-
- <div class="status" id="renderStatus"></div>
-
- <video id="video" controls></video>
-
- <button class="success hidden" id="downloadBtn" style="margin-top:12px">
-  📥 VİDEOYU İNDİR
- </button>
-
+<div style="margin-top:12px" class="progress"><div class="bar" id="bar"></div></div>
+<div id="status" class="status" style="margin-top:10px">Hazır.</div>
+<video id="resultVideo" controls style="width:100%;margin-top:12px;border-radius:10px;background:#000"></video>
+<div style="margin-top:10px"><a id="download" class="hide" download="Mina_Video_AI_V45.4_GeldStory.webm"><button>⬇️ WebM videoyu indir</button></a></div>
+</section>
+<canvas id="renderCanvas"></canvas>
 </div>
-
-</main>
-
 
 <script>
+const STORY=[
+["Sie hatte kaum Geld. Sie war alleinerziehende Mutter. Und viele Menschen hätten damals nicht geglaubt, dass aus ihrer Idee einmal eine weltweite Erfolgsgeschichte werden würde.","Cinematic realistic 1990s Britain, struggling young single mother sitting alone in a modest apartment, papers and handwritten pages on a small table, rainy window, emotional atmosphere, natural lighting, realistic documentary photography, 16:9","Langsamer Kamerazoom auf die Frau und die handgeschriebenen Seiten, Regen bewegt sich am Fenster.",15],
+["Ihr Name war Joanne Rowling. Später würde die Welt sie als J.K. Rowling kennen.","Realistic cinematic portrait of a young Joanne Rowling in the early 1990s, modest clothing, thoughtful expression, small British apartment, documentary style, soft natural light, 16:9","Langsame Kamerafahrt von links nach rechts, während Rowling nachdenklich aus dem Fenster schaut.",15],
+["Doch ihr Leben war zu dieser Zeit alles andere als einfach. Ihre Ehe war gescheitert und sie musste sich um ihre kleine Tochter kümmern.","Young single mother in a modest 1990s British apartment caring for her small daughter, simple furniture, realistic family scene, emotional but natural, cinematic documentary style, 16:9","Die Mutter bewegt sich langsam durch den Raum, das Kind sitzt am Tisch, sanfte Kamerabewegung.",15],
+["Geld war knapp. Die Zukunft war unsicher. Doch in ihrem Kopf begann gleichzeitig eine neue Geschichte zu entstehen.","Close-up of handwritten story notes on a worn wooden table, empty wallet nearby, coffee cup, pencil, rainy day outside, cinematic realism, shallow depth of field, 16:9","Kamera fährt langsam über die Notizen und endet auf dem Bleistift.",15],
+["Während einer Zugfahrt kam ihr plötzlich die Idee von einem Jungen mit einer besonderen Vergangenheit.","1990s British passenger train interior, young woman sitting beside the window, countryside passing outside, suddenly inspired and thinking deeply, cinematic realistic photography, 16:9","Zug fährt sichtbar durch die Landschaft, Kamera bewegt sich langsam auf ihr Gesicht zu.",15],
+["Sein Name war Harry Potter.","Mysterious cinematic silhouette of a young boy with round glasses standing on a railway platform, subtle magical atmosphere, realistic live-action style, no copyrighted character design, dramatic evening light, 16:9","Leichter Nebel bewegt sich, Kamera fährt langsam auf die Silhouette zu.",15],
+["Rowling begann, seine Geschichte aufzuschreiben. Seite für Seite. Kapitel für Kapitel.","Young female writer writing a fantasy novel by hand in a small café, notebook filled with handwritten pages, coffee cup, realistic 1990s atmosphere, cinematic lighting, 16:9","Ihre Hand schreibt weiter, Kamera folgt dem Stift über die Seite.",15],
+["Sie hatte keinen berühmten Verlag und keine Garantie, dass irgendjemand ihr Buch veröffentlichen wollte.","Stack of handwritten manuscript pages beside rejection letters on a small desk, lonely writer in background, muted 1990s British interior, cinematic documentary realism, 16:9","Kamera fährt langsam von den Absagebriefen zu den Manuskriptseiten.",15],
+["Dann kamen die ersten Absagen.","Close-up of several rejection letters scattered across a wooden table, woman's hands resting beside them, emotional cinematic realism, soft shadows, 16:9","Eine Hand legt einen weiteren Brief auf den Tisch, Kamera zoomt langsam heraus.",15],
+["Eine nach der anderen. Doch Rowling gab ihre Geschichte nicht auf.","Determined young writer sitting alone at night, continuing to write despite rejection letters around her, desk lamp illuminating manuscript, cinematic realistic film still, 16:9","Kamera kreist langsam um den Schreibtisch, während sie weiterschreibt.",15],
+["Schließlich interessierte sich ein britischer Verlag für das Manuskript.","1990s publishing office, editor reading a handwritten manuscript with growing interest, realistic British office, papers and books everywhere, cinematic documentary style, 16:9","Der Herausgeber blättert durch die Seiten und hebt langsam den Blick.",15],
+["1997 erschien das erste Harry-Potter-Buch.","1997 British bookstore, newly published fantasy children's book displayed prominently on a wooden table, customers discovering it, realistic period atmosphere, cinematic photography, 16:9","Kamera fährt langsam auf das Buch zu, Kunden bewegen sich im Hintergrund.",15],
+["Am Anfang war es einfach nur ein neues Kinderbuch. Doch die Leser reagierten begeistert.","Children and families in a 1990s bookstore excitedly discovering a new fantasy novel, realistic expressions, warm cinematic lighting, documentary photography, 16:9","Menschen nehmen Bücher aus dem Regal, Kamera bewegt sich dynamisch durch den Laden.",15],
+["Immer mehr Menschen wollten wissen, wie die Geschichte weitergeht.","Growing crowd of readers outside a British bookstore, people holding fantasy books, 1990s atmosphere, realistic cinematic street photography, 16:9","Kamera fährt langsam entlang der wartenden Menschen, leichte natürliche Bewegung.",15],
+["Weitere Bücher folgten. Und mit jedem neuen Band wurde die Geschichte größer.","Multiple fantasy novels arranged chronologically on a wooden table, pages turning, warm cinematic light, symbolic growth, realistic photography, 16:9","Bücher erscheinen nacheinander auf dem Tisch, Kamera fährt langsam darüber.",15],
+["Die Bücher wurden in zahlreiche Sprachen übersetzt und erreichten Leser auf der ganzen Welt.","World map surrounded by books in many different languages, readers from different countries, cinematic realistic montage, global literary success, 16:9","Kamera bewegt sich über die Weltkarte, verschiedene Bücher und Leser werden eingeblendet.",15],
+["Aus einer Idee wurde eine internationale Buchreihe.","Huge modern bookstore filled with readers, shelves of fantasy novels, international visitors, cinematic wide shot, realistic photography, 16:9","Langsame Kamerafahrt durch die Buchhandlung mit bewegten Menschen.",15],
+["Doch hinter diesem Erfolg standen Jahre voller Zweifel, Absagen und Unsicherheit.","Symbolic cinematic transition between a lonely struggling writer and a successful author, dark room transforming into bright publishing environment, realistic film style, 16:9","Kamera fährt vom dunklen Schreibtisch langsam in einen hellen Raum.",15],
+["Ihre Geschichte zeigt, dass ein schwieriger Lebensabschnitt nicht automatisch das letzte Kapitel sein muss.","Woman walking forward alone on a long road at sunrise, symbolic new beginning, cinematic realistic landscape, hopeful atmosphere, 16:9","Kamera folgt der Frau langsam von hinten, Sonnenlicht wird stärker.",15],
+["Manchmal beginnt das wichtigste Kapitel genau dann, wenn man glaubt, dass die Geschichte bereits vorbei ist. Das war die Geschichte von J.K. Rowling.","Inspirational cinematic final scene, open notebook on a wooden desk, sunlight entering through a window, pages gently moving in the breeze, symbolic new beginning, ultra realistic film still, 16:9","Sayfalar hafifçe hareket eder, kamera yavaşça uzaklaşır ve görüntü güneş ışığı içinde fade out olur.",20]
+];
 
-/* =========================================================
-   MINA VIDEO AI V45.4
-   CORE
-========================================================= */
+let scenes=[], rendering=false, stopFlag=false, currentVideoURL=null;
+const $=id=>document.getElementById(id);
 
-const $ = id => document.getElementById(id);
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
 
-let scenes = [];
-let stopRequested = false;
-let renderBlob = null;
-let currentVideoURL = null;
-
-
-/* =========================================================
-   DEMO STORY
-========================================================= */
-
-$("demoStory").onclick = () => {
-
- $("story").value =
- `Harland Sanders war bereits 65 Jahre alt, als viele Menschen dachten, dass seine Karriere vorbei war.
- Doch Sanders gab nicht auf.
- Er hatte jahrelang in kleinen Restaurants gearbeitet und sein berühmtes Hühnchenrezept entwickelt.
- Als er seine Stelle verlor, begann er erneut.
- Er fuhr von Restaurant zu Restaurant und bot sein Rezept an.
- Viele Menschen lehnten ihn ab.
- Doch eines Tages sagte ein Restaurantbesitzer ja.
- Sein Rezept wurde immer bekannter.
- Sanders gründete schließlich Kentucky Fried Chicken.
- Was wie ein Ende aussah, wurde zu einem neuen Anfang.
- Seine Geschichte zeigt, dass Erfolg manchmal später kommt, als man erwartet.`;
-
-};
-
-
-/* =========================================================
-   STORY SPLITTER
-========================================================= */
-
-function splitStory(text,count){
-
- let clean=text
-  .replace(/\s+/g," ")
-  .trim();
-
- if(!clean)return [];
-
- let sentences=clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [clean];
-
- sentences=sentences
-  .map(x=>x.trim())
-  .filter(x=>x.length>3);
-
- let result=[];
-
- if(sentences.length<=count){
-
-  result=sentences.slice();
-
-  while(result.length<count){
-
-   let longestIndex=0;
-
-   for(let i=1;i<result.length;i++){
-
-    if(result[i].length>result[longestIndex].length)
-     longestIndex=i;
-   }
-
-   let s=result[longestIndex];
-   let words=s.split(" ");
-
-   if(words.length<8)break;
-
-   let mid=Math.floor(words.length/2);
-
-   result.splice(
-    longestIndex,
-    1,
-    words.slice(0,mid).join(" ")+".",
-    words.slice(mid).join(" ")
-   );
-
-  }
-
- }else{
-
-  let chunk=Math.ceil(sentences.length/count);
-
-  for(let i=0;i<count;i++){
-
-   let part=sentences.slice(
-    i*chunk,
-    (i+1)*chunk
-   );
-
-   if(part.length)
-    result.push(part.join(" "));
-
-  }
-
- }
-
- while(result.length<count && result.length>0){
-
-  result.push(result[result.length-1]);
-
- }
-
- return result.slice(0,count);
+function buildScenes(data=STORY){
+  scenes=data.map((x,i)=>({n:i+1,text:x[0],prompt:x[1],motion:x[2],duration:x[3],image:null,audio:null,audioName:"",audioDuration:0}));
+  renderSceneCards();
 }
-
-
-/* =========================================================
-   COLOR FROM TEXT
-========================================================= */
-
-function hashText(text){
-
- let h=0;
-
- for(let i=0;i<text.length;i++)
-  h=((h<<5)-h)+text.charCodeAt(i)|0;
-
- return Math.abs(h);
-}
-
-
-/* =========================================================
-   SCENE CREATION
-========================================================= */
-
-$("makeScenes").onclick=()=>{
-
- let text=$("story").value.trim();
-
- if(!text){
-
-  $("status").textContent="Önce hikâyeni gir.";
-  return;
- }
-
- let count=parseInt($("sceneCount").value);
-
- let parts=splitStory(text,count);
-
- scenes=parts.map((text,index)=>({
-
-  id:index+1,
-
-  text,
-
-  image:null,
-
-  imageURL:null,
-
-  audio:null,
-
-  audioURL:null,
-
-  audioDuration:0,
-
-  duration:5,
-
-  animation:$("animation").value,
-
-  seed:hashText(text+index)
-
- }));
-
- renderSceneEditor();
-
- $("status").textContent=
-  scenes.length+" sahne oluşturuldu.";
-
-};
-
-
-/* =========================================================
-   SCENE EDITOR
-========================================================= */
-
-function renderSceneEditor(){
-
- const box=$("scenes");
-
- box.innerHTML="";
-
- scenes.forEach((scene,index)=>{
-
-  let div=document.createElement("div");
-
-  div.className="scene";
-
-  div.innerHTML=`
-
-   <div class="sceneHead">
-
-    <strong>SAHNE ${index+1}</strong>
-
-    <span class="badge">
-     ${scene.duration.toFixed(1)} sn
-    </span>
-
-   </div>
-
-   <div class="sceneGrid">
-
-    <div>
-
-     <div class="preview">
-      <canvas id="preview_${index}"></canvas>
-     </div>
-
-     <div style="margin-top:8px">
-
-      <label class="small">
-       🖼️ Görsel
-      </label>
-
-      <input
-       class="file"
-       type="file"
-       accept="image/*"
-       data-image="${index}"
-      >
-
-     </div>
-
-     <div style="margin-top:8px">
-
-      <label class="small">
-       🔊 Ses
-      </label>
-
-      <input
-       class="file"
-       type="file"
-       accept="audio/*"
-       data-audio="${index}"
-      >
-
-     </div>
-
-    </div>
-
-    <div>
-
-     <label class="small">
-      🎙️ Sahne metni
-     </label>
-
-     <textarea
-      data-text="${index}"
-     >${escapeHTML(scene.text)}</textarea>
-
-     <div class="controls">
-
-      <div>
-       <label class="small">Animasyon</label>
-
-       <select data-animation="${index}">
-
-        <option value="cinematic">Sinematik</option>
-        <option value="zoom">Zoom</option>
-        <option value="pan">Pan</option>
-        <option value="drift">Drift</option>
-
-       </select>
-
+function renderSceneCards(){
+  const box=$("scenes"); box.innerHTML="";
+  scenes.forEach((s,i)=>{
+    const el=document.createElement("article");el.className="scene";el.id="scene-"+i;
+    el.innerHTML=`<h3>🎬 Sahne ${s.n}</h3>
+    <div class="meta"><span class="pill">Varsayılan ${s.duration} sn</span><span class="pill" id="audioMeta-${i}">Ses: yok</span><span class="pill" id="imageMeta-${i}">Görsel: yok</span></div>
+    <div class="row">
+      <div class="full"><label>🎙️ Almanca seslendirme metni</label><textarea class="speech">${esc(s.text)}</textarea></div>
+      <div><label>⏱️ Süre (sn)</label><input class="duration" type="number" min="1" max="120" value="${s.duration}"></div>
+      <div><label>🖼️ Görsel yükle</label><input class="imageInput" type="file" accept="image/*"></div>
+      <div class="full"><label>🎨 Görsel promptu</label><textarea class="prompt">${esc(s.prompt)}</textarea></div>
+      <div class="full"><label>🎥 Hareket promptu</label><textarea class="motion">${esc(s.motion)}</textarea></div>
+      <div class="full">
+        <label>🔊 Sahne sesi — MP3/WAV/OGG/M4A veya kayıt</label>
+        <input class="audioInput" type="file" accept="audio/*">
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+          <button class="record">🎙️ Kaydet</button><button class="stopRec hide">⏹ Kaydı durdur</button>
+        </div>
+        <audio class="audio" controls></audio>
       </div>
-
-      <div>
-
-       <label class="small">
-        Süre (ses yoksa)
-       </label>
-
-       <input
-        type="number"
-        min="1"
-        max="60"
-        step=".5"
-        value="${scene.duration}"
-        data-duration="${index}"
-       >
-
-      </div>
-
-     </div>
-
-     <div class="small" id="audioInfo_${index}" style="margin-top:8px">
-      Ses yüklenmedi
-     </div>
-
     </div>
-
-   </div>
-  `;
-
-  box.appendChild(div);
-
-  setTimeout(()=>{
-   drawPreview(index);
-  },0);
-
- });
-
-
- document.querySelectorAll("[data-image]").forEach(input=>{
-
-  input.onchange=e=>{
-
-   const index=parseInt(e.target.dataset.image);
-   const file=e.target.files[0];
-
-   if(!file)return;
-
-   const url=URL.createObjectURL(file);
-
-   scenes[index].image=file;
-   scenes[index].imageURL=url;
-
-   drawPreview(index);
-
-  };
-
- });
-
-
- document.querySelectorAll("[data-audio]").forEach(input=>{
-
-  input.onchange=e=>{
-
-   const index=parseInt(e.target.dataset.audio);
-   const file=e.target.files[0];
-
-   if(!file)return;
-
-   const url=URL.createObjectURL(file);
-
-   scenes[index].audio=file;
-   scenes[index].audioURL=url;
-
-   const audio=new Audio();
-
-   audio.src=url;
-
-   audio.onloadedmetadata=()=>{
-
-    scenes[index].audioDuration=audio.duration;
-
-    scenes[index].duration=
-     Math.max(0.5,audio.duration);
-
-    const input=document.querySelector(
-     `[data-duration="${index}"]`
-    );
-
-    if(input)
-     input.value=scenes[index].duration;
-
-    const info=$("audioInfo_"+index);
-
-    if(info)
-     info.textContent=
-      "🔊 Ses: "+
-      audio.duration.toFixed(2)+
-      " saniye";
-
-    const badge=document.querySelectorAll(".badge")[index];
-
-    if(badge)
-     badge.textContent=
-      scenes[index].duration.toFixed(1)+" sn";
-
-   };
-
-  };
-
- });
-
-
- document.querySelectorAll("[data-text]").forEach(input=>{
-
-  input.oninput=e=>{
-
-   let index=parseInt(e.target.dataset.text);
-
-   scenes[index].text=e.target.value;
-
-  };
-
- });
-
-
- document.querySelectorAll("[data-animation]").forEach(input=>{
-
-  input.onchange=e=>{
-
-   let index=parseInt(e.target.dataset.animation);
-
-   scenes[index].animation=e.target.value;
-
-  };
-
- });
-
-
- document.querySelectorAll("[data-duration]").forEach(input=>{
-
-  input.onchange=e=>{
-
-   let index=parseInt(e.target.dataset.duration);
-
-   scenes[index].duration=
-    Math.max(1,parseFloat(e.target.value)||5);
-
-  };
-
- });
-
-}
-
-
-/* =========================================================
-   ESCAPE
-========================================================= */
-
-function escapeHTML(str){
-
- return str
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;");
-
-}
-
-
-/* =========================================================
-   CANVAS SIZE
-========================================================= */
-
-function getSize(){
-
- const ratio=$("ratio").value;
-
- if(ratio==="9:16")
-  return {w:720,h:1280};
-
- if(ratio==="1:1")
-  return {w:1080,h:1080};
-
- return {w:1280,h:720};
-
-}
-
-
-/* =========================================================
-   IMAGE LOAD
-========================================================= */
-
-function loadImage(url){
-
- return new Promise((resolve,reject)=>{
-
-  const img=new Image();
-
-  img.onload=()=>resolve(img);
-
-  img.onerror=reject;
-
-  img.src=url;
-
- });
-
-}
-
-
-/* =========================================================
-   CINEMATIC BACKGROUND
-========================================================= */
-
-function drawBackground(ctx,w,h,scene,t){
-
- const seed=scene.seed;
-
- const hue=(seed%360+360)%360;
-
- let g=ctx.createLinearGradient(
-  0,0,
-  w,h
- );
-
- g.addColorStop(
-  0,
-  `hsl(${hue},30%,10%)`
- );
-
- g.addColorStop(
-  1,
-  `hsl(${(hue+70)%360},35%,18%)`
- );
-
- ctx.fillStyle=g;
- ctx.fillRect(0,0,w,h);
-
- /*
-   Sinematik ışıklar
- */
-
- for(let i=0;i<5;i++){
-
-  let x=
-   (Math.sin(t*.00025*(i+1)+seed)*.5+.5)*w;
-
-  let y=
-   (Math.cos(t*.00018*(i+2)+seed)*.5+.5)*h;
-
-  let r=
-   120+
-   80*Math.sin(t*.0005+i);
-
-  let rg=ctx.createRadialGradient(
-   x,y,0,
-   x,y,r
-  );
-
-  rg.addColorStop(
-   0,
-   `hsla(${(hue+i*40)%360},70%,60%,.12)`
-  );
-
-  rg.addColorStop(
-   1,
-   `hsla(${hue},70%,40%,0)`
-  );
-
-  ctx.fillStyle=rg;
-  ctx.fillRect(0,0,w,h);
-
- }
-
-}
-
-
-/* =========================================================
-   COVER IMAGE
-========================================================= */
-
-function drawImageCover(ctx,img,w,h,zoom,offsetX,offsetY){
-
- const iw=img.width;
- const ih=img.height;
-
- const scale=
-  Math.max(w/iw,h/ih)*zoom;
-
- const dw=iw*scale;
- const dh=ih*scale;
-
- const x=
-  (w-dw)/2+
-  offsetX;
-
- const y=
-  (h-dh)/2+
-  offsetY;
-
- ctx.drawImage(
-  img,
-  x,
-  y,
-  dw,
-  dh
- );
-
-}
-
-
-/* =========================================================
-   TEXT OVERLAY
-========================================================= */
-
-function wrapText(ctx,text,maxWidth){
-
- const words=text.split(/\s+/);
- let lines=[];
- let line="";
-
- words.forEach(word=>{
-
-  const test=
-   line ? line+" "+word : word;
-
-  if(ctx.measureText(test).width>maxWidth){
-
-   if(line)
-    lines.push(line);
-
-   line=word;
-
-  }else{
-
-   line=test;
-
-  }
-
- });
-
- if(line)
-  lines.push(line);
-
- return lines;
-
-}
-
-
-function drawSubtitle(ctx,text,w,h){
-
- if(!text)return;
-
- ctx.save();
-
- const maxWidth=w*.78;
-
- ctx.font=
-  "bold "+
-  Math.max(22,w*.025)+
-  "px Arial";
-
- ctx.textAlign="center";
- ctx.textBaseline="middle";
-
- const lines=wrapText(
-  ctx,
-  text,
-  maxWidth
- );
-
- const lineHeight=
-  Math.max(28,w*.032);
-
- const totalHeight=
-  lines.length*lineHeight;
-
- const boxHeight=
-  totalHeight+30;
-
- ctx.fillStyle="rgba(0,0,0,.68)";
-
- roundRect(
-  ctx,
-  w/2-maxWidth/2-20,
-  h*.78-boxHeight/2,
-  maxWidth+40,
-  boxHeight,
-  14
- );
-
- ctx.fill();
-
- ctx.fillStyle="#fff";
-
- lines.forEach((line,i)=>{
-
-  ctx.fillText(
-   line,
-   w/2,
-   h*.78-
-   totalHeight/2+
-   i*lineHeight+
-   lineHeight/2
-  );
-
- });
-
- ctx.restore();
-
-}
-
-
-/* =========================================================
-   ROUND RECT
-========================================================= */
-
-function roundRect(ctx,x,y,w,h,r){
-
- ctx.beginPath();
-
- ctx.moveTo(x+r,y);
-
- ctx.arcTo(
-  x+w,y,
-  x+w,y+h,
-  r
- );
-
- ctx.arcTo(
-  x+w,y+h,
-  x,y+h,
-  r
- );
-
- ctx.arcTo(
-  x,y+h,
-  x,y,
-  r
- );
-
- ctx.arcTo(
-  x,y,
-  x+w,y,
-  r
- );
-
- ctx.closePath();
-
-}
-
-
-/* =========================================================
-   DRAW SCENE FRAME
-========================================================= */
-
-async function drawSceneFrame(
- ctx,w,h,scene,progress,img
-){
-
- const now=
-  performance.now();
-
- drawBackground(
-  ctx,
-  w,
-  h,
-  scene,
-  now
- );
-
- let zoom=1;
- let ox=0;
- let oy=0;
-
- const p=progress;
-
- let mode=scene.animation;
-
- if(mode==="random"){
-
-  const modes=[
-   "zoom",
-   "pan",
-   "drift",
-   "cinematic"
-  ];
-
-  mode=
-   modes[
-    Math.floor(scene.seed%modes.length)
-   ];
-
- }
-
-
- if(mode==="zoom"){
-
-  zoom=
-   1+
-   p*.12;
-
- }
-
- else if(mode==="pan"){
-
-  zoom=1.08;
-
-  ox=
-   (p-.5)*w*.08;
-
- }
-
- else if(mode==="drift"){
-
-  zoom=1.05;
-
-  ox=
-   Math.sin(p*Math.PI*2)*w*.035;
-
-  oy=
-   Math.cos(p*Math.PI*2)*h*.025;
-
- }
-
- else{
-
-  zoom=
-   1.02+
-   Math.sin(p*Math.PI)*.08;
-
-  ox=
-   Math.sin(p*Math.PI*2)*w*.025;
-
- }
-
-
- if(img){
-
-  ctx.save();
-
-  /*
-   Sinematik karartma
-  */
-
-  drawImageCover(
-   ctx,
-   img,
-   w,
-   h,
-   zoom,
-   ox,
-   oy
-  );
-
-  const gradient=
-   ctx.createLinearGradient(
-    0,0,0,h
-   );
-
-  gradient.addColorStop(
-   0,
-   "rgba(0,0,0,.10)"
-  );
-
-  gradient.addColorStop(
-   .55,
-   "rgba(0,0,0,.05)"
-  );
-
-  gradient.addColorStop(
-   1,
-   "rgba(0,0,0,.55)"
-  );
-
-  ctx.fillStyle=gradient;
-
-  ctx.fillRect(0,0,w,h);
-
-  ctx.restore();
-
- }
-
-
- /*
-  Sahne numarası
- */
-
- ctx.save();
-
- ctx.fillStyle="rgba(0,0,0,.45)";
-
- roundRect(
-  ctx,
-  25,
-  25,
-  105,
-  42,
-  12
- );
-
- ctx.fill();
-
- ctx.fillStyle="#fff";
-
- ctx.font="bold 18px Arial";
-
- ctx.fillText(
-  "SCENE "+scene.id,
-  42,
-  52
- );
-
- ctx.restore();
-
-
- /*
-  Altyazı
- */
-
- drawSubtitle(
-  ctx,
-  scene.text,
-  w,
-  h
- );
-
-}
-
-
-/* =========================================================
-   PREVIEW
-========================================================= */
-
-async function drawPreview(index){
-
- if(!scenes[index])return;
-
- const canvas=
-  $("preview_"+index);
-
- if(!canvas)return;
-
- const size=getSize();
-
- canvas.width=size.w;
- canvas.height=size.h;
-
- const ctx=canvas.getContext("2d");
-
- let img=null;
-
- if(scenes[index].imageURL){
-
-  try{
-
-   img=
-    await loadImage(
-     scenes[index].imageURL
-    );
-
-  }catch(e){}
-
- }
-
- let start=performance.now();
-
- function loop(){
-
-  if(!document.body.contains(canvas))
-   return;
-
-  let elapsed=
-   (performance.now()-start)/1000;
-
-  let duration=
-   scenes[index].duration;
-
-  let p=
-   (elapsed%duration)/duration;
-
-  drawSceneFrame(
-   ctx,
-   canvas.width,
-   canvas.height,
-   scenes[index],
-   p,
-   img
-  );
-
-  requestAnimationFrame(loop);
-
- }
-
- loop();
-
-}
-
-
-/* =========================================================
-   AUDIO DECODER
-========================================================= */
-
-async function decodeAudio(file,ctx){
-
- const buffer=
-  await file.arrayBuffer();
-
- return await ctx.decodeAudioData(
-  buffer.slice(0)
- );
-
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-$("renderBtn").onclick=
- async()=>{
-
-  if(!scenes.length){
-
-   $("renderStatus").textContent=
-    "Önce sahneleri oluştur.";
-
-   return;
-
-  }
-
-  stopRequested=false;
-
-  try{
-
-   await renderVideo();
-
-  }catch(err){
-
-   console.error(err);
-
-   $("renderStatus").textContent=
-    "Render hatası: "+err.message;
-
-  }
-
- };
-
-
-/* =========================================================
-   MAIN VIDEO RENDER
-========================================================= */
-
-async function renderVideo(){
-
- const size=getSize();
-
- const canvas=document.createElement("canvas");
-
- canvas.width=size.w;
- canvas.height=size.h;
-
- const ctx=
-  canvas.getContext("2d",{
-   alpha:false
+    <div class="preview"><span class="previewText">Görsel yükle — prompt aşağıda hazır.</span><img class="previewImg hide"></div>`;
+    box.appendChild(el);
+    const speech=el.querySelector(".speech"),dur=el.querySelector(".duration"),prompt=el.querySelector(".prompt"),motion=el.querySelector(".motion");
+    speech.oninput=()=>s.text=speech.value;dur.oninput=()=>s.duration=Math.max(1,+dur.value||1);prompt.oninput=()=>s.prompt=prompt.value;motion.oninput=()=>s.motion=motion.value;
+    const imgIn=el.querySelector(".imageInput"),img=el.querySelector(".previewImg"),audioIn=el.querySelector(".audioInput"),audio=el.querySelector(".audio");
+    imgIn.onchange=()=>{const f=imgIn.files[0];if(!f)return;s.image=f;img.src=URL.createObjectURL(f);img.classList.remove("hide");el.querySelector(".previewText").classList.add("hide");$("imageMeta-"+i).textContent="Görsel: hazır";};
+    audioIn.onchange=()=>{const f=audioIn.files[0];if(!f)return;s.audio=f;s.audioName=f.name;audio.src=URL.createObjectURL(f);$("audioMeta-"+i).textContent="Ses: "+f.name;audio.onloadedmetadata=()=>{if(isFinite(audio.duration)&&audio.duration>0){s.audioDuration=audio.duration;dur.value=Math.max(1,Math.round(audio.duration*10)/10);s.duration=audio.duration;}}};
+    setupRecorder(el,s,i);
   });
-
-
- /*
-  Video stream
- */
-
- const videoStream=
-  canvas.captureStream(30);
-
-
- /*
-  Audio context
- */
-
- const audioCtx=
-  new (
-   window.AudioContext||
-   window.webkitAudioContext
-  )();
-
-
- const destination=
-  audioCtx.createMediaStreamDestination();
-
-
- /*
-  Her sahnenin seslerini decode et
- */
-
- const decodedAudios=[];
-
- for(let i=0;i<scenes.length;i++){
-
-  if(stopRequested)break;
-
-  if(scenes[i].audio){
-
-   try{
-
-    const buffer=
-     await decodeAudio(
-      scenes[i].audio,
-      audioCtx
-     );
-
-    decodedAudios[i]=buffer;
-
-    scenes[i].duration=
-     buffer.duration;
-
-   }catch(e){
-
-    console.warn(
-     "Ses çözülemedi",
-     e
-    );
-
-   }
-
-  }
-
- }
-
-
- /*
-  Stream birleştirme
- */
-
- const combined=
-  new MediaStream();
-
- videoStream
-  .getVideoTracks()
-  .forEach(t=>
-   combined.addTrack(t)
-  );
-
- destination
-  .stream
-  .getAudioTracks()
-  .forEach(t=>
-   combined.addTrack(t)
-  );
-
-
- /*
-  WebM codec seç
- */
-
- let mime="";
-
- const codecs=[
-  "video/webm;codecs=vp9,opus",
-  "video/webm;codecs=vp8,opus",
-  "video/webm"
- ];
-
- for(const c of codecs){
-
-  if(
-   MediaRecorder.isTypeSupported(c)
-  ){
-
-   mime=c;
-   break;
-
-  }
-
- }
-
- if(!mime)
-  throw new Error(
-   "Tarayıcı WebM kayıt desteği vermiyor."
-  );
-
-
- const recorder=
-  new MediaRecorder(
-   combined,
-   {
-    mimeType:mime,
-    videoBitsPerSecond:6000000,
-    audioBitsPerSecond:128000
-   }
-  );
-
-
- const chunks=[];
-
- recorder.ondataavailable=e=>{
-
-  if(e.data.size>0)
-   chunks.push(e.data);
-
- };
-
-
- const stopped=
-  new Promise(resolve=>{
-
-   recorder.onstop=resolve;
-
-  });
-
-
- recorder.start(250);
-
-
- /*
-  Render sahneleri
- */
-
- let totalDuration=
-  scenes.reduce(
-   (sum,s)=>
-    sum+
-    Math.max(
-     1,
-     s.duration||5
-    ),
-   0
-  );
-
-
- let elapsedTotal=0;
-
-
- for(let i=0;i<scenes.length;i++){
-
-  if(stopRequested)
-   break;
-
-  const scene=scenes[i];
-
-  let duration=
-   Math.max(
-    1,
-    scene.duration||5
-   );
-
-
-  /*
-   Görsel
-  */
-
-  let img=null;
-
-  if(scene.imageURL){
-
-   try{
-
-    img=
-     await loadImage(
-      scene.imageURL
-    );
-
-   }catch(e){
-
-    img=null;
-
-   }
-
-  }
-
-
-  /*
-   Audio source
-  */
-
-  let source=null;
-
-  if(decodedAudios[i]){
-
-   source=
-    audioCtx.createBufferSource();
-
-   source.buffer=
-    decodedAudios[i];
-
-   source.connect(destination);
-
-   source.start();
-
-  }
-
-
-  /*
-   Render frame loop
-  */
-
-  const start=
-   performance.now();
-
-  while(true){
-
-   if(stopRequested)
-    break;
-
-   const now=
-    performance.now();
-
-   const localElapsed=
-    (now-start)/1000;
-
-   let p=
-    localElapsed/duration;
-
-   if(p>1)p=1;
-
-   await drawSceneFrame(
-    ctx,
-    size.w,
-    size.h,
-    scene,
-    p,
-    img
-   );
-
-   /*
-    progress
-   */
-
-   const overall=
-    (
-     elapsedTotal+
-     Math.min(
-      duration,
-      localElapsed
-     )
-    )/
-    totalDuration;
-
-   $("progressBar").style.width=
-    Math.round(overall*100)+"%";
-
-   $("renderStatus").textContent=
-    `🎬 Sahne ${i+1}/${scenes.length} • `+
-    `${localElapsed.toFixed(1)} / `+
-    `${duration.toFixed(1)} sn`;
-
-   if(localElapsed>=duration)
-    break;
-
-   await new Promise(
-    r=>requestAnimationFrame(r)
-   );
-
-  }
-
-
-  /*
-   Bir sonraki sahneye geçmeden önce
-   audio source kapanır.
-  */
-
-  if(source){
-
-   try{
-    source.stop();
-   }catch(e){}
-
-  }
-
-  elapsedTotal+=duration;
-
- }
-
-
- if(recorder.state!=="inactive")
-  recorder.stop();
-
- await stopped;
-
- audioCtx.close();
-
-
- /*
-  Video oluştur
- */
-
- renderBlob=
-  new Blob(
-   chunks,
-   {
-    type:mime
-   }
-  );
-
-
- if(currentVideoURL)
-  URL.revokeObjectURL(
-   currentVideoURL
-  );
-
- currentVideoURL=
-  URL.createObjectURL(
-   renderBlob
-  );
-
- $("video").src=
-  currentVideoURL;
-
- $("downloadBtn")
-  .classList
-  .remove("hidden");
-
-
- $("downloadBtn").onclick=()=>{
-
-  const a=
-   document.createElement("a");
-
-  a.href=currentVideoURL;
-
-  a.download=
-   "Mina-Video-AI-V45.4.webm";
-
-  document.body.appendChild(a);
-
-  a.click();
-
-  a.remove();
-
- };
-
-
- $("progressBar").style.width=
-  "100%";
-
- $("renderStatus").textContent=
-  stopRequested
-   ? "⛔ Render durduruldu."
-   : "✅ Video hazır!";
-
-
 }
+function setupRecorder(el,s,i){
+  let rec=null,chunks=[];
+  const rb=el.querySelector(".record"),sb=el.querySelector(".stopRec"),audio=el.querySelector(".audio"),dur=el.querySelector(".duration");
+  rb.onclick=async()=>{
+    if(!navigator.mediaDevices?.getUserMedia){alert("Bu tarayıcı mikrofon kaydını desteklemiyor.");return}
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      chunks=[];rec=new MediaRecorder(stream);
+      rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+      rec.onstop=()=>{
+        stream.getTracks().forEach(t=>t.stop());
+        const blob=new Blob(chunks,{type:rec.mimeType||"audio/webm"});
+        s.audio=blob;s.audioName="Sahne-"+(i+1)+"-kayit.webm";audio.src=URL.createObjectURL(blob);
+        audio.onloadedmetadata=()=>{if(isFinite(audio.duration)){s.audioDuration=audio.duration;s.duration=audio.duration;dur.value=audio.duration.toFixed(1);}};
+        $("audioMeta-"+i).textContent="Ses: kayıt hazır";
+      };
+      rec.start();rb.classList.add("hide");sb.classList.remove("hide");
+    }catch(e){alert("Mikrofon izni alınamadı: "+e.message)}
+  };
+  sb.onclick=()=>{if(rec&&rec.state!=="inactive")rec.stop();rb.classList.remove("hide");sb.classList.add("hide")};
+}
+function loadStory(){buildScenes(STORY);$("status").textContent="20 sahne hazır. Her sahne için görsel ve ses ekleyebilirsin."}
+function clearAll(){if(!confirm("Tüm sahneler temizlensin mi?"))return;buildScenes(Array.from({length:+$("count").value},(_,i)=>["","", "",5]));}
+$("count").onchange=()=>{const n=+$("count").value;const d=STORY.slice(0,n);while(d.length<n)d.push(["","","",5]);buildScenes(d);};
 
-
-/* =========================================================
-   STOP
-========================================================= */
-
-$("stopBtn").onclick=()=>{
-
- stopRequested=true;
-
- $("renderStatus").textContent=
-  "⛔ Render durduruluyor...";
-
-};
-
-
-/* =========================================================
-   PREVIEW WHOLE VIDEO
-========================================================= */
-
-$("previewBtn").onclick=()=>{
-
- if(!scenes.length){
-
-  $("renderStatus").textContent=
-   "Önce sahneleri oluştur.";
-
-  return;
-
- }
-
- const size=getSize();
-
- const canvas=
-  document.createElement("canvas");
-
- canvas.width=size.w;
- canvas.height=size.h;
-
- const ctx=
-  canvas.getContext("2d");
-
-
- let index=0;
- let start=performance.now();
-
- let imgPromise=
-  scenes[0].imageURL
-   ? loadImage(
-      scenes[0].imageURL
-     ).catch(()=>null)
-   : Promise.resolve(null);
-
-
- async function loop(){
-
-  if(index>=scenes.length)
-   index=0;
-
-  const scene=
-   scenes[index];
-
-  const img=
-   await imgPromise;
-
-  const elapsed=
-   (performance.now()-start)/1000;
-
-  let p=
-   elapsed/scene.duration;
-
-  if(p>=1){
-
-   index++;
-
-   start=performance.now();
-
-   imgPromise=
-    scenes[index]&&
-    scenes[index].imageURL
-     ? loadImage(
-        scenes[index].imageURL
-       ).catch(()=>null)
-     : Promise.resolve(null);
-
-  }else{
-
-   await drawSceneFrame(
-    ctx,
-    size.w,
-    size.h,
-    scene,
-    p,
-    img
-   );
-
+function fitCanvas(){
+  const f=$("format").value;
+  if(f==="16:9")return [1280,720];
+  if(f==="9:16")return [720,1280];
+  return [1080,1080];
+}
+function drawCover(ctx,img,w,h,t,idx){
+  ctx.fillStyle="#080a0f";ctx.fillRect(0,0,w,h);
+  const iw=img?.naturalWidth||img?.width||0, ih=img?.naturalHeight||img?.height||0;
+  if(iw&&ih){
+    const scale=Math.max(w/iw,h/ih); const dw=iw*scale,dh=ih*scale;
+    const maxX=Math.max(0,dw-w),maxY=Math.max(0,dh-h);
+    const pan=Math.sin(t*0.00035+idx)*0.5+0.5;
+    const x=-(maxX*pan),y=-(maxY*(1-pan));
+    ctx.drawImage(img,x,y,dw,dh);
   }
+  const g=ctx.createLinearGradient(0,h*.55,0,h);g.addColorStop(0,"rgba(0,0,0,0)");g.addColorStop(1,"rgba(0,0,0,.8)");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  ctx.fillStyle="#fff";ctx.font=Math.max(22,w*.026)+"px Arial";ctx.textAlign="left";
+  const title=$("title").value||"GeldStory";
+  ctx.fillText(title.slice(0,70),w*.05,h*.88);
+  ctx.font=Math.max(18,w*.018)+"px Arial";ctx.fillStyle="#ddd";
+  const text=scenes[idx]?.text||""; wrap(ctx,text,w*.05,h*.92,w*.9,ctx.font);
+}
+function wrap(ctx,text,x,y,maxWidth,font){
+  ctx.font=font;let words=text.split(/\s+/),line="",lines=[];
+  for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth){lines.push(line);line=word}else line=test}
+  if(line)lines.push(line);lines.slice(-2).forEach((l,k)=>ctx.fillText(l,x,y+k*Number.parseInt(font)));
+}
+function loadImage(file){return new Promise((res,rej)=>{if(!file)return res(null);const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{URL.revokeObjectURL(u);res(im)};im.onerror=rej;im.src=u;});}
 
-  requestAnimationFrame(loop);
-
+async function render(){
+ if(rendering)return;
+ rendering=true;stopFlag=false;$("renderBtn").disabled=true;$("bar").style.width="0%";
+ const [w,h]=fitCanvas(),canvas=$("renderCanvas"),ctx=canvas.getContext("2d");canvas.width=w;canvas.height=h;
+ const fps=+$("fps").value||30;
+ const tracks=[], audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+ const dest=audioCtx.createMediaStreamDestination();
+ const master=audioCtx.createGain();master.gain.value=1;master.connect(dest);
+ let total=0;for(const s of scenes)total+=Math.max(1,+s.duration||5);
+ $("status").textContent="Render hazırlanıyor...";
+ const videoStream=canvas.captureStream(fps);
+ const mixed=new MediaStream([...videoStream.getVideoTracks(),...dest.stream.getAudioTracks()]);
+ let mime="video/webm;codecs=vp9,opus";if(!MediaRecorder.isTypeSupported(mime))mime="video/webm;codecs=vp8,opus";if(!MediaRecorder.isTypeSupported(mime))mime="video/webm";
+ const rec=new MediaRecorder(mixed,{mimeType:mime,videoBitsPerSecond:5000000,audioBitsPerSecond:160000});
+ const chunks=[];rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+ const stopped=new Promise(resolve=>rec.onstop=resolve);rec.start(250);
+ let elapsed=0;
+ for(let i=0;i<scenes.length;i++){
+   if(stopFlag)break;
+   const s=scenes[i],dur=Math.max(1,+s.duration||5)*1000;
+   let img=null;try{img=await loadImage(s.image)}catch{}
+   let audioSource=null, audioBuffer=null;
+   if(s.audio){
+     try{
+       const ab=await s.audio.arrayBuffer();audioBuffer=await audioCtx.decodeAudioData(ab);
+       audioSource=audioCtx.createBufferSource();audioSource.buffer=audioBuffer;audioSource.connect(master);audioSource.start();
+     }catch(e){console.warn("Ses çözülemedi",i,e)}
+   }
+   const start=performance.now();
+   await new Promise(resolve=>{
+     function frame(now){
+       const p=Math.min(1,(now-start)/dur);drawCover(ctx,img,w,h,now,i);
+       $("status").textContent=`🎬 Render: Sahne ${i+1}/${scenes.length} • ${Math.floor((elapsed+p*dur/1000)/60)}:${String(Math.floor((elapsed+p*dur/1000)%60)).padStart(2,"0")} • ${Math.round((elapsed+p*dur/1000)/total*100)}%`;
+       $("bar").style.width=Math.min(100,(elapsed+p*dur/1000)/total*100)+"%";
+       if(p<1&&!stopFlag)requestAnimationFrame(frame);else resolve();
+     }requestAnimationFrame(frame);
+   });
+   if(audioSource)try{audioSource.stop()}catch{}
+   elapsed+=dur/1000;
  }
+ if(rec.state!=="inactive")rec.stop();
+ await stopped; audioCtx.close(); mixed.getTracks().forEach(t=>t.stop());
+ const blob=new Blob(chunks,{type:mime});if(currentVideoURL)URL.revokeObjectURL(currentVideoURL);currentVideoURL=URL.createObjectURL(blob);
+ $("resultVideo").src=currentVideoURL;$("download").href=currentVideoURL;$("download").classList.remove("hide");
+ $("bar").style.width=stopFlag?"0%":"100%";$("status").textContent=stopFlag?"⏹ Render durduruldu.":"✅ Video hazır. Ses dosyaları videoya WebM içinde gömüldü.";
+ rendering=false;$("renderBtn").disabled=false;
+}
+$("renderBtn").onclick=render;$("stopBtn").onclick=()=>stopFlag=true;
 
- loop();
-
- /*
-  Canvas'ı geçici olarak video önizlemesine
-  çevirmiyoruz; sahne kartları zaten canlı.
- */
-
- $("renderStatus").textContent=
-  "▶️ Sahne animasyonları önizleme modunda.";
-
-};
-
-
-/* =========================================================
-   INITIAL
-========================================================= */
-
-$("status").textContent=
- "Mina Video AI V45.4 hazır.";
-
+function exportProject(){
+ const data={version:"V45.4",title:$("title").value,format:$("format").value,lang:$("lang").value,scenes:scenes.map(s=>({n:s.n,text:s.text,prompt:s.prompt,motion:s.motion,duration:s.duration,audioName:s.audioName,imageName:s.image?.name||""}))};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="Mina_V45.4_project.json";a.click();
+}
+$("projectFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());$("title").value=d.title||"";$("format").value=d.format||"16:9";$("lang").value=d.lang||"de-DE";buildScenes((d.scenes||[]).map(s=>[s.text||"",s.prompt||"",s.motion||"",s.duration||5]));$("status").textContent="Proje metni yüklendi. Medya dosyaları güvenlik nedeniyle JSON içine gömülmez; görsel ve sesleri yeniden seçmelisin."}catch(err){alert("JSON okunamadı: "+err.message)}};
+loadStory();
 </script>
-
 </body>
 </html>
