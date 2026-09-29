@@ -21,19 +21,9 @@ header{
   border-bottom:1px solid #292f38;
   padding:14px;
 }
-h1{
-  margin:0 0 5px;
-  font-size:22px;
-}
-.small{
-  color:#9ba3ad;
-  font-size:12px;
-}
-.container{
-  max-width:1450px;
-  margin:auto;
-  padding:18px;
-}
+h1{margin:0 0 5px;font-size:22px}
+.small{color:#9ba3ad;font-size:12px}
+.container{max-width:1450px;margin:auto;padding:18px}
 .panel{
   background:#12161c;
   border:1px solid #292f38;
@@ -41,9 +31,7 @@ h1{
   padding:16px;
   margin-bottom:16px;
 }
-textarea,input,select,button{
-  font-family:inherit;
-}
+textarea,input,select,button{font-family:inherit}
 textarea,input,select{
   width:100%;
   background:#0c1015;
@@ -53,14 +41,8 @@ textarea,input,select{
   padding:10px;
   outline:none;
 }
-textarea:focus,input:focus,select:focus{
-  border-color:#777;
-}
-#story{
-  min-height:190px;
-  resize:vertical;
-  line-height:1.5;
-}
+textarea:focus,input:focus,select:focus{border-color:#777}
+#story{min-height:190px;resize:vertical;line-height:1.5}
 button{
   background:#242a33;
   color:#fff;
@@ -70,34 +52,26 @@ button{
   cursor:pointer;
   font-weight:bold;
 }
-button:hover{
-  background:#303844;
+button:hover{background:#303844}
+button.primary{background:#eee;color:#111}
+button.danger{background:#4b2025}
+button.green{background:#193b29}
+button.voiceAll{
+  background:#513c12;
+  border-color:#8c6a20;
 }
-button.primary{
-  background:#eee;
-  color:#111;
-}
-button.danger{
-  background:#4b2025;
-}
-button.green{
-  background:#193b29;
+button.voiceAll:hover{background:#6a4e17}
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 .toolbar{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:10px;
 }
-.row{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-.scenes{
-  display:grid;
-  gap:18px;
-}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.scenes{display:grid;gap:18px}
 .scene{
   background:#10141a;
   border:1px solid #303743;
@@ -111,10 +85,7 @@ button.green{
   gap:10px;
   margin-bottom:12px;
 }
-.scene-title{
-  font-size:18px;
-  font-weight:bold;
-}
+.scene-title{font-size:18px;font-weight:bold}
 .badge{
   font-size:11px;
   border:1px solid #39414c;
@@ -134,23 +105,10 @@ button.green{
   padding:12px;
   margin-bottom:12px;
 }
-.box-title{
-  font-weight:bold;
-  margin-bottom:8px;
-  font-size:13px;
-}
-.scene-text{
-  min-height:110px;
-}
-.prompt{
-  min-height:190px;
-  font-size:12px;
-  line-height:1.4;
-}
-.negative{
-  min-height:100px;
-  font-size:12px;
-}
+.box-title{font-weight:bold;margin-bottom:8px;font-size:13px}
+.scene-text{min-height:110px}
+.prompt{min-height:190px;font-size:12px;line-height:1.4}
+.negative{min-height:100px;font-size:12px}
 .director{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -168,10 +126,7 @@ button.green{
   color:#8f99a5;
   margin-bottom:4px;
 }
-.director-item span{
-  font-size:12px;
-  line-height:1.3;
-}
+.director-item span{font-size:12px;line-height:1.3}
 .preview{
   width:100%;
   aspect-ratio:16/9;
@@ -190,31 +145,40 @@ button.green{
   object-fit:cover;
   margin-top:8px;
 }
-.audio{
-  width:100%;
-  margin-top:8px;
-}
+.audio{width:100%;margin-top:8px}
 .range-row{
   display:grid;
   grid-template-columns:1fr 80px;
   gap:8px;
   align-items:center;
 }
-.status{
-  color:#aeb7c2;
-  font-size:12px;
-  min-height:18px;
+.status{color:#aeb7c2;font-size:12px;min-height:18px}
+.tts-status{color:#bfc7d0;font-size:12px;margin-top:7px}
+label{font-size:11px;color:#9ba4af;display:block;margin-bottom:5px}
+.progressBox{
+  display:none;
+  margin-top:12px;
+  background:#0b0f14;
+  border:1px solid #3b3220;
+  border-radius:10px;
+  padding:12px;
 }
-.tts-status{
-  color:#bfc7d0;
+.progressOuter{
+  height:12px;
+  background:#20252c;
+  border-radius:10px;
+  overflow:hidden;
+}
+.progressInner{
+  width:0%;
+  height:100%;
+  background:#d3a52d;
+  transition:width .2s;
+}
+.progressText{
   font-size:12px;
   margin-top:7px;
-}
-label{
-  font-size:11px;
-  color:#9ba4af;
-  display:block;
-  margin-bottom:5px;
+  color:#c9c0a5;
 }
 footer{
   text-align:center;
@@ -257,6 +221,10 @@ footer{
       ✂️ SAHNELERİ OLUŞTUR
     </button>
 
+    <button class="voiceAll" id="voiceAllBtn">
+      🎙️ TÜM SAHNELERİ SESLENDİR & KAYDET
+    </button>
+
     <button id="addBtn">
       ➕ SAHNE EKLE
     </button>
@@ -268,6 +236,18 @@ footer{
     <button id="renderBtn" class="green">
       🎬 VİDEOYU OLUŞTUR
     </button>
+
+  </div>
+
+  <div id="voiceProgress" class="progressBox">
+
+    <div class="progressOuter">
+      <div id="voiceProgressInner" class="progressInner"></div>
+    </div>
+
+    <div id="voiceProgressText" class="progressText">
+      Hazırlanıyor...
+    </div>
 
   </div>
 
@@ -336,7 +316,10 @@ footer{
 
   <div class="box-title">🎥 VİDEO ÖNİZLEME</div>
 
-  <canvas id="mainCanvas" class="preview" width="1280" height="720"></canvas>
+  <canvas id="mainCanvas"
+    class="preview"
+    width="1280"
+    height="720"></canvas>
 
   <br>
 
@@ -383,13 +366,16 @@ let previewRunning = false;
 let previewStop = false;
 
 let renderRunning = false;
-
-const $ = id => document.getElementById(id);
+let allVoiceRunning = false;
 
 
 /* =========================================================
-   STATUS
+   HELPERS
 ========================================================= */
+
+function $(id){
+  return document.getElementById(id);
+}
 
 function status(text){
   $("globalStatus").textContent = text;
@@ -410,7 +396,7 @@ function escapeHTML(value){
 
 
 /* =========================================================
-   V47 ÇALIŞAN CÜMLE SİSTEMİ
+   SPLIT SENTENCES
 ========================================================= */
 
 function splitSentences(text){
@@ -428,66 +414,80 @@ function splitSentences(text){
   );
 
   return (result || [text])
-    .map(x => x.trim())
+    .map(x=>x.trim())
     .filter(Boolean);
 }
 
 
 /* =========================================================
    VISUAL DIRECTOR
-   HATA VERMEYECEK ŞEKİLDE TASARLANDI
 ========================================================= */
 
 function safeAnalyzeScene(text){
 
   try{
 
-    const clean = String(text || "")
+    const clean =
+      String(text || "")
       .replace(/\s+/g," ")
       .trim();
 
-    const lower = clean.toLowerCase();
+    const lower =
+      clean.toLowerCase();
 
-    let person = "Gerçekçi yetişkin kişi veya kişiler";
+    let person =
+      "Gerçekçi yetişkin kişi veya kişiler";
 
     if(
       /mutter|mama|tochter|sohn|kind|vater|familie|frau|mann/.test(lower)
     ){
-      person = "Hikâyede anlatılan gerçekçi insan karakterleri";
+      person =
+        "Hikâyede anlatılan gerçekçi insan karakterleri";
     }
 
-    let location = "Hikâyede anlatılan gerçekçi ortam";
+    let location =
+      "Hikâyede anlatılan gerçekçi ortam";
 
-    if(/wohnung|zimmer|haus|küche|küchen|wohnung/.test(lower)){
-      location = "Gerçekçi, mütevazı bir ev içi";
+    if(/wohnung|zimmer|haus|küche/.test(lower)){
+      location =
+        "Gerçekçi, mütevazı bir ev içi";
     }
     else if(/büro|office|firma|unternehmen|arbeit|arbeitsplatz/.test(lower)){
-      location = "Gerçekçi bir iş yeri veya ofis";
+      location =
+        "Gerçekçi bir iş yeri veya ofis";
     }
-    else if(/straße|stadt|stadtzentrum|straße|markt/.test(lower)){
-      location = "Gerçekçi şehir ortamı";
+    else if(/straße|stadt|markt/.test(lower)){
+      location =
+        "Gerçekçi şehir ortamı";
     }
     else if(/schule|universität|college/.test(lower)){
-      location = "Gerçekçi eğitim ortamı";
+      location =
+        "Gerçekçi eğitim ortamı";
     }
-    else if(/restaurant|küche|küchen/.test(lower)){
-      location = "Gerçekçi restoran veya profesyonel mutfak";
+    else if(/restaurant|küche/.test(lower)){
+      location =
+        "Gerçekçi restoran veya profesyonel mutfak";
     }
 
     let emotion =
       "stille Hoffnung, Entschlossenheit und authentische menschliche Emotion";
 
-    if(/angst|scheitert|gescheitert|problem|schwierig|schulden|arm|kaum geld/.test(lower)){
+    if(
+      /angst|scheitert|gescheitert|problem|schwierig|schulden|arm|kaum geld/.test(lower)
+    ){
       emotion =
         "finanzielle Sorgen, Unsicherheit, Erschöpfung und stille Hoffnung";
     }
 
-    if(/erfolg|gewonnen|reich|million|millionen|erfolgreich/.test(lower)){
+    if(
+      /erfolg|gewonnen|reich|million|millionen|erfolgreich/.test(lower)
+    ){
       emotion =
         "Erleichterung, Freude, Selbstvertrauen und Erfolg";
     }
 
-    let period = "zeitlich glaubwürdige, historisch passende Darstellung";
+    let period =
+      "zeitlich glaubwürdige, historisch passende Darstellung";
 
     if(/1990|neunziger/.test(lower)){
       period = "1990er Jahre";
@@ -502,16 +502,20 @@ function safeAnalyzeScene(text){
       period = "1960er Jahre";
     }
 
-    let action = "natürliches Verhalten passend zur Erzählung";
+    let action =
+      "natürliches Verhalten passend zur Erzählung";
 
     if(/schrieb|schreiben|buch|geschichte/.test(lower)){
-      action = "Eine Person schreibt konzentriert an einer Geschichte oder einem Manuskript";
+      action =
+        "Eine Person schreibt konzentriert an einer Geschichte oder einem Manuskript";
     }
     else if(/arbeit|arbeiten|job|arbeitete/.test(lower)){
-      action = "Eine Person arbeitet konzentriert in einer realistischen Umgebung";
+      action =
+        "Eine Person arbeitet konzentriert in einer realistischen Umgebung";
     }
     else if(/ging|gingen|läuft|laufen/.test(lower)){
-      action = "Die Person bewegt sich natürlich durch die Umgebung";
+      action =
+        "Die Person bewegt sich natürlich durch die Umgebung";
     }
 
     return {
@@ -553,16 +557,18 @@ function safeAnalyzeScene(text){
 
 
 /* =========================================================
-   PROFESSIONAL IMAGE PROMPT
+   IMAGE PROMPT
 ========================================================= */
 
 function createImagePrompt(text,index){
 
-  const clean = String(text || "")
+  const clean =
+    String(text || "")
     .replace(/\s+/g," ")
     .trim();
 
-  const d = safeAnalyzeScene(clean);
+  const d =
+    safeAnalyzeScene(clean);
 
   return `
 CINEMATIC DOCUMENTARY MASTER PROMPT
@@ -642,6 +648,7 @@ NO CAPTIONS.
 NO LOGOS.
 NO WATERMARK.
 `.trim();
+
 }
 
 
@@ -678,20 +685,21 @@ bad perspective
 
 
 /* =========================================================
-   SCENE CREATION
-   V47 MANTIĞI KORUNDU
+   CREATE SCENES
 ========================================================= */
 
 function createScenes(){
 
-  const text = $("story").value.trim();
+  const text =
+    $("story").value.trim();
 
   if(!text){
     alert("Önce hikâyeyi gir.");
     return;
   }
 
-  const sentences = splitSentences(text);
+  const sentences =
+    splitSentences(text);
 
   if(!sentences.length){
     alert("Cümle bulunamadı.");
@@ -701,70 +709,96 @@ function createScenes(){
   scenes = [];
   sceneCounter = 1;
 
-  for(let i=0;i<sentences.length;i+=2){
+  for(
+    let i=0;
+    i<sentences.length;
+    i+=2
+  ){
 
-    let textPart = sentences[i];
+    let textPart =
+      sentences[i];
 
     if(sentences[i+1]){
-      textPart += " " + sentences[i+1];
+      textPart +=
+        " " +
+        sentences[i+1];
     }
 
     let scene = {
+
       id:sceneCounter++,
+
       text:textPart,
+
       subtitle:textPart,
+
       subtitleEnabled:false,
+
       prompt:"",
+
       negativePrompt:"",
+
       analysis:null,
+
       image:null,
+
       imageURL:null,
+
       imageObject:null,
+
       audio:null,
+
       audioURL:null,
+
       duration:4,
+
       motion:"zoomIn",
+
       ttsState:"Hazır"
+
     };
 
-    /*
-      KRİTİK:
-      Visual Director sahne oluşturmayı engellemiyor.
-    */
-
     try{
-      scene.analysis = safeAnalyzeScene(textPart);
-      scene.prompt = createImagePrompt(textPart, scenes.length);
-      scene.negativePrompt = createNegativePrompt();
+
+      scene.analysis =
+        safeAnalyzeScene(
+          textPart
+        );
+
+      scene.prompt =
+        createImagePrompt(
+          textPart,
+          scenes.length
+        );
+
+      scene.negativePrompt =
+        createNegativePrompt();
+
     }catch(error){
 
-      scene.analysis = safeAnalyzeScene("");
-      scene.prompt = `
-Cinematic realistic documentary scene.
+      scene.analysis =
+        safeAnalyzeScene("");
 
-"${textPart}"
+      scene.prompt =
+        "Cinematic realistic documentary scene: " +
+        textPart;
 
-Photorealistic,
-natural human emotions,
-cinematic lighting,
-professional documentary photography,
-realistic environment,
-16:9,
-no text,
-no subtitles,
-no logo,
-no watermark.
-`.trim();
+      scene.negativePrompt =
+        createNegativePrompt();
 
-      scene.negativePrompt = createNegativePrompt();
     }
 
     scenes.push(scene);
+
   }
 
   renderScenes();
 
-  status("✅ " + scenes.length + " sahne oluşturuldu.");
+  status(
+    "✅ " +
+    scenes.length +
+    " sahne oluşturuldu."
+  );
 
 }
 
@@ -776,85 +810,42 @@ no watermark.
 function addScene(){
 
   scenes.push({
+
     id:sceneCounter++,
+
     text:"",
+
     subtitle:"",
+
     subtitleEnabled:false,
+
     prompt:"",
-    negativePrompt:createNegativePrompt(),
-    analysis:safeAnalyzeScene(""),
+
+    negativePrompt:
+      createNegativePrompt(),
+
+    analysis:
+      safeAnalyzeScene(""),
+
     image:null,
+
     imageURL:null,
+
     imageObject:null,
+
     audio:null,
+
     audioURL:null,
+
     duration:4,
+
     motion:"zoomIn",
+
     ttsState:"Hazır"
+
   });
 
   renderScenes();
-
-}
-
-
-/* =========================================================
-   VISUAL DIRECTOR REFRESH
-========================================================= */
-
-function refreshDirector(index){
-
-  const scene = scenes[index];
-
-  try{
-
-    scene.analysis = safeAnalyzeScene(scene.text);
-
-    scene.prompt = createImagePrompt(
-      scene.text,
-      index
-    );
-
-    scene.negativePrompt = createNegativePrompt();
-
-    renderScenes();
-
-    status(
-      "🧠 Sahne " +
-      (index+1) +
-      " Visual Director ile analiz edildi."
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    status(
-      "⚠️ Visual Director analiz hatası. Sahne korunuyor."
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   COPY
-========================================================= */
-
-async function copyText(text){
-
-  try{
-
-    await navigator.clipboard.writeText(text);
-
-    status("📋 Kopyalandı.");
-
-  }catch(error){
-
-    alert("Kopyalama başarısız.");
-
-  }
 
 }
 
@@ -865,37 +856,50 @@ async function copyText(text){
 
 function renderScenes(){
 
-  const container = $("scenes");
+  const container =
+    $("scenes");
 
   $("sceneCount").textContent =
-    scenes.length + " sahne";
+    scenes.length +
+    " sahne";
 
   container.innerHTML = "";
 
-  scenes.forEach((scene,index)=>{
+  scenes.forEach(
+    (scene,index)=>{
 
-    if(!scene.analysis){
-      scene.analysis = safeAnalyzeScene(scene.text);
-    }
+      if(!scene.analysis){
+        scene.analysis =
+          safeAnalyzeScene(
+            scene.text
+          );
+      }
 
-    if(!scene.prompt){
-      scene.prompt = createImagePrompt(
-        scene.text,
-        index
-      );
-    }
+      if(!scene.prompt){
+        scene.prompt =
+          createImagePrompt(
+            scene.text,
+            index
+          );
+      }
 
-    if(!scene.negativePrompt){
-      scene.negativePrompt = createNegativePrompt();
-    }
+      if(!scene.negativePrompt){
+        scene.negativePrompt =
+          createNegativePrompt();
+      }
 
-    const a = scene.analysis;
+      const a =
+        scene.analysis;
 
-    const div = document.createElement("div");
+      const div =
+        document.createElement(
+          "div"
+        );
 
-    div.className = "scene";
+      div.className =
+        "scene";
 
-    div.innerHTML = `
+      div.innerHTML = `
 
       <div class="scene-head">
 
@@ -910,7 +914,7 @@ function renderScenes(){
           </span>
 
           <span class="badge">
-            ${Number(scene.duration || 4).toFixed(2)} sn
+            ${Number(scene.duration||4).toFixed(2)} sn
           </span>
 
         </div>
@@ -920,408 +924,415 @@ function renderScenes(){
 
       <div class="grid">
 
-        <div>
+      <div>
 
-          <div class="box">
+        <div class="box">
 
-            <div class="box-title">
-              📝 SAHNE METNİ
+          <div class="box-title">
+            📝 SAHNE METNİ
+          </div>
+
+          <textarea
+            class="scene-text"
+            data-text="${index}"
+          >${escapeHTML(scene.text)}</textarea>
+
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            🧠 VISUAL DIRECTOR
+          </div>
+
+          <div class="director">
+
+            <div class="director-item">
+              <b>👤 KİŞİ</b>
+              <span>${escapeHTML(a.person)}</span>
             </div>
 
-            <textarea
-              class="scene-text"
-              data-text="${index}"
-            >${escapeHTML(scene.text)}</textarea>
+            <div class="director-item">
+              <b>📍 MEKÂN</b>
+              <span>${escapeHTML(a.location)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>📅 DÖNEM</b>
+              <span>${escapeHTML(a.period)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>❤️ DUYGU</b>
+              <span>${escapeHTML(a.emotion)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>🎬 EYLEM</b>
+              <span>${escapeHTML(a.action)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>📷 KAMERA</b>
+              <span>${escapeHTML(a.camera)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>🔭 LENS</b>
+              <span>${escapeHTML(a.lens)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>💡 IŞIK</b>
+              <span>${escapeHTML(a.lighting)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>🖼️ KOMPOZİSYON</b>
+              <span>${escapeHTML(a.composition)}</span>
+            </div>
+
+            <div class="director-item">
+              <b>🌫️ ATMOSFER</b>
+              <span>${escapeHTML(a.atmosphere)}</span>
+            </div>
 
           </div>
 
+          <br>
 
-          <div class="box">
+          <button
+            class="directorRefresh"
+            data-index="${index}">
+            🧠 ANALİZİ YENİLE
+          </button>
 
-            <div class="box-title">
-              🧠 VISUAL DIRECTOR
-            </div>
+        </div>
 
-            <div class="director">
 
-              <div class="director-item">
-                <b>👤 KİŞİ</b>
-                <span>${escapeHTML(a.person)}</span>
-              </div>
+        <div class="box">
 
-              <div class="director-item">
-                <b>📍 MEKÂN</b>
-                <span>${escapeHTML(a.location)}</span>
-              </div>
+          <div class="box-title">
+            🎨 PROFESYONEL GÖRSEL PROMPT
+          </div>
 
-              <div class="director-item">
-                <b>📅 DÖNEM</b>
-                <span>${escapeHTML(a.period)}</span>
-              </div>
+          <textarea
+            class="prompt"
+            data-prompt="${index}"
+          >${escapeHTML(scene.prompt)}</textarea>
 
-              <div class="director-item">
-                <b>❤️ DUYGU</b>
-                <span>${escapeHTML(a.emotion)}</span>
-              </div>
+          <br><br>
 
-              <div class="director-item">
-                <b>🎬 EYLEM</b>
-                <span>${escapeHTML(a.action)}</span>
-              </div>
-
-              <div class="director-item">
-                <b>📷 KAMERA</b>
-                <span>${escapeHTML(a.camera)}</span>
-              </div>
-
-              <div class="director-item">
-                <b>🔭 LENS</b>
-                <span>${escapeHTML(a.lens)}</span>
-              </div>
-
-              <div class="director-item">
-                <b>💡 IŞIK</b>
-                <span>${escapeHTML(a.lighting)}</span>
-              </div>
-
-              <div class="director-item">
-                <b>🖼️ KOMPOZİSYON</b>
-                <span>${escapeHTML(a.composition)}</span>
-              </div>
-
-              <div class="director-item">
-                <b>🌫️ ATMOSFER</b>
-                <span>${escapeHTML(a.atmosphere)}</span>
-              </div>
-
-            </div>
-
-            <br>
+          <div class="row">
 
             <button
-              class="directorRefresh"
+              class="copyPrompt"
               data-index="${index}">
-              🧠 ANALİZİ YENİLE
+              📋 PROMPT KOPYALA
             </button>
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              🎨 PROFESYONEL GÖRSEL PROMPT
-            </div>
-
-            <textarea
-              class="prompt"
-              data-prompt="${index}"
-            >${escapeHTML(scene.prompt)}</textarea>
-
-            <br><br>
-
-            <div class="row">
-
-              <button
-                class="copyPrompt"
-                data-index="${index}">
-                📋 PROMPT KOPYALA
-              </button>
-
-              <button
-                class="regeneratePrompt"
-                data-index="${index}">
-                🔄 PROMPT YENİLE
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              🚫 NEGATIVE PROMPT
-            </div>
-
-            <textarea
-              class="negativePrompt"
-              data-negative="${index}"
-            >${escapeHTML(scene.negativePrompt)}</textarea>
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              🖼️ GÖRSEL
-            </div>
-
-            <input
-              type="file"
-              accept="image/*"
-              class="imageInput"
-              data-index="${index}"
-            >
-
-            ${
-              scene.imageURL
-              ?
-              `
-              <img
-                class="image-preview"
-                src="${scene.imageURL}"
-              >
-
-              <br>
-
-              <button
-                class="removeImage"
-                data-index="${index}">
-                🗑️ GÖRSELİ KALDIR
-              </button>
-              `
-              :
-              `
-              <div class="small">
-                Bu sahne için kendi görselini yükleyebilirsin.
-              </div>
-              `
-            }
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              🎙️ SESLENDİRME
-            </div>
 
             <button
-              class="ttsButton"
+              class="regeneratePrompt"
               data-index="${index}">
-              🎙️ SESLENDİR VE KAYDET
+              🔄 PROMPT YENİLE
             </button>
-
-            ${
-              scene.audioURL
-              ?
-              `
-              <audio
-                class="audio"
-                controls
-                src="${scene.audioURL}">
-              </audio>
-
-              <br>
-
-              <a
-                href="${scene.audioURL}"
-                download="GeldStory_Sahne_${index+1}.wav">
-                <button>💾 WAV İNDİR</button>
-              </a>
-              `
-              :
-              ""
-            }
-
-            <div class="tts-status">
-              ${escapeHTML(scene.ttsState)}
-            </div>
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              💬 ALTYAZI
-            </div>
-
-            <button
-              class="subtitleButton"
-              data-index="${index}">
-              ${
-                scene.subtitleEnabled
-                ?
-                "💬 ALTYAZI: AÇIK"
-                :
-                "💬 ALTYAZI: KAPALI"
-              }
-            </button>
-
-            <br><br>
-
-            <textarea
-              data-subtitle="${index}"
-              class="scene-text"
-            >${escapeHTML(scene.subtitle)}</textarea>
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              🎞️ HAREKET
-            </div>
-
-            <select
-              class="motionSelect"
-              data-index="${index}">
-
-              <option value="zoomIn"
-                ${scene.motion==="zoomIn"?"selected":""}>
-                🔍 Zoom In
-              </option>
-
-              <option value="zoomOut"
-                ${scene.motion==="zoomOut"?"selected":""}>
-                🔎 Zoom Out
-              </option>
-
-              <option value="panLeft"
-                ${scene.motion==="panLeft"?"selected":""}>
-                ⬅️ Pan Left
-              </option>
-
-              <option value="panRight"
-                ${scene.motion==="panRight"?"selected":""}>
-                ➡️ Pan Right
-              </option>
-
-              <option value="panUp"
-                ${scene.motion==="panUp"?"selected":""}>
-                ⬆️ Pan Up
-              </option>
-
-              <option value="panDown"
-                ${scene.motion==="panDown"?"selected":""}>
-                ⬇️ Pan Down
-              </option>
-
-              <option value="kenBurns"
-                ${scene.motion==="kenBurns"?"selected":""}>
-                🎥 Ken Burns
-              </option>
-
-              <option value="static"
-                ${scene.motion==="static"?"selected":""}>
-                ⏸️ Sabit
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="box">
-
-            <div class="box-title">
-              ⏱️ SÜRE
-            </div>
-
-            <div class="range-row">
-
-              <input
-                type="range"
-                min="1"
-                max="60"
-                step="0.1"
-                value="${scene.duration || 4}"
-                class="durationRange"
-                data-index="${index}"
-              >
-
-              <input
-                type="number"
-                min="1"
-                max="60"
-                step="0.1"
-                value="${scene.duration || 4}"
-                class="durationNumber"
-                data-index="${index}"
-              >
-
-            </div>
-
-            <div class="small">
-              WAV oluşturulduğunda gerçek ses süresi otomatik kullanılır.
-            </div>
 
           </div>
 
         </div>
 
 
-        <div>
+        <div class="box">
 
-          <div class="box">
+          <div class="box-title">
+            🚫 NEGATIVE PROMPT
+          </div>
 
-            <div class="box-title">
-              🎥 SAHNE ÖNİZLEME
-            </div>
+          <textarea
+            class="negativePrompt"
+            data-negative="${index}"
+          >${escapeHTML(scene.negativePrompt)}</textarea>
 
-            <canvas
-              class="sceneCanvas"
-              data-canvas="${index}"
-              width="1280"
-              height="720"
-              style="width:100%;aspect-ratio:16/9;background:#050608;border-radius:10px">
-            </canvas>
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            🖼️ GÖRSEL
+          </div>
+
+          <input
+            type="file"
+            accept="image/*"
+            class="imageInput"
+            data-index="${index}"
+          >
+
+          ${
+            scene.imageURL
+            ?
+            `
+            <img
+              class="image-preview"
+              src="${scene.imageURL}"
+            >
 
             <br>
 
             <button
-              class="scenePreview"
+              class="removeImage"
               data-index="${index}">
-              ▶️ SAHNEYİ ÖNİZLE
+              🗑️ GÖRSELİ KALDIR
             </button>
+            `
+            :
+            `
+            <div class="small">
+              Bu sahne için kendi görselini yükleyebilirsin.
+            </div>
+            `
+          }
+
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            🎙️ SESLENDİRME
+          </div>
+
+          <button
+            class="ttsButton"
+            data-index="${index}">
+            🎙️ SESLENDİR VE KAYDET
+          </button>
+
+          ${
+            scene.audioURL
+            ?
+            `
+            <audio
+              class="audio"
+              controls
+              src="${scene.audioURL}">
+            </audio>
+
+            <br>
+
+            <a
+              href="${scene.audioURL}"
+              download="GeldStory_Sahne_${index+1}.wav">
+
+              <button>
+                💾 WAV İNDİR
+              </button>
+
+            </a>
+            `
+            :
+            ""
+          }
+
+          <div class="tts-status">
+            ${escapeHTML(scene.ttsState)}
+          </div>
+
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            💬 ALTYAZI
+          </div>
+
+          <button
+            class="subtitleButton"
+            data-index="${index}">
+
+            ${
+              scene.subtitleEnabled
+              ?
+              "💬 ALTYAZI: AÇIK"
+              :
+              "💬 ALTYAZI: KAPALI"
+            }
+
+          </button>
+
+          <br><br>
+
+          <textarea
+            data-subtitle="${index}"
+            class="scene-text"
+          >${escapeHTML(scene.subtitle)}</textarea>
+
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            🎞️ HAREKET
+          </div>
+
+          <select
+            class="motionSelect"
+            data-index="${index}">
+
+            <option value="zoomIn"
+              ${scene.motion==="zoomIn"?"selected":""}>
+              🔍 Zoom In
+            </option>
+
+            <option value="zoomOut"
+              ${scene.motion==="zoomOut"?"selected":""}>
+              🔎 Zoom Out
+            </option>
+
+            <option value="panLeft"
+              ${scene.motion==="panLeft"?"selected":""}>
+              ⬅️ Pan Left
+            </option>
+
+            <option value="panRight"
+              ${scene.motion==="panRight"?"selected":""}>
+              ➡️ Pan Right
+            </option>
+
+            <option value="panUp"
+              ${scene.motion==="panUp"?"selected":""}>
+              ⬆️ Pan Up
+            </option>
+
+            <option value="panDown"
+              ${scene.motion==="panDown"?"selected":""}>
+              ⬇️ Pan Down
+            </option>
+
+            <option value="kenBurns"
+              ${scene.motion==="kenBurns"?"selected":""}>
+              🎥 Ken Burns
+            </option>
+
+            <option value="static"
+              ${scene.motion==="static"?"selected":""}>
+              ⏸️ Sabit
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            ⏱️ SÜRE
+          </div>
+
+          <div class="range-row">
+
+            <input
+              type="range"
+              min="1"
+              max="60"
+              step="0.1"
+              value="${scene.duration||4}"
+              class="durationRange"
+              data-index="${index}"
+            >
+
+            <input
+              type="number"
+              min="1"
+              max="60"
+              step="0.1"
+              value="${scene.duration||4}"
+              class="durationNumber"
+              data-index="${index}"
+            >
 
           </div>
 
+          <div class="small">
+            WAV oluşturulduğunda gerçek ses süresi otomatik kullanılır.
+          </div>
 
-          <div class="box">
+        </div>
 
-            <div class="box-title">
-              🛠️ SAHNE İŞLEMLERİ
-            </div>
+      </div>
 
-            <div class="row">
 
-              <button
-                class="duplicateScene"
-                data-index="${index}">
-                📑 ÇOĞALT
-              </button>
+      <div>
 
-              <button
-                class="deleteScene danger"
-                data-index="${index}">
-                🗑️ SİL
-              </button>
+        <div class="box">
 
-            </div>
+          <div class="box-title">
+            🎥 SAHNE ÖNİZLEME
+          </div>
+
+          <canvas
+            class="sceneCanvas"
+            data-canvas="${index}"
+            width="1280"
+            height="720"
+            style="width:100%;aspect-ratio:16/9;background:#050608;border-radius:10px">
+          </canvas>
+
+          <br>
+
+          <button
+            class="scenePreview"
+            data-index="${index}">
+            ▶️ SAHNEYİ ÖNİZLE
+          </button>
+
+        </div>
+
+
+        <div class="box">
+
+          <div class="box-title">
+            🛠️ SAHNE İŞLEMLERİ
+          </div>
+
+          <div class="row">
+
+            <button
+              class="duplicateScene"
+              data-index="${index}">
+              📑 ÇOĞALT
+            </button>
+
+            <button
+              class="deleteScene danger"
+              data-index="${index}">
+              🗑️ SİL
+            </button>
 
           </div>
 
         </div>
 
       </div>
-    `;
 
-    container.appendChild(div);
+      </div>
+      `;
 
-    drawScene(
-      scene,
-      div.querySelector(".sceneCanvas"),
-      0
-    );
+      container.appendChild(div);
 
-  });
+      drawScene(
+        scene,
+        div.querySelector(".sceneCanvas"),
+        0
+      );
+
+    }
+  );
 
   attachEvents();
 
@@ -1329,103 +1340,114 @@ function renderScenes(){
 
 
 /* =========================================================
-   EVENTLER
+   EVENTS
 ========================================================= */
 
 function attachEvents(){
 
-  document.querySelectorAll(".scene-text").forEach(el=>{
+  document.querySelectorAll(".scene-text")
+  .forEach(el=>{
 
-    el.addEventListener("input",function(){
+    el.addEventListener(
+      "input",
+      function(){
 
-      const i = Number(this.dataset.text);
+        if(
+          this.dataset.text !== undefined
+        ){
 
-      if(Number.isInteger(i)){
+          const i =
+            Number(this.dataset.text);
 
-        scenes[i].text = this.value;
+          scenes[i].text =
+            this.value;
 
-        scenes[i].subtitle = this.value;
+          scenes[i].subtitle =
+            this.value;
+
+        }
 
       }
-
-    });
-
-  });
-
-
-  document.querySelectorAll("[data-prompt]").forEach(el=>{
-
-    el.addEventListener("input",function(){
-
-      const i = Number(this.dataset.prompt);
-
-      scenes[i].prompt = this.value;
-
-    });
+    );
 
   });
 
 
-  document.querySelectorAll("[data-subtitle]").forEach(el=>{
+  document.querySelectorAll("[data-prompt]")
+  .forEach(el=>{
 
-    el.addEventListener("input",function(){
+    el.addEventListener(
+      "input",
+      function(){
 
-      const i = Number(this.dataset.subtitle);
+        const i =
+          Number(
+            this.dataset.prompt
+          );
 
-      scenes[i].subtitle = this.value;
+        scenes[i].prompt =
+          this.value;
 
-    });
-
-  });
-
-
-  document.querySelectorAll("[data-negative]").forEach(el=>{
-
-    el.addEventListener("input",function(){
-
-      const i = Number(this.dataset.negative);
-
-      scenes[i].negativePrompt = this.value;
-
-    });
+      }
+    );
 
   });
 
 
-  document.querySelectorAll(".directorRefresh").forEach(btn=>{
+  document.querySelectorAll("[data-subtitle]")
+  .forEach(el=>{
 
-    btn.onclick = () => {
+    el.addEventListener(
+      "input",
+      function(){
 
-      refreshDirector(
-        Number(btn.dataset.index)
-      );
+        const i =
+          Number(
+            this.dataset.subtitle
+          );
 
-    };
+        scenes[i].subtitle =
+          this.value;
 
-  });
-
-
-  document.querySelectorAll(".copyPrompt").forEach(btn=>{
-
-    btn.onclick = () => {
-
-      const i = Number(btn.dataset.index);
-
-      copyText(scenes[i].prompt);
-
-    };
+      }
+    );
 
   });
 
 
-  document.querySelectorAll(".regeneratePrompt").forEach(btn=>{
+  document.querySelectorAll("[data-negative]")
+  .forEach(el=>{
 
-    btn.onclick = () => {
+    el.addEventListener(
+      "input",
+      function(){
 
-      const i = Number(btn.dataset.index);
+        const i =
+          Number(
+            this.dataset.negative
+          );
+
+        scenes[i].negativePrompt =
+          this.value;
+
+      }
+    );
+
+  });
+
+
+  document.querySelectorAll(".directorRefresh")
+  .forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+      const i =
+        Number(btn.dataset.index);
 
       scenes[i].analysis =
-        safeAnalyzeScene(scenes[i].text);
+        safeAnalyzeScene(
+          scenes[i].text
+        );
 
       scenes[i].prompt =
         createImagePrompt(
@@ -1443,9 +1465,56 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".ttsButton").forEach(btn=>{
+  document.querySelectorAll(".copyPrompt")
+  .forEach(btn=>{
 
-    btn.onclick = () => {
+    btn.onclick = ()=>{
+
+      const i =
+        Number(btn.dataset.index);
+
+      copyText(
+        scenes[i].prompt
+      );
+
+    };
+
+  });
+
+
+  document.querySelectorAll(".regeneratePrompt")
+  .forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+      const i =
+        Number(btn.dataset.index);
+
+      scenes[i].analysis =
+        safeAnalyzeScene(
+          scenes[i].text
+        );
+
+      scenes[i].prompt =
+        createImagePrompt(
+          scenes[i].text,
+          i
+        );
+
+      scenes[i].negativePrompt =
+        createNegativePrompt();
+
+      renderScenes();
+
+    };
+
+  });
+
+
+  document.querySelectorAll(".ttsButton")
+  .forEach(btn=>{
+
+    btn.onclick = ()=>{
 
       generateSceneVoice(
         Number(btn.dataset.index)
@@ -1456,11 +1525,13 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".subtitleButton").forEach(btn=>{
+  document.querySelectorAll(".subtitleButton")
+  .forEach(btn=>{
 
-    btn.onclick = () => {
+    btn.onclick = ()=>{
 
-      const i = Number(btn.dataset.index);
+      const i =
+        Number(btn.dataset.index);
 
       scenes[i].subtitleEnabled =
         !scenes[i].subtitleEnabled;
@@ -1472,13 +1543,16 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".motionSelect").forEach(el=>{
+  document.querySelectorAll(".motionSelect")
+  .forEach(el=>{
 
-    el.onchange = () => {
+    el.onchange = ()=>{
 
-      const i = Number(el.dataset.index);
+      const i =
+        Number(el.dataset.index);
 
-      scenes[i].motion = el.value;
+      scenes[i].motion =
+        el.value;
 
       drawScene(
         scenes[i],
@@ -1493,11 +1567,13 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".durationRange").forEach(el=>{
+  document.querySelectorAll(".durationRange")
+  .forEach(el=>{
 
-    el.oninput = () => {
+    el.oninput = ()=>{
 
-      const i = Number(el.dataset.index);
+      const i =
+        Number(el.dataset.index);
 
       scenes[i].duration =
         Number(el.value);
@@ -1507,18 +1583,23 @@ function attachEvents(){
           `.durationNumber[data-index="${i}"]`
         );
 
-      if(n) n.value = el.value;
+      if(n){
+        n.value =
+          el.value;
+      }
 
     };
 
   });
 
 
-  document.querySelectorAll(".durationNumber").forEach(el=>{
+  document.querySelectorAll(".durationNumber")
+  .forEach(el=>{
 
-    el.oninput = () => {
+    el.oninput = ()=>{
 
-      const i = Number(el.dataset.index);
+      const i =
+        Number(el.dataset.index);
 
       let value =
         Math.max(
@@ -1529,77 +1610,99 @@ function attachEvents(){
           )
         );
 
-      scenes[i].duration = value;
+      scenes[i].duration =
+        value;
 
       const r =
         document.querySelector(
           `.durationRange[data-index="${i}"]`
         );
 
-      if(r) r.value = value;
+      if(r){
+        r.value =
+          value;
+      }
 
     };
 
   });
 
 
-  document.querySelectorAll(".imageInput").forEach(input=>{
+  document.querySelectorAll(".imageInput")
+  .forEach(input=>{
 
-    input.onchange = event => {
+    input.onchange =
+      event=>{
 
-      const i = Number(input.dataset.index);
+        const i =
+          Number(
+            input.dataset.index
+          );
 
-      const file =
-        event.target.files[0];
+        const file =
+          event.target.files[0];
 
-      if(!file) return;
+        if(!file) return;
+
+        if(scenes[i].imageURL){
+
+          try{
+            URL.revokeObjectURL(
+              scenes[i].imageURL
+            );
+          }catch(e){}
+
+        }
+
+        scenes[i].image =
+          file;
+
+        scenes[i].imageURL =
+          URL.createObjectURL(
+            file
+          );
+
+        scenes[i].imageObject =
+          null;
+
+        renderScenes();
+
+        loadSceneImage(
+          scenes[i],
+          i
+        );
+
+      };
+
+  });
+
+
+  document.querySelectorAll(".removeImage")
+  .forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+      const i =
+        Number(btn.dataset.index);
 
       if(scenes[i].imageURL){
+
         try{
           URL.revokeObjectURL(
             scenes[i].imageURL
           );
         }catch(e){}
+
       }
 
-      scenes[i].image = file;
+      scenes[i].image =
+        null;
 
       scenes[i].imageURL =
-        URL.createObjectURL(file);
+        null;
 
-      scenes[i].imageObject = null;
-
-      renderScenes();
-
-      loadSceneImage(
-        scenes[i],
-        i
-      );
-
-    };
-
-  });
-
-
-  document.querySelectorAll(".removeImage").forEach(btn=>{
-
-    btn.onclick = () => {
-
-      const i = Number(btn.dataset.index);
-
-      if(scenes[i].imageURL){
-
-        try{
-          URL.revokeObjectURL(
-            scenes[i].imageURL
-          );
-        }catch(e){}
-
-      }
-
-      scenes[i].image = null;
-      scenes[i].imageURL = null;
-      scenes[i].imageObject = null;
+      scenes[i].imageObject =
+        null;
 
       renderScenes();
 
@@ -1608,22 +1711,39 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".duplicateScene").forEach(btn=>{
+  document.querySelectorAll(".duplicateScene")
+  .forEach(btn=>{
 
-    btn.onclick = () => {
+    btn.onclick = ()=>{
 
-      const i = Number(btn.dataset.index);
+      const i =
+        Number(btn.dataset.index);
 
-      const original = scenes[i];
+      const original =
+        scenes[i];
 
       const copy = {
+
         ...original,
-        id:sceneCounter++,
-        image:original.image,
-        imageURL:original.imageURL,
-        imageObject:original.imageObject,
-        audio:original.audio,
-        audioURL:original.audioURL
+
+        id:
+          sceneCounter++,
+
+        image:
+          original.image,
+
+        imageURL:
+          original.imageURL,
+
+        imageObject:
+          original.imageObject,
+
+        audio:
+          original.audio,
+
+        audioURL:
+          original.audioURL
+
       };
 
       scenes.splice(
@@ -1639,17 +1759,24 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".deleteScene").forEach(btn=>{
+  document.querySelectorAll(".deleteScene")
+  .forEach(btn=>{
 
-    btn.onclick = () => {
+    btn.onclick = ()=>{
 
-      const i = Number(btn.dataset.index);
+      const i =
+        Number(btn.dataset.index);
 
       if(!confirm(
         "Bu sahneyi silmek istiyor musun?"
-      )) return;
+      )){
+        return;
+      }
 
-      scenes.splice(i,1);
+      scenes.splice(
+        i,
+        1
+      );
 
       renderScenes();
 
@@ -1658,9 +1785,10 @@ function attachEvents(){
   });
 
 
-  document.querySelectorAll(".scenePreview").forEach(btn=>{
+  document.querySelectorAll(".scenePreview")
+  .forEach(btn=>{
 
-    btn.onclick = () => {
+    btn.onclick = ()=>{
 
       previewSingleScene(
         Number(btn.dataset.index)
@@ -1674,18 +1802,51 @@ function attachEvents(){
 
 
 /* =========================================================
+   COPY
+========================================================= */
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
+    status(
+      "📋 Kopyalandı."
+    );
+
+  }catch(error){
+
+    alert(
+      "Kopyalama başarısız."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
    IMAGE LOAD
 ========================================================= */
 
-function loadSceneImage(scene,index){
+function loadSceneImage(
+  scene,
+  index
+){
 
-  if(!scene.imageURL) return;
+  if(!scene.imageURL)
+    return;
 
-  const img = new Image();
+  const img =
+    new Image();
 
-  img.onload = () => {
+  img.onload = ()=>{
 
-    scene.imageObject = img;
+    scene.imageObject =
+      img;
 
     const canvas =
       document.querySelector(
@@ -1693,16 +1854,19 @@ function loadSceneImage(scene,index){
       );
 
     if(canvas){
+
       drawScene(
         scene,
         canvas,
         0
       );
+
     }
 
   };
 
-  img.src = scene.imageURL;
+  img.src =
+    scene.imageURL;
 
 }
 
@@ -1717,17 +1881,21 @@ function getCanvasSize(){
     $("format").value;
 
   if(format === "9:16"){
+
     return {
       width:720,
       height:1280
     };
+
   }
 
   if(format === "1:1"){
+
     return {
       width:1080,
       height:1080
     };
+
   }
 
   return {
@@ -1739,7 +1907,7 @@ function getCanvasSize(){
 
 
 /* =========================================================
-   IMAGE DRAW
+   DRAW COVER
 ========================================================= */
 
 function drawCover(
@@ -1750,60 +1918,75 @@ function drawCover(
   motion
 ){
 
-  const cw = canvas.width;
-  const ch = canvas.height;
+  const cw =
+    canvas.width;
 
-  const iw = img.width;
-  const ih = img.height;
+  const ch =
+    canvas.height;
+
+  const iw =
+    img.width;
+
+  const ih =
+    img.height;
 
   const scale =
     Math.max(
-      cw / iw,
-      ch / ih
+      cw/iw,
+      ch/ih
     );
 
-  const baseW = iw * scale;
-  const baseH = ih * scale;
+  const baseW =
+    iw * scale;
+
+  const baseH =
+    ih * scale;
 
   let zoom = 1;
 
   if(motion === "zoomIn"){
-    zoom = 1 + progress * .10;
+    zoom =
+      1 + progress*.10;
   }
   else if(motion === "zoomOut"){
-    zoom = 1.10 - progress * .10;
+    zoom =
+      1.10-progress*.10;
   }
   else if(motion === "kenBurns"){
-    zoom = 1.04 + progress * .08;
+    zoom =
+      1.04+progress*.08;
   }
 
-  const w = baseW * zoom;
-  const h = baseH * zoom;
+  const w =
+    baseW*zoom;
+
+  const h =
+    baseH*zoom;
 
   let x =
-    (cw - w) / 2;
+    (cw-w)/2;
 
   let y =
-    (ch - h) / 2;
+    (ch-h)/2;
 
   if(motion === "panLeft"){
     x =
-      (cw-w) * progress;
+      (cw-w)*progress;
   }
 
   if(motion === "panRight"){
     x =
-      (cw-w) * (1-progress);
+      (cw-w)*(1-progress);
   }
 
   if(motion === "panUp"){
     y =
-      (ch-h) * progress;
+      (ch-h)*progress;
   }
 
   if(motion === "panDown"){
     y =
-      (ch-h) * (1-progress);
+      (ch-h)*(1-progress);
   }
 
   ctx.drawImage(
@@ -1827,7 +2010,8 @@ function drawScene(
   progress
 ){
 
-  if(!canvas) return;
+  if(!canvas)
+    return;
 
   const size =
     getCanvasSize();
@@ -1836,15 +2020,23 @@ function drawScene(
     canvas.width !== size.width ||
     canvas.height !== size.height
   ){
-    canvas.width = size.width;
-    canvas.height = size.height;
+
+    canvas.width =
+      size.width;
+
+    canvas.height =
+      size.height;
+
   }
 
   const ctx =
     canvas.getContext("2d");
 
-  const w = canvas.width;
-  const h = canvas.height;
+  const w =
+    canvas.width;
+
+  const h =
+    canvas.height;
 
   ctx.clearRect(
     0,
@@ -1874,12 +2066,14 @@ function drawScene(
       scene.motion
     );
 
-  }
-  else{
+  }else{
 
     const gradient =
       ctx.createLinearGradient(
-        0,0,w,h
+        0,
+        0,
+        w,
+        h
       );
 
     gradient.addColorStop(
@@ -1892,7 +2086,8 @@ function drawScene(
       "#050608"
     );
 
-    ctx.fillStyle = gradient;
+    ctx.fillStyle =
+      gradient;
 
     ctx.fillRect(
       0,
@@ -1905,7 +2100,10 @@ function drawScene(
       "rgba(255,255,255,.75)";
 
     ctx.font =
-      Math.max(18,w/55) +
+      Math.max(
+        18,
+        w/55
+      ) +
       "px Arial";
 
     ctx.textAlign =
@@ -1919,8 +2117,6 @@ function drawScene(
 
   }
 
-
-  /* cinematic overlay */
 
   const overlay =
     ctx.createLinearGradient(
@@ -1945,7 +2141,8 @@ function drawScene(
     "rgba(0,0,0,.58)"
   );
 
-  ctx.fillStyle = overlay;
+  ctx.fillStyle =
+    overlay;
 
   ctx.fillRect(
     0,
@@ -1954,8 +2151,6 @@ function drawScene(
     h
   );
 
-
-  /* subtitle */
 
   if(
     scene.subtitleEnabled &&
@@ -1977,11 +2172,10 @@ function drawScene(
       "center";
 
     const maxWidth =
-      w * .84;
+      w*.84;
 
     const words =
-      scene.subtitle
-        .split(/\s+/);
+      scene.subtitle.split(/\s+/);
 
     let lines = [];
     let line = "";
@@ -1994,8 +2188,8 @@ function drawScene(
         : word;
 
       if(
-        ctx.measureText(test).width
-        > maxWidth
+        ctx.measureText(test).width >
+        maxWidth
       ){
 
         lines.push(line);
@@ -2009,17 +2203,18 @@ function drawScene(
 
     });
 
-    if(line) lines.push(line);
+    if(line)
+      lines.push(line);
 
     const lineHeight =
-      fontSize * 1.25;
+      fontSize*1.25;
 
     const total =
-      lines.length *
+      lines.length*
       lineHeight;
 
     let y =
-      h - total - h*.08;
+      h-total-h*.08;
 
     ctx.textBaseline =
       "top";
@@ -2050,14 +2245,13 @@ function drawScene(
         y
       );
 
-      y += lineHeight;
+      y +=
+        lineHeight;
 
     });
 
   }
 
-
-  /* GeldStory brand ALWAYS visible */
 
   ctx.textAlign =
     "right";
@@ -2067,7 +2261,10 @@ function drawScene(
 
   ctx.font =
     "bold " +
-    Math.max(16,w/70) +
+    Math.max(
+      16,
+      w/70
+    ) +
     "px Arial";
 
   ctx.fillStyle =
@@ -2097,21 +2294,26 @@ function getAudioDuration(url){
       "metadata";
 
     audio.onloadedmetadata =
-      () => {
+      ()=>{
 
         const d =
-          Number(audio.duration);
+          Number(
+            audio.duration
+          );
 
         resolve(
-          isFinite(d) ? d : 0
+          isFinite(d)
+          ? d
+          : 0
         );
 
       };
 
     audio.onerror =
-      () => resolve(0);
+      ()=>resolve(0);
 
-    audio.src = url;
+    audio.src =
+      url;
 
   });
 
@@ -2119,7 +2321,7 @@ function getAudioDuration(url){
 
 
 /* =========================================================
-   PIPER TTS
+   LOAD TTS
 ========================================================= */
 
 async function loadTTS(){
@@ -2161,7 +2363,7 @@ async function loadTTS(){
 
 
 /* =========================================================
-   VOICE
+   GET VOICE
 ========================================================= */
 
 function getVoice(){
@@ -2172,10 +2374,12 @@ function getVoice(){
 
 
 /* =========================================================
-   GENERATE WAV
+   SINGLE SCENE VOICE
 ========================================================= */
 
-async function generateSceneVoice(index){
+async function generateSceneVoice(
+  index
+){
 
   const scene =
     scenes[index];
@@ -2186,7 +2390,7 @@ async function generateSceneVoice(index){
       "Sahne metni boş."
     );
 
-    return;
+    return false;
 
   }
 
@@ -2235,9 +2439,7 @@ async function generateSceneVoice(index){
 
                 const percent =
                   Math.round(
-                    p.loaded *
-                    100 /
-                    p.total
+                    p.loaded*100/p.total
                   );
 
                 ttsMessage(
@@ -2278,8 +2480,7 @@ async function generateSceneVoice(index){
           wav
         );
 
-    }
-    else{
+    }else{
 
       const wav =
         await tts.predict({
@@ -2318,13 +2519,9 @@ async function generateSceneVoice(index){
       scene.duration.toFixed(2) +
       " sn";
 
-    ttsMessage(
-      "✅ Sahne " +
-      (index+1) +
-      " WAV hazır."
-    );
-
     renderScenes();
+
+    return true;
 
   }catch(error){
 
@@ -2334,10 +2531,219 @@ async function generateSceneVoice(index){
       "❌ Hata: " +
       error.message;
 
-    ttsMessage(
-      "❌ TTS hatası: " +
-      error.message
+    renderScenes();
+
+    return false;
+
+  }
+
+}
+
+
+/* =========================================================
+   ⭐ YENİ:
+   TÜM SAHNELERİ SIRAYLA SESLENDİR
+========================================================= */
+
+async function generateAllSceneVoices(){
+
+  if(allVoiceRunning){
+
+    alert(
+      "Toplu seslendirme zaten çalışıyor."
     );
+
+    return;
+
+  }
+
+  if(!scenes.length){
+
+    alert(
+      "Önce sahneleri oluştur."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Seslendirmeye başlamadan önce
+    metin kontrolü.
+  */
+
+  const emptyScenes =
+    scenes.filter(
+      scene =>
+        !scene.text ||
+        !scene.text.trim()
+    );
+
+  if(emptyScenes.length){
+
+    alert(
+      "Boş sahneler var. Önce boş sahneleri doldur."
+    );
+
+    return;
+
+  }
+
+
+  allVoiceRunning =
+    true;
+
+  $("voiceAllBtn").disabled =
+    true;
+
+  $("createBtn").disabled =
+    true;
+
+  $("addBtn").disabled =
+    true;
+
+  $("directorBtn").disabled =
+    true;
+
+  $("renderBtn").disabled =
+    true;
+
+  $("voiceProgress").style.display =
+    "block";
+
+
+  try{
+
+    /*
+      TTS motorunu bir kez yükle.
+      Böylece her sahnede tekrar yüklenmez.
+    */
+
+    await loadTTS();
+
+
+    for(
+      let i=0;
+      i<scenes.length;
+      i++
+    ){
+
+      if(!allVoiceRunning)
+        break;
+
+
+      const percent =
+        Math.round(
+          (i /
+           scenes.length) *
+          100
+        );
+
+      $("voiceProgressInner").style.width =
+        percent + "%";
+
+      $("voiceProgressText").textContent =
+        "🎙️ Sahne " +
+        (i+1) +
+        " / " +
+        scenes.length +
+        " seslendiriliyor...";
+
+
+      status(
+        "🎙️ Toplu seslendirme: Sahne " +
+        (i+1) +
+        "/" +
+        scenes.length
+      );
+
+
+      /*
+        SAHNE 1 BİTMEDEN
+        SAHNE 2 BAŞLAMAZ.
+      */
+
+      await generateSceneVoice(i);
+
+
+      /*
+        Render ekranını güncelle.
+      */
+
+      $("voiceProgressInner").style.width =
+        Math.round(
+          ((i+1) /
+           scenes.length) *
+          100
+        ) + "%";
+
+
+      /*
+        Çok kısa bekleme:
+        tarayıcının UI'ı güncellemesine izin verir.
+      */
+
+      await new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            100
+          )
+      );
+
+    }
+
+
+    $("voiceProgressInner").style.width =
+      "100%";
+
+    $("voiceProgressText").textContent =
+      "✅ TÜM SAHNELERİN SESLENDİRMESİ TAMAMLANDI";
+
+
+    status(
+      "✅ " +
+      scenes.length +
+      " sahnenin tamamı WAV olarak kaydedildi."
+    );
+
+    ttsMessage(
+      "🎉 Tüm sahnelerin sesleri hazır."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("voiceProgressText").textContent =
+      "❌ Toplu seslendirme hatası: " +
+      error.message;
+
+    status(
+      "❌ Toplu seslendirme sırasında hata oluştu."
+    );
+
+  }finally{
+
+    allVoiceRunning =
+      false;
+
+    $("voiceAllBtn").disabled =
+      false;
+
+    $("createBtn").disabled =
+      false;
+
+    $("addBtn").disabled =
+      false;
+
+    $("directorBtn").disabled =
+      false;
+
+    $("renderBtn").disabled =
+      false;
 
     renderScenes();
 
@@ -2347,10 +2753,24 @@ async function generateSceneVoice(index){
 
 
 /* =========================================================
-   SCENE PREVIEW
+   STOP ALL VOICE
 ========================================================= */
 
-async function previewSingleScene(index){
+function stopAllVoice(){
+
+  allVoiceRunning =
+    false;
+
+}
+
+
+/* =========================================================
+   SINGLE SCENE PREVIEW
+========================================================= */
+
+async function previewSingleScene(
+  index
+){
 
   const scene =
     scenes[index];
@@ -2360,10 +2780,14 @@ async function previewSingleScene(index){
       `[data-canvas="${index}"]`
     );
 
-  if(!canvas) return;
+  if(!canvas)
+    return;
 
-  previewRunning = true;
-  previewStop = false;
+  previewRunning =
+    true;
+
+  previewStop =
+    false;
 
   const start =
     performance.now();
@@ -2371,8 +2795,10 @@ async function previewSingleScene(index){
   const duration =
     Math.max(
       1,
-      Number(scene.duration || 4)
-    ) * 1000;
+      Number(
+        scene.duration || 4
+      )
+    )*1000;
 
 
   function frame(now){
@@ -2382,7 +2808,9 @@ async function previewSingleScene(index){
       previewStop
     ){
 
-      previewRunning = false;
+      previewRunning =
+        false;
+
       return;
 
     }
@@ -2407,7 +2835,8 @@ async function previewSingleScene(index){
 
     }else{
 
-      previewRunning = false;
+      previewRunning =
+        false;
 
     }
 
@@ -2421,7 +2850,7 @@ async function previewSingleScene(index){
 
 
 /* =========================================================
-   MAIN PREVIEW
+   ALL PREVIEW
 ========================================================= */
 
 async function previewAll(){
@@ -2436,8 +2865,11 @@ async function previewAll(){
 
   }
 
-  previewRunning = true;
-  previewStop = false;
+  previewRunning =
+    true;
+
+  previewStop =
+    false;
 
   const canvas =
     $("mainCanvas");
@@ -2451,6 +2883,7 @@ async function previewAll(){
   canvas.height =
     size.height;
 
+
   for(
     let i=0;
     i<scenes.length;
@@ -2460,7 +2893,8 @@ async function previewAll(){
     if(
       !previewRunning ||
       previewStop
-    ) break;
+    )
+      break;
 
     const scene =
       scenes[i];
@@ -2471,59 +2905,64 @@ async function previewAll(){
     const duration =
       Math.max(
         1,
-        Number(scene.duration || 4)
-      ) * 1000;
+        Number(
+          scene.duration || 4
+        )
+      )*1000;
 
 
-    await new Promise(resolve=>{
+    await new Promise(
+      resolve=>{
 
-      function frame(now){
+        function frame(now){
 
-        if(
-          !previewRunning ||
-          previewStop
-        ){
+          if(
+            !previewRunning ||
+            previewStop
+          ){
 
-          resolve();
-          return;
+            resolve();
+            return;
+
+          }
+
+          const progress =
+            Math.min(
+              1,
+              (now-start)/duration
+            );
+
+          drawScene(
+            scene,
+            canvas,
+            progress
+          );
+
+          if(progress < 1){
+
+            requestAnimationFrame(
+              frame
+            );
+
+          }else{
+
+            resolve();
+
+          }
 
         }
 
-        const progress =
-          Math.min(
-            1,
-            (now-start)/duration
-          );
-
-        drawScene(
-          scene,
-          canvas,
-          progress
+        requestAnimationFrame(
+          frame
         );
 
-        if(progress < 1){
-
-          requestAnimationFrame(
-            frame
-          );
-
-        }else{
-
-          resolve();
-
-        }
-
       }
-
-      requestAnimationFrame(
-        frame
-      );
-
-    });
+    );
 
   }
 
-  previewRunning = false;
+  previewRunning =
+    false;
 
 }
 
@@ -2554,8 +2993,8 @@ async function renderVideo(){
 
   }
 
-
-  renderRunning = true;
+  renderRunning =
+    true;
 
   try{
 
@@ -2592,36 +3031,35 @@ async function renderVideo(){
     try{
 
       audioContext =
-        new (
+        new(
           window.AudioContext ||
           window.webkitAudioContext
         )();
 
       destination =
         audioContext
-          .createMediaStreamDestination();
+        .createMediaStreamDestination();
 
-      const audioTracks =
-        destination
-          .stream
-          .getAudioTracks();
-
-      audioTracks.forEach(track=>{
-        stream.addTrack(track);
-      });
+      destination
+        .stream
+        .getAudioTracks()
+        .forEach(
+          track =>
+            stream.addTrack(
+              track
+            )
+        );
 
     }catch(error){
 
       console.warn(
-        "Web Audio kullanılamadı:",
         error
       );
 
     }
 
 
-    let mime =
-      "";
+    let mime = "";
 
     if(
       MediaRecorder.isTypeSupported(
@@ -2680,17 +3118,17 @@ async function renderVideo(){
 
 
     const stopped =
-      new Promise(resolve=>{
+      new Promise(
+        resolve=>{
 
-        recorder.onstop =
-          resolve;
+          recorder.onstop =
+            resolve;
 
-      });
+        }
+      );
 
 
-    recorder.start(
-      250
-    );
+    recorder.start(250);
 
 
     ttsMessage(
@@ -2746,14 +3184,11 @@ async function renderVideo(){
           audioElement.preload =
             "auto";
 
-          audioElement.crossOrigin =
-            "anonymous";
-
           sourceNode =
             audioContext
-              .createMediaElementSource(
-                audioElement
-              );
+            .createMediaElementSource(
+              audioElement
+            );
 
           sourceNode.connect(
             destination
@@ -2780,44 +3215,47 @@ async function renderVideo(){
       const start =
         performance.now();
 
-      await new Promise(resolve=>{
 
-        function frame(now){
+      await new Promise(
+        resolve=>{
 
-          const elapsed =
-            (now-start)/1000;
+          function frame(now){
 
-          const progress =
-            Math.min(
-              1,
-              elapsed/duration
+            const elapsed =
+              (now-start)/1000;
+
+            const progress =
+              Math.min(
+                1,
+                elapsed/duration
+              );
+
+            drawScene(
+              scene,
+              canvas,
+              progress
             );
 
-          drawScene(
-            scene,
-            canvas,
-            progress
-          );
+            if(elapsed < duration){
 
-          if(elapsed < duration){
+              requestAnimationFrame(
+                frame
+              );
 
-            requestAnimationFrame(
-              frame
-            );
+            }else{
 
-          }else{
+              resolve();
 
-            resolve();
+            }
 
           }
 
+          requestAnimationFrame(
+            frame
+          );
+
         }
-
-        requestAnimationFrame(
-          frame
-        );
-
-      });
+      );
 
 
       if(audioElement){
@@ -2872,8 +3310,7 @@ async function renderVideo(){
 
     ttsMessage(
       "✅ Video hazır — " +
-      (blob.size/1024/1024)
-        .toFixed(2) +
+      (blob.size/1024/1024).toFixed(2) +
       " MB"
     );
 
@@ -2883,9 +3320,8 @@ async function renderVideo(){
         "downloadVideo"
       );
 
-    if(old){
+    if(old)
       old.remove();
-    }
 
 
     const box =
@@ -2900,6 +3336,7 @@ async function renderVideo(){
       "box";
 
     box.innerHTML = `
+
       <div class="box-title">
         🎉 VİDEO HAZIR
       </div>
@@ -2915,11 +3352,15 @@ async function renderVideo(){
       <a
         href="${url}"
         download="GeldStory_V48.1.webm">
+
         <button class="green">
           💾 WEBM VİDEOYU İNDİR
         </button>
+
       </a>
+
     `;
+
 
     $("renderStatus")
       .parentElement
@@ -2939,7 +3380,8 @@ async function renderVideo(){
 
   }finally{
 
-    renderRunning = false;
+    renderRunning =
+      false;
 
   }
 
@@ -2953,8 +3395,14 @@ async function renderVideo(){
 $("createBtn").onclick =
   createScenes;
 
+
+$("voiceAllBtn").onclick =
+  generateAllSceneVoices;
+
+
 $("addBtn").onclick =
   addScene;
+
 
 $("directorBtn").onclick = ()=>{
 
@@ -2968,23 +3416,25 @@ $("directorBtn").onclick = ()=>{
 
   }
 
-  scenes.forEach((scene,index)=>{
+  scenes.forEach(
+    (scene,index)=>{
 
-    scene.analysis =
-      safeAnalyzeScene(
-        scene.text
-      );
+      scene.analysis =
+        safeAnalyzeScene(
+          scene.text
+        );
 
-    scene.prompt =
-      createImagePrompt(
-        scene.text,
-        index
-      );
+      scene.prompt =
+        createImagePrompt(
+          scene.text,
+          index
+        );
 
-    scene.negativePrompt =
-      createNegativePrompt();
+      scene.negativePrompt =
+        createNegativePrompt();
 
-  });
+    }
+  );
 
   renderScenes();
 
@@ -2994,16 +3444,22 @@ $("directorBtn").onclick = ()=>{
 
 };
 
+
 $("renderBtn").onclick =
   renderVideo;
+
 
 $("previewBtn").onclick =
   previewAll;
 
+
 $("stopPreviewBtn").onclick = ()=>{
 
-  previewStop = true;
-  previewRunning = false;
+  previewStop =
+    true;
+
+  previewRunning =
+    false;
 
   ttsMessage(
     "⏹️ Önizleme durduruldu."
